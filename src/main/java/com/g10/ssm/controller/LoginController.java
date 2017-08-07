@@ -4,8 +4,10 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.g10.ssm.po.User;
@@ -17,11 +19,29 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	
+	/*
+	 * 用户注册
+	 */
 	@RequestMapping(value="/register",method=RequestMethod.POST)
-	public ModelAndView register(User user){
+	public String register(User user) throws Exception{
 		user.setLoginStatus(false);
 		user.setRegisterTime(new Date());
-		return null;
-		
+		int res=loginService.saveUser(user);
+		if(res == 1) return "success";
+		else return "error";
+	}
+	
+	/*
+	 * 用户登录
+	 */
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	public String login(@RequestParam(value="userId",required=true)int userId,
+			@RequestParam(value="password",required=true)String password)throws Exception{
+		int res=loginService.checkUserPassword(userId, password);
+		if(res==1)
+			return "success";
+		else {
+			return "false";
+		}
 	}
 }
