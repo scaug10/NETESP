@@ -46,7 +46,7 @@ public interface ForumManageService {
 	 * @Description: 审核板块，记录审核的结果与审核状态
 	 * @param boardId
 	 * @param board
-	 * @param @throws Exception
+	 * @throws Exception
 	 * @return int
 	 */
 	public int checkBoardByPrimary(int boardId, Board board) throws Exception;
