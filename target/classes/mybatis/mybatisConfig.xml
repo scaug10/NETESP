@@ -6,7 +6,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
 
     <typeAliases>  
-        <package name="com.g10.ssm.po"/>  
+        <package name="com.g10.ssm.po"/>
+        <package name="com.g10.ssm.po.forum"/>
+        <package name="com.g10.ssm.po.knowledge"/>
+        <package name="com.g10.ssm.po.testdatabase"/>
     </typeAliases>  
  
 </configuration> 
