@@ -24,6 +24,16 @@ public interface ForumManageService {
 	public int updateBoardBoardNumByPrimaryKey(int boardId, Board board) throws Exception;
 	
 	/**
+	 * @Title: updateBoardByPrimaryKeySelective 
+	 * @Description: 根据板块id修改板块
+	 * @param boardId
+	 * @param board
+	 * @throws Exception
+	 * @return int
+	 */
+	public int updateBoardByPrimaryKeySelective(int boardId, Board board) throws Exception;
+	
+	/**
 	 * @Title: deleteBoardByPrimaryKey 
 	 * @Description: 根据论坛的主键删除数据库论坛信息
 	 * @param boardId
