@@ -13,4 +13,9 @@ public interface LoginService {
 	 */
 	public int checkUserPassword(int userId,String password)throws Exception;
 	
+	/*
+	 * 找回密码
+	 */
+	public int findPassword(int userId)throws Exception;
+	
 }

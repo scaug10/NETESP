@@ -38,6 +38,15 @@ public class LoginServiceImple implements LoginService{
 			return res;
 		}
 	}
+
+	@Override
+	public int findPassword(int userId) throws Exception {
+		int res=-1;
+		User user=userMapper.selectByPrimaryKey(userId);
+		String email=user.getEmail();
+		
+		return 0;
+	}
 	
 	
 }

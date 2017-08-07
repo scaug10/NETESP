@@ -32,7 +32,7 @@ public class LoginController {
 	}
 	
 	/*
-	 * 用户登录
+	 * 用户登录,还未完成，需要新增日志！！！！
 	 */
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String login(@RequestParam(value="userId",required=true)int userId,
@@ -43,5 +43,14 @@ public class LoginController {
 		else {
 			return "false";
 		}
+	}
+	
+	/*
+	 * 找回密码
+	 */
+	@RequestMapping(value="/findPassword",method=RequestMethod.POST)
+	public String findPassword(@RequestParam(value="userId",required=true)int userId)throws Exception{
+		
+		return null;
 	}
 }
