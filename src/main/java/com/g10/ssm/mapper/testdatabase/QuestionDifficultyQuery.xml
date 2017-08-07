@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.g10.ssm.mapper.testdatabase.QuestionDifficultyMapper">
+	<resultMap id="BaseResultMap"
+		type="com.g10.ssm.po.testdatabase.QuestionDifficulty">
+		<id column="difficulty_id" property="difficultyId" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		difficulty_id, name
+	</sql>
+	<select id="selectAllQuestionDifficulty" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from Question_Difficulty
+	</select>
+</mapper>
