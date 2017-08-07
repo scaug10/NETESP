@@ -41,5 +41,15 @@ public interface ForumManageService {
 	 */
 	public int shieldPostCommentByPrimaryKey(int postCommentId) throws Exception;
 	
-	public int checkBoardByPrimary(int boardId, Board board) throws Exception; 
+	/**
+	 * @Title: checkBoardByPrimary 
+	 * @Description: 审核板块，记录审核的结果与审核状态
+	 * @param boardId
+	 * @param board
+	 * @param @throws Exception
+	 * @return int
+	 */
+	public int checkBoardByPrimary(int boardId, Board board) throws Exception;
+	
+	
 }
