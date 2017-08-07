@@ -3,8 +3,6 @@
 <mapper namespace="com.g10.ssm.mapper.testdatabase.SubjectMapper" >
   <resultMap id="BaseResultMap" type="com.g10.ssm.po.testdatabase.Subject" >
     <id column="subject_id" property="subjectId" jdbcType="INTEGER" />
-    <result column="test_database_id" property="testDatabaseId" jdbcType="INTEGER" />
-    <result column="difficulty_id" property="difficultyId" jdbcType="INTEGER" />
     <result column="subject_type" property="subjectType" jdbcType="VARCHAR" />
     <result column="subject_pattern" property="subjectPattern" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
@@ -12,6 +10,10 @@
     <result column="knowlege_point" property="knowlegePoint" jdbcType="VARCHAR" />
     <result column="subject_matter" property="subjectMatter" jdbcType="VARCHAR" />
     <result column="test_database_matter" property="testDatabaseMatter" jdbcType="VARCHAR" />
+    <result column="test_database_id" property="testDatabaseId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="review_type" property="reviewType" jdbcType="INTEGER" />
+    <result column="review_message" property="reviewMessage" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    subject_id, test_database_id, difficulty_id, subject_type, subject_pattern, content, 
-    answer, knowlege_point, subject_matter, test_database_matter
+    subject_id, subject_type, subject_pattern, content, answer, knowlege_point, subject_matter, 
+    test_database_matter, test_database_id, name, review_type, review_message
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.g10.ssm.po.testdatabase.SubjectExample" >
     select
@@ -106,26 +108,22 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.g10.ssm.po.testdatabase.Subject" >
-    insert into Subject (subject_id, test_database_id, difficulty_id, 
-      subject_type, subject_pattern, content, 
-      answer, knowlege_point, subject_matter, 
-      test_database_matter)
-    values (#{subjectId,jdbcType=INTEGER}, #{testDatabaseId,jdbcType=INTEGER}, #{difficultyId,jdbcType=INTEGER}, 
-      #{subjectType,jdbcType=VARCHAR}, #{subjectPattern,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{answer,jdbcType=VARCHAR}, #{knowlegePoint,jdbcType=VARCHAR}, #{subjectMatter,jdbcType=VARCHAR}, 
-      #{testDatabaseMatter,jdbcType=VARCHAR})
+    insert into Subject (subject_id, subject_type, subject_pattern, 
+      content, answer, knowlege_point, 
+      subject_matter, test_database_matter, test_database_id, 
+      name, review_type, review_message
+      )
+    values (#{subjectId,jdbcType=INTEGER}, #{subjectType,jdbcType=VARCHAR}, #{subjectPattern,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, #{knowlegePoint,jdbcType=VARCHAR}, 
+      #{subjectMatter,jdbcType=VARCHAR}, #{testDatabaseMatter,jdbcType=VARCHAR}, #{testDatabaseId,jdbcType=BIGINT}, 
+      #{name,jdbcType=VARCHAR}, #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.g10.ssm.po.testdatabase.Subject" >
     insert into Subject
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="subjectId != null" >
         subject_id,
-      </if>
-      <if test="testDatabaseId != null" >
-        test_database_id,
-      </if>
-      <if test="difficultyId != null" >
-        difficulty_id,
       </if>
       <if test="subjectType != null" >
         subject_type,
@@ -148,16 +146,22 @@
       <if test="testDatabaseMatter != null" >
         test_database_matter,
       </if>
+      <if test="testDatabaseId != null" >
+        test_database_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="reviewType != null" >
+        review_type,
+      </if>
+      <if test="reviewMessage != null" >
+        review_message,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="subjectId != null" >
         #{subjectId,jdbcType=INTEGER},
-      </if>
-      <if test="testDatabaseId != null" >
-        #{testDatabaseId,jdbcType=INTEGER},
-      </if>
-      <if test="difficultyId != null" >
-        #{difficultyId,jdbcType=INTEGER},
       </if>
       <if test="subjectType != null" >
         #{subjectType,jdbcType=VARCHAR},
@@ -180,6 +184,18 @@
       <if test="testDatabaseMatter != null" >
         #{testDatabaseMatter,jdbcType=VARCHAR},
       </if>
+      <if test="testDatabaseId != null" >
+        #{testDatabaseId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewType != null" >
+        #{reviewType,jdbcType=INTEGER},
+      </if>
+      <if test="reviewMessage != null" >
+        #{reviewMessage,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.g10.ssm.po.testdatabase.SubjectExample" resultType="java.lang.Integer" >
@@ -193,12 +209,6 @@
     <set >
       <if test="record.subjectId != null" >
         subject_id = #{record.subjectId,jdbcType=INTEGER},
-      </if>
-      <if test="record.testDatabaseId != null" >
-        test_database_id = #{record.testDatabaseId,jdbcType=INTEGER},
-      </if>
-      <if test="record.difficultyId != null" >
-        difficulty_id = #{record.difficultyId,jdbcType=INTEGER},
       </if>
       <if test="record.subjectType != null" >
         subject_type = #{record.subjectType,jdbcType=VARCHAR},
@@ -221,6 +231,18 @@
       <if test="record.testDatabaseMatter != null" >
         test_database_matter = #{record.testDatabaseMatter,jdbcType=VARCHAR},
       </if>
+      <if test="record.testDatabaseId != null" >
+        test_database_id = #{record.testDatabaseId,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewType != null" >
+        review_type = #{record.reviewType,jdbcType=INTEGER},
+      </if>
+      <if test="record.reviewMessage != null" >
+        review_message = #{record.reviewMessage,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -229,15 +251,17 @@
   <update id="updateByExample" parameterType="map" >
     update Subject
     set subject_id = #{record.subjectId,jdbcType=INTEGER},
-      test_database_id = #{record.testDatabaseId,jdbcType=INTEGER},
-      difficulty_id = #{record.difficultyId,jdbcType=INTEGER},
       subject_type = #{record.subjectType,jdbcType=VARCHAR},
       subject_pattern = #{record.subjectPattern,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=VARCHAR},
       answer = #{record.answer,jdbcType=VARCHAR},
       knowlege_point = #{record.knowlegePoint,jdbcType=VARCHAR},
       subject_matter = #{record.subjectMatter,jdbcType=VARCHAR},
-      test_database_matter = #{record.testDatabaseMatter,jdbcType=VARCHAR}
+      test_database_matter = #{record.testDatabaseMatter,jdbcType=VARCHAR},
+      test_database_id = #{record.testDatabaseId,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      review_type = #{record.reviewType,jdbcType=INTEGER},
+      review_message = #{record.reviewMessage,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -245,12 +269,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.testdatabase.Subject" >
     update Subject
     <set >
-      <if test="testDatabaseId != null" >
-        test_database_id = #{testDatabaseId,jdbcType=INTEGER},
-      </if>
-      <if test="difficultyId != null" >
-        difficulty_id = #{difficultyId,jdbcType=INTEGER},
-      </if>
       <if test="subjectType != null" >
         subject_type = #{subjectType,jdbcType=VARCHAR},
       </if>
@@ -272,20 +290,34 @@
       <if test="testDatabaseMatter != null" >
         test_database_matter = #{testDatabaseMatter,jdbcType=VARCHAR},
       </if>
+      <if test="testDatabaseId != null" >
+        test_database_id = #{testDatabaseId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewType != null" >
+        review_type = #{reviewType,jdbcType=INTEGER},
+      </if>
+      <if test="reviewMessage != null" >
+        review_message = #{reviewMessage,jdbcType=VARCHAR},
+      </if>
     </set>
     where subject_id = #{subjectId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.testdatabase.Subject" >
     update Subject
-    set test_database_id = #{testDatabaseId,jdbcType=INTEGER},
-      difficulty_id = #{difficultyId,jdbcType=INTEGER},
-      subject_type = #{subjectType,jdbcType=VARCHAR},
+    set subject_type = #{subjectType,jdbcType=VARCHAR},
       subject_pattern = #{subjectPattern,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
       answer = #{answer,jdbcType=VARCHAR},
       knowlege_point = #{knowlegePoint,jdbcType=VARCHAR},
       subject_matter = #{subjectMatter,jdbcType=VARCHAR},
-      test_database_matter = #{testDatabaseMatter,jdbcType=VARCHAR}
+      test_database_matter = #{testDatabaseMatter,jdbcType=VARCHAR},
+      test_database_id = #{testDatabaseId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      review_type = #{reviewType,jdbcType=INTEGER},
+      review_message = #{reviewMessage,jdbcType=VARCHAR}
     where subject_id = #{subjectId,jdbcType=INTEGER}
   </update>
 </mapper>

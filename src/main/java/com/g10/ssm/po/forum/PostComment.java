@@ -7,11 +7,15 @@ public class PostComment {
 
     private Integer postId;
 
-    private Integer userId;
+    private Integer publisher;
 
     private String content;
 
     private Date createTime;
+
+    private Integer reviewType;
+
+    private String reviewMessage;
 
     public Integer getPostCommentId() {
         return postCommentId;
@@ -29,12 +33,12 @@ public class PostComment {
         this.postId = postId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getPublisher() {
+        return publisher;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setPublisher(Integer publisher) {
+        this.publisher = publisher;
     }
 
     public String getContent() {
@@ -51,5 +55,21 @@ public class PostComment {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Integer getReviewType() {
+        return reviewType;
+    }
+
+    public void setReviewType(Integer reviewType) {
+        this.reviewType = reviewType;
+    }
+
+    public String getReviewMessage() {
+        return reviewMessage;
+    }
+
+    public void setReviewMessage(String reviewMessage) {
+        this.reviewMessage = reviewMessage == null ? null : reviewMessage.trim();
     }
 }

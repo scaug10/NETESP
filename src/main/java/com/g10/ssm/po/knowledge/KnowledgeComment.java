@@ -7,13 +7,15 @@ public class KnowledgeComment {
 
     private Integer knowledgeId;
 
-    private Integer reviewId;
-
-    private Integer userId;
+    private Integer publisher;
 
     private String content;
 
     private Date createDate;
+
+    private Integer reviewType;
+
+    private String reviewMessage;
 
     public Integer getCommentId() {
         return commentId;
@@ -31,20 +33,12 @@ public class KnowledgeComment {
         this.knowledgeId = knowledgeId;
     }
 
-    public Integer getReviewId() {
-        return reviewId;
+    public Integer getPublisher() {
+        return publisher;
     }
 
-    public void setReviewId(Integer reviewId) {
-        this.reviewId = reviewId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setPublisher(Integer publisher) {
+        this.publisher = publisher;
     }
 
     public String getContent() {
@@ -61,5 +55,21 @@ public class KnowledgeComment {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public Integer getReviewType() {
+        return reviewType;
+    }
+
+    public void setReviewType(Integer reviewType) {
+        this.reviewType = reviewType;
+    }
+
+    public String getReviewMessage() {
+        return reviewMessage;
+    }
+
+    public void setReviewMessage(String reviewMessage) {
+        this.reviewMessage = reviewMessage == null ? null : reviewMessage.trim();
     }
 }

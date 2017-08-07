@@ -5,15 +5,19 @@ import java.util.Date;
 public class Post {
     private Integer postId;
 
-    private Integer userId;
-
     private Integer topicId;
+
+    private Integer publisher;
 
     private String content;
 
     private Date createTime;
 
     private Boolean isCream;
+
+    private Integer reviewType;
+
+    private String reviewMessage;
 
     public Integer getPostId() {
         return postId;
@@ -23,20 +27,20 @@ public class Post {
         this.postId = postId;
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     public Integer getTopicId() {
         return topicId;
     }
 
     public void setTopicId(Integer topicId) {
         this.topicId = topicId;
+    }
+
+    public Integer getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Integer publisher) {
+        this.publisher = publisher;
     }
 
     public String getContent() {
@@ -61,5 +65,21 @@ public class Post {
 
     public void setIsCream(Boolean isCream) {
         this.isCream = isCream;
+    }
+
+    public Integer getReviewType() {
+        return reviewType;
+    }
+
+    public void setReviewType(Integer reviewType) {
+        this.reviewType = reviewType;
+    }
+
+    public String getReviewMessage() {
+        return reviewMessage;
+    }
+
+    public void setReviewMessage(String reviewMessage) {
+        this.reviewMessage = reviewMessage == null ? null : reviewMessage.trim();
     }
 }

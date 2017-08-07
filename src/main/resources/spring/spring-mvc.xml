@@ -21,6 +21,11 @@
 	<mvc:default-servlet-handler/>
 	
 	<context:component-scan base-package="com.g10.ssm.controller" />
+	<context:component-scan base-package="com.g10.ssm.controller.*" />
+	<context:component-scan base-package="com.g10.ssm.mapper" />
+	<context:component-scan base-package="com.g10.ssm.mapper.*" />
+
+	
 	
 	<!-- Config ViewResolver -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

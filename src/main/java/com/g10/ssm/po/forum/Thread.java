@@ -7,7 +7,7 @@ public class Thread {
 
     private Integer boardId;
 
-    private Integer userId;
+    private Integer creator;
 
     private String topicName;
 
@@ -16,6 +16,10 @@ public class Thread {
     private Date createTime;
 
     private Boolean isTop;
+
+    private Integer reviewType;
+
+    private String reviewMessage;
 
     public Integer getTopicId() {
         return topicId;
@@ -33,12 +37,12 @@ public class Thread {
         this.boardId = boardId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getCreator() {
+        return creator;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setCreator(Integer creator) {
+        this.creator = creator;
     }
 
     public String getTopicName() {
@@ -71,5 +75,21 @@ public class Thread {
 
     public void setIsTop(Boolean isTop) {
         this.isTop = isTop;
+    }
+
+    public Integer getReviewType() {
+        return reviewType;
+    }
+
+    public void setReviewType(Integer reviewType) {
+        this.reviewType = reviewType;
+    }
+
+    public String getReviewMessage() {
+        return reviewMessage;
+    }
+
+    public void setReviewMessage(String reviewMessage) {
+        this.reviewMessage = reviewMessage == null ? null : reviewMessage.trim();
     }
 }

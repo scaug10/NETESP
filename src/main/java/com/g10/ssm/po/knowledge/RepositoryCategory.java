@@ -3,7 +3,7 @@ package com.g10.ssm.po.knowledge;
 public class RepositoryCategory {
     private Integer categoryId;
 
-    private Integer userId;
+    private Integer creator;
 
     private String name;
 
@@ -13,6 +13,10 @@ public class RepositoryCategory {
 
     private String note;
 
+    private Integer reviewType;
+
+    private String reviewMessage;
+
     public Integer getCategoryId() {
         return categoryId;
     }
@@ -21,12 +25,12 @@ public class RepositoryCategory {
         this.categoryId = categoryId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getCreator() {
+        return creator;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setCreator(Integer creator) {
+        this.creator = creator;
     }
 
     public String getName() {
@@ -59,5 +63,21 @@ public class RepositoryCategory {
 
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
+    }
+
+    public Integer getReviewType() {
+        return reviewType;
+    }
+
+    public void setReviewType(Integer reviewType) {
+        this.reviewType = reviewType;
+    }
+
+    public String getReviewMessage() {
+        return reviewMessage;
+    }
+
+    public void setReviewMessage(String reviewMessage) {
+        this.reviewMessage = reviewMessage == null ? null : reviewMessage.trim();
     }
 }

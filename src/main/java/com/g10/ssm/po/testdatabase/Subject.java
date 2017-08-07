@@ -3,10 +3,6 @@ package com.g10.ssm.po.testdatabase;
 public class Subject {
     private Integer subjectId;
 
-    private Integer testDatabaseId;
-
-    private Integer difficultyId;
-
     private String subjectType;
 
     private String subjectPattern;
@@ -21,28 +17,20 @@ public class Subject {
 
     private String testDatabaseMatter;
 
+    private Long testDatabaseId;
+
+    private String name;
+
+    private Integer reviewType;
+
+    private String reviewMessage;
+
     public Integer getSubjectId() {
         return subjectId;
     }
 
     public void setSubjectId(Integer subjectId) {
         this.subjectId = subjectId;
-    }
-
-    public Integer getTestDatabaseId() {
-        return testDatabaseId;
-    }
-
-    public void setTestDatabaseId(Integer testDatabaseId) {
-        this.testDatabaseId = testDatabaseId;
-    }
-
-    public Integer getDifficultyId() {
-        return difficultyId;
-    }
-
-    public void setDifficultyId(Integer difficultyId) {
-        this.difficultyId = difficultyId;
     }
 
     public String getSubjectType() {
@@ -99,5 +87,37 @@ public class Subject {
 
     public void setTestDatabaseMatter(String testDatabaseMatter) {
         this.testDatabaseMatter = testDatabaseMatter == null ? null : testDatabaseMatter.trim();
+    }
+
+    public Long getTestDatabaseId() {
+        return testDatabaseId;
+    }
+
+    public void setTestDatabaseId(Long testDatabaseId) {
+        this.testDatabaseId = testDatabaseId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public Integer getReviewType() {
+        return reviewType;
+    }
+
+    public void setReviewType(Integer reviewType) {
+        this.reviewType = reviewType;
+    }
+
+    public String getReviewMessage() {
+        return reviewMessage;
+    }
+
+    public void setReviewMessage(String reviewMessage) {
+        this.reviewMessage = reviewMessage == null ? null : reviewMessage.trim();
     }
 }

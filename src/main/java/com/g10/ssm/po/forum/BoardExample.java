@@ -165,63 +165,63 @@ public class BoardExample {
             return (Criteria) this;
         }
 
-        public Criteria andUserIdIsNull() {
-            addCriterion("user_id is null");
+        public Criteria andBoardMasterIsNull() {
+            addCriterion("board_master is null");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdIsNotNull() {
-            addCriterion("user_id is not null");
+        public Criteria andBoardMasterIsNotNull() {
+            addCriterion("board_master is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdEqualTo(Integer value) {
-            addCriterion("user_id =", value, "userId");
+        public Criteria andBoardMasterEqualTo(Integer value) {
+            addCriterion("board_master =", value, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotEqualTo(Integer value) {
-            addCriterion("user_id <>", value, "userId");
+        public Criteria andBoardMasterNotEqualTo(Integer value) {
+            addCriterion("board_master <>", value, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdGreaterThan(Integer value) {
-            addCriterion("user_id >", value, "userId");
+        public Criteria andBoardMasterGreaterThan(Integer value) {
+            addCriterion("board_master >", value, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("user_id >=", value, "userId");
+        public Criteria andBoardMasterGreaterThanOrEqualTo(Integer value) {
+            addCriterion("board_master >=", value, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLessThan(Integer value) {
-            addCriterion("user_id <", value, "userId");
+        public Criteria andBoardMasterLessThan(Integer value) {
+            addCriterion("board_master <", value, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLessThanOrEqualTo(Integer value) {
-            addCriterion("user_id <=", value, "userId");
+        public Criteria andBoardMasterLessThanOrEqualTo(Integer value) {
+            addCriterion("board_master <=", value, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdIn(List<Integer> values) {
-            addCriterion("user_id in", values, "userId");
+        public Criteria andBoardMasterIn(List<Integer> values) {
+            addCriterion("board_master in", values, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotIn(List<Integer> values) {
-            addCriterion("user_id not in", values, "userId");
+        public Criteria andBoardMasterNotIn(List<Integer> values) {
+            addCriterion("board_master not in", values, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdBetween(Integer value1, Integer value2) {
-            addCriterion("user_id between", value1, value2, "userId");
+        public Criteria andBoardMasterBetween(Integer value1, Integer value2) {
+            addCriterion("board_master between", value1, value2, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("user_id not between", value1, value2, "userId");
+        public Criteria andBoardMasterNotBetween(Integer value1, Integer value2) {
+            addCriterion("board_master not between", value1, value2, "boardMaster");
             return (Criteria) this;
         }
 
@@ -355,6 +355,76 @@ public class BoardExample {
             return (Criteria) this;
         }
 
+        public Criteria andBoardDescribeIsNull() {
+            addCriterion("board_describe is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardDescribeIsNotNull() {
+            addCriterion("board_describe is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardDescribeEqualTo(String value) {
+            addCriterion("board_describe =", value, "boardDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardDescribeNotEqualTo(String value) {
+            addCriterion("board_describe <>", value, "boardDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardDescribeGreaterThan(String value) {
+            addCriterion("board_describe >", value, "boardDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardDescribeGreaterThanOrEqualTo(String value) {
+            addCriterion("board_describe >=", value, "boardDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardDescribeLessThan(String value) {
+            addCriterion("board_describe <", value, "boardDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardDescribeLessThanOrEqualTo(String value) {
+            addCriterion("board_describe <=", value, "boardDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardDescribeLike(String value) {
+            addCriterion("board_describe like", value, "boardDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardDescribeNotLike(String value) {
+            addCriterion("board_describe not like", value, "boardDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardDescribeIn(List<String> values) {
+            addCriterion("board_describe in", values, "boardDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardDescribeNotIn(List<String> values) {
+            addCriterion("board_describe not in", values, "boardDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardDescribeBetween(String value1, String value2) {
+            addCriterion("board_describe between", value1, value2, "boardDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardDescribeNotBetween(String value1, String value2) {
+            addCriterion("board_describe not between", value1, value2, "boardDescribe");
+            return (Criteria) this;
+        }
+
         public Criteria andBoardNumIsNull() {
             addCriterion("board_num is null");
             return (Criteria) this;
@@ -412,6 +482,136 @@ public class BoardExample {
 
         public Criteria andBoardNumNotBetween(Integer value1, Integer value2) {
             addCriterion("board_num not between", value1, value2, "boardNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTypeIsNull() {
+            addCriterion("review_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTypeIsNotNull() {
+            addCriterion("review_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTypeEqualTo(Integer value) {
+            addCriterion("review_type =", value, "reviewType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTypeNotEqualTo(Integer value) {
+            addCriterion("review_type <>", value, "reviewType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTypeGreaterThan(Integer value) {
+            addCriterion("review_type >", value, "reviewType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("review_type >=", value, "reviewType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTypeLessThan(Integer value) {
+            addCriterion("review_type <", value, "reviewType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("review_type <=", value, "reviewType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTypeIn(List<Integer> values) {
+            addCriterion("review_type in", values, "reviewType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTypeNotIn(List<Integer> values) {
+            addCriterion("review_type not in", values, "reviewType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTypeBetween(Integer value1, Integer value2) {
+            addCriterion("review_type between", value1, value2, "reviewType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("review_type not between", value1, value2, "reviewType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewMessageIsNull() {
+            addCriterion("review_message is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewMessageIsNotNull() {
+            addCriterion("review_message is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewMessageEqualTo(String value) {
+            addCriterion("review_message =", value, "reviewMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewMessageNotEqualTo(String value) {
+            addCriterion("review_message <>", value, "reviewMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewMessageGreaterThan(String value) {
+            addCriterion("review_message >", value, "reviewMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewMessageGreaterThanOrEqualTo(String value) {
+            addCriterion("review_message >=", value, "reviewMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewMessageLessThan(String value) {
+            addCriterion("review_message <", value, "reviewMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewMessageLessThanOrEqualTo(String value) {
+            addCriterion("review_message <=", value, "reviewMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewMessageLike(String value) {
+            addCriterion("review_message like", value, "reviewMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewMessageNotLike(String value) {
+            addCriterion("review_message not like", value, "reviewMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewMessageIn(List<String> values) {
+            addCriterion("review_message in", values, "reviewMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewMessageNotIn(List<String> values) {
+            addCriterion("review_message not in", values, "reviewMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewMessageBetween(String value1, String value2) {
+            addCriterion("review_message between", value1, value2, "reviewMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewMessageNotBetween(String value1, String value2) {
+            addCriterion("review_message not between", value1, value2, "reviewMessage");
             return (Criteria) this;
         }
     }
