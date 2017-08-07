@@ -3,11 +3,13 @@
 <mapper namespace="com.g10.ssm.mapper.knowledge.RepositoryCategoryMapper" >
   <resultMap id="BaseResultMap" type="com.g10.ssm.po.knowledge.RepositoryCategory" >
     <id column="category_id" property="categoryId" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="creator" property="creator" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="parent_id" property="parentId" jdbcType="INTEGER" />
     <result column="display_order" property="displayOrder" jdbcType="VARCHAR" />
     <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="review_type" property="reviewType" jdbcType="INTEGER" />
+    <result column="review_message" property="reviewMessage" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    category_id, user_id, name, parent_id, display_order, note
+    category_id, creator, name, parent_id, display_order, note, review_type, review_message
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.g10.ssm.po.knowledge.RepositoryCategoryExample" >
     select
@@ -101,12 +103,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.g10.ssm.po.knowledge.RepositoryCategory" >
-    insert into Repository_Category (category_id, user_id, name, 
-      parent_id, display_order, note
-      )
-    values (#{categoryId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{parentId,jdbcType=INTEGER}, #{displayOrder,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}
-      )
+    insert into Repository_Category (category_id, creator, name, 
+      parent_id, display_order, note, 
+      review_type, review_message)
+    values (#{categoryId,jdbcType=INTEGER}, #{creator,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=INTEGER}, #{displayOrder,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.g10.ssm.po.knowledge.RepositoryCategory" >
     insert into Repository_Category
@@ -114,8 +116,8 @@
       <if test="categoryId != null" >
         category_id,
       </if>
-      <if test="userId != null" >
-        user_id,
+      <if test="creator != null" >
+        creator,
       </if>
       <if test="name != null" >
         name,
@@ -129,13 +131,19 @@
       <if test="note != null" >
         note,
       </if>
+      <if test="reviewType != null" >
+        review_type,
+      </if>
+      <if test="reviewMessage != null" >
+        review_message,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="categoryId != null" >
         #{categoryId,jdbcType=INTEGER},
       </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
+      <if test="creator != null" >
+        #{creator,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -148,6 +156,12 @@
       </if>
       <if test="note != null" >
         #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewType != null" >
+        #{reviewType,jdbcType=INTEGER},
+      </if>
+      <if test="reviewMessage != null" >
+        #{reviewMessage,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -163,8 +177,8 @@
       <if test="record.categoryId != null" >
         category_id = #{record.categoryId,jdbcType=INTEGER},
       </if>
-      <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=INTEGER},
+      <if test="record.creator != null" >
+        creator = #{record.creator,jdbcType=INTEGER},
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
@@ -178,6 +192,12 @@
       <if test="record.note != null" >
         note = #{record.note,jdbcType=VARCHAR},
       </if>
+      <if test="record.reviewType != null" >
+        review_type = #{record.reviewType,jdbcType=INTEGER},
+      </if>
+      <if test="record.reviewMessage != null" >
+        review_message = #{record.reviewMessage,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -186,11 +206,13 @@
   <update id="updateByExample" parameterType="map" >
     update Repository_Category
     set category_id = #{record.categoryId,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
+      creator = #{record.creator,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       parent_id = #{record.parentId,jdbcType=INTEGER},
       display_order = #{record.displayOrder,jdbcType=VARCHAR},
-      note = #{record.note,jdbcType=VARCHAR}
+      note = #{record.note,jdbcType=VARCHAR},
+      review_type = #{record.reviewType,jdbcType=INTEGER},
+      review_message = #{record.reviewMessage,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -198,8 +220,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.knowledge.RepositoryCategory" >
     update Repository_Category
     <set >
-      <if test="userId != null" >
-        user_id = #{userId,jdbcType=INTEGER},
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -213,16 +235,24 @@
       <if test="note != null" >
         note = #{note,jdbcType=VARCHAR},
       </if>
+      <if test="reviewType != null" >
+        review_type = #{reviewType,jdbcType=INTEGER},
+      </if>
+      <if test="reviewMessage != null" >
+        review_message = #{reviewMessage,jdbcType=VARCHAR},
+      </if>
     </set>
     where category_id = #{categoryId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.knowledge.RepositoryCategory" >
     update Repository_Category
-    set user_id = #{userId,jdbcType=INTEGER},
+    set creator = #{creator,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=INTEGER},
       display_order = #{displayOrder,jdbcType=VARCHAR},
-      note = #{note,jdbcType=VARCHAR}
+      note = #{note,jdbcType=VARCHAR},
+      review_type = #{reviewType,jdbcType=INTEGER},
+      review_message = #{reviewMessage,jdbcType=VARCHAR}
     where category_id = #{categoryId,jdbcType=INTEGER}
   </update>
 </mapper>
