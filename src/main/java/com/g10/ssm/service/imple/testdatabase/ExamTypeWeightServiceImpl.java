@@ -10,7 +10,7 @@ import com.g10.ssm.mapper.testdatabase.ExamTypeWeightQueryMapper;
 import com.g10.ssm.po.testdatabase.ExamTypeWeightKey;
 import com.g10.ssm.service.testdatabase.ExamTypeWeightService;
 
-@Service("/examTypeWeightService")
+@Service("examTypeWeightService")
 public class ExamTypeWeightServiceImpl implements ExamTypeWeightService {
 
 	@Autowired

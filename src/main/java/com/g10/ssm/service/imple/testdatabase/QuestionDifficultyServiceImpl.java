@@ -10,7 +10,7 @@ import com.g10.ssm.mapper.testdatabase.QuestionDifficultyQueryMapper;
 import com.g10.ssm.po.testdatabase.QuestionDifficulty;
 import com.g10.ssm.service.testdatabase.QuestionDifficultyService;
 
-@Service("/questionDifficulty")
+@Service("questionDifficulty")
 public class QuestionDifficultyServiceImpl implements QuestionDifficultyService {
 
 	@Autowired

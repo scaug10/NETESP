@@ -7,7 +7,7 @@ import com.g10.ssm.mapper.testdatabase.StrategyMapper;
 import com.g10.ssm.po.testdatabase.Strategy;
 import com.g10.ssm.service.testdatabase.StrategyService;
 
-@Service("/strategyService")
+@Service("strategyService")
 public class StrategyServiceImpl implements StrategyService {
 
 	@Autowired

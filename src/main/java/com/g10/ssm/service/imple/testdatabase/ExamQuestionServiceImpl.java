@@ -10,7 +10,7 @@ import com.g10.ssm.mapper.testdatabase.ExamQuestionQueryMapper;
 import com.g10.ssm.po.testdatabase.ExamQuestionKey;
 import com.g10.ssm.service.testdatabase.ExamQuestionService;
 
-@Service("/examQuestionService")
+@Service("examQuestionService")
 public class ExamQuestionServiceImpl implements ExamQuestionService {
 
 	@Autowired
