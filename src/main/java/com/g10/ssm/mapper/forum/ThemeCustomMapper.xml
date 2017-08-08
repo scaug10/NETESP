@@ -5,7 +5,7 @@
 	<resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Theme">
 		<id column="topic_id" property="topicId" jdbcType="INTEGER" />
 		<result column="board_id" property="boardId" jdbcType="INTEGER" />
-		<result column="creator" property="creator" jdbcType="INTEGER" />
+		<result column="creator" property="creator" jdbcType="VARCHAR" />
 		<result column="topic_name" property="topicName" jdbcType="VARCHAR" />
 		<result column="content" property="content" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -14,7 +14,7 @@
 		<result column="review_message" property="reviewMessage"
 			jdbcType="VARCHAR" />
 	</resultMap>
-	
+
 	<sql id="query_theme_where">
 		<if test="themeCustom!=null">
 			<if test="topicId!=null">
@@ -31,12 +31,12 @@
 			</if>
 		</if>
 	</sql>
-	
+
 	<select id="selectByTheme" parameterType="com.g10.ssm.po.forum.ThemeCustom"
 		resultMap="BaseResultMap">
 		select theme.* from theme
 		<where>
-			<include refid="query_theme_where"/>
+			<include refid="query_theme_where" />
 		</where>
 	</select>
 

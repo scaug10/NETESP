@@ -4,7 +4,7 @@
 	<resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.PostComment">
 		<id column="post_comment_id" property="postCommentId" jdbcType="INTEGER" />
 		<result column="post_id" property="postId" jdbcType="INTEGER" />
-		<result column="publisher" property="publisher" jdbcType="INTEGER" />
+		<result column="publisher" property="publisher" jdbcType="VARCHAR" />
 		<result column="content" property="content" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 		<result column="review_type" property="reviewType" jdbcType="INTEGER" />
@@ -25,12 +25,12 @@
 			</if>
 		</if>
 	</sql>
-	
+
 	<select id="selectByPostComment" parameterType="com.g10.ssm.po.forum.PostCommentCustom"
 		resultMap="BaseResultMap">
 		select * from postComment
 		<where>
-			<include refid="query_comment_where"/>
+			<include refid="query_comment_where" />
 		</where>
 	</select>
 

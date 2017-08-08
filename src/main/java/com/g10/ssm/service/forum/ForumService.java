@@ -34,7 +34,7 @@ public interface ForumService {
 	 * @throws Exception
 	 * @return List<ThreadCustom>
 	 */
-	public List<ThemeCustom> selectThreadsByThread(ThemeCustom threadCustom) throws Exception;
+	public List<ThemeCustom> selectThemesByTheme(ThemeCustom themeCustom) throws Exception;
 	
 	/**
 	 * @Title: selectPostCommentsByPostComment 
