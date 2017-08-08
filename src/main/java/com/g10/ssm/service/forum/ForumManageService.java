@@ -74,7 +74,7 @@ public interface ForumManageService {
 	
 	/**
 	 * @Title: deleteThreadByPrimaryKey 
-	 * @Description: 根据主题id删除主题,如果要删除一个主题，那么必须先删除当前主题下的所有帖子。
+	 * @Description: <p>根据主题id删除主题,如果要删除一个主题，那么必须先删除当前主题下的所有帖子。<p>
 	 * @param topicId
 	 * @throws Exception
 	 * @return int
