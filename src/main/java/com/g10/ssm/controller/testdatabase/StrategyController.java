@@ -1,5 +1,7 @@
 package com.g10.ssm.controller.testdatabase;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,4 +41,10 @@ public class StrategyController {
 		return result;
 	}
 
+	@RequestMapping("/getAllStrategy")
+	public ModelAndView getAllStrategy(ModelAndView modelAndView) throws Exception {
+		List<Strategy> list = strategyService.queryStrategy();
+		modelAndView.addObject("list", list);
+		return modelAndView;
+	}
 }
