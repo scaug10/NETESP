@@ -6,20 +6,30 @@ import org.springframework.stereotype.Service;
 import com.g10.ssm.mapper.UserMapper;
 import com.g10.ssm.po.User;
 import com.g10.ssm.service.LoginService;
+import com.g10.ssm.service.PermissionService;
 
 @Service
 public class LoginServiceImple implements LoginService{
 	@Autowired
 	private UserMapper userMapper;
 
+	
+	@Autowired
+	private PermissionService permissionService;
 	/*
-	 *新增注册用户,并为用户赋予一个权限!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	 *新增注册用户,并为用户赋予一个权限
 	 */
 	@Override
 	public int saveUser(User user) throws Exception {
 		int res=-1;
 		res=userMapper.insert(user);
-		return res;
+		if(res==1){
+			String userName=user.getUserName();
+			int result=permissionService.giveDefaultPermission(userName);
+			return result;
+		}else {
+			return res;
+		}
 	}
     
 	/*
@@ -34,8 +44,7 @@ public class LoginServiceImple implements LoginService{
 		String pwd=user.getPassword();
 		if(pwd.equals(password.trim())){
 			user.setLoginStatus(true);
-			userMapper.updateByPrimaryKey(user);
-			res=1;
+			res=userMapper.updateByPrimaryKey(user);
 			return res;
 		}
 		else {
@@ -59,9 +68,9 @@ public class LoginServiceImple implements LoginService{
 	 * 查询登录名是否已经存在
 	 */
 	@Override
-	public boolean isUserIdExist(String userId) throws Exception {
-		int res=userMapper.selectByPrimaryKey(userId);
-		if(res==0)
+	public boolean isUserIdExist(String userName) throws Exception {
+		User user=userMapper.selectByPrimaryKey(userName);
+		if(user==null)
 			return false;
 		else {
 			return true;

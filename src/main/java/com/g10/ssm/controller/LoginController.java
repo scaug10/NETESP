@@ -20,7 +20,7 @@ public class LoginController {
 	private LoginService loginService;
 	
 	/*
-	 * 用户注册,权限还未给
+	 * 用户注册,并赋予一个默认权限
 	 */
 	@RequestMapping(value="/register",method=RequestMethod.POST)
 	public ModelAndView register(User user) throws Exception{
@@ -28,7 +28,7 @@ public class LoginController {
 		boolean result=loginService.isUserIdExist(userName);
 		ModelAndView modelAndView=new ModelAndView();
 		if(result==true){
-			modelAndView.addObject("result", "登录名已存在!");
+			modelAndView.addObject("result", 7);
 			modelAndView.setViewName("register");
 			return modelAndView;
 		}
@@ -36,11 +36,11 @@ public class LoginController {
 		user.setRegisterTime(new Date());
 		int res=loginService.saveUser(user);
 		if(res == 1) {
-			modelAndView.addObject("result","用户注册成功！");
+			modelAndView.addObject("result",1);
 			modelAndView.setViewName("login");
 		}
 		else{
-			modelAndView.addObject("result", "用户注册失败！");
+			modelAndView.addObject("result", -1);
 			modelAndView.setViewName("register");
 		}
 		return modelAndView;
@@ -48,17 +48,21 @@ public class LoginController {
 	}
 	
 	/*
-	 * 用户登录,还未完成，需要新增日志！！！！
+	 * 用户登录
 	 */
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public String login(@RequestParam(value="userName",required=true)String userName,
+	public ModelAndView login(@RequestParam(value="userName",required=true)String userName,
 			@RequestParam(value="password",required=true)String password)throws Exception{
 		int res=loginService.checkUserPassword(userName, password);
-		if(res==1)
-			return "success";
-		else {
-			return "false";
+		ModelAndView modelAndView=new ModelAndView();
+		if(res==1){
+			modelAndView.addObject("result", 1);
+			modelAndView.setViewName("main");
+		}else {
+			modelAndView.addObject("result", -1);
+			modelAndView.setViewName("login");
 		}
+		return modelAndView;
 	}
 	
 	/*
