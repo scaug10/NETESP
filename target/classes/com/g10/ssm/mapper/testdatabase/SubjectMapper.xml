@@ -1,39 +1,39 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.g10.ssm.mapper.testdatabase.SubjectMapper" >
-  <resultMap id="BaseResultMap" type="com.g10.ssm.po.testdatabase.Subject" >
-    <id column="subject_id" property="subjectId" jdbcType="INTEGER" />
-    <result column="subject_type" property="subjectType" jdbcType="VARCHAR" />
-    <result column="subject_pattern" property="subjectPattern" jdbcType="VARCHAR" />
-    <result column="content" property="content" jdbcType="VARCHAR" />
-    <result column="answer" property="answer" jdbcType="VARCHAR" />
-    <result column="knowlege_point" property="knowlegePoint" jdbcType="VARCHAR" />
-    <result column="subject_matter" property="subjectMatter" jdbcType="VARCHAR" />
-    <result column="test_database_matter" property="testDatabaseMatter" jdbcType="VARCHAR" />
-    <result column="test_database_id" property="testDatabaseId" jdbcType="BIGINT" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="review_type" property="reviewType" jdbcType="INTEGER" />
-    <result column="review_message" property="reviewMessage" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.g10.ssm.mapper.testdatabase.SubjectMapper">
+  <resultMap id="BaseResultMap" type="com.g10.ssm.po.testdatabase.Subject">
+    <id column="subject_id" jdbcType="INTEGER" property="subjectId" />
+    <result column="subject_type" jdbcType="VARCHAR" property="subjectType" />
+    <result column="subject_pattern" jdbcType="VARCHAR" property="subjectPattern" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="answer" jdbcType="VARCHAR" property="answer" />
+    <result column="knowlege_point" jdbcType="VARCHAR" property="knowlegePoint" />
+    <result column="subject_matter" jdbcType="VARCHAR" property="subjectMatter" />
+    <result column="test_database_matter" jdbcType="VARCHAR" property="testDatabaseMatter" />
+    <result column="test_database_id" jdbcType="BIGINT" property="testDatabaseId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="review_type" jdbcType="INTEGER" property="reviewType" />
+    <result column="review_message" jdbcType="VARCHAR" property="reviewMessage" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -44,25 +44,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -73,41 +73,41 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     subject_id, subject_type, subject_pattern, content, answer, knowlege_point, subject_matter, 
     test_database_matter, test_database_id, name, review_type, review_message
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.g10.ssm.po.testdatabase.SubjectExample" >
+  <select id="selectByExample" parameterType="com.g10.ssm.po.testdatabase.SubjectExample" resultMap="BaseResultMap">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from Subject
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from Subject
     where subject_id = #{subjectId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from Subject
     where subject_id = #{subjectId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.g10.ssm.po.testdatabase.SubjectExample" >
+  <delete id="deleteByExample" parameterType="com.g10.ssm.po.testdatabase.SubjectExample">
     delete from Subject
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.g10.ssm.po.testdatabase.Subject" >
+  <insert id="insert" parameterType="com.g10.ssm.po.testdatabase.Subject">
     insert into Subject (subject_id, subject_type, subject_pattern, 
       content, answer, knowlege_point, 
       subject_matter, test_database_matter, test_database_id, 
@@ -119,136 +119,136 @@
       #{name,jdbcType=VARCHAR}, #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.g10.ssm.po.testdatabase.Subject" >
+  <insert id="insertSelective" parameterType="com.g10.ssm.po.testdatabase.Subject">
     insert into Subject
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="subjectId != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subjectId != null">
         subject_id,
       </if>
-      <if test="subjectType != null" >
+      <if test="subjectType != null">
         subject_type,
       </if>
-      <if test="subjectPattern != null" >
+      <if test="subjectPattern != null">
         subject_pattern,
       </if>
-      <if test="content != null" >
+      <if test="content != null">
         content,
       </if>
-      <if test="answer != null" >
+      <if test="answer != null">
         answer,
       </if>
-      <if test="knowlegePoint != null" >
+      <if test="knowlegePoint != null">
         knowlege_point,
       </if>
-      <if test="subjectMatter != null" >
+      <if test="subjectMatter != null">
         subject_matter,
       </if>
-      <if test="testDatabaseMatter != null" >
+      <if test="testDatabaseMatter != null">
         test_database_matter,
       </if>
-      <if test="testDatabaseId != null" >
+      <if test="testDatabaseId != null">
         test_database_id,
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         name,
       </if>
-      <if test="reviewType != null" >
+      <if test="reviewType != null">
         review_type,
       </if>
-      <if test="reviewMessage != null" >
+      <if test="reviewMessage != null">
         review_message,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="subjectId != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subjectId != null">
         #{subjectId,jdbcType=INTEGER},
       </if>
-      <if test="subjectType != null" >
+      <if test="subjectType != null">
         #{subjectType,jdbcType=VARCHAR},
       </if>
-      <if test="subjectPattern != null" >
+      <if test="subjectPattern != null">
         #{subjectPattern,jdbcType=VARCHAR},
       </if>
-      <if test="content != null" >
+      <if test="content != null">
         #{content,jdbcType=VARCHAR},
       </if>
-      <if test="answer != null" >
+      <if test="answer != null">
         #{answer,jdbcType=VARCHAR},
       </if>
-      <if test="knowlegePoint != null" >
+      <if test="knowlegePoint != null">
         #{knowlegePoint,jdbcType=VARCHAR},
       </if>
-      <if test="subjectMatter != null" >
+      <if test="subjectMatter != null">
         #{subjectMatter,jdbcType=VARCHAR},
       </if>
-      <if test="testDatabaseMatter != null" >
+      <if test="testDatabaseMatter != null">
         #{testDatabaseMatter,jdbcType=VARCHAR},
       </if>
-      <if test="testDatabaseId != null" >
+      <if test="testDatabaseId != null">
         #{testDatabaseId,jdbcType=BIGINT},
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="reviewType != null" >
+      <if test="reviewType != null">
         #{reviewType,jdbcType=INTEGER},
       </if>
-      <if test="reviewMessage != null" >
+      <if test="reviewMessage != null">
         #{reviewMessage,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.g10.ssm.po.testdatabase.SubjectExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.g10.ssm.po.testdatabase.SubjectExample" resultType="java.lang.Integer">
     select count(*) from Subject
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update Subject
-    <set >
-      <if test="record.subjectId != null" >
+    <set>
+      <if test="record.subjectId != null">
         subject_id = #{record.subjectId,jdbcType=INTEGER},
       </if>
-      <if test="record.subjectType != null" >
+      <if test="record.subjectType != null">
         subject_type = #{record.subjectType,jdbcType=VARCHAR},
       </if>
-      <if test="record.subjectPattern != null" >
+      <if test="record.subjectPattern != null">
         subject_pattern = #{record.subjectPattern,jdbcType=VARCHAR},
       </if>
-      <if test="record.content != null" >
+      <if test="record.content != null">
         content = #{record.content,jdbcType=VARCHAR},
       </if>
-      <if test="record.answer != null" >
+      <if test="record.answer != null">
         answer = #{record.answer,jdbcType=VARCHAR},
       </if>
-      <if test="record.knowlegePoint != null" >
+      <if test="record.knowlegePoint != null">
         knowlege_point = #{record.knowlegePoint,jdbcType=VARCHAR},
       </if>
-      <if test="record.subjectMatter != null" >
+      <if test="record.subjectMatter != null">
         subject_matter = #{record.subjectMatter,jdbcType=VARCHAR},
       </if>
-      <if test="record.testDatabaseMatter != null" >
+      <if test="record.testDatabaseMatter != null">
         test_database_matter = #{record.testDatabaseMatter,jdbcType=VARCHAR},
       </if>
-      <if test="record.testDatabaseId != null" >
+      <if test="record.testDatabaseId != null">
         test_database_id = #{record.testDatabaseId,jdbcType=BIGINT},
       </if>
-      <if test="record.name != null" >
+      <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.reviewType != null" >
+      <if test="record.reviewType != null">
         review_type = #{record.reviewType,jdbcType=INTEGER},
       </if>
-      <if test="record.reviewMessage != null" >
+      <if test="record.reviewMessage != null">
         review_message = #{record.reviewMessage,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByExample" parameterType="map">
     update Subject
     set subject_id = #{record.subjectId,jdbcType=INTEGER},
       subject_type = #{record.subjectType,jdbcType=VARCHAR},
@@ -262,50 +262,369 @@
       name = #{record.name,jdbcType=VARCHAR},
       review_type = #{record.reviewType,jdbcType=INTEGER},
       review_message = #{record.reviewMessage,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.testdatabase.Subject" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.testdatabase.Subject">
     update Subject
-    <set >
-      <if test="subjectType != null" >
+    <set>
+      <if test="subjectType != null">
         subject_type = #{subjectType,jdbcType=VARCHAR},
       </if>
-      <if test="subjectPattern != null" >
+      <if test="subjectPattern != null">
         subject_pattern = #{subjectPattern,jdbcType=VARCHAR},
       </if>
-      <if test="content != null" >
+      <if test="content != null">
         content = #{content,jdbcType=VARCHAR},
       </if>
-      <if test="answer != null" >
+      <if test="answer != null">
         answer = #{answer,jdbcType=VARCHAR},
       </if>
-      <if test="knowlegePoint != null" >
+      <if test="knowlegePoint != null">
         knowlege_point = #{knowlegePoint,jdbcType=VARCHAR},
       </if>
-      <if test="subjectMatter != null" >
+      <if test="subjectMatter != null">
         subject_matter = #{subjectMatter,jdbcType=VARCHAR},
       </if>
-      <if test="testDatabaseMatter != null" >
+      <if test="testDatabaseMatter != null">
         test_database_matter = #{testDatabaseMatter,jdbcType=VARCHAR},
       </if>
-      <if test="testDatabaseId != null" >
+      <if test="testDatabaseId != null">
         test_database_id = #{testDatabaseId,jdbcType=BIGINT},
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="reviewType != null" >
+      <if test="reviewType != null">
         review_type = #{reviewType,jdbcType=INTEGER},
       </if>
-      <if test="reviewMessage != null" >
+      <if test="reviewMessage != null">
         review_message = #{reviewMessage,jdbcType=VARCHAR},
       </if>
     </set>
     where subject_id = #{subjectId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.testdatabase.Subject" >
+  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.testdatabase.Subject">
+    update Subject
+    set subject_type = #{subjectType,jdbcType=VARCHAR},
+      subject_pattern = #{subjectPattern,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      knowlege_point = #{knowlegePoint,jdbcType=VARCHAR},
+      subject_matter = #{subjectMatter,jdbcType=VARCHAR},
+      test_database_matter = #{testDatabaseMatter,jdbcType=VARCHAR},
+      test_database_id = #{testDatabaseId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      review_type = #{reviewType,jdbcType=INTEGER},
+      review_message = #{reviewMessage,jdbcType=VARCHAR}
+    where subject_id = #{subjectId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.g10.ssm.po.testdatabase.Subject">
+    <id column="subject_id" jdbcType="INTEGER" property="subjectId" />
+    <result column="subject_type" jdbcType="VARCHAR" property="subjectType" />
+    <result column="subject_pattern" jdbcType="VARCHAR" property="subjectPattern" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="answer" jdbcType="VARCHAR" property="answer" />
+    <result column="knowlege_point" jdbcType="VARCHAR" property="knowlegePoint" />
+    <result column="subject_matter" jdbcType="VARCHAR" property="subjectMatter" />
+    <result column="test_database_matter" jdbcType="VARCHAR" property="testDatabaseMatter" />
+    <result column="test_database_id" jdbcType="BIGINT" property="testDatabaseId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="review_type" jdbcType="INTEGER" property="reviewType" />
+    <result column="review_message" jdbcType="VARCHAR" property="reviewMessage" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    subject_id, subject_type, subject_pattern, content, answer, knowlege_point, subject_matter, 
+    test_database_matter, test_database_id, name, review_type, review_message
+  </sql>
+  <select id="selectByExample" parameterType="com.g10.ssm.po.testdatabase.SubjectExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Subject
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from Subject
+    where subject_id = #{subjectId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Subject
+    where subject_id = #{subjectId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.g10.ssm.po.testdatabase.SubjectExample">
+    delete from Subject
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.g10.ssm.po.testdatabase.Subject">
+    insert into Subject (subject_id, subject_type, subject_pattern, 
+      content, answer, knowlege_point, 
+      subject_matter, test_database_matter, test_database_id, 
+      name, review_type, review_message
+      )
+    values (#{subjectId,jdbcType=INTEGER}, #{subjectType,jdbcType=VARCHAR}, #{subjectPattern,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, #{knowlegePoint,jdbcType=VARCHAR}, 
+      #{subjectMatter,jdbcType=VARCHAR}, #{testDatabaseMatter,jdbcType=VARCHAR}, #{testDatabaseId,jdbcType=BIGINT}, 
+      #{name,jdbcType=VARCHAR}, #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.g10.ssm.po.testdatabase.Subject">
+    insert into Subject
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subjectId != null">
+        subject_id,
+      </if>
+      <if test="subjectType != null">
+        subject_type,
+      </if>
+      <if test="subjectPattern != null">
+        subject_pattern,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="answer != null">
+        answer,
+      </if>
+      <if test="knowlegePoint != null">
+        knowlege_point,
+      </if>
+      <if test="subjectMatter != null">
+        subject_matter,
+      </if>
+      <if test="testDatabaseMatter != null">
+        test_database_matter,
+      </if>
+      <if test="testDatabaseId != null">
+        test_database_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="reviewType != null">
+        review_type,
+      </if>
+      <if test="reviewMessage != null">
+        review_message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subjectId != null">
+        #{subjectId,jdbcType=INTEGER},
+      </if>
+      <if test="subjectType != null">
+        #{subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectPattern != null">
+        #{subjectPattern,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="knowlegePoint != null">
+        #{knowlegePoint,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectMatter != null">
+        #{subjectMatter,jdbcType=VARCHAR},
+      </if>
+      <if test="testDatabaseMatter != null">
+        #{testDatabaseMatter,jdbcType=VARCHAR},
+      </if>
+      <if test="testDatabaseId != null">
+        #{testDatabaseId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewType != null">
+        #{reviewType,jdbcType=INTEGER},
+      </if>
+      <if test="reviewMessage != null">
+        #{reviewMessage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.g10.ssm.po.testdatabase.SubjectExample" resultType="java.lang.Integer">
+    select count(*) from Subject
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update Subject
+    <set>
+      <if test="record.subjectId != null">
+        subject_id = #{record.subjectId,jdbcType=INTEGER},
+      </if>
+      <if test="record.subjectType != null">
+        subject_type = #{record.subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectPattern != null">
+        subject_pattern = #{record.subjectPattern,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answer != null">
+        answer = #{record.answer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.knowlegePoint != null">
+        knowlege_point = #{record.knowlegePoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectMatter != null">
+        subject_matter = #{record.subjectMatter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testDatabaseMatter != null">
+        test_database_matter = #{record.testDatabaseMatter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testDatabaseId != null">
+        test_database_id = #{record.testDatabaseId,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewType != null">
+        review_type = #{record.reviewType,jdbcType=INTEGER},
+      </if>
+      <if test="record.reviewMessage != null">
+        review_message = #{record.reviewMessage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update Subject
+    set subject_id = #{record.subjectId,jdbcType=INTEGER},
+      subject_type = #{record.subjectType,jdbcType=VARCHAR},
+      subject_pattern = #{record.subjectPattern,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      answer = #{record.answer,jdbcType=VARCHAR},
+      knowlege_point = #{record.knowlegePoint,jdbcType=VARCHAR},
+      subject_matter = #{record.subjectMatter,jdbcType=VARCHAR},
+      test_database_matter = #{record.testDatabaseMatter,jdbcType=VARCHAR},
+      test_database_id = #{record.testDatabaseId,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      review_type = #{record.reviewType,jdbcType=INTEGER},
+      review_message = #{record.reviewMessage,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.testdatabase.Subject">
+    update Subject
+    <set>
+      <if test="subjectType != null">
+        subject_type = #{subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectPattern != null">
+        subject_pattern = #{subjectPattern,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="knowlegePoint != null">
+        knowlege_point = #{knowlegePoint,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectMatter != null">
+        subject_matter = #{subjectMatter,jdbcType=VARCHAR},
+      </if>
+      <if test="testDatabaseMatter != null">
+        test_database_matter = #{testDatabaseMatter,jdbcType=VARCHAR},
+      </if>
+      <if test="testDatabaseId != null">
+        test_database_id = #{testDatabaseId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewType != null">
+        review_type = #{reviewType,jdbcType=INTEGER},
+      </if>
+      <if test="reviewMessage != null">
+        review_message = #{reviewMessage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where subject_id = #{subjectId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.testdatabase.Subject">
     update Subject
     set subject_type = #{subjectType,jdbcType=VARCHAR},
       subject_pattern = #{subjectPattern,jdbcType=VARCHAR},

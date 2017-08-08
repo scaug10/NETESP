@@ -175,52 +175,62 @@ public class BoardExample {
             return (Criteria) this;
         }
 
-        public Criteria andBoardMasterEqualTo(Integer value) {
+        public Criteria andBoardMasterEqualTo(String value) {
             addCriterion("board_master =", value, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andBoardMasterNotEqualTo(Integer value) {
+        public Criteria andBoardMasterNotEqualTo(String value) {
             addCriterion("board_master <>", value, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andBoardMasterGreaterThan(Integer value) {
+        public Criteria andBoardMasterGreaterThan(String value) {
             addCriterion("board_master >", value, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andBoardMasterGreaterThanOrEqualTo(Integer value) {
+        public Criteria andBoardMasterGreaterThanOrEqualTo(String value) {
             addCriterion("board_master >=", value, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andBoardMasterLessThan(Integer value) {
+        public Criteria andBoardMasterLessThan(String value) {
             addCriterion("board_master <", value, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andBoardMasterLessThanOrEqualTo(Integer value) {
+        public Criteria andBoardMasterLessThanOrEqualTo(String value) {
             addCriterion("board_master <=", value, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andBoardMasterIn(List<Integer> values) {
+        public Criteria andBoardMasterLike(String value) {
+            addCriterion("board_master like", value, "boardMaster");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardMasterNotLike(String value) {
+            addCriterion("board_master not like", value, "boardMaster");
+            return (Criteria) this;
+        }
+
+        public Criteria andBoardMasterIn(List<String> values) {
             addCriterion("board_master in", values, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andBoardMasterNotIn(List<Integer> values) {
+        public Criteria andBoardMasterNotIn(List<String> values) {
             addCriterion("board_master not in", values, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andBoardMasterBetween(Integer value1, Integer value2) {
+        public Criteria andBoardMasterBetween(String value1, String value2) {
             addCriterion("board_master between", value1, value2, "boardMaster");
             return (Criteria) this;
         }
 
-        public Criteria andBoardMasterNotBetween(Integer value1, Integer value2) {
+        public Criteria andBoardMasterNotBetween(String value1, String value2) {
             addCriterion("board_master not between", value1, value2, "boardMaster");
             return (Criteria) this;
         }

@@ -7,7 +7,7 @@ public class KnowledgeComment {
 
     private Integer knowledgeId;
 
-    private Integer publisher;
+    private String publisher;
 
     private String content;
 
@@ -33,12 +33,12 @@ public class KnowledgeComment {
         this.knowledgeId = knowledgeId;
     }
 
-    public Integer getPublisher() {
+    public String getPublisher() {
         return publisher;
     }
 
-    public void setPublisher(Integer publisher) {
-        this.publisher = publisher;
+    public void setPublisher(String publisher) {
+        this.publisher = publisher == null ? null : publisher.trim();
     }
 
     public String getContent() {

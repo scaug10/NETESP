@@ -5,7 +5,7 @@ import java.util.Date;
 public class Board {
     private Integer boardId;
 
-    private Integer boardMaster;
+    private String boardMaster;
 
     private String boardName;
 
@@ -27,12 +27,12 @@ public class Board {
         this.boardId = boardId;
     }
 
-    public Integer getBoardMaster() {
+    public String getBoardMaster() {
         return boardMaster;
     }
 
-    public void setBoardMaster(Integer boardMaster) {
-        this.boardMaster = boardMaster;
+    public void setBoardMaster(String boardMaster) {
+        this.boardMaster = boardMaster == null ? null : boardMaster.trim();
     }
 
     public String getBoardName() {
