@@ -3,7 +3,7 @@ package com.g10.ssm.po.knowledge;
 public class RepositoryCategory {
     private Integer categoryId;
 
-    private Integer creator;
+    private String creator;
 
     private String name;
 
@@ -25,12 +25,12 @@ public class RepositoryCategory {
         this.categoryId = categoryId;
     }
 
-    public Integer getCreator() {
+    public String getCreator() {
         return creator;
     }
 
-    public void setCreator(Integer creator) {
-        this.creator = creator;
+    public void setCreator(String creator) {
+        this.creator = creator == null ? null : creator.trim();
     }
 
     public String getName() {

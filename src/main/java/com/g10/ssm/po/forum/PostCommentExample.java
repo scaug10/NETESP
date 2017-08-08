@@ -235,52 +235,62 @@ public class PostCommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andPublisherEqualTo(Integer value) {
+        public Criteria andPublisherEqualTo(String value) {
             addCriterion("publisher =", value, "publisher");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherNotEqualTo(Integer value) {
+        public Criteria andPublisherNotEqualTo(String value) {
             addCriterion("publisher <>", value, "publisher");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherGreaterThan(Integer value) {
+        public Criteria andPublisherGreaterThan(String value) {
             addCriterion("publisher >", value, "publisher");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherGreaterThanOrEqualTo(Integer value) {
+        public Criteria andPublisherGreaterThanOrEqualTo(String value) {
             addCriterion("publisher >=", value, "publisher");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherLessThan(Integer value) {
+        public Criteria andPublisherLessThan(String value) {
             addCriterion("publisher <", value, "publisher");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherLessThanOrEqualTo(Integer value) {
+        public Criteria andPublisherLessThanOrEqualTo(String value) {
             addCriterion("publisher <=", value, "publisher");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherIn(List<Integer> values) {
+        public Criteria andPublisherLike(String value) {
+            addCriterion("publisher like", value, "publisher");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisherNotLike(String value) {
+            addCriterion("publisher not like", value, "publisher");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisherIn(List<String> values) {
             addCriterion("publisher in", values, "publisher");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherNotIn(List<Integer> values) {
+        public Criteria andPublisherNotIn(List<String> values) {
             addCriterion("publisher not in", values, "publisher");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherBetween(Integer value1, Integer value2) {
+        public Criteria andPublisherBetween(String value1, String value2) {
             addCriterion("publisher between", value1, value2, "publisher");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherNotBetween(Integer value1, Integer value2) {
+        public Criteria andPublisherNotBetween(String value1, String value2) {
             addCriterion("publisher not between", value1, value2, "publisher");
             return (Criteria) this;
         }

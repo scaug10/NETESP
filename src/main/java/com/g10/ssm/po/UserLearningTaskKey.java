@@ -3,7 +3,7 @@ package com.g10.ssm.po;
 public class UserLearningTaskKey {
     private Integer learningTaskId;
 
-    private Integer userId;
+    private String userName;
 
     public Integer getLearningTaskId() {
         return learningTaskId;
@@ -13,11 +13,11 @@ public class UserLearningTaskKey {
         this.learningTaskId = learningTaskId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 }

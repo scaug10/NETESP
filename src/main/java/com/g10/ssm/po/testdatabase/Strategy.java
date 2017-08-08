@@ -7,7 +7,7 @@ public class Strategy {
 
     private String strategyName;
 
-    private Integer createrId;
+    private String createrId;
 
     private Date createTime;
 
@@ -35,12 +35,12 @@ public class Strategy {
         this.strategyName = strategyName == null ? null : strategyName.trim();
     }
 
-    public Integer getCreaterId() {
+    public String getCreaterId() {
         return createrId;
     }
 
-    public void setCreaterId(Integer createrId) {
-        this.createrId = createrId;
+    public void setCreaterId(String createrId) {
+        this.createrId = createrId == null ? null : createrId.trim();
     }
 
     public Date getCreateTime() {
