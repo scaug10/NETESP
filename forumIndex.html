@@ -1,0 +1,112 @@
+<!--
+    这一页是论坛首页，
+    显示版块列表，
+    在此填充论坛列表数据
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>论坛</title>
+
+    <script>
+
+    </script>
+
+    <style type="text/css">
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+        }
+
+        .title{
+            width: 100%;
+            height: 50px;
+            background-color: lightgray;
+            font-size: 36px;
+        }
+
+        .forumlist{
+            margin: 10px auto;
+        }
+
+        .forum{
+            display: block;
+            border-bottom: 1px dashed black;
+
+        }
+
+        .forumlogo{
+            width: 40px;
+            height: 40px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        .forumname{
+            margin-left: 20px;
+            position: relative;
+            bottom: 15px;
+        }
+
+        .forumdetail{
+            margin: 0px 100px;
+            color: #000;
+            position: relative;
+            bottom: 15px;
+        }
+
+        .forumowner{
+            color: #000;
+            position: relative;
+            bottom: 15px;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover{
+            background-color: #bfa;
+        }
+
+        li:nth-child(even){
+            background-color: lightblue;
+        }
+
+    </style>
+</head>
+<body>
+
+<p class="title">
+    论坛列表
+</p>
+
+<div class="content">
+    <ul class="forumlist">
+        <script type="text/javascript">
+            /*这里给出论坛列表填充数据*/
+            for(var i = 0; i < 5; i++){
+                var owner = "Apple";/*版主*/
+                var name = "应急学习板块" + ( i + 1 );/*版块名称*/
+                var detail = "这里是讨论应急学习的地方";/*版块介绍*/
+                var imgAddress = "./forumPosts.html"/*版块图标地址*/
+                document.write("<li>\n" +
+                    "            <a class=\"forum\" href=" + imgAddress + ">\n" +
+                    "                <img class=\"forumlogo\" src=\"./IMG/forum_new.gif\" alt=\"forumlogo\">\n" +
+                    "                <span class=\"forumname\">" + name + "</span>\n" +
+                    "                <span class=\"forumdetail\">" + detail + "</span>\n" +
+                    "                <span class=\"forumowner\">版主：" + owner + "</span>\n" +
+                    "            </a>\n" +
+                    "        </li>");
+            }
+        </script>
+    </ul>
+</div>
+
+</body>
+</html>
