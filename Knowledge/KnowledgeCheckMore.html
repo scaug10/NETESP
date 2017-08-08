@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>审核知识信息</title>
+<link rel="stylesheet" type="text/css" href="../css/css.css" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<style>
+.box{
+margin-left: 60px;
+	width: 135px;
+	height: 40px;
+	border: none;
+	font-size: 16px;
+	color: #fff;
+	background-color: #47a4e1;
+	}
+</style>
+</head>
+<body>
+
+	<div id="pageAll">
+		<!--导航栏-->
+		<div class="pageTop">
+			<div class="page">
+				<img src="../img/coin02.png" /><span><a href="../main.html">首页</a>&nbsp;-&nbsp;<a
+					href="KnowledgeManagement.html">知识分类管理</a>&nbsp;-</span>&nbsp;审核知识信息
+			</div>
+		</div>
+		<!--内容-->
+		<div class="page ">
+			<div class="banneradd bor">
+				<div class="baTopNo">
+					<span>分类信息</span>
+				</div>
+				<div class="baBody">
+					<div class="bbD">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="input3" value="3"/>
+					</div>
+					<div class="bbD">
+						知识名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="input3" value="语文"/>
+					</div>
+					<div class="bbD">
+					知识分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="input3" />
+					</div>
+					<div class="bbD">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;备注：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="input3" />
+					</div>
+					<div class="bbD">
+						<p class="bbDP">
+							<button class="btn_ok btn_yes operation delban">审核通过</button>
+							<a class="btn_ok btn_no" href="KnowledgeCheck.html">取消</a>
+						</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+<!-- 删除弹出框 -->
+	<div class="banDel">
+		<div class="delete">
+			<div class="close">
+				<a><img src="../img/shanchu.png" /></a>
+			</div>
+			<p class="delP1">是否确定通过该审核</p>
+			<p class="delP2">
+				<a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
+			</p>
+		</div>
+	</div>
+	<!-- 删除弹出框  end-->
+</body>
+
+<script type="text/javascript">
+// 广告弹出框
+$(".delban").click(function(){
+  $(".banDel").show();
+});
+$(".close").click(function(){
+  $(".banDel").hide();
+});
+$(".no").click(function(){
+  $(".banDel").hide();
+});
+// 广告弹出框 end
+</script>
+</html>

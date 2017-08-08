@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>视频预览</title>
+    <link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/css.css" />
+    <!-- If you'd like to support IE8 -->
+    <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <style type="text/css">
+        video{
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+<div id="pageAll">
+    <div class="pageTop">
+        <div class="page">
+            <img src="../img/coin02.png" /><span><a href="../main.html">首页</a>&nbsp;-&nbsp;<a
+                href="KnowledgeManagement.html">知识管理</a>&nbsp;-&nbsp;<a href="KnowledgePreview.html">知识预览</a>&nbsp;-&nbsp;</span>视频预览
+        </div>
+    </div>
+</div>
+
+<video id="my-video" class="video-js" controls preload="auto" width="640" height="480"
+       poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+    <source src="../video/J.Fla%20-%20What%C2%A0Ive%C2%A0Done%C2%A0(%C2%A0cover%C2%A0by%C2%A0J.Fla).mp4" type='video/mp4'>
+    <source src="MY_VIDEO.webm" type='video/webm'>
+    <p class="vjs-no-js">
+        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+</video>
+</body>
+</html>

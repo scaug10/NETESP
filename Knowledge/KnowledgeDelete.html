@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>删除知识信息</title>
+<link rel="stylesheet" type="text/css" href="../css/css.css" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<style>
+.box{
+margin-left: 60px;
+	width: 135px;
+	height: 40px;
+	border: none;
+	font-size: 16px;
+	color: #fff;
+	background-color: #47a4e1;
+	}
+	div button{
+		float: right;
+	}
+	div > input{
+		float: right;
+		height: 36px;
+	}
+	.clearfix:after{
+		content: "";
+		display: block;
+		clear:both;
+	}
+	.checkbox{
+
+	}
+	.button1{
+		margin-left: 10px;
+		width: 135px;
+		height: 40px;
+		border: none;
+		font-size: 16px;
+		color: #fff;
+		background-color: #47a4e1;
+	}
+	.pageButton{
+
+		font-size: 16px;
+		margin-top: 10px;
+		margin-left: 10px;
+		float: right;
+		;
+	}
+	.pageButton > a:visited{
+		color: black;
+	}
+
+	.pageButton > a{
+	color: black;
+	}
+</style>
+	<script type="text/javascript">
+        function changeState(isChecked)
+        {
+            var chk_list=document.getElementsByTagName("input");
+            for(var i=0;i<chk_list.length;i++)
+            {
+                if(chk_list[i].type=="checkbox")
+                {
+                    chk_list[i].checked=isChecked;
+                }
+            }
+        }
+	</script>
+</head>
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page">
+				<img src="../img/coin02.png" /><span><a href="../main.html">首页</a>&nbsp;-&nbsp;<a
+					href="KnowledgeManagement.html">知识管理</a>&nbsp;-</span>&nbsp;删除知识信息
+			</div>
+		</div>
+		<div class="page">
+			<!-- user页面样式 -->
+			<div class="connoisseur">
+				<div class="conform">
+					<div class="cfD clearfix">
+						<button class="userbtn btn_ok btn_yes operation delban" >删除</button>
+						<button class="button1" >查询</button>
+						<input type="text"  class="input3" />
+					</div>
+				</div>
+				<!-- user 表格 显示 -->
+				<div class="conShow">
+					<table border="1" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="66px" class="tdColor tdC"><input type="checkbox" name="id" onclick="changeState(this.checked)"></td>
+							<td width="66px" class="tdColor tdC">ID</td>
+							<td width="435px" class="tdColor">知识名称</td>
+							<td width="400px" class="tdColor">知识分类</td>
+							<td width="630px" class="tdColor">备注</td>
+						</tr>
+						<script type="text/javascript">
+						for(var i=0;i<20;i++){
+						    var id=i+1;
+						    var subject = "古文";
+						    var classification = "语文";
+						    var remark = "很复杂"
+						    document.write("<tr height=\"40px\">\n" +
+
+								"<td><input type=\"checkbox\" name=\"id\" value=\" + id + \"></td>\n" +
+                                "<td>"+id+"</td>\n" +
+                                "<td>"+subject+"</td>\n" +
+                                "<td>"+classification+"</td>\n" +
+                                "<td>"+remark+"</td>\n" +
+                                "\n");
+						}
+						</script>
+					</table>
+					<div>
+						<script type="text/javascript">
+                            /*页数填充*/
+                            var totalPostNumber = 1001;/*该模块包含的总内容数量数*/
+                            var postsPerPage = 20;/*每页包含的内容数量*/
+                            var currentPage = 1;/*当前页*/
+
+                            document.write("<span class=\"pageButton\"><a href=\"#\">下一页</a></span>\n" +
+                                "    <span class=\"pageButton\"><a href=\"#\">..." + Math.ceil(totalPostNumber/postsPerPage) + "</a></span>\n" +
+                                "    <span class=\"pageButton\"><input class=\"inputPage\" value=\" " + currentPage + " \" type=\"text\">/页</span>\n" +
+                                "    <span class=\"pageButton\"><a href=\"#\">1</a></span>\n" +
+                                "    <span class=\"pageButton\"><a href=\"#\">上一页</a></span>");
+
+						</script>
+					</div>
+					<div class="paging">此处是分页</div>
+					</div>
+				</div>
+				<!--表格 显示 end-->
+			</div>
+			<!--页面样式end -->
+		</div>
+
+<div class="banDel">
+		<div class="delete">
+			<div class="close">
+				<a><img src="../img/shanchu.png" /></a>
+			</div>
+			<p class="delP1">你确定要删除此条记录吗？</p>
+			<p class="delP2">
+				<a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
+			</p>
+		</div>
+	</div>
+	
+			<!-- 会员注册页面样式end -->
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+// 广告弹出框
+$(".delban").click(function(){
+  $(".banDel").show();
+});
+$(".close").click(function(){
+  $(".banDel").hide();
+});
+$(".no").click(function(){
+  $(".banDel").hide();
+});
+// 广告弹出框 end
+</script>
+</html>
