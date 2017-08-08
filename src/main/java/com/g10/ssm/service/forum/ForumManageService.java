@@ -1,37 +1,38 @@
 package com.g10.ssm.service.forum;
 
-import com.g10.ssm.po.forum.Board;
+import com.g10.ssm.po.forum.BoardCustom;
+import com.g10.ssm.po.forum.PostCustom;
 
 public interface ForumManageService {
 	
 	/**
 	 * @Title: createBoard
 	 * @Description: 创建板块
-	 * @param board 论坛版块
+	 * @param boardCustom 论坛版块
 	 * @throws Exception
 	 * @return int 是否创建成功
 	 */
-	public int createBoard(Board board) throws Exception;
+	public int createBoard(BoardCustom boardCustom) throws Exception;
 	
 	/**
 	 * @Title: updateBoardBoardNumByPrimaryKey
 	 * @Description:  通过主键更新论坛排序的序号
 	 * @param boardId
-	 * @param board
+	 * @param boardCustom
 	 * @throws Exception
 	 * @return int 是否更新成功
 	 */
-	public int updateBoardBoardNumByPrimaryKey(int boardId, Board board) throws Exception;
+	public int updateBoardBoardNumByPrimaryKey(int boardId, BoardCustom boardCustom) throws Exception;
 	
 	/**
 	 * @Title: updateBoardByPrimaryKeySelective 
-	 * @Description: 根据板块id修改板块
+	 * @Description: 根据板块id更新板块
 	 * @param boardId
-	 * @param board
+	 * @param boardCustom
 	 * @throws Exception
 	 * @return int
 	 */
-	public int updateBoardByPrimaryKeySelective(int boardId, Board board) throws Exception;
+	public int updateBoardByPrimaryKeySelective(int boardId, BoardCustom boardCustom) throws Exception;
 	
 	/**
 	 * @Title: deleteBoardByPrimaryKey 
@@ -52,14 +53,31 @@ public interface ForumManageService {
 	public int shieldPostCommentByPrimaryKey(int postCommentId) throws Exception;
 	
 	/**
-	 * @Title: checkBoardByPrimary 
+	 * @Title: checkBoardByPrimaryKey
 	 * @Description: 审核板块，记录审核的结果与审核状态
 	 * @param boardId
-	 * @param board
+	 * @param boardCustom
 	 * @throws Exception
 	 * @return int
 	 */
-	public int checkBoardByPrimary(int boardId, Board board) throws Exception;
+	public int checkBoardByPrimaryKey(int boardId, BoardCustom boardCustom) throws Exception;
 	
+	/**
+	 * @Title: checkPostByPrimaryKey 
+	 * @Description: 审核帖子，记录审核结果与审核状态
+	 * @param postId
+	 * @param postCustom
+	 * @throws Exception
+	 * @return int
+	 */
+	public int checkPostByPrimaryKey(int postId, PostCustom postCustom) throws Exception;
 	
+	/**
+	 * @Title: deleteThreadByPrimaryKey 
+	 * @Description: 根据主题id删除主题
+	 * @param topicId
+	 * @throws Exception
+	 * @return int
+	 */
+	public int deleteThreadByPrimaryKey(int topicId) throws Exception;
 }

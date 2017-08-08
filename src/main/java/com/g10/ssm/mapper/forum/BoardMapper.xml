@@ -3,7 +3,7 @@
 <mapper namespace="com.g10.ssm.mapper.forum.BoardMapper" >
   <resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Board" >
     <id column="board_id" property="boardId" jdbcType="INTEGER" />
-    <result column="board_master" property="boardMaster" jdbcType="INTEGER" />
+    <result column="board_master" property="boardMaster" jdbcType="VARCHAR" />
     <result column="board_name" property="boardName" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="board_describe" property="boardDescribe" jdbcType="VARCHAR" />
@@ -107,7 +107,7 @@
     insert into Board (board_id, board_master, board_name, 
       create_time, board_describe, board_num, 
       review_type, review_message)
-    values (#{boardId,jdbcType=INTEGER}, #{boardMaster,jdbcType=INTEGER}, #{boardName,jdbcType=VARCHAR}, 
+    values (#{boardId,jdbcType=INTEGER}, #{boardMaster,jdbcType=VARCHAR}, #{boardName,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{boardDescribe,jdbcType=VARCHAR}, #{boardNum,jdbcType=INTEGER}, 
       #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR})
   </insert>
@@ -144,7 +144,7 @@
         #{boardId,jdbcType=INTEGER},
       </if>
       <if test="boardMaster != null" >
-        #{boardMaster,jdbcType=INTEGER},
+        #{boardMaster,jdbcType=VARCHAR},
       </if>
       <if test="boardName != null" >
         #{boardName,jdbcType=VARCHAR},
@@ -179,7 +179,7 @@
         board_id = #{record.boardId,jdbcType=INTEGER},
       </if>
       <if test="record.boardMaster != null" >
-        board_master = #{record.boardMaster,jdbcType=INTEGER},
+        board_master = #{record.boardMaster,jdbcType=VARCHAR},
       </if>
       <if test="record.boardName != null" >
         board_name = #{record.boardName,jdbcType=VARCHAR},
@@ -207,7 +207,7 @@
   <update id="updateByExample" parameterType="map" >
     update Board
     set board_id = #{record.boardId,jdbcType=INTEGER},
-      board_master = #{record.boardMaster,jdbcType=INTEGER},
+      board_master = #{record.boardMaster,jdbcType=VARCHAR},
       board_name = #{record.boardName,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       board_describe = #{record.boardDescribe,jdbcType=VARCHAR},
@@ -222,7 +222,7 @@
     update Board
     <set >
       <if test="boardMaster != null" >
-        board_master = #{boardMaster,jdbcType=INTEGER},
+        board_master = #{boardMaster,jdbcType=VARCHAR},
       </if>
       <if test="boardName != null" >
         board_name = #{boardName,jdbcType=VARCHAR},
@@ -247,7 +247,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.forum.Board" >
     update Board
-    set board_master = #{boardMaster,jdbcType=INTEGER},
+    set board_master = #{boardMaster,jdbcType=VARCHAR},
       board_name = #{boardName,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       board_describe = #{boardDescribe,jdbcType=VARCHAR},

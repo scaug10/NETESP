@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.g10.ssm.mapper.forum.ThreadMapper" >
-  <resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Thread" >
+<mapper namespace="com.g10.ssm.mapper.forum.ThemeMapper" >
+  <resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Theme" >
     <id column="topic_id" property="topicId" jdbcType="INTEGER" />
     <result column="board_id" property="boardId" jdbcType="INTEGER" />
-    <result column="creator" property="creator" jdbcType="INTEGER" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
     <result column="topic_name" property="topicName" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -74,13 +74,13 @@
     topic_id, board_id, creator, topic_name, content, create_time, is_top, review_type, 
     review_message
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.g10.ssm.po.forum.ThreadExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.g10.ssm.po.forum.ThemeExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from Thread
+    from Theme
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -91,31 +91,31 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from Thread
+    from Theme
     where topic_id = #{topicId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from Thread
+    delete from Theme
     where topic_id = #{topicId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.g10.ssm.po.forum.ThreadExample" >
-    delete from Thread
+  <delete id="deleteByExample" parameterType="com.g10.ssm.po.forum.ThemeExample" >
+    delete from Theme
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.g10.ssm.po.forum.Thread" >
-    insert into Thread (topic_id, board_id, creator, 
+  <insert id="insert" parameterType="com.g10.ssm.po.forum.Theme" >
+    insert into Theme (topic_id, board_id, creator, 
       topic_name, content, create_time, 
       is_top, review_type, review_message
       )
-    values (#{topicId,jdbcType=INTEGER}, #{boardId,jdbcType=INTEGER}, #{creator,jdbcType=INTEGER}, 
+    values (#{topicId,jdbcType=INTEGER}, #{boardId,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, 
       #{topicName,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{isTop,jdbcType=BIT}, #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.g10.ssm.po.forum.Thread" >
-    insert into Thread
+  <insert id="insertSelective" parameterType="com.g10.ssm.po.forum.Theme" >
+    insert into Theme
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="topicId != null" >
         topic_id,
@@ -153,7 +153,7 @@
         #{boardId,jdbcType=INTEGER},
       </if>
       <if test="creator != null" >
-        #{creator,jdbcType=INTEGER},
+        #{creator,jdbcType=VARCHAR},
       </if>
       <if test="topicName != null" >
         #{topicName,jdbcType=VARCHAR},
@@ -175,14 +175,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.g10.ssm.po.forum.ThreadExample" resultType="java.lang.Integer" >
-    select count(*) from Thread
+  <select id="countByExample" parameterType="com.g10.ssm.po.forum.ThemeExample" resultType="java.lang.Integer" >
+    select count(*) from Theme
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update Thread
+    update Theme
     <set >
       <if test="record.topicId != null" >
         topic_id = #{record.topicId,jdbcType=INTEGER},
@@ -191,7 +191,7 @@
         board_id = #{record.boardId,jdbcType=INTEGER},
       </if>
       <if test="record.creator != null" >
-        creator = #{record.creator,jdbcType=INTEGER},
+        creator = #{record.creator,jdbcType=VARCHAR},
       </if>
       <if test="record.topicName != null" >
         topic_name = #{record.topicName,jdbcType=VARCHAR},
@@ -217,10 +217,10 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update Thread
+    update Theme
     set topic_id = #{record.topicId,jdbcType=INTEGER},
       board_id = #{record.boardId,jdbcType=INTEGER},
-      creator = #{record.creator,jdbcType=INTEGER},
+      creator = #{record.creator,jdbcType=VARCHAR},
       topic_name = #{record.topicName,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -231,14 +231,14 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.forum.Thread" >
-    update Thread
+  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.forum.Theme" >
+    update Theme
     <set >
       <if test="boardId != null" >
         board_id = #{boardId,jdbcType=INTEGER},
       </if>
       <if test="creator != null" >
-        creator = #{creator,jdbcType=INTEGER},
+        creator = #{creator,jdbcType=VARCHAR},
       </if>
       <if test="topicName != null" >
         topic_name = #{topicName,jdbcType=VARCHAR},
@@ -261,10 +261,10 @@
     </set>
     where topic_id = #{topicId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.forum.Thread" >
-    update Thread
+  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.forum.Theme" >
+    update Theme
     set board_id = #{boardId,jdbcType=INTEGER},
-      creator = #{creator,jdbcType=INTEGER},
+      creator = #{creator,jdbcType=VARCHAR},
       topic_name = #{topicName,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},

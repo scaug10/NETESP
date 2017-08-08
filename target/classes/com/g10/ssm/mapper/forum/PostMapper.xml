@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Post" >
     <id column="post_id" property="postId" jdbcType="INTEGER" />
     <result column="topic_id" property="topicId" jdbcType="INTEGER" />
-    <result column="publisher" property="publisher" jdbcType="INTEGER" />
+    <result column="publisher" property="publisher" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="is_cream" property="isCream" jdbcType="BIT" />
@@ -106,7 +106,7 @@
     insert into Post (post_id, topic_id, publisher, 
       content, create_time, is_cream, 
       review_type, review_message)
-    values (#{postId,jdbcType=INTEGER}, #{topicId,jdbcType=INTEGER}, #{publisher,jdbcType=INTEGER}, 
+    values (#{postId,jdbcType=INTEGER}, #{topicId,jdbcType=INTEGER}, #{publisher,jdbcType=VARCHAR}, 
       #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{isCream,jdbcType=BIT}, 
       #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR})
   </insert>
@@ -146,7 +146,7 @@
         #{topicId,jdbcType=INTEGER},
       </if>
       <if test="publisher != null" >
-        #{publisher,jdbcType=INTEGER},
+        #{publisher,jdbcType=VARCHAR},
       </if>
       <if test="content != null" >
         #{content,jdbcType=VARCHAR},
@@ -181,7 +181,7 @@
         topic_id = #{record.topicId,jdbcType=INTEGER},
       </if>
       <if test="record.publisher != null" >
-        publisher = #{record.publisher,jdbcType=INTEGER},
+        publisher = #{record.publisher,jdbcType=VARCHAR},
       </if>
       <if test="record.content != null" >
         content = #{record.content,jdbcType=VARCHAR},
@@ -207,7 +207,7 @@
     update Post
     set post_id = #{record.postId,jdbcType=INTEGER},
       topic_id = #{record.topicId,jdbcType=INTEGER},
-      publisher = #{record.publisher,jdbcType=INTEGER},
+      publisher = #{record.publisher,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       is_cream = #{record.isCream,jdbcType=BIT},
@@ -224,7 +224,7 @@
         topic_id = #{topicId,jdbcType=INTEGER},
       </if>
       <if test="publisher != null" >
-        publisher = #{publisher,jdbcType=INTEGER},
+        publisher = #{publisher,jdbcType=VARCHAR},
       </if>
       <if test="content != null" >
         content = #{content,jdbcType=VARCHAR},
@@ -247,7 +247,7 @@
   <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.forum.Post" >
     update Post
     set topic_id = #{topicId,jdbcType=INTEGER},
-      publisher = #{publisher,jdbcType=INTEGER},
+      publisher = #{publisher,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       is_cream = #{isCream,jdbcType=BIT},

@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.PostComment" >
     <id column="post_comment_id" property="postCommentId" jdbcType="INTEGER" />
     <result column="post_id" property="postId" jdbcType="INTEGER" />
-    <result column="publisher" property="publisher" jdbcType="INTEGER" />
+    <result column="publisher" property="publisher" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="review_type" property="reviewType" jdbcType="INTEGER" />
@@ -105,7 +105,7 @@
     insert into Post_Comment (post_comment_id, post_id, publisher, 
       content, create_time, review_type, 
       review_message)
-    values (#{postCommentId,jdbcType=INTEGER}, #{postId,jdbcType=INTEGER}, #{publisher,jdbcType=INTEGER}, 
+    values (#{postCommentId,jdbcType=INTEGER}, #{postId,jdbcType=INTEGER}, #{publisher,jdbcType=VARCHAR}, 
       #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{reviewType,jdbcType=INTEGER}, 
       #{reviewMessage,jdbcType=VARCHAR})
   </insert>
@@ -142,7 +142,7 @@
         #{postId,jdbcType=INTEGER},
       </if>
       <if test="publisher != null" >
-        #{publisher,jdbcType=INTEGER},
+        #{publisher,jdbcType=VARCHAR},
       </if>
       <if test="content != null" >
         #{content,jdbcType=VARCHAR},
@@ -174,7 +174,7 @@
         post_id = #{record.postId,jdbcType=INTEGER},
       </if>
       <if test="record.publisher != null" >
-        publisher = #{record.publisher,jdbcType=INTEGER},
+        publisher = #{record.publisher,jdbcType=VARCHAR},
       </if>
       <if test="record.content != null" >
         content = #{record.content,jdbcType=VARCHAR},
@@ -197,7 +197,7 @@
     update Post_Comment
     set post_comment_id = #{record.postCommentId,jdbcType=INTEGER},
       post_id = #{record.postId,jdbcType=INTEGER},
-      publisher = #{record.publisher,jdbcType=INTEGER},
+      publisher = #{record.publisher,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       review_type = #{record.reviewType,jdbcType=INTEGER},
@@ -213,7 +213,7 @@
         post_id = #{postId,jdbcType=INTEGER},
       </if>
       <if test="publisher != null" >
-        publisher = #{publisher,jdbcType=INTEGER},
+        publisher = #{publisher,jdbcType=VARCHAR},
       </if>
       <if test="content != null" >
         content = #{content,jdbcType=VARCHAR},
@@ -233,7 +233,7 @@
   <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.forum.PostComment" >
     update Post_Comment
     set post_id = #{postId,jdbcType=INTEGER},
-      publisher = #{publisher,jdbcType=INTEGER},
+      publisher = #{publisher,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       review_type = #{reviewType,jdbcType=INTEGER},

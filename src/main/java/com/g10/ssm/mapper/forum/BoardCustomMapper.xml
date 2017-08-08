@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.g10.ssm.mapper.forum.BoardCustomMapper">
+	<resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Board">
+		<id column="board_id" property="boardId" jdbcType="INTEGER" />
+		<result column="board_master" property="boardMaster" jdbcType="INTEGER" />
+		<result column="board_name" property="boardName" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="board_describe" property="boardDescribe"
+			jdbcType="VARCHAR" />
+		<result column="board_num" property="boardNum" jdbcType="INTEGER" />
+		<result column="review_type" property="reviewType" jdbcType="INTEGER" />
+		<result column="review_message" property="reviewMessage"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="query_board_where">
+		<if test="boardCustom!=null">
+			<if test="boardId!=null">
+				and boardId = #{boardId}
+			</if>
+			<if test="boardMaster!=null">
+				and boardMaster = #{boardMaster}
+			</if>
+			<if test="boardName!=null">
+				and boardName = #{boardName}
+			</if>
+			<if test="createTime!=null">
+				and createTime = #{createTime}
+			</if>
+		</if>
+	</sql>
+	
+	<select id="selectByBoard" parameterType="com.g10.ssm.po.forum.BoardCustom"
+		resultMap="BaseResultMap">
+		select * from board
+		<where>
+			<include refid="query_board_where"/>
+		</where>
+	</select>
+
+
+</mapper>

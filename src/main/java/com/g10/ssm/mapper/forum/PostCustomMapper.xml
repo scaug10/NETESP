@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.g10.ssm.mapper.forum.PostCustomMapper">
+	<resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Post">
+		<id column="post_id" property="postId" jdbcType="INTEGER" />
+		<result column="topic_id" property="topicId" jdbcType="INTEGER" />
+		<result column="publisher" property="publisher" jdbcType="INTEGER" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="is_cream" property="isCream" jdbcType="BIT" />
+		<result column="review_type" property="reviewType" jdbcType="INTEGER" />
+		<result column="review_message" property="reviewMessage"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="query_post_where">
+		<if test="postCustom!=null">
+			<if test="postId!=null">
+				and postId = #{postId}
+			</if>
+			<if test="publisher!=null">
+				and publisher = #{publisher}
+			</if>
+			<if test="createTime!=null">
+				and createTime = #{createTime}
+			</if>
+		</if>
+	</sql>
+	
+	<select id="selectByPost" parameterType="com.g10.ssm.po.forum.PostCustom"
+		resultMap="BaseResultMap">
+		select * from post
+		<where>
+			<include refid="query_post_where"/>
+		</where>
+	</select>
+
+</mapper>

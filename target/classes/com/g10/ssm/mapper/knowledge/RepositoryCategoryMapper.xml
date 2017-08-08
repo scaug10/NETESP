@@ -3,7 +3,7 @@
 <mapper namespace="com.g10.ssm.mapper.knowledge.RepositoryCategoryMapper" >
   <resultMap id="BaseResultMap" type="com.g10.ssm.po.knowledge.RepositoryCategory" >
     <id column="category_id" property="categoryId" jdbcType="INTEGER" />
-    <result column="creator" property="creator" jdbcType="INTEGER" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="parent_id" property="parentId" jdbcType="INTEGER" />
     <result column="display_order" property="displayOrder" jdbcType="VARCHAR" />
@@ -106,7 +106,7 @@
     insert into Repository_Category (category_id, creator, name, 
       parent_id, display_order, note, 
       review_type, review_message)
-    values (#{categoryId,jdbcType=INTEGER}, #{creator,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+    values (#{categoryId,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{parentId,jdbcType=INTEGER}, #{displayOrder,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
       #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR})
   </insert>
@@ -143,7 +143,7 @@
         #{categoryId,jdbcType=INTEGER},
       </if>
       <if test="creator != null" >
-        #{creator,jdbcType=INTEGER},
+        #{creator,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -178,7 +178,7 @@
         category_id = #{record.categoryId,jdbcType=INTEGER},
       </if>
       <if test="record.creator != null" >
-        creator = #{record.creator,jdbcType=INTEGER},
+        creator = #{record.creator,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
@@ -206,7 +206,7 @@
   <update id="updateByExample" parameterType="map" >
     update Repository_Category
     set category_id = #{record.categoryId,jdbcType=INTEGER},
-      creator = #{record.creator,jdbcType=INTEGER},
+      creator = #{record.creator,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       parent_id = #{record.parentId,jdbcType=INTEGER},
       display_order = #{record.displayOrder,jdbcType=VARCHAR},
@@ -221,7 +221,7 @@
     update Repository_Category
     <set >
       <if test="creator != null" >
-        creator = #{creator,jdbcType=INTEGER},
+        creator = #{creator,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -246,7 +246,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.knowledge.RepositoryCategory" >
     update Repository_Category
-    set creator = #{creator,jdbcType=INTEGER},
+    set creator = #{creator,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=INTEGER},
       display_order = #{displayOrder,jdbcType=VARCHAR},

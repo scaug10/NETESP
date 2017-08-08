@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.g10.ssm.po.knowledge.Knowledge" >
     <id column="knowledge_id" property="knowledgeId" jdbcType="INTEGER" />
     <result column="category_id" property="categoryId" jdbcType="INTEGER" />
-    <result column="creator" property="creator" jdbcType="INTEGER" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="data_url" property="dataUrl" jdbcType="VARCHAR" />
     <result column="review_type" property="reviewType" jdbcType="INTEGER" />
@@ -105,7 +105,7 @@
     insert into Knowledge (knowledge_id, category_id, creator, 
       name, data_url, review_type, 
       review_message)
-    values (#{knowledgeId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{creator,jdbcType=INTEGER}, 
+    values (#{knowledgeId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{dataUrl,jdbcType=VARCHAR}, #{reviewType,jdbcType=INTEGER}, 
       #{reviewMessage,jdbcType=VARCHAR})
   </insert>
@@ -142,7 +142,7 @@
         #{categoryId,jdbcType=INTEGER},
       </if>
       <if test="creator != null" >
-        #{creator,jdbcType=INTEGER},
+        #{creator,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -174,7 +174,7 @@
         category_id = #{record.categoryId,jdbcType=INTEGER},
       </if>
       <if test="record.creator != null" >
-        creator = #{record.creator,jdbcType=INTEGER},
+        creator = #{record.creator,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
@@ -197,7 +197,7 @@
     update Knowledge
     set knowledge_id = #{record.knowledgeId,jdbcType=INTEGER},
       category_id = #{record.categoryId,jdbcType=INTEGER},
-      creator = #{record.creator,jdbcType=INTEGER},
+      creator = #{record.creator,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       data_url = #{record.dataUrl,jdbcType=VARCHAR},
       review_type = #{record.reviewType,jdbcType=INTEGER},
@@ -213,7 +213,7 @@
         category_id = #{categoryId,jdbcType=INTEGER},
       </if>
       <if test="creator != null" >
-        creator = #{creator,jdbcType=INTEGER},
+        creator = #{creator,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -233,7 +233,7 @@
   <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.knowledge.Knowledge" >
     update Knowledge
     set category_id = #{categoryId,jdbcType=INTEGER},
-      creator = #{creator,jdbcType=INTEGER},
+      creator = #{creator,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       data_url = #{dataUrl,jdbcType=VARCHAR},
       review_type = #{reviewType,jdbcType=INTEGER},
