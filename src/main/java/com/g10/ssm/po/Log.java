@@ -5,7 +5,7 @@ import java.util.Date;
 public class Log {
     private Integer logId;
 
-    private Integer userId;
+    private String userId;
 
     private Date logTime;
 
@@ -19,12 +19,12 @@ public class Log {
         this.logId = logId;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
     public Date getLogTime() {

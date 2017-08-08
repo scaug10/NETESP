@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.g10.ssm.mapper.TestTableMapper" >
-  <resultMap id="BaseResultMap" type="com.g10.ssm.po.TestTable" >
-    <id column="test_id" property="testId" jdbcType="INTEGER" />
-    <result column="test_name" property="testName" jdbcType="VARCHAR" />
-    <result column="test_sex" property="testSex" jdbcType="VARCHAR" />
-    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+<mapper namespace="com.g10.ssm.mapper.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.g10.ssm.po.Permission" >
+    <id column="permission_id" property="permissionId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    test_id, test_name, test_sex, birthday
+    permission_id, name
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.g10.ssm.po.TestTableExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.g10.ssm.po.PermissionExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from test_table
+    from Permission
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,76 +83,56 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from test_table
-    where test_id = #{testId,jdbcType=INTEGER}
+    from Permission
+    where permission_id = #{permissionId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from test_table
-    where test_id = #{testId,jdbcType=INTEGER}
+    delete from Permission
+    where permission_id = #{permissionId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.g10.ssm.po.TestTableExample" >
-    delete from test_table
+  <delete id="deleteByExample" parameterType="com.g10.ssm.po.PermissionExample" >
+    delete from Permission
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.g10.ssm.po.TestTable" >
-    insert into test_table (test_id, test_name, test_sex, 
-      birthday)
-    values (#{testId,jdbcType=INTEGER}, #{testName,jdbcType=VARCHAR}, #{testSex,jdbcType=VARCHAR}, 
-      #{birthday,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.g10.ssm.po.Permission" >
+    insert into Permission (permission_id, name)
+    values (#{permissionId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.g10.ssm.po.TestTable" >
-    insert into test_table
+  <insert id="insertSelective" parameterType="com.g10.ssm.po.Permission" >
+    insert into Permission
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="testId != null" >
-        test_id,
+      <if test="permissionId != null" >
+        permission_id,
       </if>
-      <if test="testName != null" >
-        test_name,
-      </if>
-      <if test="testSex != null" >
-        test_sex,
-      </if>
-      <if test="birthday != null" >
-        birthday,
+      <if test="name != null" >
+        name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="testId != null" >
-        #{testId,jdbcType=INTEGER},
+      <if test="permissionId != null" >
+        #{permissionId,jdbcType=INTEGER},
       </if>
-      <if test="testName != null" >
-        #{testName,jdbcType=VARCHAR},
-      </if>
-      <if test="testSex != null" >
-        #{testSex,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null" >
-        #{birthday,jdbcType=TIMESTAMP},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.g10.ssm.po.TestTableExample" resultType="java.lang.Integer" >
-    select count(*) from test_table
+  <select id="countByExample" parameterType="com.g10.ssm.po.PermissionExample" resultType="java.lang.Integer" >
+    select count(*) from Permission
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update test_table
+    update Permission
     <set >
-      <if test="record.testId != null" >
-        test_id = #{record.testId,jdbcType=INTEGER},
+      <if test="record.permissionId != null" >
+        permission_id = #{record.permissionId,jdbcType=INTEGER},
       </if>
-      <if test="record.testName != null" >
-        test_name = #{record.testName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.testSex != null" >
-        test_sex = #{record.testSex,jdbcType=VARCHAR},
-      </if>
-      <if test="record.birthday != null" >
-        birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -162,35 +140,25 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update test_table
-    set test_id = #{record.testId,jdbcType=INTEGER},
-      test_name = #{record.testName,jdbcType=VARCHAR},
-      test_sex = #{record.testSex,jdbcType=VARCHAR},
-      birthday = #{record.birthday,jdbcType=TIMESTAMP}
+    update Permission
+    set permission_id = #{record.permissionId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.TestTable" >
-    update test_table
+  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.Permission" >
+    update Permission
     <set >
-      <if test="testName != null" >
-        test_name = #{testName,jdbcType=VARCHAR},
-      </if>
-      <if test="testSex != null" >
-        test_sex = #{testSex,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null" >
-        birthday = #{birthday,jdbcType=TIMESTAMP},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
     </set>
-    where test_id = #{testId,jdbcType=INTEGER}
+    where permission_id = #{permissionId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.TestTable" >
-    update test_table
-    set test_name = #{testName,jdbcType=VARCHAR},
-      test_sex = #{testSex,jdbcType=VARCHAR},
-      birthday = #{birthday,jdbcType=TIMESTAMP}
-    where test_id = #{testId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.Permission" >
+    update Permission
+    set name = #{name,jdbcType=VARCHAR}
+    where permission_id = #{permissionId,jdbcType=INTEGER}
   </update>
 </mapper>

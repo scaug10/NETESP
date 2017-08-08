@@ -245,52 +245,62 @@ public class StrategyExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdEqualTo(Integer value) {
+        public Criteria andCreaterIdEqualTo(String value) {
             addCriterion("creater_id =", value, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdNotEqualTo(Integer value) {
+        public Criteria andCreaterIdNotEqualTo(String value) {
             addCriterion("creater_id <>", value, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdGreaterThan(Integer value) {
+        public Criteria andCreaterIdGreaterThan(String value) {
             addCriterion("creater_id >", value, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andCreaterIdGreaterThanOrEqualTo(String value) {
             addCriterion("creater_id >=", value, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdLessThan(Integer value) {
+        public Criteria andCreaterIdLessThan(String value) {
             addCriterion("creater_id <", value, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdLessThanOrEqualTo(Integer value) {
+        public Criteria andCreaterIdLessThanOrEqualTo(String value) {
             addCriterion("creater_id <=", value, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdIn(List<Integer> values) {
+        public Criteria andCreaterIdLike(String value) {
+            addCriterion("creater_id like", value, "createrId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreaterIdNotLike(String value) {
+            addCriterion("creater_id not like", value, "createrId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreaterIdIn(List<String> values) {
             addCriterion("creater_id in", values, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdNotIn(List<Integer> values) {
+        public Criteria andCreaterIdNotIn(List<String> values) {
             addCriterion("creater_id not in", values, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdBetween(Integer value1, Integer value2) {
+        public Criteria andCreaterIdBetween(String value1, String value2) {
             addCriterion("creater_id between", value1, value2, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andCreaterIdNotBetween(String value1, String value2) {
             addCriterion("creater_id not between", value1, value2, "createrId");
             return (Criteria) this;
         }

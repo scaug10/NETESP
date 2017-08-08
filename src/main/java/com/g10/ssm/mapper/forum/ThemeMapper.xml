@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.g10.ssm.mapper.forum.BoardMapper">
-  <resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Board">
-    <id column="board_id" jdbcType="INTEGER" property="boardId" />
-    <result column="board_master" jdbcType="VARCHAR" property="boardMaster" />
-    <result column="board_name" jdbcType="VARCHAR" property="boardName" />
+<mapper namespace="com.g10.ssm.mapper.forum.ThemeMapper">
+  <resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Theme">
+    <id column="topic_id" jdbcType="INTEGER" property="topicId" />
+    <result column="board_id" jdbcType="INTEGER" property="boardId" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="topic_name" jdbcType="VARCHAR" property="topicName" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="board_describe" jdbcType="VARCHAR" property="boardDescribe" />
-    <result column="board_num" jdbcType="INTEGER" property="boardNum" />
+    <result column="is_top" jdbcType="BIT" property="isTop" />
     <result column="review_type" jdbcType="INTEGER" property="reviewType" />
     <result column="review_message" jdbcType="VARCHAR" property="reviewMessage" />
   </resultMap>
@@ -70,16 +71,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    board_id, board_master, board_name, create_time, board_describe, board_num, review_type, 
+    topic_id, board_id, creator, topic_name, content, create_time, is_top, review_type, 
     review_message
   </sql>
-  <select id="selectByExample" parameterType="com.g10.ssm.po.forum.BoardExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.g10.ssm.po.forum.ThemeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from Board
+    from Theme
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -90,47 +91,52 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from Board
-    where board_id = #{boardId,jdbcType=INTEGER}
+    from Theme
+    where topic_id = #{topicId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from Board
-    where board_id = #{boardId,jdbcType=INTEGER}
+    delete from Theme
+    where topic_id = #{topicId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.g10.ssm.po.forum.BoardExample">
-    delete from Board
+  <delete id="deleteByExample" parameterType="com.g10.ssm.po.forum.ThemeExample">
+    delete from Theme
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.g10.ssm.po.forum.Board">
-    insert into Board (board_id, board_master, board_name, 
-      create_time, board_describe, board_num, 
-      review_type, review_message)
-    values (#{boardId,jdbcType=INTEGER}, #{boardMaster,jdbcType=VARCHAR}, #{boardName,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{boardDescribe,jdbcType=VARCHAR}, #{boardNum,jdbcType=INTEGER}, 
-      #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.g10.ssm.po.forum.Theme">
+    insert into Theme (topic_id, board_id, creator, 
+      topic_name, content, create_time, 
+      is_top, review_type, review_message
+      )
+    values (#{topicId,jdbcType=INTEGER}, #{boardId,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, 
+      #{topicName,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{isTop,jdbcType=BIT}, #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.g10.ssm.po.forum.Board">
-    insert into Board
+  <insert id="insertSelective" parameterType="com.g10.ssm.po.forum.Theme">
+    insert into Theme
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="topicId != null">
+        topic_id,
+      </if>
       <if test="boardId != null">
         board_id,
       </if>
-      <if test="boardMaster != null">
-        board_master,
+      <if test="creator != null">
+        creator,
       </if>
-      <if test="boardName != null">
-        board_name,
+      <if test="topicName != null">
+        topic_name,
+      </if>
+      <if test="content != null">
+        content,
       </if>
       <if test="createTime != null">
         create_time,
       </if>
-      <if test="boardDescribe != null">
-        board_describe,
-      </if>
-      <if test="boardNum != null">
-        board_num,
+      <if test="isTop != null">
+        is_top,
       </if>
       <if test="reviewType != null">
         review_type,
@@ -140,23 +146,26 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="topicId != null">
+        #{topicId,jdbcType=INTEGER},
+      </if>
       <if test="boardId != null">
         #{boardId,jdbcType=INTEGER},
       </if>
-      <if test="boardMaster != null">
-        #{boardMaster,jdbcType=VARCHAR},
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
       </if>
-      <if test="boardName != null">
-        #{boardName,jdbcType=VARCHAR},
+      <if test="topicName != null">
+        #{topicName,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="boardDescribe != null">
-        #{boardDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="boardNum != null">
-        #{boardNum,jdbcType=INTEGER},
+      <if test="isTop != null">
+        #{isTop,jdbcType=BIT},
       </if>
       <if test="reviewType != null">
         #{reviewType,jdbcType=INTEGER},
@@ -166,32 +175,35 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.g10.ssm.po.forum.BoardExample" resultType="java.lang.Integer">
-    select count(*) from Board
+  <select id="countByExample" parameterType="com.g10.ssm.po.forum.ThemeExample" resultType="java.lang.Integer">
+    select count(*) from Theme
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update Board
+    update Theme
     <set>
+      <if test="record.topicId != null">
+        topic_id = #{record.topicId,jdbcType=INTEGER},
+      </if>
       <if test="record.boardId != null">
         board_id = #{record.boardId,jdbcType=INTEGER},
       </if>
-      <if test="record.boardMaster != null">
-        board_master = #{record.boardMaster,jdbcType=VARCHAR},
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=VARCHAR},
       </if>
-      <if test="record.boardName != null">
-        board_name = #{record.boardName,jdbcType=VARCHAR},
+      <if test="record.topicName != null">
+        topic_name = #{record.topicName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.boardDescribe != null">
-        board_describe = #{record.boardDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="record.boardNum != null">
-        board_num = #{record.boardNum,jdbcType=INTEGER},
+      <if test="record.isTop != null">
+        is_top = #{record.isTop,jdbcType=BIT},
       </if>
       <if test="record.reviewType != null">
         review_type = #{record.reviewType,jdbcType=INTEGER},
@@ -205,36 +217,40 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update Board
-    set board_id = #{record.boardId,jdbcType=INTEGER},
-      board_master = #{record.boardMaster,jdbcType=VARCHAR},
-      board_name = #{record.boardName,jdbcType=VARCHAR},
+    update Theme
+    set topic_id = #{record.topicId,jdbcType=INTEGER},
+      board_id = #{record.boardId,jdbcType=INTEGER},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      topic_name = #{record.topicName,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      board_describe = #{record.boardDescribe,jdbcType=VARCHAR},
-      board_num = #{record.boardNum,jdbcType=INTEGER},
+      is_top = #{record.isTop,jdbcType=BIT},
       review_type = #{record.reviewType,jdbcType=INTEGER},
       review_message = #{record.reviewMessage,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.forum.Board">
-    update Board
+  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.forum.Theme">
+    update Theme
     <set>
-      <if test="boardMaster != null">
-        board_master = #{boardMaster,jdbcType=VARCHAR},
+      <if test="boardId != null">
+        board_id = #{boardId,jdbcType=INTEGER},
       </if>
-      <if test="boardName != null">
-        board_name = #{boardName,jdbcType=VARCHAR},
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="topicName != null">
+        topic_name = #{topicName,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="boardDescribe != null">
-        board_describe = #{boardDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="boardNum != null">
-        board_num = #{boardNum,jdbcType=INTEGER},
+      <if test="isTop != null">
+        is_top = #{isTop,jdbcType=BIT},
       </if>
       <if test="reviewType != null">
         review_type = #{reviewType,jdbcType=INTEGER},
@@ -243,26 +259,28 @@
         review_message = #{reviewMessage,jdbcType=VARCHAR},
       </if>
     </set>
-    where board_id = #{boardId,jdbcType=INTEGER}
+    where topic_id = #{topicId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.forum.Board">
-    update Board
-    set board_master = #{boardMaster,jdbcType=VARCHAR},
-      board_name = #{boardName,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.forum.Theme">
+    update Theme
+    set board_id = #{boardId,jdbcType=INTEGER},
+      creator = #{creator,jdbcType=VARCHAR},
+      topic_name = #{topicName,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      board_describe = #{boardDescribe,jdbcType=VARCHAR},
-      board_num = #{boardNum,jdbcType=INTEGER},
+      is_top = #{isTop,jdbcType=BIT},
       review_type = #{reviewType,jdbcType=INTEGER},
       review_message = #{reviewMessage,jdbcType=VARCHAR}
-    where board_id = #{boardId,jdbcType=INTEGER}
+    where topic_id = #{topicId,jdbcType=INTEGER}
   </update>
-  <resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Board">
-    <id column="board_id" jdbcType="INTEGER" property="boardId" />
-    <result column="board_master" jdbcType="VARCHAR" property="boardMaster" />
-    <result column="board_name" jdbcType="VARCHAR" property="boardName" />
+  <resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Theme">
+    <id column="topic_id" jdbcType="INTEGER" property="topicId" />
+    <result column="board_id" jdbcType="INTEGER" property="boardId" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="topic_name" jdbcType="VARCHAR" property="topicName" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="board_describe" jdbcType="VARCHAR" property="boardDescribe" />
-    <result column="board_num" jdbcType="INTEGER" property="boardNum" />
+    <result column="is_top" jdbcType="BIT" property="isTop" />
     <result column="review_type" jdbcType="INTEGER" property="reviewType" />
     <result column="review_message" jdbcType="VARCHAR" property="reviewMessage" />
   </resultMap>
@@ -325,16 +343,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    board_id, board_master, board_name, create_time, board_describe, board_num, review_type, 
+    topic_id, board_id, creator, topic_name, content, create_time, is_top, review_type, 
     review_message
   </sql>
-  <select id="selectByExample" parameterType="com.g10.ssm.po.forum.BoardExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.g10.ssm.po.forum.ThemeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from Board
+    from Theme
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -345,47 +363,52 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from Board
-    where board_id = #{boardId,jdbcType=INTEGER}
+    from Theme
+    where topic_id = #{topicId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from Board
-    where board_id = #{boardId,jdbcType=INTEGER}
+    delete from Theme
+    where topic_id = #{topicId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.g10.ssm.po.forum.BoardExample">
-    delete from Board
+  <delete id="deleteByExample" parameterType="com.g10.ssm.po.forum.ThemeExample">
+    delete from Theme
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.g10.ssm.po.forum.Board">
-    insert into Board (board_id, board_master, board_name, 
-      create_time, board_describe, board_num, 
-      review_type, review_message)
-    values (#{boardId,jdbcType=INTEGER}, #{boardMaster,jdbcType=VARCHAR}, #{boardName,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{boardDescribe,jdbcType=VARCHAR}, #{boardNum,jdbcType=INTEGER}, 
-      #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.g10.ssm.po.forum.Theme">
+    insert into Theme (topic_id, board_id, creator, 
+      topic_name, content, create_time, 
+      is_top, review_type, review_message
+      )
+    values (#{topicId,jdbcType=INTEGER}, #{boardId,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, 
+      #{topicName,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{isTop,jdbcType=BIT}, #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.g10.ssm.po.forum.Board">
-    insert into Board
+  <insert id="insertSelective" parameterType="com.g10.ssm.po.forum.Theme">
+    insert into Theme
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="topicId != null">
+        topic_id,
+      </if>
       <if test="boardId != null">
         board_id,
       </if>
-      <if test="boardMaster != null">
-        board_master,
+      <if test="creator != null">
+        creator,
       </if>
-      <if test="boardName != null">
-        board_name,
+      <if test="topicName != null">
+        topic_name,
+      </if>
+      <if test="content != null">
+        content,
       </if>
       <if test="createTime != null">
         create_time,
       </if>
-      <if test="boardDescribe != null">
-        board_describe,
-      </if>
-      <if test="boardNum != null">
-        board_num,
+      <if test="isTop != null">
+        is_top,
       </if>
       <if test="reviewType != null">
         review_type,
@@ -395,23 +418,26 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="topicId != null">
+        #{topicId,jdbcType=INTEGER},
+      </if>
       <if test="boardId != null">
         #{boardId,jdbcType=INTEGER},
       </if>
-      <if test="boardMaster != null">
-        #{boardMaster,jdbcType=VARCHAR},
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
       </if>
-      <if test="boardName != null">
-        #{boardName,jdbcType=VARCHAR},
+      <if test="topicName != null">
+        #{topicName,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="boardDescribe != null">
-        #{boardDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="boardNum != null">
-        #{boardNum,jdbcType=INTEGER},
+      <if test="isTop != null">
+        #{isTop,jdbcType=BIT},
       </if>
       <if test="reviewType != null">
         #{reviewType,jdbcType=INTEGER},
@@ -421,32 +447,35 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.g10.ssm.po.forum.BoardExample" resultType="java.lang.Integer">
-    select count(*) from Board
+  <select id="countByExample" parameterType="com.g10.ssm.po.forum.ThemeExample" resultType="java.lang.Integer">
+    select count(*) from Theme
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update Board
+    update Theme
     <set>
+      <if test="record.topicId != null">
+        topic_id = #{record.topicId,jdbcType=INTEGER},
+      </if>
       <if test="record.boardId != null">
         board_id = #{record.boardId,jdbcType=INTEGER},
       </if>
-      <if test="record.boardMaster != null">
-        board_master = #{record.boardMaster,jdbcType=VARCHAR},
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=VARCHAR},
       </if>
-      <if test="record.boardName != null">
-        board_name = #{record.boardName,jdbcType=VARCHAR},
+      <if test="record.topicName != null">
+        topic_name = #{record.topicName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.boardDescribe != null">
-        board_describe = #{record.boardDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="record.boardNum != null">
-        board_num = #{record.boardNum,jdbcType=INTEGER},
+      <if test="record.isTop != null">
+        is_top = #{record.isTop,jdbcType=BIT},
       </if>
       <if test="record.reviewType != null">
         review_type = #{record.reviewType,jdbcType=INTEGER},
@@ -460,36 +489,40 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update Board
-    set board_id = #{record.boardId,jdbcType=INTEGER},
-      board_master = #{record.boardMaster,jdbcType=VARCHAR},
-      board_name = #{record.boardName,jdbcType=VARCHAR},
+    update Theme
+    set topic_id = #{record.topicId,jdbcType=INTEGER},
+      board_id = #{record.boardId,jdbcType=INTEGER},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      topic_name = #{record.topicName,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      board_describe = #{record.boardDescribe,jdbcType=VARCHAR},
-      board_num = #{record.boardNum,jdbcType=INTEGER},
+      is_top = #{record.isTop,jdbcType=BIT},
       review_type = #{record.reviewType,jdbcType=INTEGER},
       review_message = #{record.reviewMessage,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.forum.Board">
-    update Board
+  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.forum.Theme">
+    update Theme
     <set>
-      <if test="boardMaster != null">
-        board_master = #{boardMaster,jdbcType=VARCHAR},
+      <if test="boardId != null">
+        board_id = #{boardId,jdbcType=INTEGER},
       </if>
-      <if test="boardName != null">
-        board_name = #{boardName,jdbcType=VARCHAR},
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="topicName != null">
+        topic_name = #{topicName,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="boardDescribe != null">
-        board_describe = #{boardDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="boardNum != null">
-        board_num = #{boardNum,jdbcType=INTEGER},
+      <if test="isTop != null">
+        is_top = #{isTop,jdbcType=BIT},
       </if>
       <if test="reviewType != null">
         review_type = #{reviewType,jdbcType=INTEGER},
@@ -498,17 +531,18 @@
         review_message = #{reviewMessage,jdbcType=VARCHAR},
       </if>
     </set>
-    where board_id = #{boardId,jdbcType=INTEGER}
+    where topic_id = #{topicId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.forum.Board">
-    update Board
-    set board_master = #{boardMaster,jdbcType=VARCHAR},
-      board_name = #{boardName,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.forum.Theme">
+    update Theme
+    set board_id = #{boardId,jdbcType=INTEGER},
+      creator = #{creator,jdbcType=VARCHAR},
+      topic_name = #{topicName,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      board_describe = #{boardDescribe,jdbcType=VARCHAR},
-      board_num = #{boardNum,jdbcType=INTEGER},
+      is_top = #{isTop,jdbcType=BIT},
       review_type = #{reviewType,jdbcType=INTEGER},
       review_message = #{reviewMessage,jdbcType=VARCHAR}
-    where board_id = #{boardId,jdbcType=INTEGER}
+    where topic_id = #{topicId,jdbcType=INTEGER}
   </update>
 </mapper>

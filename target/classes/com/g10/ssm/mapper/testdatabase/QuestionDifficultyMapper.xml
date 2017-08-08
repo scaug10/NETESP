@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.g10.ssm.mapper.testdatabase.QuestionDifficultyMapper" >
-  <resultMap id="BaseResultMap" type="com.g10.ssm.po.testdatabase.QuestionDifficulty" >
-    <id column="difficulty_id" property="difficultyId" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.g10.ssm.mapper.testdatabase.QuestionDifficultyMapper">
+  <resultMap id="BaseResultMap" type="com.g10.ssm.po.testdatabase.QuestionDifficulty">
+    <id column="difficulty_id" jdbcType="INTEGER" property="difficultyId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -34,25 +34,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -63,100 +63,260 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     difficulty_id, name
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficultyExample" >
+  <select id="selectByExample" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficultyExample" resultMap="BaseResultMap">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from Question_Difficulty
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from Question_Difficulty
     where difficulty_id = #{difficultyId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from Question_Difficulty
     where difficulty_id = #{difficultyId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficultyExample" >
+  <delete id="deleteByExample" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficultyExample">
     delete from Question_Difficulty
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficulty" >
+  <insert id="insert" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficulty">
     insert into Question_Difficulty (difficulty_id, name)
     values (#{difficultyId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficulty" >
+  <insert id="insertSelective" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficulty">
     insert into Question_Difficulty
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="difficultyId != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="difficultyId != null">
         difficulty_id,
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         name,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="difficultyId != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="difficultyId != null">
         #{difficultyId,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficultyExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficultyExample" resultType="java.lang.Integer">
     select count(*) from Question_Difficulty
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update Question_Difficulty
-    <set >
-      <if test="record.difficultyId != null" >
+    <set>
+      <if test="record.difficultyId != null">
         difficulty_id = #{record.difficultyId,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null" >
+      <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByExample" parameterType="map">
     update Question_Difficulty
     set difficulty_id = #{record.difficultyId,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficulty" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficulty">
     update Question_Difficulty
-    <set >
-      <if test="name != null" >
+    <set>
+      <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
     </set>
     where difficulty_id = #{difficultyId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficulty" >
+  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficulty">
+    update Question_Difficulty
+    set name = #{name,jdbcType=VARCHAR}
+    where difficulty_id = #{difficultyId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.g10.ssm.po.testdatabase.QuestionDifficulty">
+    <id column="difficulty_id" jdbcType="INTEGER" property="difficultyId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    difficulty_id, name
+  </sql>
+  <select id="selectByExample" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficultyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Question_Difficulty
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from Question_Difficulty
+    where difficulty_id = #{difficultyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Question_Difficulty
+    where difficulty_id = #{difficultyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficultyExample">
+    delete from Question_Difficulty
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficulty">
+    insert into Question_Difficulty (difficulty_id, name)
+    values (#{difficultyId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficulty">
+    insert into Question_Difficulty
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="difficultyId != null">
+        difficulty_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="difficultyId != null">
+        #{difficultyId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficultyExample" resultType="java.lang.Integer">
+    select count(*) from Question_Difficulty
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update Question_Difficulty
+    <set>
+      <if test="record.difficultyId != null">
+        difficulty_id = #{record.difficultyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update Question_Difficulty
+    set difficulty_id = #{record.difficultyId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficulty">
+    update Question_Difficulty
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where difficulty_id = #{difficultyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.testdatabase.QuestionDifficulty">
     update Question_Difficulty
     set name = #{name,jdbcType=VARCHAR}
     where difficulty_id = #{difficultyId,jdbcType=INTEGER}

@@ -2,12 +2,12 @@ package com.g10.ssm.po.forum;
 
 import java.util.Date;
 
-public class Thread {
+public class Theme {
     private Integer topicId;
 
     private Integer boardId;
 
-    private Integer creator;
+    private String creator;
 
     private String topicName;
 
@@ -37,12 +37,12 @@ public class Thread {
         this.boardId = boardId;
     }
 
-    public Integer getCreator() {
+    public String getCreator() {
         return creator;
     }
 
-    public void setCreator(Integer creator) {
-        this.creator = creator;
+    public void setCreator(String creator) {
+        this.creator = creator == null ? null : creator.trim();
     }
 
     public String getTopicName() {
