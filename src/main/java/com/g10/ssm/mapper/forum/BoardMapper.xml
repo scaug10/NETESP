@@ -1,35 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.g10.ssm.mapper.forum.BoardMapper">
-  <resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Board">
-    <id column="board_id" jdbcType="INTEGER" property="boardId" />
-    <result column="board_master" jdbcType="VARCHAR" property="boardMaster" />
-    <result column="board_name" jdbcType="VARCHAR" property="boardName" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="board_describe" jdbcType="VARCHAR" property="boardDescribe" />
-    <result column="board_num" jdbcType="INTEGER" property="boardNum" />
-    <result column="review_type" jdbcType="INTEGER" property="reviewType" />
-    <result column="review_message" jdbcType="VARCHAR" property="reviewMessage" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.g10.ssm.mapper.forum.BoardMapper" >
+  <resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Board" >
+    <id column="board_id" property="boardId" jdbcType="INTEGER" />
+    <result column="board_master" property="boardMaster" jdbcType="VARCHAR" />
+    <result column="board_name" property="boardName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="board_describe" property="boardDescribe" jdbcType="VARCHAR" />
+    <result column="board_num" property="boardNum" jdbcType="INTEGER" />
+    <result column="review_type" property="reviewType" jdbcType="INTEGER" />
+    <result column="review_message" property="reviewMessage" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -40,25 +40,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -69,41 +69,41 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     board_id, board_master, board_name, create_time, board_describe, board_num, review_type, 
     review_message
   </sql>
-  <select id="selectByExample" parameterType="com.g10.ssm.po.forum.BoardExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.g10.ssm.po.forum.BoardExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
     from Board
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from Board
     where board_id = #{boardId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from Board
     where board_id = #{boardId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.g10.ssm.po.forum.BoardExample">
+  <delete id="deleteByExample" parameterType="com.g10.ssm.po.forum.BoardExample" >
     delete from Board
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.g10.ssm.po.forum.Board">
+  <insert id="insert" parameterType="com.g10.ssm.po.forum.Board" >
     insert into Board (board_id, board_master, board_name, 
       create_time, board_describe, board_num, 
       review_type, review_message)
@@ -111,100 +111,100 @@
       #{createTime,jdbcType=TIMESTAMP}, #{boardDescribe,jdbcType=VARCHAR}, #{boardNum,jdbcType=INTEGER}, 
       #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.g10.ssm.po.forum.Board">
+  <insert id="insertSelective" parameterType="com.g10.ssm.po.forum.Board" >
     insert into Board
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="boardId != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="boardId != null" >
         board_id,
       </if>
-      <if test="boardMaster != null">
+      <if test="boardMaster != null" >
         board_master,
       </if>
-      <if test="boardName != null">
+      <if test="boardName != null" >
         board_name,
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         create_time,
       </if>
-      <if test="boardDescribe != null">
+      <if test="boardDescribe != null" >
         board_describe,
       </if>
-      <if test="boardNum != null">
+      <if test="boardNum != null" >
         board_num,
       </if>
-      <if test="reviewType != null">
+      <if test="reviewType != null" >
         review_type,
       </if>
-      <if test="reviewMessage != null">
+      <if test="reviewMessage != null" >
         review_message,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="boardId != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="boardId != null" >
         #{boardId,jdbcType=INTEGER},
       </if>
-      <if test="boardMaster != null">
+      <if test="boardMaster != null" >
         #{boardMaster,jdbcType=VARCHAR},
       </if>
-      <if test="boardName != null">
+      <if test="boardName != null" >
         #{boardName,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="boardDescribe != null">
+      <if test="boardDescribe != null" >
         #{boardDescribe,jdbcType=VARCHAR},
       </if>
-      <if test="boardNum != null">
+      <if test="boardNum != null" >
         #{boardNum,jdbcType=INTEGER},
       </if>
-      <if test="reviewType != null">
+      <if test="reviewType != null" >
         #{reviewType,jdbcType=INTEGER},
       </if>
-      <if test="reviewMessage != null">
+      <if test="reviewMessage != null" >
         #{reviewMessage,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.g10.ssm.po.forum.BoardExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="com.g10.ssm.po.forum.BoardExample" resultType="java.lang.Integer" >
     select count(*) from Board
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map" >
     update Board
-    <set>
-      <if test="record.boardId != null">
+    <set >
+      <if test="record.boardId != null" >
         board_id = #{record.boardId,jdbcType=INTEGER},
       </if>
-      <if test="record.boardMaster != null">
+      <if test="record.boardMaster != null" >
         board_master = #{record.boardMaster,jdbcType=VARCHAR},
       </if>
-      <if test="record.boardName != null">
+      <if test="record.boardName != null" >
         board_name = #{record.boardName,jdbcType=VARCHAR},
       </if>
-      <if test="record.createTime != null">
+      <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.boardDescribe != null">
+      <if test="record.boardDescribe != null" >
         board_describe = #{record.boardDescribe,jdbcType=VARCHAR},
       </if>
-      <if test="record.boardNum != null">
+      <if test="record.boardNum != null" >
         board_num = #{record.boardNum,jdbcType=INTEGER},
       </if>
-      <if test="record.reviewType != null">
+      <if test="record.reviewType != null" >
         review_type = #{record.reviewType,jdbcType=INTEGER},
       </if>
-      <if test="record.reviewMessage != null">
+      <if test="record.reviewMessage != null" >
         review_message = #{record.reviewMessage,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     update Board
     set board_id = #{record.boardId,jdbcType=INTEGER},
       board_master = #{record.boardMaster,jdbcType=VARCHAR},
@@ -214,293 +214,38 @@
       board_num = #{record.boardNum,jdbcType=INTEGER},
       review_type = #{record.reviewType,jdbcType=INTEGER},
       review_message = #{record.reviewMessage,jdbcType=VARCHAR}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.forum.Board">
+  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.forum.Board" >
     update Board
-    <set>
-      <if test="boardMaster != null">
+    <set >
+      <if test="boardMaster != null" >
         board_master = #{boardMaster,jdbcType=VARCHAR},
       </if>
-      <if test="boardName != null">
+      <if test="boardName != null" >
         board_name = #{boardName,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="boardDescribe != null">
+      <if test="boardDescribe != null" >
         board_describe = #{boardDescribe,jdbcType=VARCHAR},
       </if>
-      <if test="boardNum != null">
+      <if test="boardNum != null" >
         board_num = #{boardNum,jdbcType=INTEGER},
       </if>
-      <if test="reviewType != null">
+      <if test="reviewType != null" >
         review_type = #{reviewType,jdbcType=INTEGER},
       </if>
-      <if test="reviewMessage != null">
+      <if test="reviewMessage != null" >
         review_message = #{reviewMessage,jdbcType=VARCHAR},
       </if>
     </set>
     where board_id = #{boardId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.forum.Board">
-    update Board
-    set board_master = #{boardMaster,jdbcType=VARCHAR},
-      board_name = #{boardName,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      board_describe = #{boardDescribe,jdbcType=VARCHAR},
-      board_num = #{boardNum,jdbcType=INTEGER},
-      review_type = #{reviewType,jdbcType=INTEGER},
-      review_message = #{reviewMessage,jdbcType=VARCHAR}
-    where board_id = #{boardId,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Board">
-    <id column="board_id" jdbcType="INTEGER" property="boardId" />
-    <result column="board_master" jdbcType="VARCHAR" property="boardMaster" />
-    <result column="board_name" jdbcType="VARCHAR" property="boardName" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="board_describe" jdbcType="VARCHAR" property="boardDescribe" />
-    <result column="board_num" jdbcType="INTEGER" property="boardNum" />
-    <result column="review_type" jdbcType="INTEGER" property="reviewType" />
-    <result column="review_message" jdbcType="VARCHAR" property="reviewMessage" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    board_id, board_master, board_name, create_time, board_describe, board_num, review_type, 
-    review_message
-  </sql>
-  <select id="selectByExample" parameterType="com.g10.ssm.po.forum.BoardExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from Board
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from Board
-    where board_id = #{boardId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from Board
-    where board_id = #{boardId,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.g10.ssm.po.forum.BoardExample">
-    delete from Board
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.g10.ssm.po.forum.Board">
-    insert into Board (board_id, board_master, board_name, 
-      create_time, board_describe, board_num, 
-      review_type, review_message)
-    values (#{boardId,jdbcType=INTEGER}, #{boardMaster,jdbcType=VARCHAR}, #{boardName,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{boardDescribe,jdbcType=VARCHAR}, #{boardNum,jdbcType=INTEGER}, 
-      #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.g10.ssm.po.forum.Board">
-    insert into Board
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="boardId != null">
-        board_id,
-      </if>
-      <if test="boardMaster != null">
-        board_master,
-      </if>
-      <if test="boardName != null">
-        board_name,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="boardDescribe != null">
-        board_describe,
-      </if>
-      <if test="boardNum != null">
-        board_num,
-      </if>
-      <if test="reviewType != null">
-        review_type,
-      </if>
-      <if test="reviewMessage != null">
-        review_message,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="boardId != null">
-        #{boardId,jdbcType=INTEGER},
-      </if>
-      <if test="boardMaster != null">
-        #{boardMaster,jdbcType=VARCHAR},
-      </if>
-      <if test="boardName != null">
-        #{boardName,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="boardDescribe != null">
-        #{boardDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="boardNum != null">
-        #{boardNum,jdbcType=INTEGER},
-      </if>
-      <if test="reviewType != null">
-        #{reviewType,jdbcType=INTEGER},
-      </if>
-      <if test="reviewMessage != null">
-        #{reviewMessage,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.g10.ssm.po.forum.BoardExample" resultType="java.lang.Integer">
-    select count(*) from Board
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update Board
-    <set>
-      <if test="record.boardId != null">
-        board_id = #{record.boardId,jdbcType=INTEGER},
-      </if>
-      <if test="record.boardMaster != null">
-        board_master = #{record.boardMaster,jdbcType=VARCHAR},
-      </if>
-      <if test="record.boardName != null">
-        board_name = #{record.boardName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.boardDescribe != null">
-        board_describe = #{record.boardDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="record.boardNum != null">
-        board_num = #{record.boardNum,jdbcType=INTEGER},
-      </if>
-      <if test="record.reviewType != null">
-        review_type = #{record.reviewType,jdbcType=INTEGER},
-      </if>
-      <if test="record.reviewMessage != null">
-        review_message = #{record.reviewMessage,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update Board
-    set board_id = #{record.boardId,jdbcType=INTEGER},
-      board_master = #{record.boardMaster,jdbcType=VARCHAR},
-      board_name = #{record.boardName,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      board_describe = #{record.boardDescribe,jdbcType=VARCHAR},
-      board_num = #{record.boardNum,jdbcType=INTEGER},
-      review_type = #{record.reviewType,jdbcType=INTEGER},
-      review_message = #{record.reviewMessage,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.forum.Board">
-    update Board
-    <set>
-      <if test="boardMaster != null">
-        board_master = #{boardMaster,jdbcType=VARCHAR},
-      </if>
-      <if test="boardName != null">
-        board_name = #{boardName,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="boardDescribe != null">
-        board_describe = #{boardDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="boardNum != null">
-        board_num = #{boardNum,jdbcType=INTEGER},
-      </if>
-      <if test="reviewType != null">
-        review_type = #{reviewType,jdbcType=INTEGER},
-      </if>
-      <if test="reviewMessage != null">
-        review_message = #{reviewMessage,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where board_id = #{boardId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.forum.Board">
+  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.forum.Board" >
     update Board
     set board_master = #{boardMaster,jdbcType=VARCHAR},
       board_name = #{boardName,jdbcType=VARCHAR},

@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.g10.ssm.mapper.testdatabase.TestItemsDesignWeightInfoMapper">
-  <resultMap id="BaseResultMap" type="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo">
-    <id column="weight_id" jdbcType="INTEGER" property="weightId" />
-    <result column="test_database_id" jdbcType="BIGINT" property="testDatabaseId" />
-    <result column="number" jdbcType="INTEGER" property="number" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.g10.ssm.mapper.testdatabase.TestItemsDesignWeightInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo" >
+    <id column="weight_id" property="weightId" jdbcType="INTEGER" />
+    <result column="test_database_id" property="testDatabaseId" jdbcType="BIGINT" />
+    <result column="number" property="number" jdbcType="INTEGER" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -35,25 +35,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -64,292 +64,115 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     weight_id, test_database_id, number
   </sql>
-  <select id="selectByExample" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfoExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
     from Test_Items_Design_Weight_Info
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from Test_Items_Design_Weight_Info
     where weight_id = #{weightId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from Test_Items_Design_Weight_Info
     where weight_id = #{weightId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfoExample">
+  <delete id="deleteByExample" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfoExample" >
     delete from Test_Items_Design_Weight_Info
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo">
+  <insert id="insert" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo" >
     insert into Test_Items_Design_Weight_Info (weight_id, test_database_id, number
       )
     values (#{weightId,jdbcType=INTEGER}, #{testDatabaseId,jdbcType=BIGINT}, #{number,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo">
+  <insert id="insertSelective" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo" >
     insert into Test_Items_Design_Weight_Info
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="weightId != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="weightId != null" >
         weight_id,
       </if>
-      <if test="testDatabaseId != null">
+      <if test="testDatabaseId != null" >
         test_database_id,
       </if>
-      <if test="number != null">
+      <if test="number != null" >
         number,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="weightId != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="weightId != null" >
         #{weightId,jdbcType=INTEGER},
       </if>
-      <if test="testDatabaseId != null">
+      <if test="testDatabaseId != null" >
         #{testDatabaseId,jdbcType=BIGINT},
       </if>
-      <if test="number != null">
+      <if test="number != null" >
         #{number,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfoExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfoExample" resultType="java.lang.Integer" >
     select count(*) from Test_Items_Design_Weight_Info
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map" >
     update Test_Items_Design_Weight_Info
-    <set>
-      <if test="record.weightId != null">
+    <set >
+      <if test="record.weightId != null" >
         weight_id = #{record.weightId,jdbcType=INTEGER},
       </if>
-      <if test="record.testDatabaseId != null">
+      <if test="record.testDatabaseId != null" >
         test_database_id = #{record.testDatabaseId,jdbcType=BIGINT},
       </if>
-      <if test="record.number != null">
+      <if test="record.number != null" >
         number = #{record.number,jdbcType=INTEGER},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     update Test_Items_Design_Weight_Info
     set weight_id = #{record.weightId,jdbcType=INTEGER},
       test_database_id = #{record.testDatabaseId,jdbcType=BIGINT},
       number = #{record.number,jdbcType=INTEGER}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo" >
     update Test_Items_Design_Weight_Info
-    <set>
-      <if test="testDatabaseId != null">
+    <set >
+      <if test="testDatabaseId != null" >
         test_database_id = #{testDatabaseId,jdbcType=BIGINT},
       </if>
-      <if test="number != null">
+      <if test="number != null" >
         number = #{number,jdbcType=INTEGER},
       </if>
     </set>
     where weight_id = #{weightId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo">
-    update Test_Items_Design_Weight_Info
-    set test_database_id = #{testDatabaseId,jdbcType=BIGINT},
-      number = #{number,jdbcType=INTEGER}
-    where weight_id = #{weightId,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo">
-    <id column="weight_id" jdbcType="INTEGER" property="weightId" />
-    <result column="test_database_id" jdbcType="BIGINT" property="testDatabaseId" />
-    <result column="number" jdbcType="INTEGER" property="number" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    weight_id, test_database_id, number
-  </sql>
-  <select id="selectByExample" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfoExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from Test_Items_Design_Weight_Info
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from Test_Items_Design_Weight_Info
-    where weight_id = #{weightId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from Test_Items_Design_Weight_Info
-    where weight_id = #{weightId,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfoExample">
-    delete from Test_Items_Design_Weight_Info
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo">
-    insert into Test_Items_Design_Weight_Info (weight_id, test_database_id, number
-      )
-    values (#{weightId,jdbcType=INTEGER}, #{testDatabaseId,jdbcType=BIGINT}, #{number,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo">
-    insert into Test_Items_Design_Weight_Info
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="weightId != null">
-        weight_id,
-      </if>
-      <if test="testDatabaseId != null">
-        test_database_id,
-      </if>
-      <if test="number != null">
-        number,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="weightId != null">
-        #{weightId,jdbcType=INTEGER},
-      </if>
-      <if test="testDatabaseId != null">
-        #{testDatabaseId,jdbcType=BIGINT},
-      </if>
-      <if test="number != null">
-        #{number,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfoExample" resultType="java.lang.Integer">
-    select count(*) from Test_Items_Design_Weight_Info
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update Test_Items_Design_Weight_Info
-    <set>
-      <if test="record.weightId != null">
-        weight_id = #{record.weightId,jdbcType=INTEGER},
-      </if>
-      <if test="record.testDatabaseId != null">
-        test_database_id = #{record.testDatabaseId,jdbcType=BIGINT},
-      </if>
-      <if test="record.number != null">
-        number = #{record.number,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update Test_Items_Design_Weight_Info
-    set weight_id = #{record.weightId,jdbcType=INTEGER},
-      test_database_id = #{record.testDatabaseId,jdbcType=BIGINT},
-      number = #{record.number,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo">
-    update Test_Items_Design_Weight_Info
-    <set>
-      <if test="testDatabaseId != null">
-        test_database_id = #{testDatabaseId,jdbcType=BIGINT},
-      </if>
-      <if test="number != null">
-        number = #{number,jdbcType=INTEGER},
-      </if>
-    </set>
-    where weight_id = #{weightId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo">
+  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.testdatabase.TestItemsDesignWeightInfo" >
     update Test_Items_Design_Weight_Info
     set test_database_id = #{testDatabaseId,jdbcType=BIGINT},
       number = #{number,jdbcType=INTEGER}
