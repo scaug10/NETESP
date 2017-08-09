@@ -7,5 +7,8 @@ import com.g10.ssm.po.forum.ThemeCustom;
 
 public interface ThemeCustomMapper {
 	
-	public List<Theme> selectByThread(ThemeCustom themeCustom) throws Exception;
+	public List<ThemeCustom> selectByTheme(ThemeCustom themeCustom) throws Exception;
+	
+	public List<ThemeCustom> selectByTopicName(String topicName) throws Exception;
+	
 }

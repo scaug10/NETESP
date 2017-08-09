@@ -7,6 +7,6 @@ import com.g10.ssm.po.forum.BoardCustom;
 
 public interface BoardCustomMapper {
 
-	public List<Board> selectByBoard(BoardCustom boardCustom) throws Exception;
+	public List<BoardCustom> selectByBoard(BoardCustom boardCustom) throws Exception;
 	
 }

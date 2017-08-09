@@ -39,5 +39,11 @@
 			<include refid="query_theme_where" />
 		</where>
 	</select>
+	
+	<select id="selectByTopicName" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select * from theme
+		like '%${topicName}%'
+	</select>
 
 </mapper>
