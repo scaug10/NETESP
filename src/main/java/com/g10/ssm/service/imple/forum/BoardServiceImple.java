@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.g10.ssm.mapper.forum.BoardCustomMapper;
 import com.g10.ssm.mapper.forum.BoardMapper;
+import com.g10.ssm.po.forum.Board;
 import com.g10.ssm.po.forum.BoardCustom;
 import com.g10.ssm.service.forum.BoardService;
 
@@ -68,6 +69,14 @@ public class BoardServiceImple implements BoardService{
 		List<BoardCustom> boardList = null;
 		boardList = boardCustomMapper.selectByBoard(boardCustom);
 		return boardList;
+	}
+
+	@Override
+	public Board selectBoardByPrimaryKey(Integer boardId) throws Exception {
+		if(boardId != null && boardId != 0){
+			return boardMapper.selectByPrimaryKey(boardId);
+		}
+		return null;
 	}
 
 }

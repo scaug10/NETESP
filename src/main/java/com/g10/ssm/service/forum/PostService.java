@@ -35,6 +35,10 @@ public interface PostService {
 	public List<PostCustom> selectPostsByThemeId(Integer themeId)
 		throws Exception;
 	
+	public int createPost(PostCustom postCustom) throws Exception;
 	
+	public int updatePostByPrimaryKey(Integer postId, PostCustom postCustom) throws Exception;
+	
+	public PostCustom selectPostByPrimaryKey(Integer postId) throws Exception;
 	
 }

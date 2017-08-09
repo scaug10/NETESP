@@ -2,6 +2,7 @@ package com.g10.ssm.service.forum;
 
 import java.util.List;
 
+import com.g10.ssm.po.forum.Theme;
 import com.g10.ssm.po.forum.ThemeCustom;
 
 public interface ThemeService {
@@ -35,4 +36,11 @@ public interface ThemeService {
 	 */
 	public List<ThemeCustom> selectThemesByName(String topicName)
 			throws Exception;
+
+	public Theme selectThemeByPrimaryKey(Integer themeId) throws Exception;
+
+	public int createTheme(ThemeCustom themeCustom) throws Exception;
+
+	public int updateThemeByPrimaryKeySelective(Integer themeId,
+			ThemeCustom themeCustom) throws Exception;
 }

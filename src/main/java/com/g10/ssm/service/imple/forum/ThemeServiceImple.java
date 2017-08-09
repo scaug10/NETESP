@@ -57,4 +57,33 @@ public class ThemeServiceImple implements ThemeService{
 		return null;
 	}
 
+	@Override
+	public Theme selectThemeByPrimaryKey(Integer themeId)
+			throws Exception {
+		if(themeId != null && themeId != 0){
+			Theme theme = themeMapper.selectByPrimaryKey(themeId);
+			return theme;
+		}
+		return null;
+	}
+
+	@Override
+	public int createTheme(ThemeCustom themeCustom) throws Exception {
+		if(themeCustom != null){
+			int result = themeMapper.insertSelective(themeCustom);
+			return result;
+		}
+		return 0;
+	}
+
+	@Override
+	public int updateThemeByPrimaryKeySelective(Integer themeId,
+			ThemeCustom themeCustom) throws Exception {
+		if(themeId != null && themeId != 0){
+			int result = themeMapper.updateByPrimaryKeySelective(themeCustom);
+			return result;
+		}
+		return 0;
+	}
+
 }

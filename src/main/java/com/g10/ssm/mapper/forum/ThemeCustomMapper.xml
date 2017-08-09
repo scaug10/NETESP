@@ -44,6 +44,7 @@
 		resultMap="BaseResultMap">
 		select * from theme
 		like '%${topicName}%'
+
 	</select>
 
 </mapper>

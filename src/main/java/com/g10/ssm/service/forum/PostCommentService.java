@@ -22,7 +22,7 @@ public interface PostCommentService {
 	 * @throws Exception
 	 * @return int
 	 */
-	public int shieldPostCommentByPrimaryKey(int postCommentId)
+	public int shieldPostCommentByPrimaryKey(Integer postCommentId)
 			throws Exception;
 
 	/**
@@ -32,11 +32,11 @@ public interface PostCommentService {
 	 * @param @throws Exception
 	 * @return int
 	 */
-	public int deletePostCommentByPrimaryKey(int postCommentId)
+	public int deletePostCommentByPrimaryKey(Integer postCommentId)
 			throws Exception;
 
 	/**
-	 * @Title: insertPostCommentSelective 
+	 * @Title: insertPostCommentSelective
 	 * @Description: 插入一条评论信息
 	 * @param postCommentCustom
 	 * @param @throws Exception
@@ -44,4 +44,14 @@ public interface PostCommentService {
 	 */
 	public int insertPostCommentSelective(PostCommentCustom postCommentCustom)
 			throws Exception;
+
+	public List<PostCommentCustom> selectPostCommentByPostId(Integer postId)
+			throws Exception;
+
+	public PostCommentCustom selectPostCommentCustomByPrimaryKey(
+			Integer postCommentId) throws Exception;
+
+	public int updatePostCommentCustomByPrimaryKey(Integer postCommentId,
+			PostCommentCustom postCommentCustom) throws Exception;
+
 }

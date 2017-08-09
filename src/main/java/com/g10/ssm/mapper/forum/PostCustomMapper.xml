@@ -27,12 +27,20 @@
 		</if>
 	</sql>
 
-	<select id="selectByPost" parameterType="com.g10.ssm.po.forum.PostCustom"
+	<select id="selectByPostCustom" parameterType="com.g10.ssm.po.forum.PostCustom"
 		resultMap="BaseResultMap">
 		select * from post
 		<where>
 			<include refid="query_post_where" />
 		</where>
+	</select>
+	
+	<select id="selectByThemeId" parameterType="int"
+		resultMap="BaseResultMap">
+		select * from post
+		<where>
+			post.topicId = #{topicId}
+		</where>	
 	</select>
 
 </mapper>

@@ -10,5 +10,5 @@ public interface ThemeCustomMapper {
 	public List<ThemeCustom> selectByTheme(ThemeCustom themeCustom) throws Exception;
 	
 	public List<ThemeCustom> selectByTopicName(String topicName) throws Exception;
-	
+
 }

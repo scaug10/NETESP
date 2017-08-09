@@ -7,6 +7,6 @@ import com.g10.ssm.po.forum.PostCommentCustom;
 
 public interface PostCommentCustomMapper {
 
-	public List<PostComment> selectByPostComment(PostCommentCustom postCommentCustom) throws Exception;
+	public List<PostCommentCustom> selectByPostComment(PostCommentCustom postCommentCustom) throws Exception;
 	
 }

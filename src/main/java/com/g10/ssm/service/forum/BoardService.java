@@ -2,6 +2,7 @@ package com.g10.ssm.service.forum;
 
 import java.util.List;
 
+import com.g10.ssm.po.forum.Board;
 import com.g10.ssm.po.forum.BoardCustom;
 
 public interface BoardService {
@@ -55,6 +56,8 @@ public interface BoardService {
 	 */
 	public List<BoardCustom> selectBoardsByBoard(BoardCustom boardCustom)
 			throws Exception;
+
+	public Board selectBoardByPrimaryKey(Integer boardId) throws Exception;
 
 	// /**
 	// * @Title: checkBoardByPrimaryKey

@@ -2,11 +2,13 @@ package com.g10.ssm.service.imple.forum;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.g10.ssm.mapper.forum.PostCustomMapper;
 import com.g10.ssm.mapper.forum.PostMapper;
+import com.g10.ssm.po.forum.Post;
 import com.g10.ssm.po.forum.PostCustom;
 import com.g10.ssm.service.forum.PostService;
 
@@ -49,5 +51,39 @@ public class PostServiceImple implements PostService{
 		}
 		return null;
 	}
+
+	@Override
+	public int createPost(PostCustom postCustom) throws Exception {
+		if(postCustom != null){
+			int result = postMapper.insertSelective(postCustom);
+			return result;
+		}
+		return 0;
+	}
+
+	@Override
+	public int updatePostByPrimaryKey(Integer postId, PostCustom postCustom)
+			throws Exception {
+		if(postId != null && postId != 0){
+			int result = postMapper.updateByPrimaryKeySelective(postCustom);
+			return result;
+		}
+		return 0;
+	}
+
+	@Override
+	public PostCustom selectPostByPrimaryKey(Integer postId) throws Exception {
+		if(postId != null && postId != 0){
+			Post post = postMapper.selectByPrimaryKey(postId);
+			if(post != null){
+				PostCustom postCustom = new PostCustom();
+				BeanUtils.copyProperties(post, postCustom);
+				return postCustom;
+			}
+		}
+		return null;
+	}
+	
+	
 
 }
