@@ -1,9 +1,12 @@
 package com.g10.ssm.service.imple.testdatabase;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.g10.ssm.mapper.testdatabase.StrategyQuestionTypesMapper;
+import com.g10.ssm.mapper.testdatabase.StrategyQuestionTypesQueryMapper;
 import com.g10.ssm.po.testdatabase.StrategyQuestionTypesKey;
 import com.g10.ssm.service.testdatabase.StrategyQuestionTypesService;
 
@@ -12,13 +15,15 @@ public class StrategyQuestionTypesServiceImpl implements StrategyQuestionTypesSe
 
 	@Autowired
 	private StrategyQuestionTypesMapper strategyQuestionTypesDao;
+	@Autowired
+	private StrategyQuestionTypesQueryMapper strategyQuestionTypesQueryDao;
 
-	/*
-	 * @Override public List<StrategyQuestionTypesKey>
-	 * queryStrategyQuestionTypes(StrategyQuestionTypesKey
-	 * strategyQuestionTypes) throws Exception { // TODO 自动生成的方法存根 return null;
-	 * }
-	 */
+	@Override
+	public List<StrategyQuestionTypesKey> queryStrategyQuestionTypes(int strategyId) throws Exception {
+		List<StrategyQuestionTypesKey> list = strategyQuestionTypesQueryDao.selectAllQuestionTypes(strategyId);
+		return list;
+	}
+
 	/*
 	 * @Override public int updateStrategyQuestionTypes(StrategyQuestionTypesKey
 	 * strategyQuestionTypes) throws Exception {
