@@ -1,0 +1,263 @@
+<!--
+    这一页是查看帖子页面，
+    显示帖子内容和帖子回复，
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看帖子</title>
+    <style type="text/css">
+
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .header{
+            background-color: rebeccapurple;
+            color: white;
+            width: 100%;
+            height: 42px;
+        }
+        .backButton{
+            color: white;
+            text-decoration: none;
+        }
+
+        .backButton:hover{
+            text-decoration: underline;
+        }
+
+        .header>span{
+            display: inline-block;
+            margin: 10px;
+        }
+
+        ul{
+            background-color: #d3f3ff;
+            width: 100%;
+            list-style: none;
+            overflow: auto;
+        }
+
+        li{
+            float: left;
+            display: inline-block;
+            width: 20%;
+            text-align: center;
+            margin: 0px;
+        }
+
+        .navtablink{
+            text-decoration: none;
+            color: darkblue;
+            display: inline-block;
+            width: 100%;
+            padding: 10px 0px;
+        }
+
+        .navtablink:hover{
+            background-color: gray;
+            color: #fff;
+        }
+
+        .content{
+            width: 98%;
+            border-collapse: collapse;
+            margin: 10px auto;
+        }
+
+        td{
+            border: 1px solid skyblue;
+        }
+
+        .userInfo{
+            width: 150px;
+            height: 200px;
+            text-align: center;
+
+        }
+
+        .postTheme{
+            height: 30px;
+        }
+
+        .postTime{
+            height: 30px;
+            text-align: right;
+        }
+
+        .pageButton{
+            display: inline-block;
+            border: 1px dimgray solid;
+            float: right;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        .pageButton>a{
+            display: inline-block;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .pageButton>a:hover{
+            text-decoration: underline;
+        }
+
+        .inputPage{
+            width: 20px;
+        }
+
+        #editor{
+            margin: 10px;
+        }
+
+        .postReplyButton{
+            height: 30px;
+            width: 80px;
+            margin-top: 10px;
+        }
+
+
+    </style>
+
+    <script type="text/javascript">
+        /*回复的消息用此方法处理*/
+        function postReply() {
+            alert(ue.getContent());
+        }
+
+    </script>
+</head>
+<body>
+<div class="header">
+    <script>
+        var forumName = "应急学习版块";
+        document.write("<span>当前版块：<a class=\"backButton\" href=\"javascript:history.go(-1);\">" + forumName +"</a></span>");
+    </script>
+
+</div>
+
+<ul class="nav">
+    <li><a href="#editor" class="navtablink">发表回复</a></li>
+    <li><a href="#" class="navtablink">设置置顶</a></li>
+    <li><a href="#" class="navtablink">取消置顶</a></li>
+    <li><a href="#" class="navtablink">删除该贴</a></li>
+    <li><a href="javascript:history.go(-1);" class="navtablink">返回版块</a></li>
+</ul>
+
+<!--帖子内容-->
+
+<script type="text/javascript">
+    var userIconAddress = "./IMG/user_icon.png";
+    var userName = "华南农业大学";
+    var postTheme = "我校在第三届“互联网+”大赛广东省决赛中喜获2金1银";
+    var postContent = "8月4日，第三届中国“互联网+”大学生创新创业大赛“建行杯”广东省分赛决赛在广东工业大学举行，从全省135所高校1.4万个参赛项目中脱颖而出的80个创业项目同台竞技，争夺12个金奖和24个银奖。我校有3个创业项目入围决赛，经过激烈的角逐，最终斩获2金1银的好成绩。第三届中国“互联网+”大学生创新创业大赛是教育部举办的规格最高、影响最大的全国赛事，本届大赛主题是“搏击‘互联网+’新时代，壮大创新创业生力军”。大赛旨在深化高等教育综合改革，激发大学生的创造力，培养造就“大众创业、万众创新”的生力军；推动赛事成果转化和产学研用紧密结合，促进“互联网+”新业态形成，服务经济提质增效升级；以创新引领创业、以创业带动就业，推动高校毕业生更高质量创业就业。第三届中国“互联网+”大学生创新创业大赛是教育部举办的规格最高、影响最大的全国赛事，本届大赛主题是“搏击‘互联网+’新时代，壮大创新创业生力军”。大赛旨在深化高等教育综合改革，激发大学生的创造力，培养造就“大众创业、万众创新”的生力军；推动赛事成果转化和产学研用紧密结合，促进“互联网+”新业态形成，服务经济提质增效升级；以创新引领创业、以创业带动就业，推动高校毕业生更高质量创业就业。";
+    var postTime = "2017-08-06";
+
+    document.write(
+        "<table class=\"content\">\n" +
+        "    <tr>\n" +
+        "        <tr>\n" +
+        "            <td class=\"userInfo\" rowspan=\"3\">\n" +
+        "                <div>\n" +
+        "                    <img class=\"userIcon\" src=\"" + userIconAddress + "\" alt=\"userIcon\"><br />\n" +
+        "                    <span>" + userName + "</span>\n" +
+        "                </div>\n" +
+        "\n" +
+        "            </td>\n" +
+        "            <td class=\"postTheme\">主题：" + postTheme + "</td>\n" +
+        "        </tr>\n" +
+        "        <tr>\n" +
+        "            <td class=\"postContent\">\n" +
+        "" + postContent + "\n" +
+        "            </td>\n" +
+        "        </tr>\n" +
+        "        <tr>\n" +
+        "            <td class=\"postTime\">发表时间：" + postTime + "</td>\n" +
+        "        </tr>\n" +
+        "    </tr>\n" +
+        "</table>"
+    );
+
+</script>
+
+
+
+
+<script>
+    var replyNumber = 5;
+    var userIconAddress = "./IMG/user_icon.png";
+    var postContent = "强烈支持！！！";
+    var postTime = "2017-08-06";
+
+    for(var i=0;i<replyNumber;i++){
+        var userName = "机器人" + (i+1) + "号";
+
+        document.write(
+            "<table class=\"content\">\n" +
+            "    <tr>\n" +
+            "        <tr>\n" +
+            "            <td class=\"userInfo\" rowspan=\"3\">\n" +
+            "                <div>\n" +
+            "                    <img class=\"userIcon\" src=\"" + userIconAddress + "\" alt=\"userIcon\"><br />\n" +
+            "                    <span>" + userName + "</span>\n" +
+            "                </div>\n" +
+            "\n" +
+            "            </td>\n" +
+            "            <td class=\"postTheme\">回复</td>\n" +
+            "        </tr>\n" +
+            "        <tr>\n" +
+            "            <td class=\"postContent\">\n" +
+            "                " + postContent + "\n" +
+            "            </td>\n" +
+            "        </tr>\n" +
+            "        <tr>\n" +
+            "            <td class=\"postTime\">发表时间：" + postTime + "</td>\n" +
+            "        </tr>\n" +
+            "    </tr>\n" +
+            "</table>"
+        );
+    }
+</script>
+
+<script type="text/javascript">
+    /*回复页数填充*/
+    var totalPostNumber = 1001;/*该帖子包含的总回复数*/
+    var postsPerPage = 20;/*每页包含的回复数*/
+    var currentPage = 1;/*当前页*/
+
+    document.write("<span class=\"pageButton\"><a href=\"#\">下一页</a></span>\n" +
+        "    <span class=\"pageButton\"><a href=\"#\">..." + Math.ceil(totalPostNumber/postsPerPage) + "</a></span>\n" +
+        "    <span class=\"pageButton\"><input class=\"inputPage\" value=\" " + currentPage + " \" type=\"text\">/页</span>\n" +
+        "    <span class=\"pageButton\"><a href=\"#\">1</a></span>\n" +
+        "    <span class=\"pageButton\"><a href=\"#\">上一页</a></span><br /><br />");
+
+</script>
+
+<strong>&nbsp;发表回复</strong>
+
+<div id="editor">
+    <script id="container" name="content" type="text/plain"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="./utf8-jsp/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="./utf8-jsp/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container', {
+            initialFrameHeight: [300],
+            autoWidthEnabled: true
+        });
+    </script>
+    <button class="postReplyButton" onclick="postReply()"><!--此处发表回复调用postReply()方法-->
+        <strong>发表回复</strong>
+    </button>
+</div>
+
+</body>
+</html>
