@@ -9,7 +9,7 @@
 	<sql id="Base_Column_List">
 		weight_id, test_items_design_id
 	</sql>
-	<select id="selectAllExamTypeWeight">
+	<select id="selectAllExamTypeWeight" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from Exam_Type_Weight

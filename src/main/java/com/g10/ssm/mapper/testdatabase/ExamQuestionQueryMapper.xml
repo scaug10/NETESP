@@ -13,4 +13,11 @@
 		<include refid="Base_Column_List" />
 		from Exam_Question
 	</select>
+	<select id="selectAllQuestion" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from Exam_Question
+		where exam_id = #{examId,jdbcType=INTEGER}
+	</select>
 </mapper>

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.g10.ssm.po.testdatabase.Strategy;
@@ -24,18 +25,21 @@ public class StrategyController {
 	}
 
 	@RequestMapping("/editStrategy")
+	@ResponseBody
 	public int editStrategy(Strategy strategy) throws Exception {
 		int result = strategyService.updateStrategy(strategy);
 		return result;
 	}
 
 	@RequestMapping("/saveStrategy")
+	@ResponseBody
 	public int saveStrategy(Strategy strategy) throws Exception {
 		int result = strategyService.saveStrategy(strategy);
 		return result;
 	}
 
 	@RequestMapping("/deleteStrategy")
+	@ResponseBody
 	public int deleteStrategy(@Param("strategyId") int strategyId) throws Exception {
 		int result = strategyService.deleteStrategyByPrimaryKey(strategyId);
 		return result;

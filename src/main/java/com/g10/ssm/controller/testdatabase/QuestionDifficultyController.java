@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.g10.ssm.po.testdatabase.QuestionDifficulty;
@@ -26,18 +27,21 @@ public class QuestionDifficultyController {
 	}
 
 	@RequestMapping("/saveQuestionDifficulty")
+	@ResponseBody
 	public int saveQuestionDifficulty(QuestionDifficulty questionDifficulty) throws Exception {
 		int result = questionDifficultyService.saveQuestionDifficulty(questionDifficulty);
 		return result;
 	}
 
 	@RequestMapping("/editQuestionDifficulty")
+	@ResponseBody
 	public int editQuestionDifficulty(QuestionDifficulty questionDifficulty) throws Exception {
 		int result = questionDifficultyService.updateQuestionDifficulty(questionDifficulty);
 		return result;
 	}
 
 	@RequestMapping("/deleteQuestionDifficulty")
+	@ResponseBody
 	public int deleteQuestionDifficulty(int difficultyId) throws Exception {
 		int result = questionDifficultyService.deleteQuestionDifficultyByPrimaryKey(difficultyId);
 		return result;

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.g10.ssm.po.testdatabase.TestItemsDesign;
@@ -25,18 +26,21 @@ public class TestItemsDesignController {
 	}
 
 	@RequestMapping("/editTestItemsDesign")
+	@ResponseBody
 	public int editTestItemsDesign(TestItemsDesign testItemsDesign) throws Exception {
 		int result = testItemsDesignService.updateTestItemsDesign(testItemsDesign);
 		return result;
 	}
 
 	@RequestMapping("/saveTestItemsDesign")
+	@ResponseBody
 	public int saveTestItemsDesign(TestItemsDesign testItemsDesign) throws Exception {
 		int result = testItemsDesignService.saveTestItemsDesign(testItemsDesign);
 		return result;
 	}
 
 	@RequestMapping("/deleteTestItemsDesign")
+	@ResponseBody
 	public int deleteTestItemsDesign(@Param("testItemsDesignId") int testItemsDesignId) throws Exception {
 		int result = testItemsDesignService.deleteTestItemsDesignByPrimaryKey(testItemsDesignId);
 		return result;

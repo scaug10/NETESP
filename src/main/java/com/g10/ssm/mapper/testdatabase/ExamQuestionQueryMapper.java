@@ -6,4 +6,6 @@ import com.g10.ssm.po.testdatabase.ExamQuestionKey;
 
 public interface ExamQuestionQueryMapper {
 	List<ExamQuestionKey> selectAllExamQuestion();
+
+	List<ExamQuestionKey> selectAllQuestion(int examId);
 }

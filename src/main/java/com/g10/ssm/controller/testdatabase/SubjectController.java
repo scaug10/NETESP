@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.g10.ssm.po.testdatabase.Subject;
@@ -24,18 +25,21 @@ public class SubjectController {
 	}
 
 	@RequestMapping("/saveSubject")
+	@ResponseBody
 	public int saveSubject(Subject subject) throws Exception {
 		int result = subjectService.saveSubject(subject);
 		return result;
 	}
 
 	@RequestMapping("/updateSubject")
+	@ResponseBody
 	public int updateSubject(Subject subject) throws Exception {
 		int result = subjectService.updateSubject(subject);
 		return result;
 	}
 
 	@RequestMapping("/deleteSubject")
+	@ResponseBody
 	public int deleteSubject(@Param("subjectId") int subjectId) throws Exception {
 		int result = subjectService.deleteSubjectByPrimaryKey(subjectId);
 		return result;

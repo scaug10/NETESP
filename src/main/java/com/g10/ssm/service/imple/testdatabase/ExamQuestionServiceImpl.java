@@ -41,4 +41,10 @@ public class ExamQuestionServiceImpl implements ExamQuestionService {
 		return result;
 	}
 
+	@Override
+	public List<ExamQuestionKey> queryAllQuestion(int examId) throws Exception {
+		List<ExamQuestionKey> list = examQuestionQueryDao.selectAllQuestion(examId);
+		return list;
+	}
+
 }

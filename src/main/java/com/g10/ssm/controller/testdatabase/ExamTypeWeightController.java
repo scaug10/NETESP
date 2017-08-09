@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.g10.ssm.po.testdatabase.ExamTypeWeightKey;
@@ -23,12 +24,14 @@ public class ExamTypeWeightController {
 	}
 
 	@RequestMapping("/saveExamTypeWeight")
+	@ResponseBody
 	public int saveExamTypeWeight(ExamTypeWeightKey examTypeWeight) throws Exception {
 		int result = examTypeWeightService.saveExamTypeWeight(examTypeWeight);
 		return result;
 	}
 
 	@RequestMapping("/deleteExamTypeWeight")
+	@ResponseBody
 	public int deleteExamTypeWeight(ExamTypeWeightKey examTypeWeight) throws Exception {
 		int result = examTypeWeightService.deleteExamTypeWeightByPrimaryKey(examTypeWeight);
 		return result;

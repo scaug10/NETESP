@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.g10.ssm.po.testdatabase.Exam;
@@ -24,18 +25,21 @@ public class ExamController {
 	}
 
 	@RequestMapping("/saveExam")
+	@ResponseBody
 	public int saveExam(Exam exam) throws Exception {
 		int result = examService.saveExam(exam);
 		return result;
 	}
 
 	@RequestMapping("/editExam")
+	@ResponseBody
 	public int editExam(Exam exam) throws Exception {
 		int result = examService.updateExam(exam);
 		return result;
 	}
 
 	@RequestMapping("/deleteExam")
+	@ResponseBody
 	public int deleteExam(@Param("examId") int examId) throws Exception {
 		int result = examService.deleteExamByPrimaryKey(examId);
 		return result;

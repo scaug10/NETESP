@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.g10.ssm.po.testdatabase.ClassificationOfTestdatabase;
@@ -26,6 +27,7 @@ public class ClassificationOfTestdatabaseController {
 	}
 
 	@RequestMapping("/saveClassificationOfTestdatabase")
+	@ResponseBody
 	public int saveClassificationOfTestdatabase(ClassificationOfTestdatabase classificationOfTestdatabase)
 			throws Exception {
 		int result = classificationOfTestdatabaseService.saveClassificationOfTestdatabase(classificationOfTestdatabase);
@@ -33,6 +35,7 @@ public class ClassificationOfTestdatabaseController {
 	}
 
 	@RequestMapping("/editClassificationOfTestdatabase")
+	@ResponseBody
 	public int editClassificationOfTestdatabase(ClassificationOfTestdatabase classificationOfTestdatabase)
 			throws Exception {
 		int result = classificationOfTestdatabaseService
@@ -41,6 +44,7 @@ public class ClassificationOfTestdatabaseController {
 	}
 
 	@RequestMapping("/deleteClassificationOfTestdatabase")
+	@ResponseBody
 	public int deleteClassificationOfTestdatabase(@Param("testDatabaseId") int testDatabaseId) throws Exception {
 		int result = classificationOfTestdatabaseService.deleteClassificationOfTestdatabase(testDatabaseId);
 		return result;

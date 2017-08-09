@@ -12,6 +12,8 @@ public interface ExamQuestionService {
 	 * Exception;
 	 */
 
+	public List<ExamQuestionKey> queryAllQuestion(int examId) throws Exception;
+
 	public int saveExamQuestion(ExamQuestionKey examQuestion) throws Exception;
 
 	public int deleteExamQuestionByPrimaryKey(ExamQuestionKey examQuestion) throws Exception;
