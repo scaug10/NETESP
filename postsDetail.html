@@ -37,7 +37,7 @@
         }
 
         ul{
-            background-color: #d3f3ff;
+            background-color: rebeccapurple;
             width: 100%;
             list-style: none;
             overflow: auto;
@@ -53,7 +53,7 @@
 
         .navtablink{
             text-decoration: none;
-            color: darkblue;
+            color: #d5cbf7;
             display: inline-block;
             width: 100%;
             padding: 10px 0px;
@@ -85,6 +85,10 @@
             height: 30px;
         }
 
+        .postContent{
+            height: 100px;
+        }
+
         .postTime{
             height: 30px;
             text-align: right;
@@ -96,12 +100,14 @@
             float: right;
             padding: 5px;
             margin: 5px;
+            height: 23px;
         }
 
         .pageButton>a{
             display: inline-block;
             color: #000;
             text-decoration: none;
+            font-family: "黑体";
         }
 
         .pageButton>a:hover{
@@ -142,13 +148,25 @@
 
 </div>
 
-<ul class="nav">
-    <li><a href="#editor" class="navtablink">发表回复</a></li>
-    <li><a href="#" class="navtablink">设置置顶</a></li>
-    <li><a href="#" class="navtablink">取消置顶</a></li>
-    <li><a href="#" class="navtablink">删除该贴</a></li>
-    <li><a href="javascript:history.go(-1);" class="navtablink">返回版块</a></li>
-</ul>
+<script type="text/javascript">
+
+    var replyLink = "#editor";
+    var setTopLink = "#";
+    var cancelTopLink = "#";
+    var deleteLink = "#";
+    var goBackLink = "javascript:history.go(-1);";
+
+    document.write(
+        "<ul class=\"nav\">\n" +
+        "    <li><a href=\"" + replyLink + "\" class=\"navtablink\">发表回复</a></li>\n" +
+        "    <li><a href=\"" + setTopLink + " \" class=\"navtablink\">设置置顶</a></li>\n" +
+        "    <li><a href=\"" + cancelTopLink + " \" class=\"navtablink\">取消置顶</a></li>\n" +
+        "    <li><a href=\"" + deleteLink + " \" class=\"navtablink\">删除该贴</a></li>\n" +
+        "    <li><a href=\"" + goBackLink + " \" class=\"navtablink\">返回版块</a></li>\n" +
+        "</ul>"
+    )
+
+</script>
 
 <!--帖子内容-->
 

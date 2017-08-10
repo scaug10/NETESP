@@ -20,7 +20,7 @@
         .header{
             width: 100%;
             height: 43px;
-            background-color: lightgray;
+            background-color: rebeccapurple;
             border-bottom: 1px gray solid;
         }
 
@@ -29,28 +29,28 @@
         .bottom{
             width: 100%;
             height: 43px;
-            background-color: lightgray;
+            background-color: rebeccapurple;
             border-top: 1px gray solid;
             margin-top: 10px;
+            color: #fff;
         }
 
-        .backButton{
-            width: 33px;
-            height: 33px;
-            margin: 5px;
+        .bottom>a{
             float: left;
+            margin: 10px;
+            color: #fff;
         }
-
-        .postButton{
-            width: 80px;
-            height: 33px;
-            margin: 5px;
+        
+        .backButton{
+            margin: 10px;
+            float: left;
+            color: #fff;
         }
 
         .postLink{
-            display: inline-block;
+            margin: 10px;
             float: left;
-            padding-left: 5px;
+            color: #fff;
         }
 
         button{
@@ -107,6 +107,7 @@
             float: right;
             padding: 5px;
             margin: 5px;
+            height: 23px;
         }
 
         .pageButton>a,.header>a{
@@ -124,6 +125,13 @@
         .pageButton>a{
             margin: 0px;
             display: inline-block;
+            color: #fff;
+        }
+
+        .postButton{
+            width: 80px;
+            height: 33px;
+            margin: 5px;
         }
 
     </style>
@@ -132,8 +140,8 @@
 <body>
 
 <div class="header">
-    <a href="javascript:history.go(-1);" class="backButton"><img src="./IMG/back_button.png" alt=""></a>
-    <a href="#" class="postLink"><img class="postButton" src="IMG/post_new_post_button.png" alt="postButton"></a>
+    <a href="forumIndex.html" class="backButton">返回论坛列表</a>
+    <a href="./postPost.html" class="postLink">发布帖子</a>
     <button>搜索</button>
     <input class="searchBar" type="text" placeholder="搜索内容">
 </div>
@@ -151,16 +159,16 @@
     <script type="text/javascript">
         /*置顶帖子数据填充*/
         for(var i = 0; i<5; i++){
-            var postTitle = "小葵花妈妈课堂开课啦" + ( i + 1 );
-            var postOwner = "小葵花";
+            var postTitle = "我校在第三届“互联网+”大赛广东省决赛中喜获2金1银" + ( i + 1 );
+            var postOwner = "华南农业大学";
             var replyNumber = parseInt(Math.random() * 1000);
             var lastReply = "小菊花妈妈";
-            var postURL = "#";
+            var postURL = "./postsDetail.html";
             var postTime = "2017-01-01";
             var lastReplyTime = "2017-08-08 10:00:00";
 
             document.write("<tr class=\"post\">\n" +
-                "        <td><a href=\"" + postURL + "\"><img src=\"./IMG/normal_posts.gif\" alt=\"top_post\">" + postTitle + "</a></td>\n" +
+                "        <td><a href=\"" + postURL + "\"><img src=\"./IMG/top_posts.gif\" alt=\"top_post\">" + postTitle + "</a></td>\n" +
                 "        <td>" + postOwner + "<br />" + postTime + "</td>\n" +
                 "        <td>" + replyNumber + "</td>\n" +
                 "        <td>" + lastReply + "<br />" + lastReplyTime + "</td>\n" +
@@ -191,7 +199,7 @@
             var postOwner = "小葵花";
             var replyNumber = parseInt(Math.random() * 1000);
             var lastReply = "小菊花妈妈";
-            var postURL = "#";
+            var postURL = "./postsDetail.html";
             var postTime = "2017-01-01";
             var lastReplyTime = "2017-08-08 10:00:00";
 
@@ -209,7 +217,7 @@
 
 <div class="bottom">
 
-    <a href="#"><img src="./IMG/post_new_post_button.png" alt="" class="postButton"></a>
+    <a href="#">发布帖子</a>
 
     <script type="text/javascript">
         /*帖子页数填充*/
