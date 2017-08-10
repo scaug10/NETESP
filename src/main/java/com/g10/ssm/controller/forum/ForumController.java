@@ -48,6 +48,7 @@ public class ForumController {
 	@Autowired
 	private PostCommentService postCommentService;
 
+	/**加载论坛首页信息，即板块信息*/
 	@RequestMapping("/loadBoardInfo")
 	public String loadBoardInfo(Model model) throws Exception {
 		List<BoardCustom> boardList = null;
@@ -63,6 +64,7 @@ public class ForumController {
 		return "success";
 	}
 
+	/**加载主题信息和该主题下的所有帖子*/
 	@RequestMapping("/loadThemeDetail")
 	public String loadThemeDetail(Model model,
 			@RequestParam("topicId") Integer themeId) throws Exception {
@@ -77,12 +79,13 @@ public class ForumController {
 
 			model.addAttribute("postList", postList);
 
-			return "";
+			return "success";
 
 		}
-		return "success";
+		return "error";
 	}
 
+	/**加载帖子评论信息*/
 	@RequestMapping("/loadPostComment")
 	public String loadPostComment(Model model,
 			@RequestParam("postId") Integer postId) throws Exception {
@@ -99,6 +102,7 @@ public class ForumController {
 		return "error";
 	}
 
+	/**创建主题*/
 	@RequestMapping("/createTheme")
 	public String createTheme(Model model, ThemeCustom themeCustom)
 			throws Exception {
@@ -113,6 +117,7 @@ public class ForumController {
 		return "error";
 	}
 
+	/**创建帖子*/
 	@RequestMapping("/createPost")
 	public String createPost(Model model, PostCustom postCustom)
 			throws Exception {
@@ -127,6 +132,7 @@ public class ForumController {
 		return "error";
 	}
 
+	/**创建帖子评论*/
 	@RequestMapping("/createPostComment")
 	public String createPostComment(Model model,
 			PostCommentCustom postCommentCustom) throws Exception {
@@ -140,6 +146,7 @@ public class ForumController {
 		return "error";
 	}
 
+	/**加载主题，并跳转到修改主题页面*/
 	@RequestMapping("/editTheme")
 	public String editTheme(Model model,
 			@RequestParam("topicId") Integer themeId) throws Exception {
@@ -155,6 +162,7 @@ public class ForumController {
 		return "error";
 	}
 
+	/**更新主题信息*/
 	@RequestMapping("/updateTheme")
 	public String updateBoard(Model model,
 			@RequestParam("topicId") Integer themeId, ThemeCustom themeCustom)
@@ -169,6 +177,7 @@ public class ForumController {
 		return "error";
 	}
 
+	/**加载帖子，并跳转到帖子修改页面*/
 	@RequestMapping("/editPost")
 	public String editPost(Model model, Integer postId) throws Exception {
 		if (postId != null && postId != 0) {
@@ -180,6 +189,7 @@ public class ForumController {
 		return "error";
 	}
 
+	/**更新帖子*/
 	@RequestMapping("/updatePost")
 	public String updatePost(Model model, Integer postId, PostCustom postCustom)
 			throws Exception {
@@ -192,6 +202,7 @@ public class ForumController {
 		return "error";
 	}
 
+	/**加载帖子评论，并跳转到帖子修改页面*/
 	@RequestMapping("/editPostComment")
 	public String editPostComment(Model model, Integer postCommentId)
 			throws Exception {
@@ -207,6 +218,7 @@ public class ForumController {
 		return "error";
 	}
 
+	/**更新帖子评论*/
 	@RequestMapping("/updatePostComment")
 	public String updatePostComment(Model model, Integer postCommentId,
 			PostCommentCustom postCommentCustom) throws Exception {

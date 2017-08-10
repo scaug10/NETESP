@@ -24,7 +24,7 @@ public interface BoardService {
 	 * @throws Exception
 	 * @return int 是否更新成功
 	 */
-	public int updateBoardBoardNumByPrimaryKey(int boardId,
+	public int updateBoardBoardNumByPrimaryKey(Integer boardId,
 			BoardCustom boardCustom) throws Exception;
 
 	/**
@@ -35,7 +35,7 @@ public interface BoardService {
 	 * @throws Exception
 	 * @return int
 	 */
-	public int updateBoardByPrimaryKeySelective(int boardId,
+	public int updateBoardByPrimaryKeySelective(Integer boardId,
 			BoardCustom boardCustom) throws Exception;
 
 	/**
@@ -45,7 +45,7 @@ public interface BoardService {
 	 * @throws Exception
 	 * @return int
 	 */
-	public int deleteBoardByPrimaryKey(int boardId) throws Exception;
+	public int deleteBoardByPrimaryKey(Integer boardId) throws Exception;
 
 	/**
 	 * @Title: selectBoardsByBoard
@@ -59,26 +59,5 @@ public interface BoardService {
 
 	public Board selectBoardByPrimaryKey(Integer boardId) throws Exception;
 
-	// /**
-	// * @Title: checkBoardByPrimaryKey
-	// * @Description: 审核板块，记录审核的结果与审核状态
-	// * @param boardId
-	// * @param boardCustom
-	// * @throws Exception
-	// * @return int
-	// */
-	// public int checkBoardByPrimaryKey(int boardId, BoardCustom boardCustom)
-	// throws Exception;
-
-	// /**
-	// * @Title: checkPostByPrimaryKey
-	// * @Description: 审核帖子，记录审核结果与审核状态
-	// * @param postId
-	// * @param postCustom
-	// * @throws Exception
-	// * @return int
-	// */
-	// public int checkPostByPrimaryKey(int postId, PostCustom postCustom)
-	// throws Exception;
 
 }

@@ -3,6 +3,7 @@ package com.g10.ssm.service.imple.forum;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.g10.ssm.mapper.forum.ThemeCustomMapper;
 import com.g10.ssm.mapper.forum.ThemeMapper;
@@ -10,6 +11,7 @@ import com.g10.ssm.po.forum.Theme;
 import com.g10.ssm.po.forum.ThemeCustom;
 import com.g10.ssm.service.forum.ThemeService;
 
+@Service
 public class ThemeServiceImple implements ThemeService{
 
 	@Autowired

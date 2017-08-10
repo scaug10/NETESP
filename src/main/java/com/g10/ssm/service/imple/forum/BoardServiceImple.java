@@ -1,5 +1,6 @@
 package com.g10.ssm.service.imple.forum;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class BoardServiceImple implements BoardService{
 	@Override
 	public int createBoard(BoardCustom boardCustom) throws Exception {
 		if (boardCustom != null) {
+			boardCustom.setCreateTime(new Date(System.currentTimeMillis()));
 			int result = boardMapper.insertSelective(boardCustom);
 			return result;
 		}
@@ -30,7 +32,7 @@ public class BoardServiceImple implements BoardService{
 	}
 
 	@Override
-	public int updateBoardBoardNumByPrimaryKey(int boardId,
+	public int updateBoardBoardNumByPrimaryKey(Integer boardId,
 			BoardCustom boardCustom) throws Exception {
 		if (boardCustom != null && boardCustom.getBoardId() == boardId) {
 			if (boardCustom.getBoardNum() != null) {
@@ -45,7 +47,7 @@ public class BoardServiceImple implements BoardService{
 	}
 
 	@Override
-	public int updateBoardByPrimaryKeySelective(int boardId,
+	public int updateBoardByPrimaryKeySelective(Integer boardId,
 			BoardCustom boardCustom) throws Exception {
 		if (boardCustom != null && boardCustom.getBoardId() == boardId) {
 			int result = boardMapper.updateByPrimaryKeySelective(boardCustom);
@@ -55,7 +57,7 @@ public class BoardServiceImple implements BoardService{
 	}
 
 	@Override
-	public int deleteBoardByPrimaryKey(int boardId) throws Exception {
+	public int deleteBoardByPrimaryKey(Integer boardId) throws Exception {
 		if(boardId != 0){
 			int result = boardMapper.deleteByPrimaryKey(boardId);
 			return result;

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.g10.ssm.po.forum.Board;
 import com.g10.ssm.po.forum.BoardCustom;
@@ -40,18 +41,20 @@ public class ForumManageController {
 	@Autowired
 	private PostCommentService postCommentService;
 
+	/**删除板块，同时删除板块下的所有主题*/
 	@RequestMapping("deleteBoard")
 	public String deleteBoard(Model model, Integer boardId) throws Exception {
 		if (boardId != null && boardId != 0) {
-			Board board = boardService.selectBoardByPrimaryKey(boardId);
-			if (board != null) {
-				model.addAttribute("board", board);
+			int result = boardService.deleteBoardByPrimaryKey(boardId);
+			if (result == 1) {
+				// model.addAttribute("board", board);
 				return "success";
 			}
 		}
 		return "error";
 	}
 
+	/**删除主题，同时删除主题下的所有帖子*/
 	@RequestMapping("deleteTheme")
 	public String deleteTheme(Model model,
 			@RequestParam("topicId") Integer themeId) throws Exception {
@@ -67,6 +70,7 @@ public class ForumManageController {
 		return "error";
 	}
 
+	/**删除帖子，同时删除帖子下的所有评论*/
 	@RequestMapping("/deletePost")
 	public String deletePost(Model model, Integer postId) throws Exception {
 		if (postId != null && postId != 0) {
@@ -78,6 +82,7 @@ public class ForumManageController {
 		return "error";
 	}
 
+	/**删除帖子*/
 	@RequestMapping("/deletePostComment")
 	public String deletePostComment(Model model, Integer postCommentId)
 			throws Exception {
@@ -92,6 +97,22 @@ public class ForumManageController {
 		return "error";
 	}
 
+	/**屏蔽帖子*/
+	@RequestMapping("shieldPostComment")
+	public String shieldPostComment(Model model, Integer postCommentId,
+			@RequestParam("topicId") Integer themeId) throws Exception {
+		if (postCommentId != null && postCommentId != 0) {
+			int result = postCommentService
+					.shieldPostCommentByPrimaryKey(postCommentId);
+			if (result != 0) {
+				model.addAttribute(themeId);
+				return "forum/loadThemeDetail";
+			}
+		}
+		return "error";
+	}
+
+	/**创建板块*/
 	@RequestMapping("/createBoard")
 	public String createBoard(Model model, BoardCustom boardCustom)
 			throws Exception {
@@ -104,6 +125,7 @@ public class ForumManageController {
 		return "error";
 	}
 
+	/**编辑板块，加载板块信息，并跳转到板块编辑页面*/
 	@RequestMapping("/editBoard")
 	public String editBoard(Model model, Integer boardId) throws Exception {
 
@@ -118,6 +140,7 @@ public class ForumManageController {
 		return "error";
 	}
 
+	/**更新板块*/
 	@RequestMapping("/updateBoard")
 	public String updateBoard(Model model, Integer boardId,
 			BoardCustom boardCustom) throws Exception {
@@ -131,6 +154,7 @@ public class ForumManageController {
 		return "error";
 	}
 
+	/**排序板块*/
 	@RequestMapping("/sortBoard")
 	public String sortBoard(Model model, Integer[] boardIdList)
 			throws Exception {
