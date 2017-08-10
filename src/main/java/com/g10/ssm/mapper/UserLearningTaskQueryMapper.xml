@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.g10.ssm.mapper.UserLearningTaskQueryMapper">
+	<resultMap id="BaseResultMap" type="com.g10.ssm.po.UserLearningTaskKey">
+		<id column="learning_task_id" property="learningTaskId" jdbcType="INTEGER" />
+		<id column="user_name" property="userName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		learning_task_id, user_name
+	</sql>
+	<select id="selectAllUserLearningTask" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from User_Learning_Task
+	</select>
+	<select id="selectAllLearningTask" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from User_Learning_Task
+		where user_name = #{userName,jdbcType=VARCHAR}
+	</select>
+</mapper>
