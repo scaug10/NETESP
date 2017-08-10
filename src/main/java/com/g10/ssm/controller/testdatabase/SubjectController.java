@@ -31,7 +31,7 @@ public class SubjectController {
 		return result;
 	}
 
-	@RequestMapping("/updateSubject")
+	@RequestMapping("/editSubject")
 	@ResponseBody
 	public int updateSubject(Subject subject) throws Exception {
 		int result = subjectService.updateSubject(subject);
