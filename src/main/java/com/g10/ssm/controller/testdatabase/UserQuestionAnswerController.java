@@ -1,5 +1,7 @@
 package com.g10.ssm.controller.testdatabase;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,5 +44,13 @@ public class UserQuestionAnswerController {
 	public int deleteUserQuestionAnswer(@Param("userAnswerId") int userAnswerId) throws Exception {
 		int result = userQuestionAnswerService.deleteUserQuestionAnswerByPrimaryKey(userAnswerId);
 		return result;
+	}
+
+	@RequestMapping("/getAllUserQuestionAnswer")
+	public ModelAndView getAllUserQuestionAnswer(@Param("userName") String userName, ModelAndView modelAndView)
+			throws Exception {
+		List<UserQuestionAnswer> list = userQuestionAnswerService.queryUserQuestionAnswer(userName);
+		modelAndView.addObject("list", list);
+		return modelAndView;
 	}
 }
