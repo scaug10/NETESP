@@ -5,5 +5,5 @@ import java.util.List;
 import com.g10.ssm.po.testdatabase.UserQuestionAnswer;
 
 public interface UserQuestionAnswerQueryMapper {
-	List<UserQuestionAnswer> selectAllUserQuestionAnswer();
+	List<UserQuestionAnswer> selectAllUserQuestionAnswer(String userName);
 }

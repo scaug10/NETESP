@@ -18,8 +18,8 @@ public class UserQuestionAnswerServiceImpl implements UserQuestionAnswerService 
 	private UserQuestionAnswerQueryMapper userQuestionAnswerQueryDao;
 
 	@Override
-	public List<UserQuestionAnswer> queryUserQuestionAnswer() throws Exception {
-		List<UserQuestionAnswer> list = userQuestionAnswerQueryDao.selectAllUserQuestionAnswer();
+	public List<UserQuestionAnswer> queryUserQuestionAnswer(String userName) throws Exception {
+		List<UserQuestionAnswer> list = userQuestionAnswerQueryDao.selectAllUserQuestionAnswer(userName);
 		return list;
 	}
 

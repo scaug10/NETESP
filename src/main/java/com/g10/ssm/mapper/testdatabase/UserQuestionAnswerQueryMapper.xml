@@ -1,19 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.g10.ssm.mapper.testdatabase.UserQuestionAnswerQueryMapper">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.g10.ssm.mapper.testdatabase.UserQuestionAnswerMapper">
 	<resultMap id="BaseResultMap"
 		type="com.g10.ssm.po.testdatabase.UserQuestionAnswer">
-		<id column="user_answer_id" jdbcType="INTEGER" property="userAnswerId" />
-		<result column="subject_id" jdbcType="INTEGER" property="subjectId" />
-		<result column="answer" jdbcType="VARCHAR" property="answer" />
-		<result column="score" jdbcType="REAL" property="score" />
+		<id column="user_answer_id" property="userAnswerId" jdbcType="INTEGER" />
+		<result column="subject_id" property="subjectId" jdbcType="INTEGER" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="answer" property="answer" jdbcType="VARCHAR" />
+		<result column="score" property="score" jdbcType="REAL" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		user_answer_id, subject_id, answer, score
+		user_answer_id, subject_id, user_name, answer, score
 	</sql>
-	<select id="selectAllUserQuestionAnswer" resultMap="BaseResultMap">
+	<select id="selectAllUserQuestionAnswer" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
 		from User_Question_Answer
+		where user_name =
+		#{userName,jdbcType=VARCHAR}
 	</select>
 </mapper>
