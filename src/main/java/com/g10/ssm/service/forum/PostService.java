@@ -4,6 +4,12 @@ import java.util.List;
 
 import com.g10.ssm.po.forum.PostCustom;
 
+/**
+ * @ClassName: PostService
+ * @Description: 帖子删除、创建、更新、查找操作
+ * @author 	FYW
+ * @date 	2017年8月10日 上午10:13:08
+ */
 public interface PostService {
 	
 	/**

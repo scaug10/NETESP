@@ -5,6 +5,12 @@ import java.util.List;
 import com.g10.ssm.po.forum.Board;
 import com.g10.ssm.po.forum.BoardCustom;
 
+/**
+ * @ClassName: BoardService
+ * @Description: 板块创建、删除、更新、查找处理
+ * @author 	FYW
+ * @date 	2017年8月10日 上午10:11:03
+ */
 public interface BoardService {
 	/**
 	 * @Title: createBoard

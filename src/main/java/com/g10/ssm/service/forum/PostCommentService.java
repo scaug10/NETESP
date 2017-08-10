@@ -4,6 +4,12 @@ import java.util.List;
 
 import com.g10.ssm.po.forum.PostCommentCustom;
 
+/**
+ * @ClassName: PostCommentService
+ * @Description: 帖子评论创建、更新、查找、删除、审核操作
+ * @author 	FYW
+ * @date 	2017年8月10日 上午10:13:35
+ */
 public interface PostCommentService {
 	/**
 	 * @Title: selectPostCommentsByPostComment
@@ -45,6 +51,7 @@ public interface PostCommentService {
 	public int insertPostCommentSelective(PostCommentCustom postCommentCustom)
 			throws Exception;
 
+	
 	public List<PostCommentCustom> selectPostCommentByPostId(Integer postId)
 			throws Exception;
 

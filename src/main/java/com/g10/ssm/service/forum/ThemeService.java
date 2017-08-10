@@ -5,6 +5,12 @@ import java.util.List;
 import com.g10.ssm.po.forum.Theme;
 import com.g10.ssm.po.forum.ThemeCustom;
 
+/**
+ * @ClassName: ThemeService
+ * @Description: 主题删除、创建、更新、查找操作
+ * @author 	FYW
+ * @date 	2017年8月10日 上午10:11:56
+ */
 public interface ThemeService {
 	/**
 	 * @Title: deleteThreadByPrimaryKey
