@@ -3,7 +3,7 @@
 <mapper namespace="com.g10.ssm.mapper.LogMapper" >
   <resultMap id="BaseResultMap" type="com.g10.ssm.po.Log" >
     <id column="log_id" property="logId" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
     <result column="log_time" property="logTime" jdbcType="TIMESTAMP" />
     <result column="user_ip" property="userIp" jdbcType="VARCHAR" />
   </resultMap>
@@ -101,7 +101,7 @@
   <insert id="insert" parameterType="com.g10.ssm.po.Log" >
     insert into Log (log_id, user_id, log_time, 
       user_ip)
-    values (#{logId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{logTime,jdbcType=TIMESTAMP}, 
+    values (#{logId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{logTime,jdbcType=TIMESTAMP}, 
       #{userIp,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.g10.ssm.po.Log" >
@@ -125,7 +125,7 @@
         #{logId,jdbcType=INTEGER},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="logTime != null" >
         #{logTime,jdbcType=TIMESTAMP},
@@ -148,7 +148,7 @@
         log_id = #{record.logId,jdbcType=INTEGER},
       </if>
       <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=INTEGER},
+        user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.logTime != null" >
         log_time = #{record.logTime,jdbcType=TIMESTAMP},
@@ -164,7 +164,7 @@
   <update id="updateByExample" parameterType="map" >
     update Log
     set log_id = #{record.logId,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
       log_time = #{record.logTime,jdbcType=TIMESTAMP},
       user_ip = #{record.userIp,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -175,7 +175,7 @@
     update Log
     <set >
       <if test="userId != null" >
-        user_id = #{userId,jdbcType=INTEGER},
+        user_id = #{userId,jdbcType=VARCHAR},
       </if>
       <if test="logTime != null" >
         log_time = #{logTime,jdbcType=TIMESTAMP},
@@ -188,7 +188,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.Log" >
     update Log
-    set user_id = #{userId,jdbcType=INTEGER},
+    set user_id = #{userId,jdbcType=VARCHAR},
       log_time = #{logTime,jdbcType=TIMESTAMP},
       user_ip = #{userIp,jdbcType=VARCHAR}
     where log_id = #{logId,jdbcType=INTEGER}

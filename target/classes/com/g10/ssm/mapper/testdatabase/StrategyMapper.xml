@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.g10.ssm.po.testdatabase.Strategy" >
     <id column="strategy_id" property="strategyId" jdbcType="INTEGER" />
     <result column="strategy_name" property="strategyName" jdbcType="VARCHAR" />
-    <result column="creater_id" property="createrId" jdbcType="INTEGER" />
+    <result column="creater_id" property="createrId" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="full_score" property="fullScore" jdbcType="INTEGER" />
     <result column="pass_score" property="passScore" jdbcType="INTEGER" />
@@ -107,7 +107,7 @@
     insert into Strategy (strategy_id, strategy_name, creater_id, 
       create_time, full_score, pass_score, 
       purpose, status)
-    values (#{strategyId,jdbcType=INTEGER}, #{strategyName,jdbcType=VARCHAR}, #{createrId,jdbcType=INTEGER}, 
+    values (#{strategyId,jdbcType=INTEGER}, #{strategyName,jdbcType=VARCHAR}, #{createrId,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{fullScore,jdbcType=INTEGER}, #{passScore,jdbcType=INTEGER}, 
       #{purpose,jdbcType=VARCHAR}, #{status,jdbcType=BIT})
   </insert>
@@ -147,7 +147,7 @@
         #{strategyName,jdbcType=VARCHAR},
       </if>
       <if test="createrId != null" >
-        #{createrId,jdbcType=INTEGER},
+        #{createrId,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -182,7 +182,7 @@
         strategy_name = #{record.strategyName,jdbcType=VARCHAR},
       </if>
       <if test="record.createrId != null" >
-        creater_id = #{record.createrId,jdbcType=INTEGER},
+        creater_id = #{record.createrId,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -208,7 +208,7 @@
     update Strategy
     set strategy_id = #{record.strategyId,jdbcType=INTEGER},
       strategy_name = #{record.strategyName,jdbcType=VARCHAR},
-      creater_id = #{record.createrId,jdbcType=INTEGER},
+      creater_id = #{record.createrId,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       full_score = #{record.fullScore,jdbcType=INTEGER},
       pass_score = #{record.passScore,jdbcType=INTEGER},
@@ -225,7 +225,7 @@
         strategy_name = #{strategyName,jdbcType=VARCHAR},
       </if>
       <if test="createrId != null" >
-        creater_id = #{createrId,jdbcType=INTEGER},
+        creater_id = #{createrId,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -248,7 +248,7 @@
   <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.testdatabase.Strategy" >
     update Strategy
     set strategy_name = #{strategyName,jdbcType=VARCHAR},
-      creater_id = #{createrId,jdbcType=INTEGER},
+      creater_id = #{createrId,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       full_score = #{fullScore,jdbcType=INTEGER},
       pass_score = #{passScore,jdbcType=INTEGER},

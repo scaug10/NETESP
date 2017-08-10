@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.g10.ssm.mapper.UserPracticeMapper" >
   <resultMap id="BaseResultMap" type="com.g10.ssm.po.UserPracticeKey" >
-    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <id column="user_name" property="userName" jdbcType="VARCHAR" />
     <id column="practice_id" property="practiceId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -64,7 +64,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    user_id, practice_id
+    user_name, practice_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.g10.ssm.po.UserPracticeExample" >
     select
@@ -82,7 +82,7 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.g10.ssm.po.UserPracticeKey" >
     delete from User_Practice
-    where user_id = #{userId,jdbcType=INTEGER}
+    where user_name = #{userName,jdbcType=VARCHAR}
       and practice_id = #{practiceId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.g10.ssm.po.UserPracticeExample" >
@@ -92,22 +92,22 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.g10.ssm.po.UserPracticeKey" >
-    insert into User_Practice (user_id, practice_id)
-    values (#{userId,jdbcType=INTEGER}, #{practiceId,jdbcType=INTEGER})
+    insert into User_Practice (user_name, practice_id)
+    values (#{userName,jdbcType=VARCHAR}, #{practiceId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.g10.ssm.po.UserPracticeKey" >
     insert into User_Practice
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
+      <if test="userName != null" >
+        user_name,
       </if>
       <if test="practiceId != null" >
         practice_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
       </if>
       <if test="practiceId != null" >
         #{practiceId,jdbcType=INTEGER},
@@ -123,8 +123,8 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update User_Practice
     <set >
-      <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=INTEGER},
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
       </if>
       <if test="record.practiceId != null" >
         practice_id = #{record.practiceId,jdbcType=INTEGER},
@@ -136,7 +136,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update User_Practice
-    set user_id = #{record.userId,jdbcType=INTEGER},
+    set user_name = #{record.userName,jdbcType=VARCHAR},
       practice_id = #{record.practiceId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
