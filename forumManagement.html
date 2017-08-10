@@ -4,9 +4,49 @@
     <meta charset="UTF-8">
     <title>管理</title>
 
+    <style type="text/css">
+
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        ul{
+
+            list-style-type: none;
+            width: 100%;
+        }
+
+        li{
+            float: left;
+            width: 25%;
+            text-align: center;
+
+        }
+
+        .navtablink{
+            display: inline-block;
+            background-color: rebeccapurple;
+            color: white;
+            text-decoration: none;
+            width: 100%;
+            padding: 10px 0px;
+        }
+
+        .navtablink:hover{
+            background-color: gray;
+        }
+
+        iframe{
+            width: 100%;
+            height: 600px;
+        }
+
+    </style>
+
     <script type="text/javascript">
         function forumManagement() {/*版块管理*/
-            
+
         }
         
         function maskComments() {/*屏蔽评论信息*/
@@ -31,17 +71,20 @@
 
     document.write(
         "<ul class=\"nav\">\n" +
-        "    <li><a href=\"javascript:void(0)\" onclick='function1()' class=\"navtablink\">版块管理</a></li>\n" +
-        "    <li><a href=\"javascript:void(0)\" onclick='function2()' class=\"navtablink\">屏蔽评论信息</a></li>\n" +
-        "    <li><a href=\"javascript:void(0)\" onclick='function1()' class=\"navtablink\">审核帖子</a></li>\n" +
-        "    <li><a href=\"javascript:void(0)\" onclick='function2()' class=\"navtablink\">删除主题</a></li>\n" +
+        "    <li><a href=\"./forumManagement/forumListManagement.html\" onclick='forumManagement()' target='iframe' class=\"navtablink\">版块管理</a></li>\n" +
+        "    <li><a href=\"javascript:void(0)\" onclick='maskComments()' class=\"navtablink\">屏蔽评论信息</a></li>\n" +
+        "    <li><a href=\"javascript:void(0)\" onclick='verifyPosts()' class=\"navtablink\">审核帖子</a></li>\n" +
+        "    <li><a href=\"javascript:void(0)\" onclick='deleteThemePost()' class=\"navtablink\">删除主题</a></li>\n" +
         "</ul>"
-    )
+    );
+
 </script>
 
-<p id="content">
+<div class="content">
 
-</p>
+    <iframe name="iframe" src="" frameborder="0"></iframe>
+
+</div>
 
 </body>
 

@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc7bfe97-aad6-4767-b529-c7b5d08ff30a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/forumManagement.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/postPost.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IMG/back_button.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IMG/post_new_post_button.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/IMG/forum_new.gif" afterPath="$PROJECT_DIR$/IMG/forum_logo.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IMG/delete.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IMG/down.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IMG/modify.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IMG/up.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/forumManagement/forumListManagement.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/forumIndex.html" afterPath="$PROJECT_DIR$/forumIndex.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/forumPosts.html" afterPath="$PROJECT_DIR$/forumPosts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/forumManagement.html" afterPath="$PROJECT_DIR$/forumManagement.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/postsDetail.html" afterPath="$PROJECT_DIR$/postsDetail.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,17 +22,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="forumIndex.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/forumIndex.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="109" column="37" lean-forward="false" selection-start-line="109" selection-start-column="37" selection-end-line="109" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="forum_logo.gif" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IMG/forum_logo.gif">
           <provider selected="true" editor-type-id="images">
@@ -41,42 +30,82 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forumPosts.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/forumPosts.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-154">
-              <caret line="142" column="23" lean-forward="false" selection-start-line="142" selection-start-column="23" selection-end-line="142" selection-end-column="23" />
-              <folding />
-            </state>
+      <file leaf-file-name="normal_posts.gif" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IMG/normal_posts.gif">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forumManagement.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/forumManagement.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-              <folding />
-            </state>
+      <file leaf-file-name="user_icon.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IMG/user_icon.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="postPost.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/postPost.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="642">
+            <state relative-caret-position="747">
               <caret line="75" column="6" lean-forward="false" selection-start-line="75" selection-start-column="6" selection-end-line="75" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="postsDetail.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="forumPosts.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/forumPosts.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="281">
+              <caret line="92" column="0" lean-forward="true" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forumManagement.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/forumManagement.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="141">
+              <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forumListManagement.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/forumManagement/forumListManagement.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="660">
+              <caret line="44" column="53" lean-forward="false" selection-start-line="44" selection-start-column="53" selection-end-line="44" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="down.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IMG/down.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="up.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IMG/up.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="postsDetail.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/postsDetail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="554">
-              <caret line="166" column="5" lean-forward="false" selection-start-line="158" selection-start-column="4" selection-end-line="166" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="610">
+              <caret line="271" column="197" lean-forward="false" selection-start-line="271" selection-start-column="197" selection-end-line="271" selection-end-column="197" />
+              <folding>
+                <marker date="1502354974000" expanded="true" signature="7494:7500" ph=" " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -99,8 +128,9 @@
         <option value="$PROJECT_DIR$/postPost.html" />
         <option value="$PROJECT_DIR$/forumPosts.html" />
         <option value="$PROJECT_DIR$/forumIndex.html" />
-        <option value="$PROJECT_DIR$/postsDetail.html" />
         <option value="$PROJECT_DIR$/forumManagement.html" />
+        <option value="$PROJECT_DIR$/forumManagement/forumListManagement.html" />
+        <option value="$PROJECT_DIR$/postsDetail.html" />
       </list>
     </option>
   </component>
@@ -110,8 +140,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1" />
+    <option name="y" value="55" />
     <option name="width" value="1440" />
     <option name="height" value="874" />
   </component>
@@ -133,6 +164,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -144,13 +176,17 @@
             <path>
               <item name="FORUM" type="b2602c69:ProjectViewProjectNode" />
               <item name="FORUM" type="462c0819:PsiDirectoryNode" />
+              <item name="forumManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FORUM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FORUM" type="462c0819:PsiDirectoryNode" />
               <item name="IMG" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -158,10 +194,14 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/Jack/Desktop/FORUM/postPost.html" />
+    <property name="SearchEverywhereHistoryKey" value="replypost&#9;null&#9;null&#10;reply&#9;null&#9;null&#10;postb&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/IMG" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/IMG" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -180,6 +220,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="dc7bfe97-aad6-4767-b529-c7b5d08ff30a" name="Default" comment="" />
@@ -188,31 +231,32 @@
       <option name="presentableId" value="Default" />
       <updated>1502240501364</updated>
       <workItem from="1502240502521" duration="14124000" />
+      <workItem from="1502327655373" duration="17809000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14124000" />
+    <option name="totallyTimeSpent" value="31933000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="874" extended-state="0" />
+    <frame x="0" y="22" width="1440" height="874" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12569444" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917705" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917705" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -227,15 +271,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/IMG/post_new_post_button.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/forumIndex_test.html">
+    <entry file="file://$PROJECT_DIR$/forumIndex.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="98" column="45" lean-forward="false" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
+        <state relative-caret-position="1635">
+          <caret line="109" column="37" lean-forward="false" selection-start-line="109" selection-start-column="37" selection-end-line="109" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -245,6 +284,42 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/forumPosts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2130">
+          <caret line="142" column="23" lean-forward="false" selection-start-line="142" selection-start-column="23" selection-end-line="142" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/postsDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2490">
+          <caret line="166" column="5" lean-forward="false" selection-start-line="158" selection-start-column="4" selection-end-line="166" selection-end-column="5" />
+          <folding>
+            <marker date="1502354974000" expanded="true" signature="7494:7500" ph=" " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/postPost.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1125">
+          <caret line="75" column="6" lean-forward="false" selection-start-line="75" selection-start-column="6" selection-end-line="75" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forumManagement.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IMG/post_new_post_button.png" />
+    <entry file="file://$PROJECT_DIR$/forumIndex_test.html" />
     <entry file="file://$PROJECT_DIR$/forumIndex.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
@@ -253,17 +328,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/postsDetail.html">
+    <entry file="file://$PROJECT_DIR$/IMG/forum_logo.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IMG/normal_posts.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IMG/user_icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IMG/modify.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IMG/down.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IMG/up.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forumManagement.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="166" column="5" lean-forward="false" selection-start-line="158" selection-start-column="4" selection-end-line="166" selection-end-column="5" />
+        <state relative-caret-position="141">
+          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forumManagement/forumListManagement.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="53" lean-forward="false" selection-start-line="44" selection-start-column="53" selection-end-line="44" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/postPost.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
+        <state relative-caret-position="747">
           <caret line="75" column="6" lean-forward="false" selection-start-line="75" selection-start-column="6" selection-end-line="75" selection-end-column="6" />
           <folding />
         </state>
@@ -271,17 +384,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/forumPosts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-154">
-          <caret line="142" column="23" lean-forward="false" selection-start-line="142" selection-start-column="23" selection-end-line="142" selection-end-column="23" />
+        <state relative-caret-position="281">
+          <caret line="92" column="0" lean-forward="true" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/forumManagement.html">
+    <entry file="file://$PROJECT_DIR$/postsDetail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="610">
+          <caret line="271" column="197" lean-forward="false" selection-start-line="271" selection-start-column="197" selection-end-line="271" selection-end-column="197" />
+          <folding>
+            <marker date="1502354974000" expanded="true" signature="7494:7500" ph=" " />
+          </folding>
         </state>
       </provider>
     </entry>
