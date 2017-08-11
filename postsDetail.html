@@ -107,18 +107,22 @@
             padding: 10px;
         }
 
-        .replyInput{
+        .replyinput{
             width: 100%;
             height: 30px;
         }
 
-        .replyButton{
+        .replybutton{
             display: inline-block;
             height: 30px;
             width: 60px;
             margin:10px 0px;
         }
 
+        .replybackbutton{
+            float: right;
+            text-decoration: none;
+        }
 
         .pageButton{
             display: inline-block;
@@ -158,6 +162,7 @@
     </style>
 
     <script type="text/javascript">
+
         /*回复的消息用此方法处理*/
         function postReply() {
             alert(ue.getContent());
@@ -168,9 +173,19 @@
         }
 
         function showReply(postNumber) {
-            var replyContent = "华南农业大学:感谢支持!!!!!!!!!!!!!!<br>";
-            var postReply = "<input class='replyInput'><br><button class='replyButton' onclick='postReplyFunction(" + postNumber + ")'>发表</button><br>"
-            document.getElementById("replypost" + postNumber).innerHTML = postReply + replyContent;
+            document.getElementById("replypostblock" + postNumber).style.display = "";
+            var postReply = "<input class='replyinput' id='replyinput" + postNumber + "'><br><button class='replybutton' id='replybutton" + postNumber + "' onclick='postReplyFunction(" + postNumber + ")'>发表</button><br>";
+            var replyContent = "<div class='replycontent' id='replycontent" + postNumber + "'>华南农业大学:感谢支持!!!!!!!!!!!!!!<br><div/>";
+            var replyBackButton = "<a class='replybackbutton' id='replybackbutton" + postNumber + "' href='javascript:void' onclick='replyBackFunction(" + postNumber + ")'>收回↑</a>";
+            document.getElementById("replypostblock" + postNumber).innerHTML = postReply + replyContent + replyBackButton;
+        }
+
+        function replyBackFunction(postNumber) {
+            /*document.getElementById("replyinput" + postNumber).style.display = "none";
+            document.getElementById("replybutton" + postNumber).style.display = "none";
+            document.getElementById("replycontent" + postNumber).style.display = "none";
+            document.getElementById("replybackbutton" + postNumber).style.display = "none";*/
+            document.getElementById("replypostblock" + postNumber).innerHTML = "";/*replypostblock里面的东西消失*/
         }
 
     </script>
@@ -241,17 +256,18 @@
 </script>
 
 <script>
-    var replyNumber = 5;
+    var postNumber = 5;/*跟帖数量*/
     var userIconAddress = "./IMG/user_icon.png";
     var postContent = "强烈支持！！！";
     var postTime = "2017-08-06";
 
-    for(var i=0;i<replyNumber;i++){
+    for(var i=0;i<postNumber;i++){
         var userName = "机器人" + (i+1) + "号";
-        var postNumber = i;/*帖子编号*/
+        var postID = i;/*帖子编号*/
+        var replyNumber = 1;/*帖子数量*/
 
         document.write(
-            "<table id =' " + postNumber + " ' class=\"content\">\n" +
+            "<table id =' " + postID + " ' class=\"content\">\n" +
             "    <tr>\n" +
             "        <tr>\n" +
             "            <td class=\"userInfo\" rowspan=\"3\">\n" +
@@ -269,10 +285,10 @@
             "            </td>\n" +
             "        </tr>\n" +
             "        <tr>\n" +
-            "            <td class=\"postMenu\"><a href='javascript:void(0)' onclick='deletePost(" + postNumber + ")'>删除</a> <a href='javascript:void(0)' onclick='showReply(" + postNumber + ")'>回复()</a>&nbsp;</td>\n" +
+            "            <td class=\"postMenu\"><a href='javascript:void(0)' onclick='deletePost(" + postID + ")'>删除</a> <a href='javascript:void(0)' onclick='showReply(" + postID + ")'>回复(" + replyNumber + ")</a>&nbsp;</td>\n" +
             "        </tr>\n" +
             "    </tr>\n" +
-            "   <tr><td class='replypostblock' id='replypost" + postNumber + "' colspan='2'></td></tr>" +
+            "   <tr><td class='replypostblock' id='replypostblock" + postID + "' colspan='2'></td></tr>" +
             "</table>\n"
         );
     }
