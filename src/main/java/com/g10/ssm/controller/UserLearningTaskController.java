@@ -2,9 +2,6 @@ package com.g10.ssm.controller;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-import javax.xml.ws.RespectBinding;
-
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

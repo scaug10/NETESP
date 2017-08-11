@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.ls.LSInput;
 
 import com.g10.ssm.mapper.UserNoticeMapper;
 import com.g10.ssm.mapper.UserNoticeQueryMapper;
