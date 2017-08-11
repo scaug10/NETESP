@@ -19,7 +19,7 @@
 
         li{
             float: left;
-            width: 25%;
+            width: 50%;
             text-align: center;
 
         }
@@ -39,7 +39,7 @@
 
         iframe{
             width: 100%;
-            height: 600px;
+            height: 800px;
         }
 
     </style>
@@ -57,9 +57,7 @@
             
         }
 
-        function deleteThemePost() {/*删除主题*/
 
-        }
 
     </script>
 
@@ -72,9 +70,7 @@
     document.write(
         "<ul class=\"nav\">\n" +
         "    <li><a href=\"./forumManagement/forumListManagement.html\" onclick='forumManagement()' target='iframe' class=\"navtablink\">版块管理</a></li>\n" +
-        "    <li><a href=\"javascript:void(0)\" onclick='maskComments()' class=\"navtablink\">屏蔽评论信息</a></li>\n" +
-        "    <li><a href=\"javascript:void(0)\" onclick='verifyPosts()' class=\"navtablink\">审核帖子</a></li>\n" +
-        "    <li><a href=\"javascript:void(0)\" onclick='deleteThemePost()' class=\"navtablink\">删除主题</a></li>\n" +
+        "    <li><a href=\"./forumManagement/postsReview.html\" onclick='verifyPosts()' class=\"navtablink\" target='iframe'>审核帖子</a></li>\n" +
         "</ul>"
     );
 
