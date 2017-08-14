@@ -5,6 +5,7 @@
 -->
 
 <!DOCTYPE html>
+<!--suppress ALL, JSAnnotator -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -83,33 +84,66 @@
         }
 
     </style>
+
+    <script type="text/javascript">
+        function createXmlHttpRequest(){
+            if(window.ActiveXObject){ //如果是IE浏览器
+                return new ActiveXObject("Microsoft.XMLHTTP");
+            }else if(window.XMLHttpRequest){ //非IE浏览器
+                return new XMLHttpRequest();
+            }
+        }
+        
+        function onloadFunction() {
+            /*这里给出论坛列表填充数据*/
+            var url = "http://www.baidu.com";
+            var xhr = createXmlHttpRequest();
+            xhr.open('post', url, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(null);/*发送http body*/
+            xhr.onreadystatechange = function () {
+                if(this.readyState == 4 && this.status == 200){
+                    var result = this.responseText;/*存储json*/
+                    var forumNumber  = result.length;/*论坛数量*/
+                    var forumHTMLCode = "";/*不用管我*/
+
+                    for(var i = 0; i < forumNumber; i++) {
+                        var name =result[i].boardName;
+                        /*版块名称*/
+                        var detail = result[i].boardDescribe;
+                        /*版块介绍*/
+                        var imgAddress = "./IMG/forum_logo.gif";
+                        /*版块图标地址*/
+                        var forumAddress = result[i];
+                        /*版块地址*/
+                        var owner = result[i];
+                        /*版主*/
+                        forumHTMLCode = forumHTMLCode +
+                            "<li>\n" +
+                            "            <a class=\"forum\" href=" + forumAddress + ">\n" +
+                            "                <img class=\"forumlogo\" src=\"" + imgAddress + "\" alt=\"forumlogo\">\n" +
+                            "                <span class=\"forumname\">" + name + "</span>\n" +
+                            "                <span class=\"forumdetail\">" + detail + "</span>\n" +
+                            "                <span class=\"forumowner\">版主：" + owner + "</span>\n" +
+                            "            </a>\n" +
+                            "        </li>";
+                    }
+                    document.getElementById("forumlist").innerHTML = forumHTMLCode;
+                }
+
+            }
+        }
+    </script>
 </head>
-<body>
+<body onload="onloadFunction()">
 
 <p class="header">
     论坛列表
 </p>
 
 <div class="content">
-    <ul class="forumlist">
-        <script type="text/javascript">
-            /*这里给出论坛列表填充数据*/
-            for(var i = 0; i < 5; i++){
-                var owner = "Apple";/*版主*/
-                var name = "应急学习板块" + ( i + 1 );/*版块名称*/
-                var detail = "这里是讨论应急学习的地方";/*版块介绍*/
-                var imgAddress = "./IMG/forum_logo.gif"/*版块图标地址*/
-                var forumAddress = "./forumPosts.html"/*版块地址*/
-                document.write("<li>\n" +
-                    "            <a class=\"forum\" href=" + forumAddress + ">\n" +
-                    "                <img class=\"forumlogo\" src=\"" + imgAddress + "\" alt=\"forumlogo\">\n" +
-                    "                <span class=\"forumname\">" + name + "</span>\n" +
-                    "                <span class=\"forumdetail\">" + detail + "</span>\n" +
-                    "                <span class=\"forumowner\">版主：" + owner + "</span>\n" +
-                    "            </a>\n" +
-                    "        </li>");
-            }
-        </script>
+    <ul id="forumlist" class="forumlist">
+        <!--表格数据-->
     </ul>
 </div>
 
