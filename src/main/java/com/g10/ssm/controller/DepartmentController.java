@@ -2,12 +2,12 @@ package com.g10.ssm.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.g10.ssm.po.Department;
 import com.g10.ssm.service.DepartmentService;
@@ -18,38 +18,70 @@ public class DepartmentController {
 	private DepartmentService departmentService;
 
 	@RequestMapping("/queryDepartment")
-	public ModelAndView queryDepartment(@Param("departmentId") int departmentId, ModelAndView modelAndView)
-			throws Exception {
+	public String queryDepartment(@Param("departmentId") int departmentId, Model model) throws Exception {
 		Department record = departmentService.queryDepartmentById(departmentId);
-		modelAndView.addObject("Department", record);
-		return modelAndView;
+		model.addAttribute("Department", record);
+		return "Department/department";
+	}
+
+	@RequestMapping("/edit")
+	public String edit(HttpServletRequest request, Model model) throws Exception {
+		int departmentId = Integer.parseInt(request.getParameter("departmentId"));
+		String name = request.getParameter("name");
+		Department department = new Department();
+		department.setDepartmentId(departmentId);
+		department.setName(name);
+		System.out.println(department.getName() + " /" + department.getDepartmentId());
+		model.addAttribute("Department", department);
+		return "Department/editDepartment";
 	}
 
 	@RequestMapping("/editDepartment")
-	@ResponseBody
-	public int editDepartment(Department department) throws Exception {
+	public String editDepartment(Department department, Model model) throws Exception {
 		int result = departmentService.updateDepartment(department);
-		return result;
+		if (result == 1) {
+			List<Department> list = departmentService.queryDepartment();
+			model.addAttribute("list", list);
+			return "Department/department";
+		} else {
+			return "error";
+		}
+	}
+
+	@RequestMapping("/add")
+	public String add(Department department, Model model) throws Exception {
+		return "Department/addDepartment";
 	}
 
 	@RequestMapping("/saveDepartment")
-	@ResponseBody
-	public int saveDepartment(Department department) throws Exception {
+	public String saveDepartment(Department department, Model model) throws Exception {
+		System.out.println(department.getName() + " /" + department.getDepartmentId());
 		int result = departmentService.saveDepartment(department);
-		return result;
+		if (result == 1) {
+			List<Department> list = departmentService.queryDepartment();
+			model.addAttribute("list", list);
+			return "Department/department";
+		} else {
+			return "error";
+		}
 	}
 
 	@RequestMapping("/deleteDepartment")
-	@ResponseBody
-	public int deleteDepartment(@Param("departmentId") int departmentId) throws Exception {
+	public String deleteDepartment(@Param("departmentId") int departmentId, Model model) throws Exception {
 		int result = departmentService.deleteDepartmentByPrimaryKey(departmentId);
-		return result;
+		if (result == 1) {
+			List<Department> list = departmentService.queryDepartment();
+			model.addAttribute("list", list);
+			return "Department/department";
+		} else {
+			return "error";
+		}
 	}
 
 	@RequestMapping("/getAllDepartment")
-	public ModelAndView getAllDepartment(ModelAndView modelAndView) throws Exception {
+	public String getAllDepartment(Model model) throws Exception {
 		List<Department> list = departmentService.queryDepartment();
-		modelAndView.addObject("list", list);
-		return modelAndView;
+		model.addAttribute("list", list);
+		return "Department/department";
 	}
 }
