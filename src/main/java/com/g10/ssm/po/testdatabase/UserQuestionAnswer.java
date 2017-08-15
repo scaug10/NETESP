@@ -5,6 +5,8 @@ public class UserQuestionAnswer {
 
     private Integer subjectId;
 
+    private String userName;
+
     private String answer;
 
     private Float score;
@@ -23,6 +25,14 @@ public class UserQuestionAnswer {
 
     public void setSubjectId(Integer subjectId) {
         this.subjectId = subjectId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getAnswer() {
