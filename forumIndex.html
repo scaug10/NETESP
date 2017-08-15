@@ -5,7 +5,11 @@
 -->
 
 <!DOCTYPE html>
+<<<<<<< HEAD
 
+=======
+<!--suppress ALL, JSAnnotator -->
+>>>>>>> bdf7ea1906463ea6f12ad3b98d4a7267ff514a73
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -103,6 +107,7 @@
             xhr.send(null);/*发送http body*/
             xhr.onreadystatechange = function () {
                 if(this.readyState == 4 && this.status == 200){
+<<<<<<< HEAD
 //                    var result = this.responseText;/*存储json*/
 //                    var forumNumber  = result.length;/*论坛数量*/
 //                    var forumHTMLCode = "";/*不用管我*/
@@ -129,6 +134,34 @@
 //                            "        </li>";
 //                    }
 //                    document.getElementById("forumlist").innerHTML = forumHTMLCode;
+=======
+                    var result = this.responseText;/*存储json*/
+                    var forumNumber  = result.length;/*论坛数量*/
+                    var forumHTMLCode = "";/*不用管我*/
+
+                    for(var i = 0; i < forumNumber; i++) {
+                        var name =result[i].boardName;
+                        /*版块名称*/
+                        var detail = result[i].boardDescribe;
+                        /*版块介绍*/
+                        var imgAddress = "./IMG/forum_logo.gif";
+                        /*版块图标地址*/
+                        var forumAddress = result[i];
+                        /*版块地址*/
+                        var owner = result[i];
+                        /*版主*/
+                        forumHTMLCode = forumHTMLCode +
+                            "<li>\n" +
+                            "            <a class=\"forum\" href=" + forumAddress + ">\n" +
+                            "                <img class=\"forumlogo\" src=\"" + imgAddress + "\" alt=\"forumlogo\">\n" +
+                            "                <span class=\"forumname\">" + name + "</span>\n" +
+                            "                <span class=\"forumdetail\">" + detail + "</span>\n" +
+                            "                <span class=\"forumowner\">版主：" + owner + "</span>\n" +
+                            "            </a>\n" +
+                            "        </li>";
+                    }
+                    document.getElementById("forumlist").innerHTML = forumHTMLCode;
+>>>>>>> bdf7ea1906463ea6f12ad3b98d4a7267ff514a73
                 }
 
             }
@@ -144,7 +177,10 @@
 <div class="content">
     <ul id="forumlist" class="forumlist">
         <!--表格数据-->
+<<<<<<< HEAD
 
+=======
+>>>>>>> bdf7ea1906463ea6f12ad3b98d4a7267ff514a73
     </ul>
 </div>
 
