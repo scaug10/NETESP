@@ -33,7 +33,7 @@
 
 	<select id="selectByBoard" parameterType="com.g10.ssm.po.forum.BoardCustom"
 		resultMap="BaseResultMap">
-		select * from board
+		select * from Board
 		<where>
 			<include refid="query_board_where" />
 		</where>

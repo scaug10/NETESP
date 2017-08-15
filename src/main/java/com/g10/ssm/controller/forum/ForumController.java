@@ -57,11 +57,11 @@ public class ForumController {
 		if (boardList != null) {
 			model.addAttribute("boardList", boardList);
 			// 返回页面
-			return "";
+			return "forum/forumIndex";
 		} else {
 			// 如果未从数据库加载出任何数据，做处理，尝试重新加载几次？
 		}
-		return "success";
+		return "error";
 	}
 
 	/**加载主题信息和该主题下的所有帖子*/
