@@ -30,9 +30,35 @@
             font-size: 20px;
         }
 
+        .pageButton{
+            display: inline-block;
+            border: 1px dimgray solid;
+            float: right;
+            padding: 5px;
+            margin: 5px;
+            height: 23px;
+        }
+
+        .pageButton>a{
+            display: inline-block;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .pageButton>input{
+            width: 20px;
+        }
+
     </style>
 
     <script type="text/javascript">
+
+        document.getElementById("pageinput").bind('keydown',function(event){
+            if(event.keyCode == "13")
+            {
+                alert("the number is " + document.getElementById("pageinput").nodeValue);
+            }
+        });
 
         function addForum() {
             /*添加版块*/
@@ -44,6 +70,7 @@
                     if(owner.length != 0){
                         alert(name + detail + owner);
                         //与服务器通讯
+
                     }
                 }
             }
@@ -109,6 +136,22 @@
 
         </script>
     </table>
+
+<script type="text/javascript">
+    /*帖子页数填充*/
+    var totalPostNumber = 1001;/*该论坛包含的总帖子数*/
+    var postsPerPage = 20;/*每页包含的论坛数*/
+    var currentPage = 1;/*当前页*/
+
+    document.write("<span class=\"pageButton\"><a href=\"#\">下一页</a></span>\n" +
+        "    <span class=\"pageButton\"><a href=\"#\">..." + Math.ceil(totalPostNumber/postsPerPage) + "</a></span>\n" +
+        "    <span class=\"pageButton\"><input id='pageinput' class=\"inputPage\" value=\" " + currentPage + " \" type=\"text\">/页</span>\n" +
+        "    <span class=\"pageButton\"><a href=\"#\">1</a></span>\n" +
+        "    <span class=\"pageButton\"><a href=\"#\">上一页</a></span>");
+
+</script>
+
+<br />
 
 <button onclick="addForum()">添加版块</button>
 </body>
