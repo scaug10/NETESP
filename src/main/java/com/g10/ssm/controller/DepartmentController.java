@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.g10.ssm.po.Department;
 import com.g10.ssm.service.DepartmentService;
@@ -51,6 +52,14 @@ public class DepartmentController {
 	@RequestMapping("/add")
 	public String add(Department department, Model model) throws Exception {
 		return "Department/addDepartment";
+	}
+
+	@RequestMapping("/checkDepartment")
+	@ResponseBody
+	public int checkDepartment(Department department) throws Exception {
+		System.out.println(department.getName());
+		int result = departmentService.checkDepartment(department);
+		return result;
 	}
 
 	@RequestMapping("/saveDepartment")

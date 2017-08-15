@@ -48,4 +48,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return record;
 	}
 
+	@Override
+	public int checkDepartment(Department department) throws Exception {
+		if (departmentQueryDao.selectByName(department.getName()) != null) {
+			return 1;
+		}
+		return 0;
+	}
 }
