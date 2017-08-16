@@ -1,6 +1,7 @@
 package com.g10.ssm.mapper;
 
 import com.g10.ssm.po.Permission;
+import com.g10.ssm.po.PermissionCustom;
 import com.g10.ssm.po.PermissionExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -28,8 +29,18 @@ public interface PermissionMapper {
 
     int updateByPrimaryKey(Permission record);
     
-    /*
+    /**
      * 通过账号查询用户所有权限列表
      */
     List<Permission> selectUserAllPermissionList(String userName);
+    
+    /**
+     * 通过权限名查找权限列表判断该权限是否存在
+     */
+    List<Permission> isPermissionExist(String name);
+    
+    /**
+     * 查询权限列表
+     */
+    List<PermissionCustom> searchPermissionList();
 }
