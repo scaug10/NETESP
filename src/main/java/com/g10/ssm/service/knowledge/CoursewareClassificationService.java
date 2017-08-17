@@ -14,4 +14,6 @@ public interface CoursewareClassificationService {
 	public int deleteCoursewareClassificationByPrimaryKey(int cwcfId) throws Exception;
 
 	public CoursewareClassification queryCoursewareClassificationById(Integer cwcfId) throws Exception;
+
+	public List<CoursewareClassification> getNode(int parentId) throws Exception;
 }

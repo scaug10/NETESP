@@ -48,4 +48,10 @@ public class CoursewareClassificationServiceImpl implements CoursewareClassifica
 		return record;
 	}
 
+	@Override
+	public List<CoursewareClassification> getNode(int parentId) throws Exception {
+		List<CoursewareClassification> list = coursewareClassificationQueryDao.selectNode(parentId);
+		return list;
+	}
+
 }

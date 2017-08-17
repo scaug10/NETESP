@@ -6,4 +6,6 @@ import com.g10.ssm.po.knowledge.CoursewareClassification;
 
 public interface CoursewareClassificationQueryMapper {
 	List<CoursewareClassification> selectAllCoursewareClassification();
+
+	List<CoursewareClassification> selectNode(int parentId);
 }

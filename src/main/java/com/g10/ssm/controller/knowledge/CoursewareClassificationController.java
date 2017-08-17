@@ -25,6 +25,35 @@ public class CoursewareClassificationController {
 		return modelAndView;
 	}
 
+	@RequestMapping("/getParentId")
+	@ResponseBody
+	public int getParentId(@Param("cwcfId") int cwcfId) throws Exception {
+		/*
+		 * CoursewareClassification record =
+		 * coursewareClassificationService.queryCoursewareClassificationById(
+		 * cwcfId); int parentId = record.getParentId(); return parentId;
+		 */
+		return coursewareClassificationService.queryCoursewareClassificationById(cwcfId).getParentId();
+	}
+
+	@RequestMapping("/getNode")
+	@ResponseBody
+	public List<CoursewareClassification> getNode(@Param("cwcfId") int cwcfId) throws Exception {
+		int parentId = cwcfId;
+		// System.out.println(parentId);
+		List<CoursewareClassification> list = coursewareClassificationService.getNode(parentId);
+		for (int i = 0; i < list.size(); i++) {
+			List<CoursewareClassification> list1 = coursewareClassificationService.getNode(list.get(i).getCwcfId());
+			// System.out.println(" !!!!! " + list1.isEmpty());
+			if (list1.isEmpty()) {
+				list.get(i).setParentId(0);
+			} else {
+				list.get(i).setParentId(1);
+			}
+		}
+		return list;
+	}
+
 	@RequestMapping("/editCoursewareClassification")
 	@ResponseBody
 	public int editCoursewareClassification(CoursewareClassification coursewareClassification) throws Exception {
