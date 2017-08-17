@@ -22,9 +22,7 @@
 //		 contentType: "text/html; charset=UTF-8",
 		 data: {"name":"fyw"},
 		 success: function(json){
-			 alert("success");
 			 if(json != undefined && json != null){
-				 alert("Success!!");
 				 $.each(json, function (indenx, testTable) {
 	                 var $tr = $("<tr class='table-center'></tr>");
 	                 var $td1 = $("<td></td>");
