@@ -25,6 +25,11 @@ public class CoursewareClassificationController {
 		return modelAndView;
 	}
 
+	@RequestMapping("/jumpToCourseware")
+	public String jump() throws Exception {
+		return "Courseware/courseware";
+	}
+
 	@RequestMapping("/getParentId")
 	@ResponseBody
 	public int getParentId(@Param("cwcfId") int cwcfId) throws Exception {
