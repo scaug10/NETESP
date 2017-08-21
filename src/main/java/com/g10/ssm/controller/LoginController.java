@@ -18,6 +18,7 @@ import com.g10.ssm.service.LoginService;
 import com.g10.ssm.service.PermissionService;
 
 @Controller
+@RequestMapping("/login")
 public class LoginController {
 	
 	@Autowired
