@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.g10.ssm.mapper.TestTableQueryMapper">
+
+	<resultMap id="BaseResultMap" type="com.g10.ssm.po.TestTable">
+		<id column="test_id" property="testId" jdbcType="INTEGER" />
+		<result column="test_name" property="testName" jdbcType="VARCHAR" />
+		<result column="test_sex" property="testSex" jdbcType="VARCHAR" />
+		<result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="query_testTable_where">
+		<if test="testTable!=null">
+			<if test="testId!=null">
+				and testId=#{testId}
+			</if>
+			<if test="testName!=null">
+				and testName=#{testName}
+			</if>
+			<if test="testSex!=null">
+				and testSex=#{testSex}
+			</if>
+			<if test="birthday!=null">
+				and birthday=#{birthday}
+			</if>
+		</if>
+
+	</sql>
+
+	<select id="selectByTestTable" parameterType="com.g10.ssm.po.TestTable"
+		resultMap="BaseResultMap">
+		select * from test_table
+		<where>
+			<include refid="query_testTable_where"/>
+		</where>
+	</select>
+
+</mapper>
