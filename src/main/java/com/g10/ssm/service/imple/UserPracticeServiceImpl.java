@@ -26,7 +26,7 @@ public class UserPracticeServiceImpl implements UserPracticeService {
 
 	/*
 	 * @Override public int updateUserPractice(UserPracticeKey userPractice)
-	 * throws Exception { // TODO 自动生成的方法存根 return 0; }
+	 * throws Exception { return 0; }
 	 */
 
 	@Override

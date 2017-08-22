@@ -26,7 +26,7 @@ public class UserNoticeServiceImpl implements UserNoticeService {
 
 	/*
 	 * @Override public int updateUserNotice(UserNoticeKey userNotice) throws
-	 * Exception { // TODO 自动生成的方法存根 return 0; }
+	 * Exception { return 0; }
 	 */
 
 	@Override
