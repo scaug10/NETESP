@@ -170,50 +170,6 @@ a:hover {
 				</td>
 			</tr>
 		</c:forEach>
-
-		<!--<c:forEach items="${list }" var="list">-->
-		<!--<tr>-->
-		<!--<td>1</td>-->
-		<!--<td>华南农业大学</td>-->
-		<!--<td><a href="javascript:void(0)"-->
-		<!--onclick="edit('${list.departmentId }', '${list.name }')">修改</a> <a-->
-		<!--href="javascript:void(0)" onclick="del(${list.departmentId })">删除</a>-->
-		<!--</td>-->
-		<!--</tr>-->
-		<!--<tr>-->
-		<!--<td>11</td>-->
-		<!--<td>华南农业大</td>-->
-		<!--<td><a href="javascript:void(0)"-->
-		<!--onclick="edit('${list.departmentId }', '${list.name }')">修改</a> <a-->
-		<!--href="javascript:void(0)" onclick="del(${list.departmentId })">删除</a>-->
-		<!--</td>-->
-		<!--</tr>-->
-		<!--<tr>-->
-		<!--<td>111</td>-->
-		<!--<td>华南农业</td>-->
-		<!--<td><a href="javascript:void(0)"-->
-		<!--onclick="edit('${list.departmentId }', '${list.name }')">修改</a> <a-->
-		<!--href="javascript:void(0)" onclick="del(${list.departmentId })">删除</a>-->
-		<!--</td>-->
-		<!--</tr>-->
-		<!--<tr>-->
-		<!--<td>1111</td>-->
-		<!--<td>农业大学</td>-->
-		<!--<td><a href="javascript:void(0)"-->
-		<!--onclick="edit('${list.departmentId }', '${list.name }')">修改</a> <a-->
-		<!--href="javascript:void(0)" onclick="del(${list.departmentId })">删除</a>-->
-		<!--</td>-->
-		<!--</tr>-->
-		<!--<tr>-->
-		<!--<td>1111</td>-->
-		<!--<td>华南农业大学软件学院</td>-->
-		<!--<td><a href="javascript:void(0)"-->
-		<!--onclick="edit('${list.departmentId }', '${list.name }')">修改</a> <a-->
-		<!--href="javascript:void(0)" onclick="del(${list.departmentId })">删除</a>-->
-		<!--</td>-->
-		<!--</tr>-->
-		<!--</c:forEach>-->
-
 	</table>
 </body>
 
