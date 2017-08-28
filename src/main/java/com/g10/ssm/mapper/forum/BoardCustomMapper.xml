@@ -38,6 +38,12 @@
 			<include refid="query_board_where" />
 		</where>
 	</select>
+	
+	<select id="selectBoardIdByBoardName" parameterType="java.lang.String"
+		resultType="int">
+		select board_id from Board where board_name = #{value}
+		
+	</select>
 
 
 </mapper>

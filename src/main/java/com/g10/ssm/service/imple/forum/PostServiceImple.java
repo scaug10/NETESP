@@ -10,6 +10,7 @@ import com.g10.ssm.mapper.forum.PostCustomMapper;
 import com.g10.ssm.mapper.forum.PostMapper;
 import com.g10.ssm.po.forum.Post;
 import com.g10.ssm.po.forum.PostCustom;
+import com.g10.ssm.po.forum.PostQueryVo;
 import com.g10.ssm.service.forum.PostService;
 
 @Service
@@ -53,7 +54,7 @@ public class PostServiceImple implements PostService{
 	}
 
 	@Override
-	public int createPost(PostCustom postCustom) throws Exception {
+	public int createPost(Post postCustom) throws Exception {
 		if(postCustom != null){
 			int result = postMapper.insertSelective(postCustom);
 			return result;
@@ -80,6 +81,34 @@ public class PostServiceImple implements PostService{
 				BeanUtils.copyProperties(post, postCustom);
 				return postCustom;
 			}
+		}
+		return null;
+	}
+
+	@Override
+	public PostCustom selectLastPostByThemeId(Integer themeId) throws Exception {
+		if(themeId != null && themeId != 0){
+			return postCustomMapper.selectLastPostByThemeId(themeId);
+		}
+		return null;
+	}
+
+	@Override
+	public Integer countPostsByThemeId(Integer themeId) throws Exception {
+		if(themeId != null && themeId != 0){
+			Integer count = postCustomMapper.countPostsByThemeId(themeId);
+			return count;
+		}
+		return null;
+	}
+
+	@Override
+	public List<PostCustom> selectPostsByPagingAndThemeId(PostQueryVo postVo)
+			throws Exception {
+		if(postVo.getTopicId() != null && postVo.getTopicId() != 0){
+			List<PostCustom> postList = null;
+			postList = postCustomMapper.selectPostsByPagingAndThemeId(postVo);
+			return postList;
 		}
 		return null;
 	}

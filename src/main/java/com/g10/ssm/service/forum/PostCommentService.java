@@ -2,13 +2,14 @@ package com.g10.ssm.service.forum;
 
 import java.util.List;
 
+import com.g10.ssm.po.forum.PostComment;
 import com.g10.ssm.po.forum.PostCommentCustom;
 
 /**
  * @ClassName: PostCommentService
  * @Description: 帖子评论创建、更新、查找、删除、审核操作
- * @author 	FYW
- * @date 	2017年8月10日 上午10:13:35
+ * @author FYW
+ * @date 2017年8月10日 上午10:13:35
  */
 public interface PostCommentService {
 	/**
@@ -48,10 +49,9 @@ public interface PostCommentService {
 	 * @param @throws Exception
 	 * @return int
 	 */
-	public int insertPostCommentSelective(PostCommentCustom postCommentCustom)
+	public int insertPostCommentSelective(PostComment postCommentCustom)
 			throws Exception;
 
-	
 	public List<PostCommentCustom> selectPostCommentByPostId(Integer postId)
 			throws Exception;
 
@@ -60,5 +60,7 @@ public interface PostCommentService {
 
 	public int updatePostCommentCustomByPrimaryKey(Integer postCommentId,
 			PostCommentCustom postCommentCustom) throws Exception;
+
+	public Integer countPostCommentByPostId(Integer postId) throws Exception;
 
 }

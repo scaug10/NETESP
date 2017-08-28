@@ -81,4 +81,12 @@ public class BoardServiceImple implements BoardService{
 		return null;
 	}
 
+	@Override
+	public Integer selectBoardIdByBoardName(String boardName) throws Exception {
+		if(boardName != null && boardName != ""){
+			return boardCustomMapper.selectBoardIdByBoardName(boardName);
+		}
+		return null;
+	}
+
 }

@@ -1,6 +1,16 @@
 package com.g10.ssm.po.forum;
 
 public class PostCustom extends Post implements Comparable<Object>{
+	
+	private Integer postCommentCount;
+	
+	public Integer getPostCommentCount() {
+		return postCommentCount;
+	}
+
+	public void setPostCommentCount(Integer postCommentCount) {
+		this.postCommentCount = postCommentCount;
+	}
 
 	@Override
 	public int compareTo(Object o) {

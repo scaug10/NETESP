@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.g10.ssm.mapper.forum.ThemeCustomMapper">
 
-	<resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.Theme">
+	<resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.ThemeCustom">
 		<id column="topic_id" property="topicId" jdbcType="INTEGER" />
 		<result column="board_id" property="boardId" jdbcType="INTEGER" />
 		<result column="creator" property="creator" jdbcType="VARCHAR" />
@@ -34,7 +34,7 @@
 
 	<select id="selectByTheme" parameterType="com.g10.ssm.po.forum.ThemeCustom"
 		resultMap="BaseResultMap">
-		select theme.* from theme
+		select theme.* from Theme
 		<where>
 			<include refid="query_theme_where" />
 		</where>
@@ -42,9 +42,23 @@
 	
 	<select id="selectByTopicName" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
-		select * from theme
+		select * from Theme
 		like '%${topicName}%'
 
+	</select>
+	
+	<select id="selectByPaging" parameterType="com.g10.ssm.po.forum.ThemeCustom"
+		resultMap="BaseResultMap">
+		select * from Theme 
+		where board_id = #{boardId} and is_top = #{isTop}
+		order by create_time  DESC 
+		limit #{offset}, #{rowCount}
+		
+	</select>
+	
+	<select id="countThemesByboardId" parameterType="int" resultType="Integer">
+		select count(*) from Theme
+		where board_id = #{value}
 	</select>
 
 </mapper>

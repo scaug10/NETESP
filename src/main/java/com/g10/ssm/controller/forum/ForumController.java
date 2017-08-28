@@ -1,6 +1,6 @@
 package com.g10.ssm.controller.forum;
 
-import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.g10.ssm.mapper.forum.BoardCustomMapper;
 import com.g10.ssm.po.forum.Board;
 import com.g10.ssm.po.forum.BoardCustom;
+import com.g10.ssm.po.forum.Post;
+import com.g10.ssm.po.forum.PostComment;
 import com.g10.ssm.po.forum.PostCommentCustom;
 import com.g10.ssm.po.forum.PostCustom;
+import com.g10.ssm.po.forum.PostQueryVo;
 import com.g10.ssm.po.forum.Theme;
 import com.g10.ssm.po.forum.ThemeCustom;
+import com.g10.ssm.po.forum.ThemeQueryVo;
 import com.g10.ssm.service.forum.BoardService;
 import com.g10.ssm.service.forum.PostCommentService;
 import com.g10.ssm.service.forum.PostService;
@@ -48,105 +54,237 @@ public class ForumController {
 	@Autowired
 	private PostCommentService postCommentService;
 
-	/**加载论坛首页信息，即板块信息*/
-	@RequestMapping("/loadBoardInfo")
+	@RequestMapping("/intoForum")
+	public String intoForum() throws Exception {
+		// 跳转到论坛主页
+		return "forum/forumIndex";
+	}
+
+	/** 加载论坛首页信息，即板块信息 */
+	@RequestMapping("/index")
 	public String loadBoardInfo(Model model) throws Exception {
 		List<BoardCustom> boardList = null;
 		// 读取所有的板块信息
 		boardList = boardService.selectBoardsByBoard(null);
 		if (boardList != null) {
-			model.addAttribute("boardList", boardList);
+			// model.addAttribute("boardList", boardList);
 			// 返回页面
+			model.addAttribute("boardList", boardList);
 			return "forum/forumIndex";
 		} else {
 			// 如果未从数据库加载出任何数据，做处理，尝试重新加载几次？
 		}
-		return "error";
+		return null;
 	}
 
-	/**加载主题信息和该主题下的所有帖子*/
-	@RequestMapping("/loadThemeDetail")
-	public String loadThemeDetail(Model model,
-			@RequestParam("topicId") Integer themeId) throws Exception {
-		Theme theme = themeService.selectThemeByPrimaryKey(themeId);
-		if (theme != null) {
-			List<PostCustom> postList = null;
-			postList = postService.selectPostsByThemeId(themeId);
+	/** 跳转到相应板块下面 */
+	@RequestMapping("/boardThemes")
+	public String boardThemes(Model model, String boardName) throws Exception {
+		// 跳转某个板块的页面下
+		model.addAttribute("boardName", boardName);
+		return "forum/forumPosts";
+	}
 
-			model.addAttribute("theme", theme);
-			if (postList != null)
-				Collections.sort(postList);
+	/** 加载板块下的普通主题信息 */
+	@RequestMapping("/loadThemes")
+	@ResponseBody
+	public ThemeQueryVo loadThemes(ThemeCustom themeCustom,
+			@RequestParam("pageNum") Integer pageNum,
+			@RequestParam("boardName") String boardName,
+			@RequestParam("isScream") Integer isTop) throws Exception {
+		List<ThemeCustom> themeList = null;
+		if (themeCustom != null && boardName != null) {
+			if (pageNum != 0 || pageNum != null) {
+				ThemeQueryVo themeQueryVo = new ThemeQueryVo();
+				Integer boardId = boardService
+						.selectBoardIdByBoardName(boardName);
+				if (boardId != null && boardId != 0) {
+					// themeQueryVo.setThemeCount(themeService.countThemesByBoardId(boardId));
 
-			model.addAttribute("postList", postList);
+					// 设置查询条件
+					themeCustom.setBoardId(boardId);
+					themeCustom.setOffset((pageNum - 1) * 20);
+					themeCustom.setRowCount(pageNum * 20 - 1);
+					themeCustom.setTopicName(boardName);
+					themeCustom.setIsTop(isTop == 1);
 
-			return "success";
+					themeList = (List<ThemeCustom>) themeService
+							.selectThemesByPaging(themeCustom);
+					if (themeList != null) {
+						// 获取每个主题最后发帖的人和时间
+						for (ThemeCustom theme : themeList) {
+							PostCustom postCustom = postService
+									.selectLastPostByThemeId(theme.getTopicId());
+							if(postCustom != null){
+								theme.setLastPoster(postCustom.getPublisher());
+								theme.setLastPostTime(postCustom.getCreateTime());
+								theme.setPostCount(postService
+										.countPostsByThemeId(theme.getTopicId()));
+							}
+						}
+						themeQueryVo.setList(themeList);
+						return themeQueryVo;
+					}
+				}
+			}
 
 		}
-		return "error";
+		return null;
 	}
 
-	/**加载帖子评论信息*/
-	@RequestMapping("/loadPostComment")
-	public String loadPostComment(Model model,
+	/** 获取某个板块下的普通主题数量 */
+	@RequestMapping("/normalThemeNum")
+	@ResponseBody
+	public Integer normalThemeNum(String boardName) throws Exception {
+		if (boardName != null && boardName != "") {
+			Integer boardId = boardService.selectBoardIdByBoardName(boardName);
+			if (boardId != null && boardId != 0) {
+				Integer count = themeService.countThemesByBoardId(boardId);
+				return count;
+			}
+		}
+		return 0;
+	}
+
+	/** 跳转到主题页面 */
+	@RequestMapping("/themeDetail")
+	public String themeDetail(@RequestParam("topicName") String topicName,
+			@RequestParam("topicId") Integer topicId, Model model)
+			throws Exception {
+		model.addAttribute("topicId", topicId);
+		model.addAttribute("topicName", topicName);
+		return "forum/postsDetail";
+	}
+
+	/** 加载主题信息和该主题下的所有帖子 */
+	@RequestMapping("/loadThemeDetail")
+	@ResponseBody
+	public Theme loadThemeDetail(Integer topicId) throws Exception {
+		Theme theme = themeService.selectThemeByPrimaryKey(topicId);
+		if (theme != null) {
+			return theme;
+
+		}
+		return null;
+	}
+
+	@RequestMapping("/postNum")
+	@ResponseBody
+	public Integer getPostNum(@RequestParam("topicId") Integer topicId)
+			throws Exception {
+		if (topicId != null && topicId != 0) {
+			Integer number = postService.countPostsByThemeId(topicId);
+			return number;
+		}
+		return null;
+	}
+
+	/** 根据页面获取某个主题下帖子 */
+	@RequestMapping("/posts")
+	@ResponseBody
+	public List<PostCustom> postsDetail(
+			@RequestParam("topicId") Integer topicId, int pageNum)
+			throws Exception {
+		if (topicId != null && topicId != 0) {
+			List<PostCustom> postList = null;
+			PostQueryVo postVo = new PostQueryVo();
+			postVo.setTopicId(topicId);
+			postVo.setLowerPostsNum((pageNum - 1) * 20);
+			postVo.setUpperPostsNum(pageNum * 20 - 1);
+			postList = postService.selectPostsByPagingAndThemeId(postVo);
+			if (postList != null) {
+				for (PostCustom post : postList) {
+					post.setPostCommentCount(postCommentService
+							.countPostCommentByPostId(post.getPostId()));
+				}
+				return postList;
+			}
+		}
+		return null;
+	}
+
+	/** 加载帖子评论信息 */
+	@RequestMapping("/postComments")
+	@ResponseBody
+	public List<PostCommentCustom> loadPostComment(
 			@RequestParam("postId") Integer postId) throws Exception {
 		if (postId != null && postId != 0) {
 			List<PostCommentCustom> postCommentList = null;
+			PostCommentCustom post = new PostCommentCustom();
+			post.setPostId(postId);
 			postCommentList = postCommentService
-					.selectPostCommentByPostId(postId);
+					.selectPostCommentsByPostComment(post);
 			if (postCommentList != null) {
 				// 排序帖子评论
-				model.addAttribute("postCommentList", postCommentList);
-				return "success";
+//				model.addAttribute("postCommentList", postCommentList);
+				return postCommentList;
 			}
 		}
-		return "error";
+		return null;
 	}
 
-	/**创建主题*/
+	/**跳转到主题发布页面*/
+	@RequestMapping("/postTheme")
+	public String postTheme(String boardName, Model model) throws Exception{
+		model.addAttribute("boardName", boardName);
+		return "forum/postTheme";
+	}
+	
+	/** 创建主题 */
 	@RequestMapping("/createTheme")
-	public String createTheme(Model model, ThemeCustom themeCustom)
+	@ResponseBody
+	public int createTheme(Theme themeCustom, String boardName, String username)
 			throws Exception {
-
-		if (themeCustom != null) {
-			int result = themeService.createTheme(themeCustom);
-			if (result != 0) {
-				return "success";
-			}
+		int result = 0;
+		if (themeCustom != null && boardName != null && username != null) {
+			themeCustom.setCreateTime(new Date(System.currentTimeMillis()));
+			themeCustom.setIsTop(true);
+			themeCustom.setCreator(username);
+			Integer boardId = boardService.selectBoardIdByBoardName(boardName);
+			themeCustom.setBoardId(boardId);
+			result = themeService.createTheme(themeCustom);
+			return result;
 		}
-
-		return "error";
+		return result;
 	}
 
-	/**创建帖子*/
+	/** 创建帖子 */
 	@RequestMapping("/createPost")
-	public String createPost(Model model, PostCustom postCustom)
+	@ResponseBody
+	public Integer createPost(Post postCustom, String username)
 			throws Exception {
-
+		
+		int result = 0;
 		if (postCustom != null) {
-			int result = postService.createPost(postCustom);
-			if (result != 0) {
-				return "success";
-			}
+			postCustom.setPublisher(username);
+			postCustom.setCreateTime(new Date(System.currentTimeMillis()));
+			result = postService.createPost(postCustom);
+			return result;
 		}
 
-		return "error";
+		return result;
 	}
 
-	/**创建帖子评论*/
+	/** 创建帖子评论 */
 	@RequestMapping("/createPostComment")
-	public String createPostComment(Model model,
-			PostCommentCustom postCommentCustom) throws Exception {
-		if (postCommentCustom != null) {
-			int result = postCommentService
+	@ResponseBody
+	public Integer createPostComment(
+			PostComment postCommentCustom,
+			Integer postId,
+			String username) throws Exception {
+		int result = 0;
+		if (postCommentCustom != null && postId != null && postId != 0) {
+			postCommentCustom.setPostId(postId);
+			postCommentCustom.setPublisher(username);
+			postCommentCustom.setCreateTime(new Date(System.currentTimeMillis()));
+			result = postCommentService
 					.insertPostCommentSelective(postCommentCustom);
-			if (result != 0) {
-				return "success";
-			}
+			return result;
 		}
-		return "error";
+		return result;
 	}
 
-	/**加载主题，并跳转到修改主题页面*/
+	/** 加载主题，并跳转到修改主题页面 */
 	@RequestMapping("/editTheme")
 	public String editTheme(Model model,
 			@RequestParam("topicId") Integer themeId) throws Exception {
@@ -162,7 +300,7 @@ public class ForumController {
 		return "error";
 	}
 
-	/**更新主题信息*/
+	/** 更新主题信息 */
 	@RequestMapping("/updateTheme")
 	public String updateBoard(Model model,
 			@RequestParam("topicId") Integer themeId, ThemeCustom themeCustom)
@@ -177,7 +315,7 @@ public class ForumController {
 		return "error";
 	}
 
-	/**加载帖子，并跳转到帖子修改页面*/
+	/** 加载帖子，并跳转到帖子修改页面 */
 	@RequestMapping("/editPost")
 	public String editPost(Model model, Integer postId) throws Exception {
 		if (postId != null && postId != 0) {
@@ -189,7 +327,7 @@ public class ForumController {
 		return "error";
 	}
 
-	/**更新帖子*/
+	/** 更新帖子 */
 	@RequestMapping("/updatePost")
 	public String updatePost(Model model, Integer postId, PostCustom postCustom)
 			throws Exception {
@@ -202,7 +340,7 @@ public class ForumController {
 		return "error";
 	}
 
-	/**加载帖子评论，并跳转到帖子修改页面*/
+	/** 加载帖子评论，并跳转到帖子修改页面 */
 	@RequestMapping("/editPostComment")
 	public String editPostComment(Model model, Integer postCommentId)
 			throws Exception {
@@ -218,7 +356,7 @@ public class ForumController {
 		return "error";
 	}
 
-	/**更新帖子评论*/
+	/** 更新帖子评论 */
 	@RequestMapping("/updatePostComment")
 	public String updatePostComment(Model model, Integer postCommentId,
 			PostCommentCustom postCommentCustom) throws Exception {

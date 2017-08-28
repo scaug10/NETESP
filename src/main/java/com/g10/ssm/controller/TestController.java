@@ -23,6 +23,7 @@ public class TestController {
 	
 	@RequestMapping("/testTableList")
 	public String intoTestTableList(){
+		
 		return "testTableList";
 	}
 
@@ -30,7 +31,7 @@ public class TestController {
 	@ResponseBody
 	public List<TestTable> queryTestTables(
 			HttpServletResponse response, Model model, String name) throws Exception {
-
+		
 		List<TestTable> testTables = testTableService.queryTestTable(null);
 		return testTables;
 	}

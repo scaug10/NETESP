@@ -9,4 +9,6 @@ public interface PostCommentCustomMapper {
 
 	public List<PostCommentCustom> selectByPostComment(PostCommentCustom postCommentCustom) throws Exception;
 	
+	public Integer countPostCommentByPostId(Integer themeId) throws Exception;
+	
 }

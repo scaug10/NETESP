@@ -20,8 +20,8 @@ public class PostCommentServiceImple implements PostCommentService {
 
 	@Autowired
 	private PostCommentMapper postCommentMapper;
-	
-	@Autowired 
+
+	@Autowired
 	PostCommentCustomMapper postCommentCustomMapper;
 
 	@Override
@@ -41,9 +41,10 @@ public class PostCommentServiceImple implements PostCommentService {
 	@Override
 	public List<PostCommentCustom> selectPostCommentsByPostComment(
 			PostCommentCustom postCommentCustom) throws Exception {
-		if(postCommentCustom != null){
+		if (postCommentCustom != null) {
 			List<PostCommentCustom> postCommentCustomList = null;
-			postCommentCustomList = postCommentCustomMapper.selectByPostComment(postCommentCustom);
+			postCommentCustomList = postCommentCustomMapper
+					.selectByPostComment(postCommentCustom);
 			return postCommentCustomList;
 		}
 		return null;
@@ -52,7 +53,7 @@ public class PostCommentServiceImple implements PostCommentService {
 	@Override
 	public int deletePostCommentByPrimaryKey(Integer postCommentId)
 			throws Exception {
-		if(postCommentId != null && postCommentId != 0){
+		if (postCommentId != null && postCommentId != 0) {
 			int result = postCommentMapper.deleteByPrimaryKey(postCommentId);
 			return result;
 		}
@@ -60,10 +61,11 @@ public class PostCommentServiceImple implements PostCommentService {
 	}
 
 	@Override
-	public int insertPostCommentSelective(PostCommentCustom postCommentCustom)
+	public int insertPostCommentSelective(PostComment postCommentCustom)
 			throws Exception {
-		if(postCommentCustom != null){
-			postCommentCustom.setCreateTime(new Date(System.currentTimeMillis()));
+		if (postCommentCustom != null) {
+			postCommentCustom
+					.setCreateTime(new Date(System.currentTimeMillis()));
 			int result = postCommentMapper.insertSelective(postCommentCustom);
 			return result;
 		}
@@ -73,11 +75,12 @@ public class PostCommentServiceImple implements PostCommentService {
 	@Override
 	public List<PostCommentCustom> selectPostCommentByPostId(Integer postId)
 			throws Exception {
-		if(postId != null && postId != 0){
+		if (postId != null && postId != 0) {
 			List<PostCommentCustom> postCommentList = null;
 			PostCommentCustom postCommentCustom = new PostCommentCustom();
 			postCommentCustom.setPostId(postId);
-			postCommentList = postCommentCustomMapper.selectByPostComment(postCommentCustom);
+			postCommentList = postCommentCustomMapper
+					.selectByPostComment(postCommentCustom);
 			return postCommentList;
 		}
 		return null;
@@ -86,9 +89,10 @@ public class PostCommentServiceImple implements PostCommentService {
 	@Override
 	public PostCommentCustom selectPostCommentCustomByPrimaryKey(
 			Integer postCommentId) throws Exception {
-		if(postCommentId != null && postCommentId != 0){
-			PostComment postComment = postCommentMapper.selectByPrimaryKey(postCommentId);
-			if(postComment != null){
+		if (postCommentId != null && postCommentId != 0) {
+			PostComment postComment = postCommentMapper
+					.selectByPrimaryKey(postCommentId);
+			if (postComment != null) {
 				PostCommentCustom postCommentCustom = new PostCommentCustom();
 				BeanUtils.copyProperties(postComment, postCommentCustom);
 				return postCommentCustom;
@@ -100,12 +104,23 @@ public class PostCommentServiceImple implements PostCommentService {
 	@Override
 	public int updatePostCommentCustomByPrimaryKey(Integer postCommentId,
 			PostCommentCustom postCommentCustom) throws Exception {
-		if(postCommentId != null && postCommentId != 0){
-			if(postCommentCustom != null){
-				int result = postCommentMapper.updateByPrimaryKeySelective(postCommentCustom);
+		if (postCommentId != null && postCommentId != 0) {
+			if (postCommentCustom != null) {
+				int result = postCommentMapper
+						.updateByPrimaryKeySelective(postCommentCustom);
 				return result;
 			}
 		}
 		return 0;
+	}
+
+	@Override
+	public Integer countPostCommentByPostId(Integer postId) throws Exception {
+		if (postId != null && postId != 0) {
+			Integer number = postCommentCustomMapper
+					.countPostCommentByPostId(postId);
+			return number;
+		}
+		return null;
 	}
 }

@@ -43,10 +43,43 @@ public interface ThemeService {
 	public List<ThemeCustom> selectThemesByName(String topicName)
 			throws Exception;
 
+	/**
+	 * @Title: selectThemeByPrimaryKey 
+	 * @Description: 根据主键获取主题内容
+	 * @param themeId
+	 * @throws Exception
+	 * @return Theme
+	 */
 	public Theme selectThemeByPrimaryKey(Integer themeId) throws Exception;
 
-	public int createTheme(ThemeCustom themeCustom) throws Exception;
+	/**
+	 * @Title: createTheme 
+	 * @Description: 保存创建的主题
+	 * @param themeCustom 创建的主题
+	 * @throws Exception
+	 * @return int
+	 */
+	public int createTheme(Theme themeCustom) throws Exception;
 
+	/**
+	 * @Title: updateThemeByPrimaryKeySelective 
+	 * @Description: 根据主键更新主题
+	 * @param themeId
+	 * @param themeCustom
+	 * @throws Exception
+	 * @return int
+	 */
 	public int updateThemeByPrimaryKeySelective(Integer themeId,
-			ThemeCustom themeCustom) throws Exception;
+			Theme themeCustom) throws Exception;
+	
+	/**
+	 * @Title: selectThemesByPaging 
+	 * @Description: 通过分页获取板块内的主题信息
+	 * @param pageNum 分页号
+	 * @throws Exception
+	 * @return List<ThemeCustom>
+	 */
+	public List<ThemeCustom> selectThemesByPaging(ThemeCustom themeCustom) throws Exception;
+	
+	public Integer countThemesByBoardId(Integer boardId) throws Exception;
 }

@@ -10,5 +10,8 @@ public interface ThemeCustomMapper {
 	public List<ThemeCustom> selectByTheme(ThemeCustom themeCustom) throws Exception;
 	
 	public List<ThemeCustom> selectByTopicName(String topicName) throws Exception;
-
+	
+	public List<ThemeCustom> selectByPaging(ThemeCustom themeCustom) throws Exception;
+	
+	public Integer countThemesByboardId(Integer boardId) throws Exception;
 }

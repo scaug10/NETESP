@@ -64,6 +64,8 @@ public interface BoardService {
 			throws Exception;
 
 	public Board selectBoardByPrimaryKey(Integer boardId) throws Exception;
+	
+	public Integer selectBoardIdByBoardName(String boardName) throws Exception;
 
 
 }

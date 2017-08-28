@@ -9,4 +9,6 @@ public interface BoardCustomMapper {
 
 	public List<BoardCustom> selectByBoard(BoardCustom boardCustom) throws Exception;
 	
+	public Integer selectBoardIdByBoardName(String boardName) throws Exception;
+	
 }

@@ -7,13 +7,16 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.g10.ssm.po.forum.Board;
 import com.g10.ssm.po.forum.BoardCustom;
 import com.g10.ssm.po.forum.Theme;
+import com.g10.ssm.po.forum.ThemeCustom;
 import com.g10.ssm.service.forum.BoardService;
 import com.g10.ssm.service.forum.PostCommentService;
 import com.g10.ssm.service.forum.PostService;
@@ -72,19 +75,19 @@ public class ForumManageController {
 
 	/**删除帖子，同时删除帖子下的所有评论*/
 	@RequestMapping("/deletePost")
-	public String deletePost(Model model, Integer postId) throws Exception {
+	@ResponseBody
+	public int deletePost(@RequestParam("postNum")Integer postId) throws Exception {
+		int result = 0;
 		if (postId != null && postId != 0) {
-			int result = postService.deletePostByPrimaryKey(postId);
-			if (result != 0) {
-				return "success";
-			}
+			result = postService.deletePostByPrimaryKey(postId);
+			return result;
 		}
-		return "error";
+		return result;
 	}
 
 	/**删除帖子*/
 	@RequestMapping("/deletePostComment")
-	public String deletePostComment(Model model, Integer postCommentId)
+	public String deletePostComment(Integer postCommentId)
 			throws Exception {
 		if (postCommentId != null && postCommentId != 0) {
 			int result = postCommentService
@@ -95,6 +98,30 @@ public class ForumManageController {
 		}
 
 		return "error";
+	}
+	
+	private int isTop(Integer topicId, boolean top) throws Exception{
+		Theme themeCustom = new ThemeCustom();
+		themeCustom.setIsTop(top);
+		themeCustom.setTopicId(topicId);
+		int result=themeService.updateThemeByPrimaryKeySelective(topicId, themeCustom);
+		return result;
+	}
+	
+	/**置顶主题*/
+	@RequestMapping("/topTheme")
+	@ResponseBody
+	public int topTheme(@RequestParam("topicId") Integer topicId) throws Exception{
+		int result = isTop(topicId, true);
+		return result;
+	}
+	
+	/**取消主题置顶*/
+	@RequestMapping("/cancelTopTheme")
+	@ResponseBody
+	public int cancelTopTheme(@RequestParam("topicId") Integer topicId) throws Exception{
+		int result = isTop(topicId, false);
+		return result;
 	}
 
 	/**屏蔽帖子*/

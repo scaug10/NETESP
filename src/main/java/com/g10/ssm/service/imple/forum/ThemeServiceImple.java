@@ -70,7 +70,7 @@ public class ThemeServiceImple implements ThemeService{
 	}
 
 	@Override
-	public int createTheme(ThemeCustom themeCustom) throws Exception {
+	public int createTheme(Theme themeCustom) throws Exception {
 		if(themeCustom != null){
 			int result = themeMapper.insertSelective(themeCustom);
 			return result;
@@ -80,12 +80,29 @@ public class ThemeServiceImple implements ThemeService{
 
 	@Override
 	public int updateThemeByPrimaryKeySelective(Integer themeId,
-			ThemeCustom themeCustom) throws Exception {
+			Theme themeCustom) throws Exception {
 		if(themeId != null && themeId != 0){
 			int result = themeMapper.updateByPrimaryKeySelective(themeCustom);
 			return result;
 		}
 		return 0;
+	}
+
+	@Override
+	public List<ThemeCustom> selectThemesByPaging(ThemeCustom themeCustom)
+			throws Exception {
+		if(themeCustom != null && themeCustom.getTopicName() != null){
+			return themeCustomMapper.selectByPaging(themeCustom);
+		}
+		return null;
+	}
+
+	@Override
+	public Integer countThemesByBoardId(Integer boardId) throws Exception {
+		if(boardId != null && boardId != 0){
+			return themeCustomMapper.countThemesByboardId(boardId);
+		}
+		return null;
 	}
 
 }
