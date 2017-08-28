@@ -564,6 +564,76 @@ public class UserExample {
             addCriterion("job not between", value1, value2, "job");
             return (Criteria) this;
         }
+
+        public Criteria andVerificationCodeIsNull() {
+            addCriterion("verification_code is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerificationCodeIsNotNull() {
+            addCriterion("verification_code is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerificationCodeEqualTo(String value) {
+            addCriterion("verification_code =", value, "verificationCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerificationCodeNotEqualTo(String value) {
+            addCriterion("verification_code <>", value, "verificationCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerificationCodeGreaterThan(String value) {
+            addCriterion("verification_code >", value, "verificationCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerificationCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("verification_code >=", value, "verificationCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerificationCodeLessThan(String value) {
+            addCriterion("verification_code <", value, "verificationCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerificationCodeLessThanOrEqualTo(String value) {
+            addCriterion("verification_code <=", value, "verificationCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerificationCodeLike(String value) {
+            addCriterion("verification_code like", value, "verificationCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerificationCodeNotLike(String value) {
+            addCriterion("verification_code not like", value, "verificationCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerificationCodeIn(List<String> values) {
+            addCriterion("verification_code in", values, "verificationCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerificationCodeNotIn(List<String> values) {
+            addCriterion("verification_code not in", values, "verificationCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerificationCodeBetween(String value1, String value2) {
+            addCriterion("verification_code between", value1, value2, "verificationCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerificationCodeNotBetween(String value1, String value2) {
+            addCriterion("verification_code not between", value1, value2, "verificationCode");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
