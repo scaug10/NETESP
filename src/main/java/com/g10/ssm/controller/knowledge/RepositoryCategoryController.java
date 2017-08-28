@@ -34,18 +34,18 @@ public class RepositoryCategoryController {
 		return result;
 	}
 
-	@RequestMapping("/addRepositoryCategory")
-	public String add(Model model) throws Exception {
-		List<RepositoryCategoryExt> list = repositoryCategoryService.getAllRepositoryCategory();
-		model.addAttribute("list", list);
-		return "KnowledgeClassification/knowledgeclassificationAdd";
-	}
-
 	@RequestMapping("/checkName")
 	@ResponseBody
 	public int checkName(@Param("name") String name) throws Exception {
 		int result = repositoryCategoryService.checkName(name);
 		return result;
+	}
+
+	@RequestMapping("/addRepositoryCategory")
+	public String add(Model model) throws Exception {
+		List<RepositoryCategoryExt> list = repositoryCategoryService.getAllRepositoryCategory();
+		model.addAttribute("list", list);
+		return "KnowledgeClassification/knowledgeclassificationAdd";
 	}
 
 	@RequestMapping("/saveRepositoryCategory")
@@ -68,6 +68,20 @@ public class RepositoryCategoryController {
 	public int deleteRepositoryCategory(@Param("categoryId") int categoryId) throws Exception {
 		int result = repositoryCategoryService.deleteRepositoryCategoryByPrimaryKey(categoryId);
 		return result;
+	}
+
+	@RequestMapping("/getRepositoryCategoryByName")
+	public String getRepositoryCategoryByName(@Param("name") String name, Model model) throws Exception {
+		List<RepositoryCategoryExt> list = repositoryCategoryService.getRepositoryCategoryByName(name);
+		for (int i = 0; i < list.size(); i++) {
+			RepositoryCategory record = repositoryCategoryService
+					.queryRepositoryCategoryById(list.get(i).getParentId());
+			if (record != null) {
+				list.get(i).setParentName(record.getName());
+			}
+		}
+		model.addAttribute("list", list);
+		return "KnowledgeClassification/knowledgeclassification";
 	}
 
 	@RequestMapping("/getAllRepositoryCategory")

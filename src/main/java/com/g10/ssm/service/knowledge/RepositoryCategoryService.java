@@ -10,6 +10,8 @@ public interface RepositoryCategoryService {
 
 	public List<RepositoryCategoryExt> getAllRepositoryCategory() throws Exception;
 
+	public List<RepositoryCategoryExt> getRepositoryCategoryByName(String name) throws Exception;
+
 	public int updateRepositoryCategory(RepositoryCategory repositoryCategory) throws Exception;
 
 	public int saveRepositoryCategory(RepositoryCategory repositoryCategory) throws Exception;

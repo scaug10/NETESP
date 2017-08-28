@@ -54,4 +54,14 @@ public class CoursewareClassificationServiceImpl implements CoursewareClassifica
 		return list;
 	}
 
+	@Override
+	public int checkCoursewareClassification(String classificationName) throws Exception {
+		CoursewareClassification record = coursewareClassificationQueryDao.selectByName(classificationName);
+		if (record != null) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
 }

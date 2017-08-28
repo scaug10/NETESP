@@ -93,8 +93,8 @@
 				</div>
 				<div class="baBody">
 					<div class="bbD">
-						&nbsp;&nbsp;&nbsp;分类ID：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for=""
-							class="input3">${RC.categoryId }</label>
+						&nbsp;&nbsp;&nbsp;分类ID：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+							value="${RC.categoryId }" class="input3" disabled="disabled">
 					</div>
 					<div class="bbD">
 						分类名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="name"
@@ -111,7 +111,11 @@
 									if (list.get(i).getCategoryId() == record.getCategoryId()) {
 
 									} else {
-										out.print("<option value='" + list.get(i).getCategoryId() + "'>");
+										out.print("<option value='" + list.get(i).getCategoryId() + "'");
+										if (record.getParentId() == list.get(i).getCategoryId()) {
+											out.print("selected = 'selected'");
+										}
+										out.print(">");
 										out.print(list.get(i).getName() + "</option>");
 									}
 								}

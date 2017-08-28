@@ -9,6 +9,8 @@ public interface RepositoryCategoryQueryMapper {
 
 	List<RepositoryCategoryExt> selectAll();
 
+	List<RepositoryCategoryExt> selectAllByName(String name);
+
 	RepositoryCategoryExt selectByName(String name);
 
 	RepositoryCategoryExt selectById(int categoryId);

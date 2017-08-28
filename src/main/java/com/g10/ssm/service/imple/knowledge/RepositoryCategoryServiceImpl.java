@@ -77,4 +77,10 @@ public class RepositoryCategoryServiceImpl implements RepositoryCategoryService 
 		return record;
 	}
 
+	@Override
+	public List<RepositoryCategoryExt> getRepositoryCategoryByName(String name) throws Exception {
+		List<RepositoryCategoryExt> list = repositoryCategoryQueryDao.selectAllByName(name);
+		return list;
+	}
+
 }

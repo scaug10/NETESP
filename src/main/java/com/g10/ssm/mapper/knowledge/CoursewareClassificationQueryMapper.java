@@ -8,4 +8,6 @@ public interface CoursewareClassificationQueryMapper {
 	List<CoursewareClassification> selectAllCoursewareClassification();
 
 	List<CoursewareClassification> selectNode(int parentId);
+
+	CoursewareClassification selectByName(String classificationName);
 }

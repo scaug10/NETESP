@@ -48,5 +48,12 @@
 		from Repository_Category
 		where name = #{name,jdbcType=VARCHAR}
 	</select>
-
+	<select id="selectAllByName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from Repository_Category
+		where name like CONCAT('%',#{0},'%') and
+		category_id > 1
+	</select>
 </mapper>

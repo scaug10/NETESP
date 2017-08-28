@@ -9,6 +9,8 @@ public interface CoursewareClassificationService {
 
 	public int updateCoursewareClassification(CoursewareClassification coursewareClassification) throws Exception;
 
+	public int checkCoursewareClassification(String classificationName) throws Exception;
+
 	public int saveCoursewareClassification(CoursewareClassification coursewareClassification) throws Exception;
 
 	public int deleteCoursewareClassificationByPrimaryKey(int cwcfId) throws Exception;
