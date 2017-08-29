@@ -17,6 +17,8 @@ public class User {
 
     private String job;
 
+    private String verificationCode;
+
     public String getUserName() {
         return userName;
     }
@@ -71,5 +73,13 @@ public class User {
 
     public void setJob(String job) {
         this.job = job == null ? null : job.trim();
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode == null ? null : verificationCode.trim();
     }
 }

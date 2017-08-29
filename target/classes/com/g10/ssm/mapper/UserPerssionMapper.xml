@@ -71,9 +71,9 @@
   	</if>
   </sql>
   <sql id="insert_givePermissionToManyUsers">
-  	<if test="userNameList!=null">
-  		<foreach collection="userNameList" item="userName" open="" close="" separator=",">
-  			(#{userName},#{permissionId})
+  	<if test="list!=null">
+  		<foreach collection="list" item="userPermissionKey" open="" close="" separator=",">
+  			(#{userPermissionKey.userName},#{userPermissionKey.permissionId})
   		</foreach>
   	</if>
   </sql>
@@ -165,7 +165,6 @@
   </delete>
   <!-- 给多个用户分配同一个权限 -->
   <insert id="givePermissionToManyUsers" parameterType="com.g10.ssm.po.UserPerssionVo">
-  	insert into User_Perssion VALUES 
-  	<include refid="insert_givePermissionToManyUsers" />
+  	insert into User_Perssion VALUES <include refid="insert_givePermissionToManyUsers" />
   </insert>
 </mapper>

@@ -40,7 +40,24 @@ public interface PermissionMapper {
     List<Permission> isPermissionExist(String name);
     
     /**
+     * 查询所有用户权限列表
+     */
+    List<PermissionCustom> searchAllUserPermissionList();
+
+    /**
      * 查询权限列表
      */
-    List<PermissionCustom> searchPermissionList();
+	List<Permission> searchPermissionList();
+
+	/**
+	 * 删除权限表中指定的多个权限
+	 * @param list
+	 * @return
+	 */
+	int deletePermissionListFromPermission(List<Integer> list);
+
+	/**
+	 *根据权限名称模糊查询权限
+	 */
+	List<Permission> searchPermissionByName(String name);
 }

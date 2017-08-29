@@ -9,6 +9,7 @@
     <result column="login_status" property="loginStatus" jdbcType="BIT" />
     <result column="register_time" property="registerTime" jdbcType="TIMESTAMP" />
     <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="verification_code" property="verificationCode" jdbcType="CHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    user_name, department_id, password, email, login_status, register_time, job
+    user_name, department_id, password, email, login_status, register_time, job, verification_code
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.g10.ssm.po.UserExample" >
     select
@@ -104,10 +105,10 @@
   <insert id="insert" parameterType="com.g10.ssm.po.User" >
     insert into User (user_name, department_id, password, 
       email, login_status, register_time, 
-      job)
+      job, verification_code)
     values (#{userName,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{loginStatus,jdbcType=BIT}, #{registerTime,jdbcType=TIMESTAMP}, 
-      #{job,jdbcType=VARCHAR})
+      #{job,jdbcType=VARCHAR}, #{verificationCode,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.g10.ssm.po.User" >
     insert into User
@@ -133,6 +134,9 @@
       <if test="job != null" >
         job,
       </if>
+      <if test="verificationCode != null" >
+        verification_code,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userName != null" >
@@ -155,6 +159,9 @@
       </if>
       <if test="job != null" >
         #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="verificationCode != null" >
+        #{verificationCode,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -188,6 +195,9 @@
       <if test="record.job != null" >
         job = #{record.job,jdbcType=VARCHAR},
       </if>
+      <if test="record.verificationCode != null" >
+        verification_code = #{record.verificationCode,jdbcType=CHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +211,8 @@
       email = #{record.email,jdbcType=VARCHAR},
       login_status = #{record.loginStatus,jdbcType=BIT},
       register_time = #{record.registerTime,jdbcType=TIMESTAMP},
-      job = #{record.job,jdbcType=VARCHAR}
+      job = #{record.job,jdbcType=VARCHAR},
+      verification_code = #{record.verificationCode,jdbcType=CHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +238,9 @@
       <if test="job != null" >
         job = #{job,jdbcType=VARCHAR},
       </if>
+      <if test="verificationCode != null" >
+        verification_code = #{verificationCode,jdbcType=CHAR},
+      </if>
     </set>
     where user_name = #{userName,jdbcType=VARCHAR}
   </update>
@@ -237,7 +251,12 @@
       email = #{email,jdbcType=VARCHAR},
       login_status = #{loginStatus,jdbcType=BIT},
       register_time = #{registerTime,jdbcType=TIMESTAMP},
-      job = #{job,jdbcType=VARCHAR}
+      job = #{job,jdbcType=VARCHAR},
+      verification_code = #{verificationCode,jdbcType=CHAR}
     where user_name = #{userName,jdbcType=VARCHAR}
   </update>
+  <!-- 查询用户列表 -->
+  <select id="searchUserList" resultMap="BaseResultMap">
+  	select * from User;
+  </select>
 </mapper>

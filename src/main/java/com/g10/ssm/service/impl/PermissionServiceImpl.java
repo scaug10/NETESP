@@ -101,21 +101,21 @@ public class PermissionServiceImpl implements PermissionService{
 	}
 
 	/**
-	 * 给多个用户分配同一个权限
+	 * 给多个用户分配同一个权限(admin)
 	 */
 	@Override
 	public int givePermissionToManyUsers(UserPerssionVo userPerssionVo) throws Exception {
-		if(userPerssionVo==null||userPerssionVo.getPermissionId()==0||userPerssionVo.getUserNameList()==null)
+		if(userPerssionVo==null||userPerssionVo.getList()==null)
 			return -1;
 		int result=-1;
-		for(int i=0;i<userPerssionVo.getUserNameList().size();i++){
-			if(!loginService.isUserIdExist(userPerssionVo.getUserNameList().get(i))){
+		for(int i=0;i<userPerssionVo.getList().size();i++){
+			if(!loginService.isUserIdExist(userPerssionVo.getList().get(i).getUserName())){
 				result=-2;//你想要分配的用户不存在
 				return result;
 			}
 		}
 		result=userPerssionMapper.givePermissionToManyUsers(userPerssionVo);
-		if(result==userPerssionVo.getUserNameList().size())
+		if(result==userPerssionVo.getList().size())
 			return 1;
 		else {
 			return -1;
@@ -123,13 +123,63 @@ public class PermissionServiceImpl implements PermissionService{
 	}
 
 	/**
-     * 查询权限列表
+     * 查询所有用户权限列表
      */
 	@Override
-	public List<PermissionCustom> searchPermissionList() throws Exception {
+	public List<PermissionCustom> searchAllUserPermissionList() throws Exception {
 		List<PermissionCustom> list=null;
+		list=permissionMapper.searchAllUserPermissionList();
+		return list;
+	}
+
+	/**
+	 *根据权限名称模糊查询权限
+	 */
+	@Override
+	public List<Permission> searchPermissionByName(String name) throws Exception {
+		if(name==null||name.trim()=="")
+			return null;
+		List<Permission> permission=permissionMapper.searchPermissionByName(name);
+		return permission;
+	}
+
+	/**
+	 * 删除单个权限（首先要删除用户权限关系表（从表）然后再删除权限表（主表），只要在数据库设置级联操作
+	 * （从表外键字段设置delete的cascade）即可，所以这里只用删除权限表（主表）即可）
+	 */
+	@Override
+	public Integer deleteOnePermission(Integer permissionId) throws Exception {
+		if(permissionId==null)
+			return null;
+		Integer res=permissionMapper.deleteByPrimaryKey(permissionId);
+		if(res!=1)
+			return null;
+		return res;
+	}
+
+	/**
+	 * 查询权限列表
+	 * 
+	 */
+	@Override
+	public List<Permission> searchPermissionList() throws Exception {
+		List<Permission> list=null;
 		list=permissionMapper.searchPermissionList();
 		return list;
+	}
+
+	/**
+	 * 删除多个权限（首先要删除用户权限关系表（从表）然后再删除权限表（主表），只要在数据库设置级联操作
+	 * （从表外键字段设置delete的cascade）即可，所以这里只用删除权限表（主表）即可）* 删除单个权限（首先要删除用户权限关系表然后再删除权限表） 
+	 */
+	@Override
+	public Integer deleteManyPermission(List<Integer> list) throws Exception {
+		if(list==null)
+			return null;
+		Integer res=permissionMapper.deletePermissionListFromPermission(list);
+		if(res!=list.size())
+			return null;
+		return res;
 	}
 
 }

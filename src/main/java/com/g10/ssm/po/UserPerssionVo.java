@@ -3,24 +3,16 @@ package com.g10.ssm.po;
 import java.util.List;
 
 public class UserPerssionVo {
-
-	private int permissionId;
 	
-	private List<String> userNameList;
+	private List<UserPerssionKey> list;
 
-	public int getPermissionId() {
-		return permissionId;
+	public List<UserPerssionKey> getList() {
+		return list;
 	}
 
-	public void setPermissionId(int permissionId) {
-		this.permissionId = permissionId;
+	public void setList(List<UserPerssionKey> list) {
+		this.list = list;
 	}
 
-	public List<String> getUserNameList() {
-		return userNameList;
-	}
 
-	public void setUserNameList(List<String> userNameList) {
-		this.userNameList = userNameList;
-	}
 }

@@ -1,5 +1,7 @@
 package com.g10.ssm.service;
 
+import java.util.List;
+
 import com.g10.ssm.po.User;
 
 public interface LoginService {
@@ -19,8 +21,22 @@ public interface LoginService {
 	public int checkUserPassword(String userName,String password)throws Exception;
 	
 	/**
-	 * 找回密码
+	 * 找回密码之发送验证码
 	 */
-	public int findPassword(String userName)throws Exception;
+	public int sendVerificationCode(String userName,String email)throws Exception;
 	
+	/**
+	 * 找回密码之发送用户原密码
+	 */
+	public int sendOriginPassword(String userName,String verificationCode)throws Exception;
+	
+	/**
+	 * 修改密码
+	 */
+	public int changePassword(String userName,String password)throws Exception;
+	
+	/**
+	 * 查询用户列表
+	 */
+	public List<User> searchUserList()throws Exception;
 }
