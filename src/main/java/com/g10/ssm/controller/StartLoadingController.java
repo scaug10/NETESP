@@ -4,11 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/login")
 public class StartLoadingController {
 	
-	@RequestMapping("/index")
+	@RequestMapping("/home")
 	public String intoNetesp(){
-		return "index";
+		return "index3";
 	}
 	
 }

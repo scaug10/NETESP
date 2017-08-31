@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8" />
 		<title>应急化教育与培训平台</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
-		<link rel="stylesheet" type="text/css" href="css/popup.css"/>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/popup.css"/>
 	</head>
 	<body>
 		<!--header start-->
@@ -15,16 +18,33 @@
 				<span class="wel_word fl">欢迎访问应急化教育与培训平台！</span>
 				<span class="corner fr">
 					<ul>
-						<li><a href="upload.html">//</a>|</li>
-						<li><a href="${pageContext.request.contextPath}/login/jumpRegisterPage">注册</a>|</li>
-						<li class="login_li"><a href="${pageContext.request.contextPath}/login/jumpLoginPage" class="tc">登录</a></li>
+						<li><a href="upload.html"></a></li>
+						<%
+							String username = (String)request.getSession().getAttribute("userName");
+							if(username == null){
+								out.println("<li><a href=\""+ request.getContextPath() + "/login/jumpRegisterPage\">注册</a>|</li>");
+								out.println("<li class=\"login_li\"><a href=\""+request.getContextPath()+"/login/jumpLoginPage\" class=\"tc\">登录</a></li>");
+							}
+						%>
 						<li class="user_li nLi">
-							<a href="javascript:void(0);">登录名</a>
-							<div class="user_handle">
-								<a href="personal.html">个人中心</a>
-								<a href="ownTopic.html">我的学习任务</a>
-								<a href="javascript:void(0);">退出</a>
-							</div>
+							<a href="javascript:void(0);">
+							<%
+								out.print(username == null ? "" : username);
+								if(username != null){
+									out.println("<div class=\"user_handle\">\n" + 
+												"<a href=\"personal.html\">个人中心</a>\n"+
+												"<a href=\"ownTopic.html\">我的学习任务</a>\n"+
+												"<a href=\""+ request.getContextPath() +"/login/exitSys\">退出</a>\n"+
+												"</div>"
+											);
+								}
+							%>
+							</a>
+<!-- 							<div class="user_handle"> -->
+<!-- 								<a href="personal.html">个人中心</a> -->
+<!-- 								<a href="ownTopic.html">我的学习任务</a> -->
+<%-- 								<a href="${pageContext.request.contextPath }/login/exitSys">退出</a> --%>
+<!-- 							</div> -->
 						</li>
 					</ul>
 					<div class="clear"></div>
@@ -445,9 +465,9 @@
 				<img src="images/er.png" class="er" />-->
 			</div>
 		</div>
-		<script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
-		<script src="js/jquery.SuperSlide.2.1.js" type="text/javascript"></script>
-		<script src="js/common.js"></script>
+		<script src="${pageContext.request.contextPath }/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath }/js/jquery.SuperSlide.2.1.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath }/js/common.js"></script>
 		<script type="text/javascript">
 			jQuery(".banner").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"fold",  autoPlay:true, autoPage:true, trigger:"click" });
 			jQuery(".notice").slide({mainCell:".bd ul",autoPage:true,effect:"top",autoPlay:true,vis:1});

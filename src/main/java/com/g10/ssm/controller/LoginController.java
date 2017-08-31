@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -224,5 +225,11 @@ public class LoginController {
 	@RequestMapping("/jumpForgetPassword3")
 	public String jumpForgetPassword3(){
 		return "login/forgetPassword3";
+	}
+	
+	@RequestMapping("/exitSys")
+	public String exitSys(HttpSession session){
+		session.invalidate();
+		return "login/login";
 	}
 }
