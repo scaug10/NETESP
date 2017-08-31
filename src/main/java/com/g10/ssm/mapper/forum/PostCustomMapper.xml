@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.g10.ssm.mapper.forum.PostCustomMapper">
+	<resultMap id="BaseResultMap" type="com.g10.ssm.po.forum.PostCustom">
+		<id column="post_id" property="postId" jdbcType="INTEGER" />
+		<result column="topic_id" property="topicId" jdbcType="INTEGER" />
+		<result column="publisher" property="publisher" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="is_cream" property="isCream" jdbcType="BIT" />
+		<result column="review_type" property="reviewType" jdbcType="INTEGER" />
+		<result column="review_message" property="reviewMessage"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="query_post_where">
+		<if test="postCustom!=null">
+			<if test="postId!=null">
+				and postId = #{postId}
+			</if>
+			<if test="publisher!=null">
+				and publisher = #{publisher}
+			</if>
+			<if test="createTime!=null">
+				and createTime = #{createTime}
+			</if>
+		</if>
+	</sql>
+
+	<select id="selectByPostCustom" parameterType="com.g10.ssm.po.forum.PostCustom"
+		resultMap="BaseResultMap">
+		select * from Post
+		<where>
+			<include refid="query_post_where" />
+		</where>
+	</select>
+	
+	<select id="selectByThemeId" parameterType="int"
+		resultMap="BaseResultMap">
+		select * from Post
+		<where>
+			post.topicId = #{topicId}
+		</where>	
+	</select>
+	
+	<select id="selectLastPostByThemeId" parameterType="int"
+		resultMap="BaseResultMap">
+		select publisher, create_time 
+		from Post
+		where create_time =(
+			select max(create_time) 
+			from Post 
+			where topic_id = #{value}
+		) and topic_id=#{value}
+		limit 0,1
+		
+	</select>
+	
+	<select id="countPostsByThemeId" parameterType="int"
+		resultType="int">
+		select count(*)
+		from Post
+		where topic_id = #{value}
+	</select>
+	
+	<select id="selectPostsByPagingAndThemeId" 
+		parameterType="com.g10.ssm.po.forum.PostQueryVo"
+		resultMap="BaseResultMap">
+		select *
+		from Post
+		where topic_id = #{topicId}
+		order by create_time
+		limit #{lowerPostsNum}, #{upperPostsNum}
+	</select>
+
+</mapper>
