@@ -27,4 +27,9 @@ public interface PermissionMapper {
     int updateByPrimaryKeySelective(Permission record);
 
     int updateByPrimaryKey(Permission record);
+    
+    /*
+     * 通过账号查询用户所有权限列表
+     */
+    List<Permission> selectUserAllPermissionList(String userName);
 }
