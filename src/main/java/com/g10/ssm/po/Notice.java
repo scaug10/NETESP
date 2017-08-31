@@ -13,6 +13,8 @@ public class Notice {
 
     private Boolean isPublic;
 
+    private String title;
+
     public Integer getNoticeId() {
         return noticeId;
     }
@@ -51,5 +53,13 @@ public class Notice {
 
     public void setIsPublic(Boolean isPublic) {
         this.isPublic = isPublic;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 }
