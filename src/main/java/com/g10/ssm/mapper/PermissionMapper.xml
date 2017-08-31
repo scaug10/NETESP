@@ -5,6 +5,11 @@
 		<id column="permission_id" property="permissionId" jdbcType="INTEGER" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 	</resultMap>
+	<resultMap type="com.g10.ssm.po.PermissionCustom" id="searchPermissionListMap">
+		<id column="permission_id" property="permissionId"/>
+		<result column="user_name" property="userName"/>
+		<result column="name" property="name"/>
+	</resultMap>
 	<sql id="Example_Where_Clause">
 		<where>
 			<foreach collection="oredCriteria" item="criteria" separator="or">
@@ -19,7 +24,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -51,7 +57,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -71,6 +78,13 @@
 	<sql id="Base_Column_List">
 		permission_id, name
 	</sql>
+	<sql id="delete_manyPermission_where">
+  	<if test="list!=null">
+  		<foreach collection="list" item="permissionId" open="(" close=")" separator="OR">
+  			(permission_id=#{permissionId})
+  		</foreach>
+  	</if>
+  	</sql>
 	<select id="selectByExample" resultMap="BaseResultMap"
 		parameterType="com.g10.ssm.po.PermissionExample">
 		select
@@ -94,7 +108,8 @@
 		where permission_id = #{permissionId,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from Permission
+		delete from
+		Permission
 		where permission_id = #{permissionId,jdbcType=INTEGER}
 	</delete>
 	<delete id="deleteByExample" parameterType="com.g10.ssm.po.PermissionExample">
@@ -104,8 +119,10 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.g10.ssm.po.Permission">
-		insert into Permission (permission_id, name)
-		values (#{permissionId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+		insert into Permission
+		(permission_id, name)
+		values (#{permissionId,jdbcType=INTEGER},
+		#{name,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.g10.ssm.po.Permission">
 		insert into Permission
@@ -149,8 +166,10 @@
 	</update>
 	<update id="updateByExample" parameterType="map">
 		update Permission
-		set permission_id = #{record.permissionId,jdbcType=INTEGER},
-		name = #{record.name,jdbcType=VARCHAR}
+		set permission_id =
+		#{record.permissionId,jdbcType=INTEGER},
+		name =
+		#{record.name,jdbcType=VARCHAR}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -167,14 +186,42 @@
 	<update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.Permission">
 		update Permission
 		set name = #{name,jdbcType=VARCHAR}
-		where permission_id = #{permissionId,jdbcType=INTEGER}
+		where permission_id =
+		#{permissionId,jdbcType=INTEGER}
 	</update>
-	<!-- 通过账号查询用户所有权限列表 -->
+	<!-- 通过账号查询用户所有权限列表  此处不能用resultType，因为我们的代码是逆向工程生成的，数据库列名与属性名不一致-->
 	<select id="selectUserAllPermissionList" parameterType="java.lang.String"
-		resultType="com.g10.ssm.po.Permission">
+		resultMap="searchPermissionListMap">
 		select Permission.permission_id,Permission.`name`
-		from Permission,User_Perssion
+		from
+		Permission,User_Perssion
 		where User_Perssion.user_name=#{value} AND
 		Permission.permission_id=User_Perssion.permission_id
 	</select>
+	<!-- 通过权限名查找权限列表判断该权限是否存在 -->
+	<select id="isPermissionExist" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select * from Permission
+		where name=#{value}
+	</select>
+	<!-- 查询所有用户权限列表 此处不能用resultType，因为我们的代码是逆向工程生成的，数据库列名与属性名不一致-->
+	<select id="searchAllUserPermissionList" resultMap="searchPermissionListMap">
+		select * from User_Perssion  NATURAL JOIN Permission
+	</select>
+	<!-- 查询权限列表-->
+	<select id="searchPermissionList" resultMap="BaseResultMap">
+		select * from Permission 
+	</select>
+	<!-- 根据权限名称模糊查询权限 -->
+	<select id="searchPermissionByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select * from Permission
+		where name like '%${value}%'
+	</select>
+	<!-- 删除权限表中指定的多个权限 -->
+	<delete id="deletePermissionListFromPermission" parameterType="java.lang.Integer">
+		delete from Permission
+		<where>
+			<include refid="delete_manyPermission_where" />
+		</where>
+	</delete>
 </mapper>

@@ -27,4 +27,9 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    /**
+	 * 查询用户列表
+	 */
+	List<User> searchUserList();
 }

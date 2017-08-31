@@ -63,6 +63,20 @@
       </foreach>
     </where>
   </sql>
+  <sql id="delete_userPermissionCustom_where">
+  	<if test="userPermissionList!=null">
+  		<foreach collection="userPermissionList" item="userPerssionKey" open="and (" close=")" separator="OR">
+  			(permission_id=#{userPerssionKey.permissionId} AND user_name=#{userPerssionKey.userName})
+  		</foreach>
+  	</if>
+  </sql>
+  <sql id="insert_givePermissionToManyUsers">
+  	<if test="list!=null">
+  		<foreach collection="list" item="userPermissionKey" open="" close="" separator=",">
+  			(#{userPermissionKey.userName},#{userPermissionKey.permissionId})
+  		</foreach>
+  	</if>
+  </sql>
   <sql id="Base_Column_List" >
     user_name, permission_id
   </sql>
@@ -142,4 +156,15 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  <!-- 批量删除用户权限列表 -->
+  <delete id="deleteUserPermissionList" parameterType="com.g10.ssm.po.UserPermissionCustom">
+  	delete from User_Perssion
+	<where>
+		<include refid="delete_userPermissionCustom_where" />
+	</where>
+  </delete>
+  <!-- 给多个用户分配同一个权限 -->
+  <insert id="givePermissionToManyUsers" parameterType="com.g10.ssm.po.UserPerssionVo">
+  	insert into User_Perssion VALUES <include refid="insert_givePermissionToManyUsers" />
+  </insert>
 </mapper>
