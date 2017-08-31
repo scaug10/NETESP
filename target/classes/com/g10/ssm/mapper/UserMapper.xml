@@ -255,4 +255,8 @@
       verification_code = #{verificationCode,jdbcType=CHAR}
     where user_name = #{userName,jdbcType=VARCHAR}
   </update>
+  <!-- 查询用户列表 -->
+  <select id="searchUserList" resultMap="BaseResultMap">
+  	select * from User;
+  </select>
 </mapper>

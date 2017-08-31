@@ -1,5 +1,6 @@
 package com.g10.ssm.service.impl;
 
+import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -76,30 +77,69 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 	/**
-	 * 找回密码
+	 * 找回密码之发送验证码
 	 */
 	@Override
-	public int findPassword(String userName) throws Exception {
-		int res=-1;
-		if(userName==null)
-			return res;
+	public int sendVerificationCode(String userName,String email) throws Exception {
+		if(userName==null||email==null)
+			return -1;
 		User user=userMapper.selectByPrimaryKey(userName);
 		if(user==null)
-			return res;
-		String email=user.getEmail();
+			return -1;//用户名不存在
+		String dbEmail=user.getEmail();
+		if(!email.equals(dbEmail))
+			return -1;//用户输入的邮箱与用户名不匹配
     	String emailServer="smtp.163.com";
-    	String subject="【网络应急化培训教育服务平台】用户获取登录密码";
-    	String secretKey = UUID.randomUUID().toString().replace("-", "").substring(0, 20);
-    	user.setPassword(secretKey);
-    	res=userMapper.updateByPrimaryKey(user);
-    	if(res!=1)
-    		return -1;
-    	String mailbody="你好，感谢你使用网络应急化培训教育服务平台，你的临时登录密码为   "+secretKey+"   ，请登录系统后立刻修改密码！";
+    	String subject="【网络应急化培训教育服务平台】获取验证码";
+    	String secretKey = UUID.randomUUID().toString().replace("-", "").substring(0, 6);
+    	String mailbody="你好，感谢你使用网络应急化培训教育服务平台，你的验证码为   "+secretKey+"   ，请不要告诉任何人。";
     	String username="18819259339@163.com";
     	String password="faraway123";
     	String nickname="网络应急化培训教育服务平台";
-    	res=this.sendEmail(emailServer, subject, mailbody, email, username, password, nickname);
-    	return res;
+    	int res=this.sendEmail(emailServer, subject, mailbody, dbEmail, username, password, nickname);
+    	if(res==1){
+    		user.setVerificationCode(secretKey);
+    		res=userMapper.updateByPrimaryKey(user);
+    		if(res!=1)
+    			return -1;
+    		else {
+				return res;
+			}
+    	}
+    	else {
+			return -1;
+		}
+	}
+	
+	/**
+	 * 找回密码之发送用户原密码
+	 */
+	@Override
+	public int sendOriginPassword(String userName,String verificationCode) throws Exception {
+		if(userName==null)
+			return -1;
+		User user=userMapper.selectByPrimaryKey(userName);
+		if(user==null)
+			return -1;//用户名不存在
+		String dbVerificationCode=user.getVerificationCode();
+		if(!verificationCode.equals(dbVerificationCode)){
+			return -1;//验证码与数据库不一致
+		}
+		String dbPassword=user.getPassword();
+		String dbEmail=user.getEmail();
+    	String emailServer="smtp.163.com";
+    	String subject="【网络应急化培训教育服务平台】获取账号原密码";
+    	String mailbody="你好，感谢你使用网络应急化培训教育服务平台，你的账号原密码为   "+dbPassword+"   ，请看完邮件后尽快删除！";
+    	String username="18819259339@163.com";
+    	String password="faraway123";
+    	String nickname="网络应急化培训教育服务平台";
+    	int res=this.sendEmail(emailServer, subject, mailbody, dbEmail, username, password, nickname);
+    	if(res==1){
+    		return 1;
+    	}
+    	else {
+			return -1;
+		}
 	}
 
 	/**
@@ -147,7 +187,8 @@ public class LoginServiceImpl implements LoginService{
         bp.setContent(mailBody, "text/html;charset=utf-8");
         mp.addBodyPart(bp);
          
-        mimeMsg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver));
+        mimeMsg.addRecipients(Message.RecipientType.CC, InternetAddress.parse(username));
+        mimeMsg.addRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver));
          
         mimeMsg.setContent(mp);
         mimeMsg.saveChanges();
@@ -158,6 +199,30 @@ public class LoginServiceImpl implements LoginService{
         transport.close();
         return 1;
     }
-	
+
+	/**
+	 * 修改密码
+	 */
+	@Override
+	public int changePassword(String userName,String password) throws Exception {
+		if(userName==null)
+			return -1;
+		User user=userMapper.selectByPrimaryKey(userName);
+		if(user==null)
+			return -1;
+		user.setPassword(password);
+		int res=userMapper.updateByPrimaryKey(user);
+		return res;
+	}
+
+	/**
+	 * 查询用户列表
+	 */
+	@Override
+	public List<User> searchUserList() throws Exception {
+		List<User> list=null;
+		list=userMapper.searchUserList();
+		return list;
+	}
 	
 }
