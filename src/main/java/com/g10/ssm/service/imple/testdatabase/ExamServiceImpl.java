@@ -37,8 +37,8 @@ public class ExamServiceImpl implements ExamService {
 	}
 
 	@Override
-	public int deleteExamByPrimaryKey(int examId) throws Exception {
-		int result = examDao.deleteByPrimaryKey(examId);
+	public int deleteExamByPrimaryKey(Integer[] examId) throws Exception {
+		int result = examQueryDao.deleteExam(examId);
 		return result;
 	}
 
@@ -48,4 +48,19 @@ public class ExamServiceImpl implements ExamService {
 		return record;
 	}
 
+	@Override
+	public int checkExam(String name) throws Exception {
+		Exam record = examQueryDao.checkExamName(name);
+		if (record != null) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public List<Exam> queryExamByName(String name) throws Exception {
+		List<Exam> list = examQueryDao.selectExamByName(name);
+		return list;
+	}
 }

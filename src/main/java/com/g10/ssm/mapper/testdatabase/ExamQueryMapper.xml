@@ -13,4 +13,27 @@
 		<include refid="Base_Column_List" />
 		from Exam
 	</select>
+	<select id="selectExamByName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from Exam
+		where name like CONCAT('%',#{0},'%')
+	</select>
+
+	<delete id="deleteExam" parameterType="java.util.ArrayList">
+		delete from Exam where exam_id in
+		<foreach item="examId" collection="array" open="(" separator=","
+			close=")">
+			#{examId,jdbcType=INTEGER}
+		</foreach>
+	</delete>
+
+	<select id="checkExamName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from Exam
+		where name = #{name,jdbcType=VARCHAR}
+	</select>
 </mapper>

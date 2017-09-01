@@ -43,5 +43,4 @@ public class StrategyQuestionTypesServiceImpl implements StrategyQuestionTypesSe
 		int result = strategyQuestionTypesDao.deleteByPrimaryKey(strategyQuestionTypes);
 		return result;
 	}
-
 }

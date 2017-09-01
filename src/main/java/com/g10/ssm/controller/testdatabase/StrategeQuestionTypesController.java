@@ -17,6 +17,12 @@ public class StrategeQuestionTypesController {
 	@Autowired
 	private StrategyQuestionTypesService strategyQuestionTypesService;
 
+	/*@RequestMapping("/queryQuestionTypes")
+	public int queryQuestionTypes(@Param("strategyId") int strategyId) throws Exception {
+		int testItemsDesignId = strategyQuestionTypesService.queryQuestionTypes(strategyId);
+		return testItemsDesignId;
+	}*/
+
 	@RequestMapping("/saveStrategyQuestionTypes")
 	@ResponseBody
 	public int saveStrategyQuestionTypes(StrategyQuestionTypesKey strategyQuestionTypes) throws Exception {

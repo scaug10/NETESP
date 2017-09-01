@@ -48,4 +48,10 @@ public class TestItemsDesignServiceImpl implements TestItemsDesignService {
 		return record;
 	}
 
+	@Override
+	public int selectId() throws Exception {
+		int testItemsDesignId = testItemsDesignQueryDao.selectId();
+		return testItemsDesignId;
+	}
+
 }

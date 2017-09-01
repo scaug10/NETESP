@@ -9,13 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.g10.ssm.po.testdatabase.StrategyQuestionTypesKey;
 import com.g10.ssm.po.testdatabase.TestItemsDesign;
+import com.g10.ssm.service.testdatabase.StrategyQuestionTypesService;
 import com.g10.ssm.service.testdatabase.TestItemsDesignService;
 
 @Controller
 public class TestItemsDesignController {
 	@Autowired
 	private TestItemsDesignService testItemsDesignService;
+	@Autowired
+	private StrategyQuestionTypesService strategyQuestionTypesService;
 
 	@RequestMapping("/queryTestItemsDesign")
 	public ModelAndView queryTestItemsDesign(@Param("testItemsDesignId") int testItemsDesignId,
@@ -34,8 +38,16 @@ public class TestItemsDesignController {
 
 	@RequestMapping("/saveTestItemsDesign")
 	@ResponseBody
-	public int saveTestItemsDesign(TestItemsDesign testItemsDesign) throws Exception {
+	public int saveTestItemsDesign(TestItemsDesign testItemsDesign, @Param("strategyId") int strategyId)
+			throws Exception {
 		int result = testItemsDesignService.saveTestItemsDesign(testItemsDesign);
+		if (result == 1) {
+			int testItemsDesignId = testItemsDesignService.selectId();
+			StrategyQuestionTypesKey record = new StrategyQuestionTypesKey();
+			record.setStrategyId(strategyId);
+			record.setTestItemsDesignId(testItemsDesignId);
+			result = strategyQuestionTypesService.saveStrategyQuestionTypes(record);
+		}
 		return result;
 	}
 

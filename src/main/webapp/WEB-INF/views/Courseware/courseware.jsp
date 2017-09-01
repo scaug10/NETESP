@@ -507,7 +507,7 @@ button {
 	/*新增修改删除分类的方法*/
 	function createClassification() {
 		//在本分类创建子课件分类
-		var newClassName = prompt("在当前分类新建子分类：", "请输入分类名");
+		var newClassName = prompt("在当前分类新建子分类：");
 		if (newClassName.length != 0) {
 			var parentId = document.getElementById("getClassificationId").value;
 			var xhr = createXmlHttpRequest();
