@@ -5,62 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>发布帖子</title>
-
-    <style type="text/css">
-
-        *{
-            margin: 0px;
-            padding: 0px;
-        }
-
-        .header{
-            background-color: rebeccapurple;
-            color: white;
-            width: 100%;
-            height: 42px;
-        }
-
-        .backButton{
-            color: white;
-            text-decoration: none;
-        }
-
-        .backButton:hover{
-            text-decoration: underline;
-        }
-
-        .header>span{
-            display: inline-block;
-            margin: 10px;
-        }
-
-        #themeTitle{
-            margin-bottom: 5px;
-            width: 100%;
-            height: 30px;
-            display: block;
-            font-size: 20px;
-        }
-
-        strong{
-            display: inline-block;
-            margin: 10px;
-        }
-
-        .editorTitle{
-            font-size: 20px;
-        }
-
-        #editor{
-            margin: 10px;
-        }
-
-        .postReplyButton{
-            display: inline-block;
-            margin-top: 10px;
-        }
-
-    </style>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/postTheme.css"/>
+    
 
     <script type="text/javascript">
 
@@ -100,9 +46,9 @@
 
     <script id="container" name="content" type="text/plain"></script>
     <!-- 配置文件 -->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/views/forum/utf8-jsp/ueditor.config.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/utf8-jsp/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/views/forum/utf8-jsp/ueditor.all.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/utf8-jsp/ueditor.all.js"></script>
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
         var option = {

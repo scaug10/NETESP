@@ -303,7 +303,7 @@ span {
 			<a href="${pageContext.request.contextPath}/login/jumpLoginPage"><h2>登录</h2></a>
 			<div class="leftblock">
 				<h1>忘记密码</h1>
-				<img src="" width="176.72" height="60" />
+<!-- 				<img src="" width="176.72" height="60" /> -->
 			</div>
 		</div>
 	</div>

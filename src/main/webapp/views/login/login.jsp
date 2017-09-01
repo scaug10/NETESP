@@ -71,9 +71,8 @@
  				if(this.responseText.trim()==""){
  					alert("用户输入的用户名不存在或用户输入密码与用户名不匹配");
  				}else{
- 					alert("登录成功！");
 //  					登录页面跳转的还没做
-					window.location.href='${pageContext.request.contextPath}/login/home';
+					window.location.href='${pageContext.request.contextPath}/index';
  				}
 			}
 		}

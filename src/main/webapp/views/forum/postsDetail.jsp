@@ -441,8 +441,8 @@
     </script>
 </head>
 <body onload="getThemeContent()">
-<input id="topicId"  type="text" value="${topicId}"><!-- 获取服务器发送的attribute-->
-<input id="topicName" type="text" value="${topicName }">
+<input id="topicId"  type="text" value="${topicId}" hidden="hidden"><!-- 获取服务器发送的attribute-->
+<input id="topicName" type="text" value="${topicName }" hidden="hidden">
 <img class="preload" src="${pageContext.request.contextPath}/views/forum/IMG/wait.gif" alt=""><!--预加载等待图片-->
 
 <div class="header">
@@ -473,9 +473,9 @@
 <div id="editor">
     <script id="container" type="text/plain"></script>
     <!-- 配置文件 -->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/views/forum/utf8-jsp/ueditor.config.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/utf8-jsp/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/views/forum/utf8-jsp/ueditor.all.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/utf8-jsp/ueditor.all.js"></script>
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
          var ue = UE.getEditor('container', { 

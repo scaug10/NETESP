@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -29,8 +28,8 @@
 						<li class="user_li nLi">
 							<a href="javascript:void(0);">
 							<%
-								out.print(username == null ? "" : username);
 								if(username != null){
+									out.print("欢迎： " + username);
 									out.println("<div class=\"user_handle\">\n" + 
 												"<a href=\"personal.html\">个人中心</a>\n"+
 												"<a href=\"ownTopic.html\">我的学习任务</a>\n"+
