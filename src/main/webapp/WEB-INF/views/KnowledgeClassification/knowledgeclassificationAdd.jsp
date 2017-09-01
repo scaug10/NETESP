@@ -7,8 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>添加分类信息</title>
-<link rel="stylesheet" type="text/css" href="../css/css.css" />
-<script type="text/javascript" src="../js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/css.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script type="text/javascript">
 	function check() {
 		var name = document.getElementById("name").value;
@@ -93,8 +95,9 @@
 		<!--导航栏-->
 		<div class="pageTop">
 			<div class="page">
-				<img src="../img/coin02.png" /><span><a href="../main.html">首页</a>&nbsp;-&nbsp;<a
-					href="KnowledgeClassificationManagement.html">知识分类管理</a>&nbsp;-</span>&nbsp;添加分类信息
+				<img src="${pageContext.request.contextPath}/img/coin02.png" /><span><a
+					href="../main.html">首页</a>&nbsp;-&nbsp;<a
+					href="getAllRepositoryCategory">知识分类管理</a>&nbsp;-</span>&nbsp;添加分类信息
 			</div>
 		</div>
 		<div class="page ">

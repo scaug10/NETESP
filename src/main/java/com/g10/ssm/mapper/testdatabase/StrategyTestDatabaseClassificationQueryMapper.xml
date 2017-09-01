@@ -18,4 +18,10 @@
 		where strategy_id =
 		#{strategyId,jdbcType=INTEGER}
 	</select>
+
+	<delete id="deleteStrategyTestDatabaseClassification">
+		delete from Strategy_Test_Database_Classification
+		where strategy_id =#{strategyId,jdbcType=INTEGER}
+	</delete>
+
 </mapper>

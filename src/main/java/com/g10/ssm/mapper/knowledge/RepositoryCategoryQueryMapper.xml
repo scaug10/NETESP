@@ -56,4 +56,12 @@
 		where name like CONCAT('%',#{0},'%') and
 		category_id > 1
 	</select>
+
+	<delete id="deleteRepositoryCategory" parameterType="java.util.ArrayList">
+		delete from Repository_Category where category_id in
+		<foreach item="categoryId" collection="array" open="("
+			separator="," close=")">
+			#{categoryId,jdbcType=INTEGER}
+		</foreach>
+	</delete>
 </mapper>

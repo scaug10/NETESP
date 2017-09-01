@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>添加分类信息</title>
-<link rel="stylesheet" type="text/css" href="../css/css.css" />
-<script type="text/javascript" src="../js/jquery.min.js"></script>
+<title>审核知识分类信息</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/css.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <style>
 .box {
 	margin-left: 60px;
@@ -17,6 +19,38 @@
 	color: #fff;
 	background-color: #47a4e1;
 }
+
+.btn_no {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	color: #333;
+	background-color: #fff;
+	border: 1px solid #3695cc;
+	margin-top: 10px;
+	margin-right: 25px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 150px;
+}
+
+.btn {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #3695cc;
+	color: #fff;
+	margin-top: 10px;
+	margin-right: 25px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 10px;
+	border: none;
+}
 </style>
 </head>
 <body onload="showReviewType(); buttonDisplay();">
@@ -24,8 +58,8 @@
 		<!--导航栏-->
 		<div class="pageTop">
 			<div class="page">
-				<img src="../img/coin02.png" /><span><a href="../main.html">首页</a>&nbsp;-&nbsp;<a
-					href="KnowledgeClassificationManagement.html">知识分类管理</a>&nbsp;-</span>&nbsp;审核分类信息
+				<img src="${pageContext.request.contextPath}/img/coin02.png" /><span><a
+					href="../main.html">首页</a>&nbsp;-&nbsp;<a href="getAllKnowledge">知识管理</a>&nbsp;-</span>&nbsp;审核分类信息
 			</div>
 		</div>
 		<div class="page ">
@@ -37,22 +71,20 @@
 				<div class="baBody">
 					<div class="bbD">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label
-							for="" class="input3">${Knowledge.categoryId }</label>
+							for="">${Knowledge.categoryId }</label>
 					</div>
 					<div class="bbD">
-						&nbsp;&nbsp;&nbsp; 创建人：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for=""
-							class="input3">${Knowledge.creator }</label>
+						&nbsp;&nbsp;&nbsp; 创建人：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="">${Knowledge.creator }</label>
 					</div>
 					<div class="bbD">
-						知识名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="" class="input3">${Knowledge.name }</label>
+						知识名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="">${Knowledge.name }</label>
 					</div>
 					<div class="bbD">
-						知识分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="" class="input3">${Knowledge.categoryName }</label>
+						知识分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="">${Knowledge.categoryName }</label>
 					</div>
 
 					<div class="bbD">
-						审核状态：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="reviewType"
-							class="input3 ">${Knowledge.reviewType}</span>
+						审核状态：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="" id="reviewType">${Knowledge.reviewType}</label>
 					</div>
 
 					<div id="reviewMessage" class="bbD">
@@ -70,7 +102,7 @@
 							<a class="btn_ok btn_no" href="KnowledgeClassificationCheck.html">返回</a> -->
 
 					</div>
-					<a class="btn_ok btn_no" href="getAllKnowledge">返回</a>
+					<a class="btn_no" href="getAllKnowledge">返回</a>
 				</div>
 			</div>
 
@@ -160,9 +192,9 @@
 	function buttonDisplay() {
 		var reviewType = document.getElementById("getReviewType").value;
 		if (reviewType == 0) {
-			document.getElementById("buttonId").innerHTML = "<button class='btn_ok btn_yes operation' onclick='pass()'>审核通过</button><button class='btn_ok operation' onclick='noPass()'>审核不通过</button>";
+			document.getElementById("buttonId").innerHTML = "<button class='btn' onclick='pass()'>审核通过</button><button class='btn' onclick='noPass()'>审核不通过</button>";
 		} else if (reviewType == 2) {
-			document.getElementById("reviewMessage").innerHTML = "审核信息：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for='' class='input3 reviewType'>${Knowledge.reviewMessage }</label>"
+			document.getElementById("reviewMessage").innerHTML = "审核信息：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for='' class='reviewType'>${Knowledge.reviewMessage }</label>"
 		} else {
 
 		}

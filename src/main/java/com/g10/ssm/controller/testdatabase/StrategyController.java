@@ -63,7 +63,8 @@ public class StrategyController {
 		}
 		model.addAttribute("COTlist", classificationOfTestdatabases);
 		// 获取全部题库分类
-		List<ClassificationOfTestdatabase> list = classificationOfTestdatabaseService.selectAllClassification();
+		List<ClassificationOfTestdatabase> list = classificationOfTestdatabaseService
+				.selectAllClassificationOfTestdatabase();
 		model.addAttribute("cotlist", list);
 		// 获取策略对应的所有题型设计
 		List<StrategyQuestionTypesKey> SQTlist = strategyQuestionTypesService.queryStrategyQuestionTypes(strategyId);
@@ -85,7 +86,8 @@ public class StrategyController {
 
 	@RequestMapping("/addStrategy")
 	public String add(Model model) throws Exception {
-		List<ClassificationOfTestdatabase> list = classificationOfTestdatabaseService.selectAllClassification();
+		List<ClassificationOfTestdatabase> list = classificationOfTestdatabaseService
+				.selectAllClassificationOfTestdatabase();
 		model.addAttribute("list", list);
 		return "Strategy/strategyAdd";
 	}

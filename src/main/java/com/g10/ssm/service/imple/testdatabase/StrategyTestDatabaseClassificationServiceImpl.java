@@ -39,4 +39,10 @@ public class StrategyTestDatabaseClassificationServiceImpl implements StrategyTe
 				.selectAllTestDatabaseClassification(strategyId);
 		return list;
 	}
+
+	@Override
+	public int deleteStrategyTestDatabaseClassification(int strategyId) throws Exception {
+		int result = strategyTestDatabaseClassificationQueryDao.deleteStrategyTestDatabaseClassification(strategyId);
+		return result;
+	}
 }

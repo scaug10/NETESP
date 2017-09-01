@@ -8,8 +8,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>修改分类信息</title>
-<link rel="stylesheet" type="text/css" href="../css/css.css" />
-<script type="text/javascript" src="../js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/css.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script type="text/javascript">
 	function check(oldname, categoryId) {
 		var name = document.getElementById("name").value;
@@ -65,7 +67,8 @@
 </script>
 
 <style type="text/css">
-.box {
+<
+style>.box {
 	margin-left: 60px;
 	width: 135px;
 	height: 40px;
@@ -74,6 +77,22 @@
 	color: #fff;
 	background-color: #47a4e1;
 }
+
+.select1 {
+	width: 242px;
+	height: 40px;
+	border: 1px solid #ccc;
+	text-indent: 15px;
+	margin-left: 6px;
+}
+
+.input3 {
+	width: 240px;
+	height: 40px;
+	border: 1px solid #ccc;
+	text-indent: 15px;
+	margin-left: 10px;
+}
 </style>
 </head>
 <body>
@@ -81,8 +100,9 @@
 		<!--导航栏-->
 		<div class="pageTop">
 			<div class="page">
-				<img src="../img/coin02.png" /><span><a href="../main.html">首页</a>&nbsp;-&nbsp;<a
-					href="KnowledgeClassificationManagement.html">知识库管理</a>&nbsp;-</span>&nbsp;修改分类信息
+				<img src="${pageContext.request.contextPath}/img/coin02.png" /><span><a
+					href="../main.html">首页</a>&nbsp;-&nbsp;<a
+					href="getAllRepositoryCategory">知识库管理</a>&nbsp;-</span>&nbsp;修改分类信息
 			</div>
 		</div>
 		<div class="page ">
@@ -101,7 +121,7 @@
 							name="name" value="${RC.name }" class="input3" />
 					</div>
 					<div class="bbD">
-						上级分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="parentId"
+						上级分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="parentId"
 							name="parentId" class="select1">
 							<%
 								@SuppressWarnings("unchecked")

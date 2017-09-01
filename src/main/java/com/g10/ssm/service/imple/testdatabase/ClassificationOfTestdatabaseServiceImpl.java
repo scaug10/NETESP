@@ -16,11 +16,11 @@ public class ClassificationOfTestdatabaseServiceImpl implements ClassificationOf
 	@Autowired
 	private ClassificationOfTestdatabaseMapper classificationOfTestdatabaseDao;
 	@Autowired
-	private ClassificationOfTestdatabaseQueryMapper ClassificationOfTestdatabaseQueryDao;
+	private ClassificationOfTestdatabaseQueryMapper classificationOfTestdatabaseQueryDao;
 
 	@Override
 	public List<ClassificationOfTestdatabase> selectAllClassification() throws Exception {
-		List<ClassificationOfTestdatabase> list = ClassificationOfTestdatabaseQueryDao.selectAllClassification();
+		List<ClassificationOfTestdatabase> list = classificationOfTestdatabaseQueryDao.selectAllClassification();
 		return list;
 	}
 
@@ -48,6 +48,13 @@ public class ClassificationOfTestdatabaseServiceImpl implements ClassificationOf
 	public ClassificationOfTestdatabase queryClassificationOfTestdatabaseById(Integer testDatabaseId) throws Exception {
 		ClassificationOfTestdatabase record = classificationOfTestdatabaseDao.selectByPrimaryKey(testDatabaseId);
 		return record;
+	}
+
+	@Override
+	public List<ClassificationOfTestdatabase> selectAllClassificationOfTestdatabase() throws Exception {
+		List<ClassificationOfTestdatabase> list = classificationOfTestdatabaseQueryDao
+				.selectAllClassificationOfTestDatabase();
+		return list;
 	}
 
 }

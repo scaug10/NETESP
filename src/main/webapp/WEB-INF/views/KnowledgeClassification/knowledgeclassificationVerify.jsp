@@ -5,8 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>添加分类信息</title>
-<link rel="stylesheet" type="text/css" href="../css/css.css" />
-<script type="text/javascript" src="../js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/css.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <style>
 .box {
 	margin-left: 60px;
@@ -17,6 +19,42 @@
 	color: #fff;
 	background-color: #47a4e1;
 }
+
+.btn_no {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	color: #333;
+	background-color: #fff;
+	border: 1px solid #3695cc;
+	margin-top: 10px;
+	margin-right: 25px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 150px;
+}
+
+.btn {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #3695cc;
+	color: #fff;
+	margin-top: 10px;
+	margin-right: 25px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 10px;
+	border: none;
+}
+
+label {
+	border: 0;
+}
 </style>
 </head>
 <body onload="showReviewType(); buttonDisplay();">
@@ -24,8 +62,9 @@
 		<!--导航栏-->
 		<div class="pageTop">
 			<div class="page">
-				<img src="../img/coin02.png" /><span><a href="../main.html">首页</a>&nbsp;-&nbsp;<a
-					href="KnowledgeClassificationManagement.html">知识分类管理</a>&nbsp;-</span>&nbsp;审核分类信息
+				<img src="${pageContext.request.contextPath}/img/coin02.png" /><span><a
+					href="../main.html">首页</a>&nbsp;-&nbsp;<a
+					href="getAllRepositoryCategory">知识分类管理</a>&nbsp;-</span>&nbsp;审核分类信息
 			</div>
 		</div>
 		<div class="page ">
@@ -37,21 +76,20 @@
 				<div class="baBody">
 					<div class="bbD">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label
-							for="" class="input3">${RC.categoryId }</label>
+							for="">${RC.categoryId }</label>
 					</div>
 					<div class="bbD">
-						分类名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="" class="input3">${RC.name }</label>
+						分类名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="">${RC.name }</label>
 					</div>
 					<div class="bbD">
-						上级分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="" class="input3">${RC.parentName }</label>
+						上级分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="">${RC.parentName }</label>
 					</div>
 					<div class="bbD">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;备注：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label
-							for="" class="input3">${RC.note }</label>
+							for="">${RC.note }</label>
 					</div>
 					<div class="bbD">
-						审核状态：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="reviewType"
-							class="input3 ">${RC.reviewType}</span>
+						审核状态：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id="reviewType" for="">${RC.reviewType}</label>
 					</div>
 
 					<div id="reviewMessage" class="bbD">
@@ -65,10 +103,8 @@
 					<div id="buttonId" class="bbD">
 						<!-- <button class="btn_ok btn_yes operation" onclick="pass()">审核通过</button>
 							<button class="btn_ok operation" onclick="noPass()">审核不通过</button>
-							<a class="btn_ok btn_no" href="KnowledgeClassificationCheck.html">返回</a> -->
-
+							 -->
 					</div>
-					<a class="btn_ok btn_no" href="getAllRepositoryCategory">返回</a>
 				</div>
 			</div>
 
@@ -183,12 +219,13 @@
 	function buttonDisplay() {
 		var reviewType = document.getElementById("getReviewType").value;
 		if (reviewType == 0) {
-			document.getElementById("buttonId").innerHTML = "<button class='btn_ok btn_yes operation' onclick='pass()'>审核通过</button><button class='btn_ok operation' onclick='noPass()'>审核不通过</button>";
+			document.getElementById("buttonId").innerHTML = "<button class='btn' onclick='pass()'>审核通过</button><button class='btn' onclick='noPass()'>审核不通过</button><br><a class='btn_no' href='getAllRepositoryCategory'>返回</a>";
 		} else if (reviewType == 2) {
-			document.getElementById("reviewMessage").innerHTML = "审核信息：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for='' class='input3 reviewType'>${RC.reviewMessage }</label>"
+			document.getElementById("reviewMessage").innerHTML = "审核信息：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for=''  reviewType'>${RC.reviewMessage }</label><br><a class='btn_no' href='getAllRepositoryCategory'>返回</a>"
 		} else {
-
+			document.getElementById("buttonId").innerHTML = "<a class='btn_no' href='getAllRepositoryCategory'>返回</a>"
 		}
+
 	}
 </script>
 </html>

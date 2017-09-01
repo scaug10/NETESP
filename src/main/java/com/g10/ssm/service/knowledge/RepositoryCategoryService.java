@@ -18,6 +18,8 @@ public interface RepositoryCategoryService {
 
 	public int deleteRepositoryCategoryByPrimaryKey(int categoryId) throws Exception;
 
+	public int deleteRepositoryCategory(Integer[] categoryId) throws Exception;
+
 	public RepositoryCategory queryRepositoryCategoryById(Integer categoryId) throws Exception;
 
 	public int checkName(String name) throws Exception;

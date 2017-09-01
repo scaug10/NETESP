@@ -16,4 +16,6 @@ public interface ClassificationOfTestdatabaseService {
 	public ClassificationOfTestdatabase queryClassificationOfTestdatabaseById(Integer testDatabaseId) throws Exception;
 
 	public List<ClassificationOfTestdatabase> selectAllClassification() throws Exception;
+
+	public List<ClassificationOfTestdatabase> selectAllClassificationOfTestdatabase() throws Exception;
 }

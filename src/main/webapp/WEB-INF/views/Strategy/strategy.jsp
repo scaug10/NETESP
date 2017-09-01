@@ -7,8 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>策略管理</title>
-<link rel="stylesheet" type="text/css" href="../css/css.css" />
-<script type="text/javascript" src="../js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/css.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <!-- <script type="text/javascript" src="js/page.js" ></script> -->
 <style>
 /*页码样式*/
@@ -154,8 +156,8 @@ select.seek {
 	<div id="pageAll">
 		<div class="pageTop">
 			<div class="page">
-				<img src="../img/coin02.png" /><span><a href="../main.html">首页</a>&nbsp;-&nbsp;</span><a
-					href="getAllStrategy">策略管理</a>
+				<img src="${pageContext.request.contextPath}/img/coin02.png" /><span><a
+					href="../main.html">首页</a>&nbsp;-&nbsp;</span><a href="getAllStrategy">策略管理</a>
 			</div>
 		</div>
 
@@ -212,7 +214,7 @@ select.seek {
 								<td class="status">${list.status }</td>
 								<td><a title="修改" href=javaScript:void(0)
 									onclick="modify('${list.strategyId }')"><img
-										src='../img/update.png'></a></td>
+										src='${pageContext.request.contextPath}/img/update.png'></a></td>
 							</tr>
 						</c:forEach>
 					</table>

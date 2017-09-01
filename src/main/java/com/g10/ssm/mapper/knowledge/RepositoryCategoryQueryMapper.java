@@ -14,4 +14,6 @@ public interface RepositoryCategoryQueryMapper {
 	RepositoryCategoryExt selectByName(String name);
 
 	RepositoryCategoryExt selectById(int categoryId);
+
+	int deleteRepositoryCategory(Integer[] categoryId);
 }

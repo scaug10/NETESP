@@ -5,10 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>知识信息预览</title>
-<link rel="stylesheet" type="text/css" href="../css/css.css" />
-<link rel="stylesheet" type="text/css" href="../css/comment.css" />
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/comment.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/css.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/comment.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/comment.js"></script>
 <style type="text/css">
 .box {
 	margin-left: 60px;
@@ -53,6 +57,24 @@
 hr {
 	color: #ccc;
 }
+
+.btn_no {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	color: #333;
+	background-color: #fff;
+	border: 1px solid #3695cc;
+	margin-top: 50px;
+	margin-left: 60px;
+	margin-right: 25px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 150px;
+	margin-right: 25px;
+}
 </style>
 </head>
 <body>
@@ -60,8 +82,8 @@ hr {
 		<!--导航栏-->
 		<div class="pageTop">
 			<div class="page">
-				<img src="../img/coin02.png" /><span><a href="../main.html">首页</a>&nbsp;-&nbsp;<a
-					href="KnowledgeManagement.html">知识管理</a>&nbsp;-</span>&nbsp;知识预览
+				<img src="${pageContext.request.contextPath}/img/coin02.png" /><span><a
+					href="../main.html">首页</a>&nbsp;-&nbsp;<a href="getAllKnowledge">知识管理</a>&nbsp;-</span>&nbsp;知识预览
 			</div>
 		</div>
 		<!--内容-->
@@ -71,18 +93,16 @@ hr {
 			</div>
 			<div class="baBody">
 				<div class="bbD">
-					&nbsp;&nbsp;&nbsp;知识ID：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for=""
-						class="input3">${Knowledge.knowledgeId }</label>
+					&nbsp;&nbsp;&nbsp;知识ID：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="">${Knowledge.knowledgeId }</label>
 				</div>
 				<div class="bbD">
-					&nbsp;&nbsp;&nbsp;创建人：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for=""
-						class="input3">${Knowledge.creator }</label>
+					&nbsp;&nbsp;&nbsp;创建人：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="">${Knowledge.creator }</label>
 				</div>
 				<div class="bbD">
-					知识名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="" class="input3">${Knowledge.name }</label>
+					知识名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="">${Knowledge.name }</label>
 				</div>
 				<div class="bbD">
-					知识分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="" class="input3">${Knowledge.categoryName }</label>
+					知识分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="">${Knowledge.categoryName }</label>
 				</div>
 				<div class="bbD">
 					<!--PDF文档预览-->
@@ -93,9 +113,10 @@ hr {
 					<!--视频预览-->
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
 						href="KnowledgeVideo.html" target="_self" class="linkStyle">视频</a>
-
 				</div>
-				<ul id="pn" width="100%">
+				<a class="btn_no" href="getAllKnowledge">返回</a>
+
+				<!-- 				<ul id="pn" width="100%">
 					<li class="list0" width="100%">
 						<div class="baTopNo">
 							<span>评论</span>
@@ -135,7 +156,7 @@ hr {
 							</div>
 						</div>
 					</li>
-				</ul>
+				</ul> -->
 			</div>
 		</div>
 	</div>

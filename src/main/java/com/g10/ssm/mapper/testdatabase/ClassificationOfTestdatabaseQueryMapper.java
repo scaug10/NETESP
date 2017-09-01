@@ -6,4 +6,6 @@ import com.g10.ssm.po.testdatabase.ClassificationOfTestdatabase;
 
 public interface ClassificationOfTestdatabaseQueryMapper {
 	List<ClassificationOfTestdatabase> selectAllClassification();
+
+	List<ClassificationOfTestdatabase> selectAllClassificationOfTestDatabase();
 }

@@ -83,4 +83,10 @@ public class RepositoryCategoryServiceImpl implements RepositoryCategoryService 
 		return list;
 	}
 
+	@Override
+	public int deleteRepositoryCategory(Integer[] categoryId) throws Exception {
+		int result = repositoryCategoryQueryDao.deleteRepositoryCategory(categoryId);
+		return result;
+	}
+
 }

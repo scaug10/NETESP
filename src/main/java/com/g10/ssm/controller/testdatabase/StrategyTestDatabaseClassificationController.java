@@ -26,6 +26,20 @@ public class StrategyTestDatabaseClassificationController {
 		return result;
 	}
 
+	@RequestMapping("/editStrategyTestDatabaseClassification")
+	@ResponseBody
+	public int editStrategyTestDatabaseClassification(int strategyId, Integer[] testDatabaseId) throws Exception {
+		int result = strategyTestDatabaseClassificationService.deleteStrategyTestDatabaseClassification(strategyId);
+		StrategyTestDatabaseClassificationKey strategyTestDatabaseClassification = new StrategyTestDatabaseClassificationKey();
+		strategyTestDatabaseClassification.setStrategyId(strategyId);
+		for (int i = 0; i < testDatabaseId.length; i++) {
+			strategyTestDatabaseClassification.setTestDatabaseId(testDatabaseId[i]);
+			result = strategyTestDatabaseClassificationService
+					.saveStrategyTestDatabaseClassification(strategyTestDatabaseClassification);
+		}
+		return result;
+	}
+
 	@RequestMapping("/deleteStrategyTestDatabaseClassification")
 	@ResponseBody
 	public int deleteStrategyTestDatabaseClassification(

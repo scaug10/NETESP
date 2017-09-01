@@ -12,6 +12,8 @@ public interface StrategyTestDatabaseClassificationService {
 	 * throws Exception;
 	 */
 
+	public int deleteStrategyTestDatabaseClassification(int strategyId) throws Exception;
+
 	public int saveStrategyTestDatabaseClassification(
 			StrategyTestDatabaseClassificationKey strategyTestDatabaseClassification) throws Exception;
 

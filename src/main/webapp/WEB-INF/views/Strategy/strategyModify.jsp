@@ -10,9 +10,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>修改策略</title>
-<link rel="stylesheet" type="text/css" href="../css/css.css" />
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/Strategy.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/css.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/Strategy.js"></script>
 <style>
 /*考试试题分类栏样式*/
 .white_content {
@@ -78,6 +81,56 @@ input {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
+
+.close {
+	padding-bottom: 5px;
+	background-color: lightgrey;
+}
+
+.delete {
+	height: 335px;
+}
+
+.table {
+	height: 300px;
+	overflow: auto;
+}
+
+#delP1 {
+	margin: 5px auto;
+	overflow: auto;
+}
+
+.ok1 {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #3695cc;
+	color: #fff;
+	margin-top: 10px;
+	margin-left: 25px;
+	margin-right: 25px;
+	font-size: 16px;
+	cursor: pointer;
+	margin-bottom: 10px;
+}
+
+input:disabled {
+	border: 1px solid #a9a9a9;
+	background-color: white;
+	color: #ACA899;
+	padding: 1px;
+}
+
+#classification {
+	margin: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
 </style>
 </head>
 <script>
@@ -85,6 +138,7 @@ input {
 		var message = "确认修改？";
 		if (confirm(message)) {
 			modifyStrategy(strategyId);
+			modifyStrategyTestDatabaseDesign(strategyId);
 			var testItemsDesignId = new Array(6);
 			for (var i = 0; i < 6; i++) {
 				testItemsDesignId[i] = document
@@ -201,6 +255,7 @@ input {
 		var strategyName = document.getElementById("strategyName").value;
 		var fullScore = document.getElementById("fullScore").value;
 		var passScore = document.getElementById("passScore").value;
+		var status = document.getElementById("strategyStatus").value
 		var strategyPurpose = document.getElementById("strategyPurpose").value;
 		var xhr = createXmlHttpRequest();
 		var url = "editStrategy";
@@ -208,8 +263,9 @@ input {
 		xhr.setRequestHeader('Content-Type',
 				'application/x-www-form-urlencoded');
 		xhr.send("strategyId=" + strategyId + "&strategyName=" + strategyName
-				+ "&fullScore=" + fullScore + "&passScore=" + passScore
-				+ "&strategyPurpose=" + strategyPurpose);
+				+ "&fullScore=" + fullScore + "&status=" + status
+				+ "&passScore=" + passScore + "&strategyPurpose="
+				+ strategyPurpose);
 		/*发送http body*/
 		xhr.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
@@ -217,6 +273,32 @@ input {
 					alert("策略修改成功！");
 				} else {
 					alert("策略修改失败！");
+				}
+			}
+		}
+	}
+
+	function modifyStrategyTestDatabaseDesign(strategyId) {
+		var checkboxArray = document.getElementsByClassName("checkbox");
+		var sendArray = new Array();
+		for (var i = 0; i < checkboxArray.length; i++) {
+			if (checkboxArray[i].checked) {
+				sendArray.push(checkboxArray[i].id);
+			}
+		}
+		var xhr = createXmlHttpRequest();
+		var url = "editStrategyTestDatabaseClassification";
+		xhr.open('post', url, true);
+		xhr.setRequestHeader('Content-Type',
+				'application/x-www-form-urlencoded');
+		xhr.send("strategyId=" + strategyId + "&testDatabaseId=" + sendArray);
+		/*发送http body*/
+		xhr.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				if (this.responseText == 1) {
+					alert("题库分类修改成功！");
+				} else {
+					alert("题库分类修改失败！");
 				}
 			}
 		}
@@ -260,10 +342,12 @@ input {
 
 	function show() {
 		document.getElementById("classification").hidden = false;
+		document.getElementById("pageAll").hidden = true;
 	}
 
 	function shut() {
 		document.getElementById("classification").hidden = true;
+		document.getElementById("pageAll").hidden = false;
 	}
 
 	function cancel() {
@@ -290,11 +374,13 @@ input {
 </script>
 <body onload="count(),totalscore(),fun()">
 	<div id="pageAll">
+
 		<!--导航栏-->
+
 		<div class="pageTop">
 			<div class="page">
-				<img src="../img/coin02.png" /><span><a href="../main.html">首页</a>&nbsp;-&nbsp;<a
-					href="getAllStrategy">策略管理</a>&nbsp;-</span>&nbsp;修改策略
+				<img src="${pageContext.request.contextPath}/img/coin02.png" /><span><a
+					href="../main.html">首页</a>&nbsp;-&nbsp;<a href="getAllStrategy">策略管理</a>&nbsp;-</span>&nbsp;修改策略
 			</div>
 		</div>
 		<div class="page ">
@@ -305,7 +391,7 @@ input {
 			<div class="bor div1">
 				<table>
 					<tr>
-						<td class="tdC" width="60px">策略名称：</td>
+						<td class="tdC" width="60px">策略名称</td>
 						<td colspan="8" width="1600px" class="tdC left"><input
 							type="text" class="StrategyInput" id="strategyName"
 							value="${Strategy.strategyName }"></td>
@@ -323,12 +409,26 @@ input {
 							value="${Strategy.passScore }"></td>
 					</tr>
 					<tr>
+						<td>策略状态</td>
+						<td colspan="8" class="left"><select id="strategyStatus"
+							class="StrategySelect">
+								<%
+									Strategy strategy = (Strategy) request.getAttribute("Strategy");
+									if (strategy.getStatus()) {
+										out.print("<option value='1' selected='selected'> " + "可用" + "</option>");
+										out.print("<option value='0'> " + "不可用" + "</option>");
+									} else {
+										out.print("<option value='1' > " + "可用" + "</option>");
+										out.print("<option value='0' selected='selected'> " + "不可用" + "</option>");
+									}
+								%>
+						</select></td>
+					</tr>
+					<tr>
 						<td>策略用途</td>
 						<td colspan="8" class="left"><select id="strategyPurpose"
 							class="StrategySelect">
 								<%
-									Strategy strategy = (Strategy) request.getAttribute("Strategy");
-
 									if (strategy.getPurpose().equals("正规考试")) {
 										out.print("<option value='正规考试' selected='selected'> " + "正规考试" + "</option>");
 										out.print("<option value='非正规考试'> " + "非正规考试" + "</option>");
@@ -980,45 +1080,47 @@ input {
 					class="btn_ok btn_no box1" href="getAllStrategy">返回</a>
 			</p>
 		</div>
-		<div class="banDel" id="classification" hidden>
-			<div class="delete">
-				<div class="close">
-					<a><img onclick="cancel()" src="../img/shanchu.png" /></a>
-				</div>
-				<div class="table">
-					<table id="delP1" width="95%">
-						<tr>
-							<td class="tdColor"><input type="checkbox" name="id"
-								onclick="changeState(this.checked)">全选</td>
-							<td class="tdColor">题目分类Id</td>
-							<td class="tdColor">题目分类名称</td>
-						</tr>
-						<%
-							@SuppressWarnings("unchecked")
-							List<ClassificationOfTestdatabase> cotlist = (List<ClassificationOfTestdatabase>) request
-									.getAttribute("cotlist");
-							ClassificationOfTestdatabase[] COTlist = (ClassificationOfTestdatabase[]) request.getAttribute("COTlist");
-							for (int j = 0; j < cotlist.size(); j++) {
-								out.print("<tr id='classification" + j + "'></tr>");
-								out.print("<td><input type='checkbox' name='classificationId' value='" + j + "'");
-								for (int k = 0; k < COTlist.length; k++) {
-									if (cotlist.get(j).getTestDatabaseId() == COTlist[k].getTestDatabaseId())
-										out.print("checked='checked'");
-								}
-								out.print("><td class='testDatabaseId'>" + cotlist.get(j).getTestDatabaseId() + "</td>"
-										+ "<td><input type='text' value='" + cotlist.get(j).getName() + "' id='td_" + j + "' hidden>"
-										+ cotlist.get(j).getName() + "</td>");
+
+	</div>
+	<div class="selectbox" id="classification">
+		<div class="delete">
+			<div class="close">
+				<a><img onclick="cancel()"
+					src="${pageContext.request.contextPath}/img/shanchu.png" /></a>
+			</div>
+			<div class="table">
+				<table id="delP1" width="95%">
+					<tr>
+						<td class="tdColor"><input type="checkbox" name="id"
+							onclick="changeState(this.checked)">全选</td>
+						<td class="tdColor">题目分类Id</td>
+						<td class="tdColor">题目分类名称</td>
+					</tr>
+					<%
+						@SuppressWarnings("unchecked")
+						List<ClassificationOfTestdatabase> cotlist = (List<ClassificationOfTestdatabase>) request
+								.getAttribute("cotlist");
+						ClassificationOfTestdatabase[] COTlist = (ClassificationOfTestdatabase[]) request.getAttribute("COTlist");
+						for (int j = 0; j < cotlist.size(); j++) {
+							out.print("<tr id='classification" + j + "'></tr>");
+							out.print("<td><input type='checkbox' class='checkbox' id='" + cotlist.get(j).getTestDatabaseId()
+									+ "' name='classificationId' value='" + j + "'");
+							for (int k = 0; k < COTlist.length; k++) {
+								if (cotlist.get(j).getTestDatabaseId() == COTlist[k].getTestDatabaseId())
+									out.print("checked='checked'");
 							}
-						%>
-					</table>
-					<p class="delP2">
-						<button class="ok1 yes" onclick="fun()">确定</button>
-						<a class="ok1 no" onclick="cancel()">取消</a>
-					</p>
-				</div>
+							out.print("><td class='testDatabaseId'>" + cotlist.get(j).getTestDatabaseId() + "</td>"
+									+ "<td><input type='text' value='" + cotlist.get(j).getName() + "' id='td_" + j + "' hidden>"
+									+ cotlist.get(j).getName() + "</td>");
+						}
+					%>
+				</table>
+				<p class="delP2">
+					<button class="ok1 yes" onclick="fun()">确定</button>
+					<a class="ok1 no" onclick="cancel()">取消</a>
+				</p>
 			</div>
 		</div>
-		<div></div>
 	</div>
 </body>
 </html>

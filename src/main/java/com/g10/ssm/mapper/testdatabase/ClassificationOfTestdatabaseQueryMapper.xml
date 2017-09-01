@@ -16,4 +16,10 @@
 		<include refid="Base_Column_List" />
 		from Classification_Of_TestDatabase
 	</select>
+	<select id="selectAllClassificationOfTestDatabase" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from Classification_Of_TestDatabase
+		where test_database_id !=1
+	</select>
 </mapper>

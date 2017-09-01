@@ -92,19 +92,25 @@ li {
 #modifycoursewarebox {
 	width: 400px;
 	height: 430px;
-	position: fixed;
+	position: fixed; 
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	background-color: lightgreen;
-	top: 20%;
-	left: 40%;
 }
 
 #createcoursewarebox {
 	width: 400px;
 	height: 400px;
-	position: fixed;
+	position: fixed; 
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	background-color: lightgreen;
-	top: 20%;
-	left: 40%;
 }
 
 #currentClassification {
@@ -180,19 +186,17 @@ button {
 					var htmlCode = "<tr><td></td><td><a href=\"javascript:void(0);\" onclick='getParentDirectory("
 							+ id + ")'>返回上一级目录</a></td></tr>";
 				}
-
 				for (var i = 0; i < number; i++) {
 					var subName = resultArray[i].classificationName;
 					var subId = resultArray[i].cwcfId;
 					var isParent = resultArray[i].parentId;
-
 					if (isParent) {
 						htmlCode += "<tr id=\"" + subId + "\">\n"
 								+ "<td><a class=\"showHideButton\" href='javascript:void(0)' onclick=\"getSubDirectory("
 								+ subId
 								+ ","
 								+ id
-								+ ")\"><img class=\"plus\" src='./IMG/plus.gif' alt='plus'></a></td>\n"
+								+ ")\"><img class=\"plus\" src='${pageContext.request.contextPath}/img/plus.gif' alt='plus'></a></td>\n"
 								+ "<td><a href=\"javascript:void(0)\" onclick=\"getCourseware("
 								+ subId + ",'" + subName + "')\">" + subName
 								+ "</a></td>\n" + "</tr>";
@@ -586,11 +590,10 @@ button {
 						if (this.responseText >= 1) {
 							alert("删除分类成功！");
 							getSubDirectory(this.responseText);
-							document.getElementsByClassName('content')[0].innerText = "";
+							document.getElementsByClassName("content")[0].innerHTML = "<div id='classificationCRUD'></div><div class='classificationname'><h1 id='contenttitle'></h1></div><table id='coursewaretable'></table>";
 						} else {
 							alert("删除分类失败！");
 						}
-
 					}
 				}
 			}
@@ -612,7 +615,7 @@ button {
 			<tr id="0">
 				<td><a class="showHideButton" href="javascript:void(0)"
 					onclick="getSubDirectory(1)"><img class="plus"
-						src="./IMG/plus.gif" alt="plus"></a></td>
+						src="${pageContext.request.contextPath}/img/plus.gif" alt="plus"></a></td>
 				<td><a href="javascript:void(0)"
 					onclick="getCourseware(1, '根目录')">根目录</a></td>
 			</tr>
@@ -622,132 +625,126 @@ button {
 	</div>
 
 	<div class="content">
-
 		<div id="classificationCRUD"></div>
-
 		<div class="classificationname">
 			<h1 id="contenttitle"></h1>
 		</div>
-
 		<table id="coursewaretable"></table>
+	</div>
 
-		<div id="createcoursewarebox" class="coursewarebox" hidden=hidden>
-			<table class="createcoursetable">
-				<tr>
-					<th colspan="2">课件信息</th>
-				</tr>
-				<tr>
-					<td style="width: 6em">课件名称：</td>
-					<td><input id="newCoursewareName" class="courseInput"><br></td>
-				</tr>
-				<tr>
-					<td>主讲人：</td>
-					<td><input id="newCoursewareSpeaker" class="courseInput"></td>
-				</tr>
-				<tr>
-					<td>主讲人概况：</td>
-					<td><input id="newCoursewareSpeakerInfo" class="courseInput"></td>
-				</tr>
-				<tr>
-					<td>课件时长：</td>
-					<td><input id="newCoursewareTime" class="courseInput"></td>
-				</tr>
-				<tr>
-					<td>推荐等级：</td>
-					<td><select id="newCoursewareCommendLevel" class="courseInput"
-						name="commendLevel" id="commendLevel">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td>课件描述：</td>
-					<td><input id="newCoursewareDescription" class="courseInput"></td>
-				</tr>
-				<tr>
-					<td>课件类型：</td>
-					<td><input id="newCoursewareType" class="courseInput"></td>
-				</tr>
-				<tr>
-					<td>课件地址：</td>
-					<td><input id="newCoursewareUrl" class="courseInput"></td>
-				</tr>
-				<tr>
-					<td>当前分类：</td>
-					<td id="currentClassification"></td>
-				</tr>
-			</table>
-			<div class="buttonBox" style="text-align: center; padding: 5px">
-				<button onclick="sendCreateCoursewareRequest()">确认</button>
-				<button onclick="closeCreateCourseware()">取消</button>
-			</div>
+	<div id="createcoursewarebox" class="coursewarebox" hidden>
+		<table class="createcoursetable">
+			<tr>
+				<th colspan="2">课件信息</th>
+			</tr>
+			<tr>
+				<td style="width: 6em">课件名称：</td>
+				<td><input id="newCoursewareName" class="courseInput"><br></td>
+			</tr>
+			<tr>
+				<td>主讲人：</td>
+				<td><input id="newCoursewareSpeaker" class="courseInput"></td>
+			</tr>
+			<tr>
+				<td>主讲人概况：</td>
+				<td><input id="newCoursewareSpeakerInfo" class="courseInput"></td>
+			</tr>
+			<tr>
+				<td>课件时长：</td>
+				<td><input id="newCoursewareTime" class="courseInput"></td>
+			</tr>
+			<tr>
+				<td>推荐等级：</td>
+				<td><select id="newCoursewareCommendLevel" class="courseInput"
+					name="commendLevel" id="commendLevel">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>课件描述：</td>
+				<td><input id="newCoursewareDescription" class="courseInput"></td>
+			</tr>
+			<tr>
+				<td>课件类型：</td>
+				<td><input id="newCoursewareType" class="courseInput"></td>
+			</tr>
+			<tr>
+				<td>课件地址：</td>
+				<td><input id="newCoursewareUrl" class="courseInput"></td>
+			</tr>
+			<tr>
+				<td>当前分类：</td>
+				<td id="currentClassification"></td>
+			</tr>
+		</table>
+		<div class="buttonBox" style="text-align: center; padding: 5px">
+			<button onclick="sendCreateCoursewareRequest()">确认</button>
+			<button onclick="closeCreateCourseware()">取消</button>
 		</div>
-		<div id="modifycoursewarebox" class="coursewarebox" hidden=hidden>
-			<table class="createcoursetable">
-				<tr>
-					<th colspan="2">课件信息</th>
-				</tr>
-				<tr>
-					<td style="width: 6em">课件ID：</td>
-					<td><input id="modifyCoursewareId" disabled
-						class="courseInput"><br></td>
-				</tr>
-				<tr>
-					<td>课件名称：</td>
-					<td><input id="modifyCoursewareName" class="courseInput"><br></td>
-				</tr>
-				<tr>
-					<td>主讲人：</td>
-					<td><input id="modifyCoursewareSpeaker" class="courseInput"></td>
-				</tr>
-				<tr>
-					<td>主讲人概况：</td>
-					<td><input id="modifyCoursewareSpeakerInfo"
-						class="courseInput"></td>
-				</tr>
-				<tr>
-					<td>课件时长：</td>
-					<td><input id="modifyCoursewareTime" class="courseInput"></td>
-				</tr>
-				<tr>
-					<td>推荐等级：</td>
-					<td><select id="modifyCoursewareCommendLevel"
-						class="courseInput" name="commendLevel">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td>课件描述：</td>
-					<td><input id="modifyCoursewareDescription"
-						class="courseInput"></td>
-				</tr>
-				<tr>
-					<td>课件类型：</td>
-					<td><input id="modifyCoursewareType" class="courseInput"></td>
-				</tr>
-				<tr>
-					<td>课件地址：</td>
-					<td><input id="modifyCoursewareUrl" class="courseInput"></td>
-				</tr>
-				<tr>
-					<td>课件分类：</td>
-					<td id="modifyCousewareClassification"><select
-						class="courseInput" name="cwcfId" id="cwcfid"></select></td>
-				</tr>
-			</table>
-			<div class="buttonBox" style="text-align: center; padding: 5px">
-				<button onclick="sendModifyCoursewareRequest()">修改</button>
-				<button onclick="closeModifyCourseware()">取消</button>
-			</div>
-		</div>
+	</div>
 
+	<div id="modifycoursewarebox" class="coursewarebox" hidden=hidden>
+		<table class="createcoursetable">
+			<tr>
+				<th colspan="2">课件信息</th>
+			</tr>
+			<tr>
+				<td style="width: 6em">课件ID：</td>
+				<td><input id="modifyCoursewareId" disabled class="courseInput"><br></td>
+			</tr>
+			<tr>
+				<td>课件名称：</td>
+				<td><input id="modifyCoursewareName" class="courseInput"><br></td>
+			</tr>
+			<tr>
+				<td>主讲人：</td>
+				<td><input id="modifyCoursewareSpeaker" class="courseInput"></td>
+			</tr>
+			<tr>
+				<td>主讲人概况：</td>
+				<td><input id="modifyCoursewareSpeakerInfo" class="courseInput"></td>
+			</tr>
+			<tr>
+				<td>课件时长：</td>
+				<td><input id="modifyCoursewareTime" class="courseInput"></td>
+			</tr>
+			<tr>
+				<td>推荐等级：</td>
+				<td><select id="modifyCoursewareCommendLevel"
+					class="courseInput" name="commendLevel">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>课件描述：</td>
+				<td><input id="modifyCoursewareDescription" class="courseInput"></td>
+			</tr>
+			<tr>
+				<td>课件类型：</td>
+				<td><input id="modifyCoursewareType" class="courseInput"></td>
+			</tr>
+			<tr>
+				<td>课件地址：</td>
+				<td><input id="modifyCoursewareUrl" class="courseInput"></td>
+			</tr>
+			<tr>
+				<td>课件分类：</td>
+				<td id="modifyCousewareClassification"><select
+					class="courseInput" name="cwcfId" id="cwcfid"></select></td>
+			</tr>
+		</table>
+		<div class="buttonBox" style="text-align: center; padding: 5px">
+			<button onclick="sendModifyCoursewareRequest()">修改</button>
+			<button onclick="closeModifyCourseware()">取消</button>
+		</div>
 	</div>
 
 </body>

@@ -8,8 +8,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>修改知识信息</title>
-<link rel="stylesheet" type="text/css" href="../css/css.css" />
-<script type="text/javascript" src="../js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/css.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <style>
 .box {
 	margin-left: 60px;
@@ -19,6 +21,14 @@
 	font-size: 16px;
 	color: #fff;
 	background-color: #47a4e1;
+}
+
+.select1 {
+	width: 242px;
+	height: 40px;
+	border: 1px solid #ccc;
+	text-indent: 15px;
+	margin-left: 6px;
 }
 
 #editor {
@@ -86,8 +96,9 @@
 		<!--导航栏-->
 		<div class="pageTop">
 			<div class="page">
-				<img src="../img/coin02.png" /><span><a href="../main.html">首页</a>&nbsp;-&nbsp;<a
-					href="KnowledgeManagement.html">知识管理</a>&nbsp;-</span>&nbsp;修改知识信息
+				<img src="${pageContext.request.contextPath}/img/coin02.png" /><span><a
+					href="../main.html">首页</a>&nbsp;-&nbsp;<a
+					href="getAllKnowledge">知识管理</a>&nbsp;-</span>&nbsp;修改知识信息
 			</div>
 		</div>
 		<div class="page ">
@@ -113,7 +124,7 @@
 							name="name" value="${Knowledge.name }" class="input3" />
 					</div>
 					<div class="bbD">
-						知识分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="categoryId"
+						知识分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="categoryId"
 							name="categoryId" class="select1">
 							<%
 								@SuppressWarnings("unchecked")
@@ -136,8 +147,9 @@
 						<!--百度编辑器配置-->
 						<script id="container" name="content" type="text/plain"></script>
 						<script type="text/javascript"
-							src="../js/utf8-jsp/ueditor.config.js"></script>
-						<script type="text/javascript" src="../js/utf8-jsp/ueditor.all.js"></script>
+							src="${pageContext.request.contextPath}/js/utf8-jsp/ueditor.config.js"></script>
+						<script type="text/javascript"
+							src="${pageContext.request.contextPath}/js/utf8-jsp/ueditor.all.js"></script>
 						<script type="text/javascript">
 							var ue = UE.getEditor('container', {
 								initialFrameWidth : [ 800 ],

@@ -9,9 +9,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>添加策略</title>
-<link rel="stylesheet" type="text/css" href="../css/css.css" />
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/Strategy.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}
+/css/css.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}
+/js/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}
+/js/Strategy.js"></script>
 
 <style type="text/css">
 /*考试试题分类栏样式*/
@@ -121,6 +127,15 @@ input:disabled {
 	color: #ACA899;
 	padding: 1px;
 }
+
+#classification {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0; margin; auto;
+	border: 1px grey solid;
+}
 </style>
 </head>
 <script>
@@ -171,35 +186,6 @@ input:disabled {
 		}
 
 		var examType = [ "单选题", "多选题", "判断题", "填空题", "计算题", "简答题" ];
-		/*for (var i = 0; i < 6; i++) {
-			 	if (i == 0) {
-					examType = "单选题";
-				} else if (i == 1) {
-					examType = "多选题";
-				} else if (i == 2) {
-					examType = "判断题";
-				} else if (i == 3) {
-					examType = "填空题";
-				} else if (i == 4) {
-					examType = "计算题";
-				} else if (i == 5) {
-					examType = "简答题";
-				} 
-			if (number[i].value > 0 && strategyId > 0) {
-				saveTestItemsDesign(strategyId, examType,
-						lowerlimitDifficultyId[i].value,
-						toplimitDifficultyId[i].value,
-						number[i].value, score[i].value,
-						order[i].value);
-			} else {
-				addStrategy(strategyName, createrId, fullScore,
-						passScore, strategyPurpose, examType,
-						lowerlimitDifficultyId[i].value,
-						toplimitDifficultyId[i].value,
-						number[i].value, score[i].value,
-						order[i].value);
-			}
-		}*/
 		var xhr = createXmlHttpRequest();
 		var url = "saveStrategy";
 		xhr.open('post', url, true);
@@ -223,54 +209,6 @@ input:disabled {
 			}
 		}
 	}
-	/* 
-	 function saveTestItemsDesign(strategyId, examType,
-	 lowerlimitDifficultyId, toplimitDifficultyId, number,
-	 score, itemsOrder) {
-	 var xhr = createXmlHttpRequest();
-	 var url = "saveTestItemsDesign";
-	 xhr.open('post', url, true);
-	 xhr.setRequestHeader('Content-Type',
-	 'application/x-www-form-urlencoded');
-	 xhr.send("strategyId=" + strategyId + "&examType="
-	 + examType + "&lowerlimitDifficultyId="
-	 + lowerlimitDifficultyId + "&toplimitDifficultyId="
-	 + toplimitDifficultyId + "&number=" + number
-	 + "&score=" + score + "&itemsOrder=" + itemsOrder);
-	 xhr.onreadystatechange = function() {
-	 if (this.readyState == 4 && this.status == 200) {
-	 if (this.responseText == 1) {
-	 alert(examType + "新增成功！");
-	 } else {
-	 alert(examType + "新增失败！");
-	 }
-	 }
-	 }
-	 }
-
-	 function addStrategy(strategyName, createrId, fullScore,
-	 passScore, strategyPurpose) {
-	 var xhr = createXmlHttpRequest();
-	 var url = "saveStrategy";
-	 xhr.open('post', url, true);
-	 xhr.setRequestHeader('Content-Type',
-	 'application/x-www-form-urlencoded');
-	 xhr.send("strategyName=" + strategyName + "&createrId="
-	 + createrId + "&fullScore=" + fullScore
-	 + "&passScore=" + passScore + "&strategyPurpose="
-	 + strategyPurpose);
-	 /*发送http body*/
-	/*	xhr.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				if (this.responseText == 1) {
-					alert("策略新增成功！");
-				} else {
-					alert("策略新增失败！");
-				}
-			}
-		}
-	} */
-
 	function createXmlHttpRequest() {
 		if (window.ActiveXObject) { //如果是IE浏览器
 			return new ActiveXObject("Microsoft.XMLHTTP");
@@ -342,8 +280,9 @@ input:disabled {
 		<!--导航栏-->
 		<div class="pageTop">
 			<div class="page">
-				<img src="../img/coin02.png" /><span><a href="../main.html">首页</a>&nbsp;-&nbsp;<a
-					href="StrategyManagement.html">策略管理</a>&nbsp;-</span>&nbsp;添加策略
+				<img src="${pageContext.request.contextPath}
+				/img/coin02.png" /><span><a
+					href="../main.html">首页</a>&nbsp;-&nbsp;<a href="getAllStrategy">策略管理</a>&nbsp;-</span>&nbsp;添加策略
 			</div>
 		</div>
 		<div class="page ">
@@ -648,41 +587,40 @@ input:disabled {
 					href="getAllStrategy">返回</a>
 			</p>
 		</div>
-		<div></div>
-
-		<div class="banDel" id="classification" hidden>
-			<div class="delete">
-				<div class="close">
-					<a><img onclick="cancel()" src="../img/shanchu.png" /></a>
-				</div>
-				<div class="table">
-					<table id="delP1" width="95%">
-						<tr>
-							<td class="tdColor"><input type="checkbox" name="id"
-								onclick="changeState(this.checked)">全选</td>
-							<td class="tdColor">题目分类Id</td>
-							<td class="tdColor">题目分类名称</td>
-						</tr>
-						<%
-							@SuppressWarnings("unchecked")
-							List<ClassificationOfTestdatabase> list = (List<ClassificationOfTestdatabase>) request.getAttribute("list");
-							for (int i = 0; i < list.size(); i++) {
-								out.print("<tr id='classification" + i + "'></tr>");
-								out.print("<td><input type='checkbox' name='classificationId' value='" + i + "'>");
-								out.print("<td class='testDatabaseId'>" + list.get(i).getTestDatabaseId() + "</td>"
-										+ "<td><input type='text' value='" + list.get(i).getName() + "' id='td_" + i + "' hidden>"
-										+ list.get(i).getName() + "</td>");
-							}
-						%>
-					</table>
-					<p class="delP2">
-						<button class="ok1 yes" onclick="fun()">确定</button>
-						<a class="ok1 no" onclick="cancel()">取消</a>
-					</p>
-				</div>
+	</div>
+	<div id="classification" hidden>
+		<div class="delete">
+			<div class="close">
+				<a><img onclick="cancel()"
+					src="${pageContext.request.contextPath}
+					/img/shanchu.png" /></a>
+			</div>
+			<div class="table">
+				<table id="delP1" width="95%">
+					<tr>
+						<td class="tdColor"><input type="checkbox" name="id"
+							onclick="changeState(this.checked)">全选</td>
+						<td class="tdColor">题目分类Id</td>
+						<td class="tdColor">题目分类名称</td>
+					</tr>
+					<%
+						@SuppressWarnings("unchecked")
+						List<ClassificationOfTestdatabase> list = (List<ClassificationOfTestdatabase>) request.getAttribute("list");
+						for (int i = 0; i < list.size(); i++) {
+							out.print("<tr id='classification" + i + "'></tr>");
+							out.print("<td><input type='checkbox' name='classificationId' value='" + i + "'>");
+							out.print("<td class='testDatabaseId'>" + list.get(i).getTestDatabaseId() + "</td>"
+									+ "<td><input type='text' value='" + list.get(i).getName() + "' id='td_" + i + "' hidden>"
+									+ list.get(i).getName() + "</td>");
+						}
+					%>
+				</table>
+				<p class="delP2">
+					<button class="ok1 yes" onclick="fun()">确定</button>
+					<a class="ok1 no" onclick="cancel()">取消</a>
+				</p>
 			</div>
 		</div>
-
 	</div>
 </body>
 </html>

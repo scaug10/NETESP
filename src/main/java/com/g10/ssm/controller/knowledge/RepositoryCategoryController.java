@@ -65,8 +65,8 @@ public class RepositoryCategoryController {
 
 	@RequestMapping("/deleteRepositoryCategory")
 	@ResponseBody
-	public int deleteRepositoryCategory(@Param("categoryId") int categoryId) throws Exception {
-		int result = repositoryCategoryService.deleteRepositoryCategoryByPrimaryKey(categoryId);
+	public int deleteRepositoryCategory(Integer[] categoryId) throws Exception {
+		int result = repositoryCategoryService.deleteRepositoryCategory(categoryId);
 		return result;
 	}
 
