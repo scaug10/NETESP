@@ -48,4 +48,20 @@ public class CoursewareClassificationServiceImpl implements CoursewareClassifica
 		return record;
 	}
 
+	@Override
+	public List<CoursewareClassification> getNode(int parentId) throws Exception {
+		List<CoursewareClassification> list = coursewareClassificationQueryDao.selectNode(parentId);
+		return list;
+	}
+
+	@Override
+	public int checkCoursewareClassification(String classificationName) throws Exception {
+		CoursewareClassification record = coursewareClassificationQueryDao.selectByName(classificationName);
+		if (record != null) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
 }

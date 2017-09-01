@@ -6,4 +6,10 @@ import com.g10.ssm.po.testdatabase.StrategyTestDatabaseClassificationKey;
 
 public interface StrategyTestDatabaseClassificationQueryMapper {
 	List<StrategyTestDatabaseClassificationKey> selectAllTestDatabaseClassification(int strategyId);
+
+	/*
+	 * int insertIntoStrategyTestDatabaseClassification(
+	 * StrategyTestDatabaseClassificationKey[]
+	 * strategyTestDatabaseClassificationKeys);
+	 */
 }

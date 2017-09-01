@@ -17,4 +17,19 @@
 		<include refid="Base_Column_List" />
 		from Courseware_classification
 	</select>
+	<select id="selectNode" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from Courseware_classification
+		where parent_id =
+		#{parentId,jdbcType=INTEGER}
+	</select>
+	<select id="selectByName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from Courseware_classification
+		where classification_name =
+		#{classificationName,jdbcType=VARCHAR}
+	</select>
 </mapper>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.g10.ssm.mapper.knowledge.RepositoryCategoryQueryMapper">
-	<resultMap id="BaseResultMap" type="com.g10.ssm.po.knowledge.RepositoryCategory">
+	<resultMap id="BaseResultMap"
+		type="com.g10.ssm.po.knowledge.RepositoryCategoryExt">
 		<id column="category_id" property="categoryId" jdbcType="INTEGER" />
 		<result column="creator" property="creator" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
@@ -18,9 +19,41 @@
 		review_type,
 		review_message
 	</sql>
+	<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from Repository_Category
+		where category_id =
+		#{categoryId,jdbcType=INTEGER}
+	</select>
+
 	<select id="selectAllRepositoryCategory" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from Repository_Category
+		where category_id > 1
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		category_id,name
+		from
+		Repository_Category
+	</select>
+
+	<select id="selectByName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from Repository_Category
+		where name = #{name,jdbcType=VARCHAR}
+	</select>
+	<select id="selectAllByName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from Repository_Category
+		where name like CONCAT('%',#{0},'%') and
+		category_id > 1
 	</select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.g10.ssm.controller.knowledge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -41,9 +42,27 @@ public class CoursewareController {
 
 	@RequestMapping("/deleteCourseware")
 	@ResponseBody
-	public int deleteCourseware(@Param("coursewareId") int coursewareId) throws Exception {
-		int result = coursewareService.deleteCoursewareByPrimaryKey(coursewareId);
+	public int deleteCourseware(@Param("coursewareId") Integer[] coursewareId) throws Exception {
+		ArrayList<Integer> coursewareArray = new ArrayList<>();
+		for (int i = 0; i < coursewareId.length; i++) {
+			coursewareArray.add(coursewareId[i]);
+		}
+		int result = coursewareService.deleteCourseware(coursewareArray);
 		return result;
+	}
+
+	@RequestMapping("/getCoursewareByName")
+	@ResponseBody
+	public List<Courseware> getCouresewareByName(@Param("coursewareName") String coursewareName) throws Exception {
+		List<Courseware> list = coursewareService.getCoursewareByName(coursewareName);
+		return list;
+	}
+
+	@RequestMapping("/getCoursewareByCategoryId")
+	@ResponseBody
+	public List<Courseware> getCouresewareByCategoryId(@Param("cwcfId") int cwcfId) throws Exception {
+		List<Courseware> list = coursewareService.getCoursewareByCategoryId(cwcfId);
+		return list;
 	}
 
 	@RequestMapping("/getAllCourseware")

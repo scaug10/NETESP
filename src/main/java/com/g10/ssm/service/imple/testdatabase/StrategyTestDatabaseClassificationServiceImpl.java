@@ -39,5 +39,4 @@ public class StrategyTestDatabaseClassificationServiceImpl implements StrategyTe
 				.selectAllTestDatabaseClassification(strategyId);
 		return list;
 	}
-
 }

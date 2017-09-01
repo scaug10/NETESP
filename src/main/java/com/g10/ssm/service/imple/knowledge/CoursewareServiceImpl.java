@@ -1,5 +1,6 @@
 package com.g10.ssm.service.imple.knowledge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,24 @@ public class CoursewareServiceImpl implements CoursewareService {
 	public Courseware queryCoursewareById(Integer coursewareId) throws Exception {
 		Courseware record = coursewareDao.selectByPrimaryKey(coursewareId);
 		return record;
+	}
+
+	@Override
+	public List<Courseware> getCoursewareByCategoryId(int cwcfId) throws Exception {
+		List<Courseware> list = coursewareQueryDao.selectByCategoryId(cwcfId);
+		return list;
+	}
+
+	@Override
+	public List<Courseware> getCoursewareByName(String coursewareName) throws Exception {
+		List<Courseware> list = coursewareQueryDao.selectByName(coursewareName);
+		return list;
+	}
+
+	@Override
+	public int deleteCourseware(ArrayList<Integer> list) throws Exception {
+		int result = coursewareQueryDao.deleteCourseware(list);
+		return result;
 	}
 
 }

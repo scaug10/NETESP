@@ -22,4 +22,8 @@
 		<include refid="Base_Column_List" />
 		from Test_Items_Design
 	</select>
+	<select id="selectId" resultType="java.lang.Integer">
+		select
+		max(test_items_design_id) from Test_Items_Design
+	</select>
 </mapper>

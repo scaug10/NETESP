@@ -14,5 +14,13 @@ public interface StrategyService {
 
 	public int deleteStrategyByPrimaryKey(int strategyId) throws Exception;
 
+	public int deleteStrategy(Integer[] strategyId) throws Exception;
+
 	public Strategy queryStrategyById(Integer strategyId) throws Exception;
+
+	public int selectStrategyId() throws Exception;
+
+	public List<Strategy> queryStrategyByName(String strategyName) throws Exception;
+
+	public List<Strategy> queryStrategyByNameAndStatus(String strategyName, int status) throws Exception;
 }

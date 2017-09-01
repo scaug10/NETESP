@@ -5,7 +5,7 @@ import java.util.List;
 import com.g10.ssm.po.testdatabase.UserQuestionAnswer;
 
 public interface UserQuestionAnswerService {
-	public List<UserQuestionAnswer> queryUserQuestionAnswer() throws Exception;
+	public List<UserQuestionAnswer> queryUserQuestionAnswer(String userName) throws Exception;
 
 	public int updateUserQuestionAnswer(UserQuestionAnswer userQuestionAnswer) throws Exception;
 

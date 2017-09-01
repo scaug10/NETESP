@@ -22,4 +22,35 @@
 		<include refid="Base_Column_List" />
 		from Strategy
 	</select>
+
+	<select id="selectStrategyByName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from Strategy
+		where strategy_name like CONCAT('%',#{0},'%')
+	</select>
+
+	<select id="selectStrategyByNameAndStatus" resultMap="BaseResultMap"
+		parameterType="com.g10.ssm.po.testdatabase.Strategy">
+		select
+		<include refid="Base_Column_List" />
+		from Strategy
+		where strategy_name like CONCAT('%',#{0},'%')
+		and status =
+		#{1}
+	</select>
+	<select id="selectId" resultType="java.lang.Integer">
+		select
+		max(strategy_id)
+		from
+		Strategy
+	</select>
+	<delete id="deleteStrategy" parameterType="java.util.ArrayList">
+		delete from Strategy where strategy_id in
+		<foreach item="strategyId" collection="array" open="("
+			separator="," close=")">
+			#{strategyId,jdbcType=INTEGER}
+		</foreach>
+	</delete>
 </mapper>

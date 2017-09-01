@@ -14,4 +14,6 @@ public interface TestItemsDesignService {
 	public int deleteTestItemsDesignByPrimaryKey(int testItemsDesignId) throws Exception;
 
 	public TestItemsDesign queryTestItemsDesignById(Integer testItemsDesignId) throws Exception;
+	
+	public int selectId()throws Exception;
 }
