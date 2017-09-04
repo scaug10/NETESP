@@ -16,29 +16,35 @@
 	</resultMap>
 
 	<sql id="query_theme_where">
-		<if test="themeCustom!=null">
-			<if test="topicId!=null">
-				and topicId = #{topicId}
-			</if>
-			<if test="creator!=null">
-				and creator = #{creator}
-			</if>
-			<if test="topicName!=null">
-				and topicName = #{topicName}
-			</if>
-			<if test="createTime!=null">
-				and createTime = #{createTime}
-			</if>
+		<if test="topicId!=null">
+			and topic_id = #{topicId}
+		</if>
+		<if test="creator!=null">
+			and creator = #{creator}
+		</if>
+		<if test="topicName!=null">
+			and topic_name = #{topicName}
+		</if>
+		<if test="createTime!=null">
+			and create_time = #{createTime}
+		</if>
+		<if test="isTop!=null">
+			and is_top = #{isTop}
 		</if>
 	</sql>
 
 	<select id="selectByTheme" parameterType="com.g10.ssm.po.forum.ThemeCustom"
 		resultMap="BaseResultMap">
-		select theme.* from Theme
+		select * from Theme
 		<where>
 			<include refid="query_theme_where" />
 		</where>
 	</select>
+	
+<!-- 	<select id="selectThemesByTheme" parameterType="com.g10.ssm.po.forum.ThemeCustom" -->
+<!-- 		resultMap="BaseResultMap"> -->
+<!-- 		select theme		 -->
+<!-- 	</select> -->
 	
 	<select id="selectByTopicName" parameterType="java.lang.String"
 		resultMap="BaseResultMap">

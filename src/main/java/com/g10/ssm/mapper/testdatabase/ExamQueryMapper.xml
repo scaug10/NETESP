@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.g10.ssm.mapper.testdatabase.ExamQueryMapper">
-	<resultMap id="BaseResultMap" type="com.g10.ssm.po.testdatabase.Exam">
-		<id column="exam_id" property="examId" jdbcType="INTEGER" />
-		<result column="name" property="name" jdbcType="VARCHAR" />
-	</resultMap>
+	<resultMap id="BaseResultMap" type="com.g10.ssm.po.testdatabase.Exam" >
+	    <id column="exam_id" property="examId" jdbcType="INTEGER" />
+	    <result column="strategy_id" property="strategyId" jdbcType="INTEGER" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+  	</resultMap>
 	<sql id="Base_Column_List">
 		exam_id, name
 	</sql>
@@ -35,5 +36,11 @@
 		<include refid="Base_Column_List" />
 		from Exam
 		where name = #{name,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="selectExamByExam" parameterType="com.g10.ssm.po.testdatabase.Exam"
+		resultMap="BaseResultMap">
+		select * from Exam
+		where name=#{name} and strategy_id = #{strategyId}
 	</select>
 </mapper>

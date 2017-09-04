@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>审核知识</title>
+    <link rel="stylesheet" type="text/css" href="../css/css.css"/>
+    <style type="text/css">
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        a > img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .left {
+            display: inline-block;
+            background-color: #bfa;
+            height: 100%;
+            width: 20%;
+            float: left;
+        }
+
+        .right {
+            display: inline-block;
+            height: 100%;
+            width: 80%;
+            float: right;
+        }
+
+        .content {
+            margin-top: 30px;
+            display: block;
+            width: 100%;
+        }
+
+        .content > table {
+            margin: 5px 2%;
+            border-collapse: collapse;
+            width: 96%;
+        }
+
+        .content td {
+            border: 1px grey solid;
+        }
+
+        /*页码样式*/
+        .pageButton {
+            margin: 10px 5px;
+            padding: 5px;
+            float: right;
+            border: 1px solid lightgrey;
+            display: inline-block;
+        }
+
+        /*页码超链接样式*/
+        .pageButton > a {
+            padding: 0px;
+            display: inline-block;
+        }
+
+        /*页码输入框*/
+        .inputPage {
+            height: 15px;
+            width: 20px;
+        }
+
+        /*超链接样式*/
+        .pageButton > a:visited {
+            color: black;
+        }
+
+        /*超链接字体颜色*/
+        .pageButton > a {
+            color: black;
+        }
+
+        /*解决高度塌陷*/
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+            margin-bottom: 10px;
+        }
+
+        /*增加的按钮样式*/
+        .button1 {
+            margin-left: 10px;
+            width: 135px;
+            height: 40px;
+            border: none;
+            font-size: 16px;
+            color: #fff;
+            background-color: #47a4e1;
+        }
+
+        .button2 {
+            margin-left: 25px;
+            width: 135px;
+            height: 40px;
+            border: none;
+            font-size: 16px;
+            color: #fff;
+            background-color: #47a4e1;
+        }
+
+        .button3 {
+            margin-left: 10px;
+            width: 50px;
+            height: 25px;
+            border: none;
+            font-size: 16px;
+            color: #fff;
+            background-color: #47a4e1;
+        }
+    </style>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="pageAll">
+    <!--导航栏-->
+    <div class="pageTop">
+        <div class="page">
+            <img src="../img/coin02.png"/><span><a href="../main.html">首页</a>&nbsp;-&nbsp;<a
+                href="QuestionBankManagement.html">题库管理</a>&nbsp;-</span>&nbsp;审核试题信息
+        </div>
+    </div>
+
+    <div class="content">
+        <table id="table">
+            <tr class="title" width="100%">
+                <td width="10%" class="tdColor">ID</td>
+                <td width="40%" class="tdColor">试题描述</td>
+                <td width="10%" class="tdColor">类型</td>
+                <td width="10%" class="tdColor">难度</td>
+                <td width="10%" class="tdColor">状态</td>
+                <td width="20%" class="tdColor">操作</td>
+            </tr>
+            <script type="text/javascript">
+                for (var i = 0; i < 20; i++) {
+                    var id = i + 1;
+                    var describe = "怎样正确验电？";
+                    var subjectType = "简答题";
+                    var difficulty = "5";
+                    var condition = "未审核";
+                    var table = document.getElementById("table");
+                    table.innerHTML +=
+                        "<tr height=\"40px\">\n" +
+                        "<td>" + id + "</td>\n" +
+                        "<td>" + describe + "</td>\n" +
+                        "<td>" + subjectType + "</td>\n" +
+                        "<td>" + difficulty + "</td>\n" +
+                        "<td>" + condition + "</td>\n" +
+                        "<td>" + "<button class='button3' onclick=\"javascrtpt:window.location.href='QuestionCheckMore.html'\">审核</button>" + "</td>" +
+                        "</tr>\n";
+                }
+            </script>
+        </table>
+    </div>
+</div>
+
+
+<!-- 删除弹出框 -->
+<div class="banDel">
+    <div class="delete">
+        <div class="close">
+            <a><img src="../img/shanchu.png"/></a>
+        </div>
+        <p class="delP1">你确定要删除此条记录吗？</p>
+        <p class="delP2">
+            <a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
+        </p>
+    </div>
+</div>
+<!-- 删除弹出框  end-->
+</body>
+
+<script type="text/javascript">
+    // 广告弹出框
+    $(".delban").click(function () {
+        $(".banDel").show();
+    });
+    $(".close").click(function () {
+        $(".banDel").hide();
+    });
+    $(".no").click(function () {
+        $(".banDel").hide();
+    });
+    // 广告弹出框 end
+</script>
+</html>

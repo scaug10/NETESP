@@ -19,4 +19,11 @@
 		where strategy_id
 		=#{strategyId,jdbcType=INTEGER}
 	</select>
+	
+	<select id="selectIdByStrategyId" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		select test_items_design_id from Strategy_Question_Types
+		where strategy_id = #{value}
+	</select>
+	
 </mapper>

@@ -48,4 +48,22 @@ public class SubjectServiceImpl implements SubjectService {
 		return record;
 	}
 
+	@Override
+	public Integer selectLastSubjectId(String content) throws Exception {
+		if(content != null){
+			Integer id = subjectQueryDao.selectLastInsertId(content);
+			return id;
+		}
+		return null;
+	}
+
+//	@Override
+//	public List<Subject> selectSubjectBySelective(Subject subject)
+//			throws Exception {
+//		if(subject != null){
+//			
+//		}
+//		return null;
+//	}
+
 }

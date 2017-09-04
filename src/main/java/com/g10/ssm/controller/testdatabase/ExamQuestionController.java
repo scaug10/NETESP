@@ -24,12 +24,12 @@ public class ExamQuestionController {
 		return modelAndView;
 	}
 
-	@RequestMapping("/saveExamQuestion")
-	@ResponseBody
-	public int saveExamQuestion(ExamQuestionKey examQuestion) throws Exception {
-		int result = examQuestionService.saveExamQuestion(examQuestion);
-		return result;
-	}
+//	@RequestMapping("/saveExamQuestion")
+//	@ResponseBody
+//	public int saveExamQuestion(ExamQuestionKey examQuestion) throws Exception {
+//		int result = examQuestionService.saveExamQuestion(examQuestion);
+//		return result;
+//	}
 
 	@RequestMapping("/deleteExamQuestion")
 	@ResponseBody

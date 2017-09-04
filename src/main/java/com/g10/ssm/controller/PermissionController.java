@@ -62,17 +62,7 @@ public class PermissionController {
 			//@RequestParam(value="userId",required=true)String userId,
 			HttpServletRequest request) throws Exception{
 		ModelAndView modelAndView=new ModelAndView();
-/*		UserPermissionCustom userPermissionCustom=new UserPermissionCustom();
-		ArrayList<UserPerssionKey> userPermissionList=new ArrayList<UserPerssionKey>();
-		UserPerssionKey userPerssionKey=new UserPerssionKey();
-		userPerssionKey.setPermissionId(3);
-		userPerssionKey.setUserName("1234567");
-		userPermissionList.add(userPerssionKey);
-		UserPerssionKey userPerssionKey1=new UserPerssionKey();
-		userPerssionKey1.setPermissionId(2);
-		userPerssionKey1.setUserName("98765");
-		userPermissionList.add(userPerssionKey1);
-		userPermissionCustom.setUserPermissionList(userPermissionList);*/
+
 		if(userPermissionCustom.getUserPermissionList()==null){
 			modelAndView.addObject("result", 3);//没有要删除的数据
 			modelAndView.setViewName("deletePermission");

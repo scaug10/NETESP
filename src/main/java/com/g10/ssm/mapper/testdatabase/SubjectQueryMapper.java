@@ -6,4 +6,7 @@ import com.g10.ssm.po.testdatabase.Subject;
 
 public interface SubjectQueryMapper {
 	List<Subject> selectAllSubject();
+	
+	public Integer selectLastInsertId(String content);
+	
 }

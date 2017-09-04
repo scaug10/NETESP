@@ -47,4 +47,15 @@ public class ExamQuestionServiceImpl implements ExamQuestionService {
 		return list;
 	}
 
+	@Override
+	public List<Integer> selectSubjectIdByExamId(Integer examId)
+			throws Exception {
+		if(examId != null && examId != 0){
+			List<Integer> ids = null;
+			ids = examQuestionQueryDao.selectSubjectsIdByExamId(examId);
+			return ids;
+		}
+		return null;
+	}
+
 }

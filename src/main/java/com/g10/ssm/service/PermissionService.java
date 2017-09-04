@@ -1,6 +1,5 @@
 package com.g10.ssm.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.g10.ssm.po.Permission;
@@ -16,7 +15,7 @@ public interface PermissionService {
 	/**
 	 * 通过账号查询用户所有权限列表
 	 */
-	public ArrayList<Permission> searchUserPermissionList(String userName)throws Exception;
+	public List<Permission> searchUserPermissionList(String userName)throws Exception;
 	/**
 	 * 新增权限（admin）
 	 */
@@ -43,7 +42,7 @@ public interface PermissionService {
 	public List<Permission> searchPermissionByName(String name)throws Exception;
 	/**
 	 * 删除单个权限（首先要删除用户权限关系表（从表）然后再删除权限表（主表），只要在数据库设置级联操作
-	 * （从表外键字段设置delete的cascade）即可，所以这里只用删除权限表（主表）即可）* 删除单个权限（首先要删除用户权限关系表然后再删除权限表）
+	 * （从表外键字段设置delete的cascade）即可，所以这里只用删除权限表（主表）即可）
 	 */
 	public Integer deleteOnePermission(Integer permissionId)throws Exception;
 	/**
@@ -52,7 +51,7 @@ public interface PermissionService {
 	public List<Permission> searchPermissionList()throws Exception;
 	/**
 	 * 删除多个权限（首先要删除用户权限关系表（从表）然后再删除权限表（主表），只要在数据库设置级联操作
-	 * （从表外键字段设置delete的cascade）即可，所以这里只用删除权限表（主表）即可）* 删除单个权限（首先要删除用户权限关系表然后再删除权限表）
+	 * （从表外键字段设置delete的cascade）即可，所以这里只用删除权限表（主表）即可）
 	 */
 	public Integer deleteManyPermission(List<Integer> list)throws Exception;
 }

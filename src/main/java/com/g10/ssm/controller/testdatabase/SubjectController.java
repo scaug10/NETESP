@@ -9,13 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.g10.ssm.po.testdatabase.ChoiceQuestion;
 import com.g10.ssm.po.testdatabase.Subject;
+import com.g10.ssm.service.testdatabase.ChoiceQuestionService;
 import com.g10.ssm.service.testdatabase.SubjectService;
 
 @Controller
+@RequestMapping("/subject")
 public class SubjectController {
 	@Autowired
 	private SubjectService subjectService;
+	
+	@Autowired
+	private ChoiceQuestionService choiceService;
 
 	@RequestMapping("/querySubject")
 	public ModelAndView querySubject(@Param("subjectId") int subjectId, ModelAndView modelAndView) throws Exception {
@@ -24,10 +30,19 @@ public class SubjectController {
 		return modelAndView;
 	}
 
-	@RequestMapping("/saveSubject")
+	@RequestMapping("/save")
 	@ResponseBody
-	public int saveSubject(Subject subject) throws Exception {
+	public int saveSubject(Subject subject, ChoiceQuestion choice) throws Exception {
+		subject.setSubjectPattern("文字");
+		subject.setTestDatabaseId(new Long(2));
 		int result = subjectService.saveSubject(subject);
+		if(result == 1){
+			Integer id = subjectService.selectLastSubjectId(subject.getContent());
+			if(id != null && id != 0){
+				choice.setId(id);
+				result = choiceService.saveChoiceQuestionBySubjectId(choice);
+			}
+		}
 		return result;
 	}
 
@@ -51,4 +66,10 @@ public class SubjectController {
 		modelAndView.addObject("list", list);
 		return modelAndView;
 	}
+	
+	@RequestMapping("/add")
+	public String addSubjectPage(){
+		return "questionBank/QuestionAdd";
+	}
+
 }

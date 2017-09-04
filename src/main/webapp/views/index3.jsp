@@ -9,8 +9,9 @@
 		<title>应急化教育与培训平台</title>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/popup.css"/>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/index.jsp.js"></script>
 	</head>
-	<body>
+	<body onload="getHotTheme();getPublicNotice()">
 		<!--header start-->
 		<div class="header_wrap">
 			<div class="header">
@@ -31,111 +32,65 @@
 								if(username != null){
 									out.print("欢迎： " + username);
 									out.println("<div class=\"user_handle\">\n" + 
-												"<a href=\"personal.html\">个人中心</a>\n"+
+												"<a href=\""+request.getContextPath()+"/password/reset\">修改密码</a>\n"+
 												"<a href=\"ownTopic.html\">我的学习任务</a>\n"+
 												"<a href=\""+ request.getContextPath() +"/login/exitSys\">退出</a>\n"+
 												"</div>"
 											);
 								}
 							%>
-							</a>
-<!-- 							<div class="user_handle"> -->
-<!-- 								<a href="personal.html">个人中心</a> -->
-<!-- 								<a href="ownTopic.html">我的学习任务</a> -->
-<%-- 								<a href="${pageContext.request.contextPath }/login/exitSys">退出</a> --%>
-<!-- 							</div> -->
 						</li>
 					</ul>
 					<div class="clear"></div>
 				</span>
 				<div class="clear"></div>
 			</div>
-			<!--<div id="gray"></div>				
-			<div class="popup" id="popup">				
-				<div class="top_nav" id='top_nav'>
-					<div align="center">
-						<i></i>
-						<span>登录账号</span>
-						<a class="guanbi"></a>
-					</div>
-				</div>					
-				<div class="min">					
-					<div class="tc_login">											
-						<div class="login_register">
-							<form method="POST" name="form_login" target="_top">
-								<div align="center">
-									<span class="error">错误提示</span>
-									<i class="icon-mobile-phone"></i>
-									<input type="text" name="name" id="name" required="required" placeholder="用户名" autocomplete="off" class="input_yh">
-									<input type="password" name="pass" id="pass" required="required" placeholder="密码" autocomplete="off" class="input_mm">
-								</div>
-								<dd>
-									<div class="user">
-										<input type="checkbox" name="user" id="user" value="记住用户" class="r_user" />记住用户
-										<a href="password.html" target="_blank">忘记密码？</a>
-									</div>
-								</dd>
-								<div align="center">
-									<input type="submit" class="button" title="Sign In" value="登录">
-								</div>
-								<dd>
-									<div align="center"><a href="register.html" target="_blank">立即注册！</a></div>
-								</dd>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>-->
 		</div>
+		
 		<!--nav start-->
 		<div class="nav_menu">
-			<a href="index.html" class="logo fl"><img src="images/logo.png" /></a>
+			<a href="index.html" class="logo fl">
+				<img src="${pageContext.request.contextPath }/img/index/logo.jpg" /></a>
 			<div class="nav_list fr">
 				<ul id="nav" class="nav clearfix">
 					<li class="nLi"></li>
 					<li class="nLi">
-						<h3><a href="about.html">中心概况</a></h3>
+						<h3><a href="${pageContext.request.contextPath }/summary">中心概况</a></h3>
 					</li>
-					<!--<li class="nLi">
-						<h3><a href="news.html">新闻热点</a></h3>
-						<ul class="sub">
-							<li><a href="news.html">教育新闻</a></li>
-							<li><a href="news.html">工作动态</a></li>
-						</ul>
-					</li>
-					<li class="nLi">
-						<h3><a href="topic.html"></a></h3>
-					</li>-->
 					<li class="nLi">
 						<h3><a href="${pageContext.request.contextPath }/forum/index">论坛交流</a></h3>
-<!-- 						<ul class="sub"> -->
-<!-- 							<li><a href="course.html">课改介绍</a></li> -->
-<!-- 							<li><a href="course1.html">改革课程</a></li> -->
-<!-- 						</ul> -->
 					</li>
 					<li class="nLi">
 						<h3><a href="${pageContext.request.contextPath}/notice/jumpPublicNoticePage">公告通知</a></h3>
 						<ul class="sub">
 							<li><a href="${pageContext.request.contextPath}/notice/jumpPersonalNoticePage">公告通知</a></li>
-							<li><a href="${pageContext.request.contextPath}/notice/jumpPersonalNoticePage">个人通知</a></li>
-<!-- 							<li><a href="notice/Notice3.html">学习制度</a></li> -->
+							<%
+								if(username != null){
+									out.println("<li><a href=\"" + request.getContextPath() + "/notice/jumpPersonalNoticePage\">个人通知</a></li>");
+								}
+							%>
 						</ul>
 					</li>
 					<li class="nLi">
-						<h3><a href="teachers.html">在线知识</a></h3>
+						<h3><a href="${pageContext.request.contextPath}/getAllRepositoryCategory"">知识库</a></h3>
 						<ul class="sub">
-							<li><a href="teachers.html">名师资源</a></li>
-							<li><a href="teachers.html">名师推荐</a></li>
-							<li><a href="teachers1.html">名师介绍</a></li>
+							<li><a href="${pageContext.request.contextPath}/getAllKnowledge">知识管理</a></li>
+							<li><a href="${pageContext.request.contextPath}/getAllRepositoryCategory">知识库分类</a></li>
+							<li><a href="${pageContext.request.contextPath}/questionbank">知识库</a></li>
 						</ul>
 					</li>
 					<li class="nLi">
 						<h3><a href="schoolmate.html">在线练习</a></h3>
+						<ul class="sub">
+							<li><a href="${pageContext.request.contextPath}/getAllStrategy">策略管理</a></li>
+							<li><a href="${pageContext.request.contextPath}/getAllExam">练习</a>
+						</ul>
 					</li>
 					<li class="nLi">
 						<h3><a href="exam.html">应急学习</a></h3>
 						<ul class="sub">
 							<li><a href="exam.html">考试安排</a></li>
+							<li><a href="${pageContext.request.contextPath}/jumpToCourseware">课件</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -166,7 +121,7 @@
 						<li><span class="date">[2016-05-05]</span><a href="nDetail.html">通知公告名称通知公告名称，通知公告名称通知公告名称通知公告，名称通知公告名名称通知公告名...</a></li>
 					</ul>
 				</div>
-				<a href="notice.html" class="more fr">更多+</a>
+				<a href="${pageContext.request.contextPath}/notice/jumpSearchNoticePage" class="more fr">更多+</a>
 				<div class="clear"></div>
 			</div>
 		</div>
@@ -178,11 +133,11 @@
 					<div class="about">
 						<div class="b_title">
 							<h3>中心概况</h3>
-							<a href="about.html" class="more">更多+</a>
+							<a href="${pageContext.request.contextPath }/summary" class="more">更多+</a>
 						</div>
 						<div class="b_wrap">
 							<div class="a_img fl">
-								<img src="images/about.jpg" />
+								<img src="${pageContext.request.contextPath }/img/index/summary.jpg" />
 							</div>
 							<div class="a_text fl">
 								<p>基础教育语文研究中心基础，教育语文研究中心基础教育语文，研究中心基础教育语文研究中心基础教育语文研究中心。基础教育语文研究中心基础，教育语文研究中心基础教育语文，研究中心基础教育语文研究中心基础教育语文研究中心。基础教育语文研究中心基础，教育语文研究中心基础教育语文，研究中心基础教育语文研究中心基础教育语文研究中心。</p>
@@ -194,32 +149,19 @@
 					<div class="news">
 						<div class="b_title">
 							<h3>公告通知</h3>
-							<a href="news.html" class="more">更多+</a>
+							<a href="${pageContext.request.contextPath}/notice/jumpSearchNoticePage" class="more">更多+</a>
 						</div>
 						<div class="b_wrap">
 							<div class="fl n_list">
 								<h4>系统通告</h4>
-								<ul>
-									<li class="special">
-										<div class="n_img">
-											<img src="images/n1.jpg" />
-										</div>
-										<div class="n_text">
-											<b>新闻标题新闻标题新闻标题新闻标题</b>
-											<p>新闻标题新闻标题新闻标题新闻,标题新,标题新闻标题新闻标题新闻标题...<a href="nDetail.html" class="detail">详细</a></p>
-										</div>
-									</li>
-									<li><a href="nDetail.html">新闻标题新闻标题新闻标题新闻</a></li>
-									<li><a href="nDetail.html">新闻标题新闻标题新闻标题新闻</a></li>
-									<li><a href="nDetail.html">新闻标题新闻标题新闻标题新闻</a></li>
-								</ul>
+								<ul id="publicNotice"></ul>
 							</div>
 							<div class="fr n_list">
 								<h4>制度 · 任务</h4>
 								<ul>
 									<li class="special">
 										<div class="n_img">
-											<img src="images/n2.jpg" />
+											<img src="${pageContext.request.contextPath}/img/index/banner4.jpg" />
 										</div>
 										<div class="n_text">
 											<b>新闻标题新闻标题新闻标题新闻标题</b>
@@ -238,157 +180,16 @@
 				<div class="hot fr">
 					<div class="b_title">
 						<h3>热门主题</h3>
-						<a href="topic.html" class="more">更多+</a>
+						<a href="${pageContext.request.contextPath }/forum/index" class="more">更多+</a>
 					</div>
 					<div class="b_wrap">
-						<ul>
-							<li>
-								<div class="h_img">
-									<img src="images/favicon.jpg" />
-								</div>
-								<div class="h_text">
-									<b><a href="tDetail.html">话题名称话题名称话题名称</a></b>
-									<p>话题名称话题名称话题名称,话题名称话题名称话题名称...<a href="tDetail.html" class="detail">详细</a></p>
-								</div>
-							</li>
-							<li>
-								<div class="h_img">
-									<img src="images/favicon.jpg" />
-								</div>
-								<div class="h_text">
-									<b><a href="tDetail.html">话题名称话题名称话题名称</a></b>
-									<p>话话题名称话题名称话名称,话题名称话题名称话题名称...<a href="tDetail.html" class="detail">详细</a></p>
-								</div>
-							</li>
-							<li>
-								<div class="h_img">
-									<img src="images/favicon.jpg" />
-								</div>
-								<div class="h_text">
-									<b><a href="tDetail.html">话题名称话题名称话题名称</a></b>
-									<p>话题名称话称话题名称,话题名称话题名称话题名称...<a href="tDetail.html" class="detail">详细</a></p>
-								</div>
-							</li>
-							<li>
-								<div class="h_img">
-									<img src="images/favicon.jpg" />
-								</div>
-								<div class="h_text">
-									<b><a href="tDetail.html">话题名称话题名称话题名称</a></b>
-									<p>话题名称称话题名称,话题名称话题名称话题名称...<a href="tDetail.html" class="detail">详细</a></p>
-								</div>
-							</li>
-							<li>
-								<div class="h_img">
-									<img src="images/favicon.jpg" />
-								</div>
-								<div class="h_text">
-									<b><a href="tDetail.html">话题名称话题名称话题名</a></b>
-									<p>题名称话题名称话题名称话题名称话题名称...<a href="tDetail.html" class="detail">详细</a></p>
-								</div>
-							</li>
-							<li>
-								<div class="h_img">
-									<img src="images/favicon.jpg" />
-								</div>
-								<div class="h_text">
-									<b><a href="tDetail.html">话题名称话题名称话题名称话</a></b>
-									<p>名称话题名称话题名称,话题名称话题名话题名称...<a href="tDetail.html" class="detail">详细</a></p>
-								</div>
-							</li>
-						</ul>
+						<ul id="hostTheme"></ul>
 					</div>
 				</div>
 				<div class="clear"></div>
 			</div>
-			<!--teachers and course-->
-			<!--<div class="box2">
-				<div class="teachers fl">
-					<div class="b_title">
-						<h3>名师风采</h3>
-						<a href="teachers.html" class="more">更多+</a>
-					</div>
-					<div class="b_wrap">
-						<div class="fl n_list">
-							<h4>名师 · 资源</h4>
-							<ul>
-								<li><a href="tcDetail.html">论文标题论文标题论文标题论文标题</a></li>
-								<li><a href="tcDetail.html">论文标题论文标题论文标题论文标题</a></li>
-								<li><a href="tcDetail.html">论文标题论文标题论文标题论文标题</a></li>
-								<li><a href="tcDetail.html">论文标题论文标题论文标题论文标题</a></li>
-								<li><a href="tcDetail.html">论文标题论文标题论文标题论文标题</a></li>
-							</ul>
-						</div>
-						<div class="fr n_list">
-							<h4>名师 · 推荐</h4>
-							<ul>
-								<li><a href="tcDetail.html">人名：课程名称课程名称课程名称</a></li>
-								<li><a href="tcDetail.html">人名：课程名称课程名称课程名称</a></li>
-								<li><a href="tcDetail.html">人名：课程名称课程名称课程名称</a></li>
-								<li><a href="tcDetail.html">人名：课程名称课程名称课程名称</a></li>
-								<li><a href="tcDetail.html">人名：课程名称课程名称课程名称</a></li>
-							</ul>
-						</div>
-						<div class="clear"></div>
-						<div class="t_list">
-							<h4>名师 · 简介</h4>
-							<ul>
-								<li><a href="tDetail.html"><img src="images/t1.jpg"/><span>老师</span></a></li>
-								<li><a href="tDetail.html"><img src="images/t2.jpg"/><span>老师</span></a></li>
-								<li><a href="tDetail.html"><img src="images/t1.jpg"/><span>老师</span></a></li>
-								<li><a href="tDetail.html"><img src="images/t2.jpg"/><span>老师</span></a></li>
-								<li><a href="tDetail.html"><img src="images/t1.jpg"/><span>老师</span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="course fr">
-					<div class="b_title">
-						<h3>课程改革</h3>
-						<a href="course.html" class="more">更多+</a>
-					</div>
-					<div class="b_wrap">
-						<div class="n_list">
-							<div class="intro">
-								<img src="images/course.jpg"/>
-								<p>课程改革简介课程改革简介，课程改革简介课程改革简介课程改革，简介课程改革简介课程改革简介课程改革简介，课程改革简介课程改革简介...<a href="nDetail.html" class="detail">详细</a></p>
-							</div>
-							<ul>
-								<li><a href="tcDetail.html">课程名称</a></li>
-								<li><a href="tcDetail.html">课程名称课程名称</a></li>
-								<li><a href="tcDetail.html">课程名称</a></li>
-								<li><a href="tcDetail.html">课程名称课程名称</a></li>
-								<li><a href="tcDetail.html">课程名称</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="clear"></div>
+
 			</div>
-			<!--schoolmate-->
-			<!--<div class="schoolmate">
-				<div class="b_title">
-					<h3>学友之家</h3>
-					<a href="schoolmate.html" class="more">更多+</a>
-				</div>
-				<div class="b_wrap">
-					<div class="hd">
-						<a class="next"></a>
-						<a class="prev"></a>
-					</div>
-					<div class="s_list bd">
-						<ul>
-							<li><a href="tDetail.html"><img src="images/ac1.jpg"/><span>活动名称</span></a></li>
-							<li><a href="tDetail.html"><img src="images/ac2.jpg"/><span>活动名称</span></a></li>
-							<li><a href="tDetail.html"><img src="images/ac1.jpg"/><span>活动名称</span></a></li>
-							<li><a href="tDetail.html"><img src="images/ac2.jpg"/><span>活动名称</span></a></li>
-							<li><a href="tDetail.html"><img src="images/ac1.jpg"/><span>活动名称</span></a></li>
-							<li><a href="tDetail.html"><img src="images/ac1.jpg"/><span>活动名称</span></a></li>
-							<li><a href="tDetail.html"><img src="images/ac2.jpg"/><span>活动名称</span></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>-->
 			<!--resource and exam-->
 			<div class="box3">
 				<div class="resource fl">
@@ -448,10 +249,6 @@
 					</div>
 				</div>
 				<div class="clear"></div>
-			</div>
-			<!--friendly link-->
-			<div class="friendlink">
-				<b>友情链接：</b><a href="">友情链接</a><a href="">友情链接</a><a href="">友情链接</a><a href="">友情链接</a><a href="">友情链接</a>
 			</div>
 		</div>
 		<!--footer start-->

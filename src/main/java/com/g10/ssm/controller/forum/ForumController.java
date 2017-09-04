@@ -167,6 +167,15 @@ public class ForumController {
 		}
 		return null;
 	}
+	
+	@RequestMapping("/hostTheme")
+	@ResponseBody
+	public List<ThemeCustom> loadHostTheme(String name) throws Exception{
+		ThemeCustom themeCustom = new ThemeCustom();
+		themeCustom.setIsTop(true);
+		List<ThemeCustom> themes = themeService.selectThemesByTheme(themeCustom);
+		return themes;
+	}
 
 	@RequestMapping("/postNum")
 	@ResponseBody

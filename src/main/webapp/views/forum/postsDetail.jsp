@@ -409,7 +409,7 @@
 
         //输入当前页page显示当前页page显示控制模块
         function showPageControl(page){
-            var url = "${pageContext.request.contextPath}/forum/postNum";//*******************************
+            var url = "${pageContext.request.contextPath}/forum/postNum";
             var xhr = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
             xhr.open('post', url, true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

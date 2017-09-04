@@ -10,7 +10,7 @@ import com.g10.ssm.mapper.DepartmentQueryMapper;
 import com.g10.ssm.po.Department;
 import com.g10.ssm.service.DepartmentService;
 
-@Service("departmentService")
+@Service
 public class DepartmentServiceImpl implements DepartmentService {
 
 	@Autowired

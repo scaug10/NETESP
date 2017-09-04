@@ -82,4 +82,5 @@ public interface ThemeService {
 	public List<ThemeCustom> selectThemesByPaging(ThemeCustom themeCustom) throws Exception;
 	
 	public Integer countThemesByBoardId(Integer boardId) throws Exception;
+	
 }

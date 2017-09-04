@@ -11,4 +11,19 @@ public class StartLoadingController {
 		return "index3";
 	}
 	
+	@RequestMapping("/summary")
+	public String Summary(){
+		return "summary0";
+	}
+	
+	@RequestMapping("/password/reset")
+	public String resetPassword(){
+		return "login/resetPassword";
+	}
+	
+	@RequestMapping("/questionbank")
+	public String questionBank(){
+		return "questionBank/QuestionBankManagement";
+	}
+	
 }

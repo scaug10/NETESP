@@ -20,4 +20,10 @@
 		from Exam_Question
 		where exam_id = #{examId,jdbcType=INTEGER}
 	</select>
+	
+	<select id="selectSubjectsIdByExamId" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		select subject_id from Exam_Question
+		where exam_id = #{value}
+	</select>
 </mapper>

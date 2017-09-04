@@ -12,4 +12,6 @@ public interface ExamQueryMapper {
 	int deleteExam(Integer[] examId);
 
 	Exam checkExamName(String name);
+	
+	public Exam selectExamByExam(Exam exam) throws Exception;
 }

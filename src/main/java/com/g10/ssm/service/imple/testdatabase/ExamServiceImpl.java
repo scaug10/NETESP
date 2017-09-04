@@ -63,4 +63,13 @@ public class ExamServiceImpl implements ExamService {
 		List<Exam> list = examQueryDao.selectExamByName(name);
 		return list;
 	}
+
+	@Override
+	public Exam queryExamByExam(Exam exam) throws Exception {
+		if(exam != null){
+			Exam exam0 = examQueryDao.selectExamByExam(exam);
+			return exam0;
+		}
+		return null;
+	}
 }

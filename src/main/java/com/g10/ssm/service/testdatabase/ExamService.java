@@ -18,4 +18,6 @@ public interface ExamService {
 	public Exam queryExamById(Integer examId) throws Exception;
 
 	public int checkExam(String name) throws Exception;
+	
+	public Exam queryExamByExam(Exam exam) throws Exception;
 }

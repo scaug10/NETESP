@@ -43,4 +43,14 @@ public class StrategyQuestionTypesServiceImpl implements StrategyQuestionTypesSe
 		int result = strategyQuestionTypesDao.deleteByPrimaryKey(strategyQuestionTypes);
 		return result;
 	}
+
+	@Override
+	public List<Integer> selectTidByStrategyId(Integer strategyId) throws Exception {
+		if(strategyId != null && strategyId != 0){
+			List<Integer> ids = null;
+			ids = strategyQuestionTypesQueryDao.selectIdByStrategyId(strategyId);
+			return ids;
+		}
+		return null;
+	}
 }

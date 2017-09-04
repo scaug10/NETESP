@@ -14,4 +14,10 @@ public interface SubjectService {
 	public int deleteSubjectByPrimaryKey(int subjectId) throws Exception;
 
 	public Subject querySubjectById(int subjectId) throws Exception;
+	
+	public Integer selectLastSubjectId(String content) throws Exception;
+	
+//	public List<Subject> selectSubjectBySelective(Subject subject) throws Exception;
+	
+	
 }

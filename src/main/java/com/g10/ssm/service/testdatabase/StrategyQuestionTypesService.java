@@ -17,4 +17,5 @@ public interface StrategyQuestionTypesService {
 
 	public int deleteStrategyQuestionTypesByPrimaryKey(StrategyQuestionTypesKey strategyQuestionTypes) throws Exception;
 
+	public List<Integer> selectTidByStrategyId(Integer strategyId) throws Exception;
 }

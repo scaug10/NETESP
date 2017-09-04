@@ -33,5 +33,12 @@
 		<include refid="Base_Column_List" />
 		from Subject
 	</select>
+	
+	<select id="selectLastInsertId" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		select subject_id from Subject
+		where content = #{value}
+	</select>
+	
 </mapper>
 	

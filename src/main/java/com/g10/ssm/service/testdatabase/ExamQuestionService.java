@@ -17,5 +17,7 @@ public interface ExamQuestionService {
 	public int saveExamQuestion(ExamQuestionKey examQuestion) throws Exception;
 
 	public int deleteExamQuestionByPrimaryKey(ExamQuestionKey examQuestion) throws Exception;
+	
+	public List<Integer> selectSubjectIdByExamId(Integer examId) throws Exception;
 
 }

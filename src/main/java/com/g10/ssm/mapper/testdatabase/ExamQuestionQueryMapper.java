@@ -8,4 +8,6 @@ public interface ExamQuestionQueryMapper {
 	List<ExamQuestionKey> selectAllExamQuestion();
 
 	List<ExamQuestionKey> selectAllQuestion(int examId);
+	
+	public List<Integer> selectSubjectsIdByExamId(Integer examId) throws Exception; 
 }
