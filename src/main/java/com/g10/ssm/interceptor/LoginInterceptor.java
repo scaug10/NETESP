@@ -12,7 +12,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		//获取请求的URL  
+/*		//获取请求的URL  
         String url = request.getRequestURI();  
         //URL:login.jsp是公开的;这个demo是除了login.jsp是可以公开访问的，其它的URL都进行拦截控制  
         if(url.indexOf("login")>=0){  
@@ -25,9 +25,9 @@ public class LoginInterceptor implements HandlerInterceptor{
             return true;  
         } 
         //不符合条件的，跳转到登录界面  
-        request.getRequestDispatcher("login").forward(request, response);  
+        request.getRequestDispatcher("login").forward(request, response);  */
           
-        return false; 
+        return true; 
 	}
 
 	@Override

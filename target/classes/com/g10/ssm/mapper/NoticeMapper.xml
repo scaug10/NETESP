@@ -7,6 +7,7 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="notice_type" property="noticeType" jdbcType="VARCHAR" />
     <result column="is_public" property="isPublic" jdbcType="BIT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    notice_id, content, create_time, notice_type, is_public
+    notice_id, content, create_time, notice_type, is_public, title
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.g10.ssm.po.NoticeExample" >
     select
@@ -101,9 +102,11 @@
   </delete>
   <insert id="insert" parameterType="com.g10.ssm.po.Notice" >
     insert into Notice (notice_id, content, create_time, 
-      notice_type, is_public)
+      notice_type, is_public, title
+      )
     values (#{noticeId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{noticeType,jdbcType=VARCHAR}, #{isPublic,jdbcType=BIT})
+      #{noticeType,jdbcType=VARCHAR}, #{isPublic,jdbcType=BIT}, #{title,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.g10.ssm.po.Notice" >
     insert into Notice
@@ -123,6 +126,9 @@
       <if test="isPublic != null" >
         is_public,
       </if>
+      <if test="title != null" >
+        title,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="noticeId != null" >
@@ -139,6 +145,9 @@
       </if>
       <if test="isPublic != null" >
         #{isPublic,jdbcType=BIT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -166,6 +175,9 @@
       <if test="record.isPublic != null" >
         is_public = #{record.isPublic,jdbcType=BIT},
       </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +189,8 @@
       content = #{record.content,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       notice_type = #{record.noticeType,jdbcType=VARCHAR},
-      is_public = #{record.isPublic,jdbcType=BIT}
+      is_public = #{record.isPublic,jdbcType=BIT},
+      title = #{record.title,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +210,9 @@
       <if test="isPublic != null" >
         is_public = #{isPublic,jdbcType=BIT},
       </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
     </set>
     where notice_id = #{noticeId,jdbcType=INTEGER}
   </update>
@@ -205,7 +221,8 @@
     set content = #{content,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       notice_type = #{noticeType,jdbcType=VARCHAR},
-      is_public = #{isPublic,jdbcType=BIT}
+      is_public = #{isPublic,jdbcType=BIT},
+      title = #{title,jdbcType=VARCHAR}
     where notice_id = #{noticeId,jdbcType=INTEGER}
   </update>
 </mapper>

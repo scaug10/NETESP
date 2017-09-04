@@ -44,11 +44,11 @@ public class PermissionServiceImpl implements PermissionService{
 	 *通过账号查询用户所有权限列表
 	 */
 	@Override
-	public ArrayList<Permission> searchUserPermissionList(String userName) throws Exception {
-		ArrayList<Permission> list=null;
+	public List<Permission> searchUserPermissionList(String userName) throws Exception {
+		List<Permission> list=null;
 		if(userName==null)
 			return list;
-		list=(ArrayList<Permission>) permissionMapper.selectUserAllPermissionList(userName);
+		list=(List<Permission>) permissionMapper.selectUserAllPermissionList(userName);
 		return list;
 	}
 
@@ -170,7 +170,7 @@ public class PermissionServiceImpl implements PermissionService{
 
 	/**
 	 * 删除多个权限（首先要删除用户权限关系表（从表）然后再删除权限表（主表），只要在数据库设置级联操作
-	 * （从表外键字段设置delete的cascade）即可，所以这里只用删除权限表（主表）即可）* 删除单个权限（首先要删除用户权限关系表然后再删除权限表） 
+	 * （从表外键字段设置delete的cascade）即可，所以这里只用删除权限表（主表）即可）
 	 */
 	@Override
 	public Integer deleteManyPermission(List<Integer> list) throws Exception {

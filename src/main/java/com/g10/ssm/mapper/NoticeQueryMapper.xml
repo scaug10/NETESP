@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.g10.ssm.mapper.NoticeQueryMapper">
+	<resultMap id="BaseResultMap" type="com.g10.ssm.po.Notice">
+		<id column="notice_id" property="noticeId" jdbcType="INTEGER" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="notice_type" property="noticeType" jdbcType="VARCHAR" />
+		<result column="is_public" property="isPublic" jdbcType="BIT" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="SecondResultMap" type="com.g10.ssm.po.Notice">
+		<id column="Notice.notice_id" property="noticeId" jdbcType="INTEGER" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="notice_type" property="noticeType" jdbcType="VARCHAR" />
+		<result column="is_public" property="isPublic" jdbcType="BIT" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		notice_id, content, create_time, notice_type, is_public,
+		title
+	</sql>
+	<sql id="delete_manyNotice_where">
+		<if test="list!=null">
+			<foreach collection="list" item="noticeId" open="(" close=")"
+				separator="OR">
+				(notice_id=#{noticeId})
+			</foreach>
+		</if>
+	</sql>
+	<!-- 管理员查询公告通知列表 -->
+	<select id="selectAllNotice" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from Notice
+		ORDER BY is_public DESC
+	</select>
+	<!-- 获取公开性公告通知列表 -->
+	<select id="selectPublicNotice" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from Notice
+		where is_public=1
+		ORDER BY create_time DESC
+	</select>
+	<!-- 获取前4条公开性公告通知列表 -->
+	<select id="selectFourPublicNotice" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from Notice
+		where is_public=1
+		ORDER BY create_time DESC
+		LIMIT 0,4
+	</select>
+	<!-- 用户获取个人公告列表（非公开性的） -->
+	<select id="getNoticeByUserName" parameterType="java.lang.String"
+		resultMap="SecondResultMap">
+		select
+		Notice.notice_id, content, create_time, notice_type,
+		is_public, title
+		from Notice,User_Notice
+		where
+		Notice.notice_id=User_Notice.notice_id AND user_name=#{value}
+	</select>
+	<!-- 删除公告表中指定的多个公告 -->
+	<delete id="deleteManyNoticeFromNotice" parameterType="java.lang.Integer">
+		delete from Notice
+		<where>
+			<include refid="delete_manyNotice_where" />
+		</where>
+	</delete>
+	<!-- 插入一条公告的同时自动返回自增主键到noticeId属性中 -->
+	<insert id="insertNoticeAndGetId" parameterType="com.g10.ssm.po.Notice"
+		useGeneratedKeys="true" keyProperty="noticeId">
+		insert into Notice (notice_id, content, create_time,
+		notice_type, is_public, title
+		)
+		values (#{noticeId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{noticeType,jdbcType=VARCHAR}, #{isPublic,jdbcType=BIT}, #{title,jdbcType=VARCHAR}
+		)
+	</insert>
+</mapper>

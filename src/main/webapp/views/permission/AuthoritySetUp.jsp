@@ -52,6 +52,7 @@ a {
 		return null;
 	}
 	function givePermission(){
+		document.getElementById("name").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;权限名称：" + getQueryString("name");
 		var id = document.getElementsByName('userNameList');
 		var list = new Array();
 		for (var i = 0; i < id.length; i++) {
@@ -85,7 +86,6 @@ a {
 		}
 	}
 	function searchUserList() {
-		document.getElementById("name").innerHTML="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;权限名称："+getQueryString("name");
 		var url = "${pageContext.request.contextPath}/login/searchUserList";
 		var xmlhttp = createXmlHttpRequest();
 		xmlhttp.open("post", url, true);

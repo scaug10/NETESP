@@ -167,14 +167,14 @@ public class PermissionController {
 	 */
 	@RequestMapping(value="/searchUserPermissionListByUserName",method=RequestMethod.POST)
 	@ResponseBody
-	public List<PermissionCustom> searchUserPermissionListByUserName(//@RequestParam(value="userId",required=true)String userId,
+	public List<Permission> searchUserPermissionListByUserName(//@RequestParam(value="userId",required=true)String userId,
 			HttpServletRequest request) throws Exception{
 		String userId=(String) request.getSession().getAttribute("userName");
 		if(userId==null||userId.trim().equals("")){
 			return null;//用户名不存在
 		}
-		List<PermissionCustom> permissionList= permissionService.searchAllUserPermissionList();
-		if(permissionList==null){
+		List<Permission> permissionList= permissionService.searchUserPermissionList(userId);
+		if(permissionList==null||permissionList.size()<1){
 			return null;
 		}else {
 			return permissionList;//查询权限列表成功
@@ -275,7 +275,7 @@ public class PermissionController {
 	
 	/**
 	 * 删除多个权限（首先要删除用户权限关系表（从表）然后再删除权限表（主表），只要在数据库设置级联操作
-	 * （从表外键字段设置delete的cascade）即可，所以这里只用删除权限表（主表）即可）* 删除单个权限（首先要删除用户权限关系表然后再删除权限表）
+	 * （从表外键字段设置delete的cascade）即可，所以这里只用删除权限表（主表）即可）
 	 */
 	@RequestMapping(value="/deleteManyPermission",method=RequestMethod.POST)
 	@ResponseBody

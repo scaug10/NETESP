@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.g10.ssm.mapper.UserNoticeQueryMapper" >
+  <resultMap id="BaseResultMap" type="com.g10.ssm.po.UserNoticeKey" >
+    <id column="user_name" property="userName" jdbcType="VARCHAR" />
+    <id column="notice_id" property="noticeId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="insert_sendNoticeToManyUser">
+  	<if test="list!=null">
+  		<foreach collection="list" item="userNoticeKey" open="" close="" separator=",">
+  			(#{userNoticeKey.userName},#{userNoticeKey.noticeId})
+  		</foreach>
+  	</if>
+  </sql>
+  <!-- 给指定用户发布公告 -->
+  <insert id="sendNoticeToManyUser" parameterType="com.g10.ssm.po.UserNoticeVo">
+  	insert into User_Notice VALUES <include refid="insert_sendNoticeToManyUser" />
+  </insert>
+ </mapper>

@@ -73,7 +73,7 @@
  				}else{
  					alert("登录成功！");
 //  					登录页面跳转的还没做
-					window.location.href='${pageContext.request.contextPath}/permission/jumpPermissionPage';
+					window.location.href='${pageContext.request.contextPath}/notice/jumpNoticeList';
  				}
 			}
 		}

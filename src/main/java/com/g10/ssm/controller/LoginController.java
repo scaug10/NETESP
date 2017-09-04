@@ -93,7 +93,7 @@ public class LoginController {
 		}
 		int res=loginService.checkUserPassword(userName, password);
 		if(res==1){
-			ArrayList<Permission> list=permissionService.searchUserPermissionList(userName);
+			ArrayList<Permission> list=(ArrayList<Permission>) permissionService.searchUserPermissionList(userName);
 			if(list.size()>0){
 				request.getSession().setAttribute("userName", userName);
 				return list;//用户登录成功
