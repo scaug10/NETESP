@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>审核帖子</title>
+
+    <style type="text/css">
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td{
+            border: 1px skyblue solid;
+
+        }
+
+        .postirregularity{
+            width: 120px;
+        }
+
+        .operation{
+            width: 40px;
+        }
+
+        a{
+            text-decoration: none;
+            color: blue;
+        }
+
+        .pageButton{
+            display: inline-block;
+            border: 1px dimgray solid;
+            float: right;
+            padding: 5px;
+            margin: 5px;
+            height: 23px;
+        }
+
+        .pageButton>a{
+            display: inline-block;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .pageButton>input{
+            width: 20px;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        
+        function confirm(postID) {
+            var irregularityDescription = prompt("请输入违规描述", "无");
+            if(irregularityDescription.length != 0){//如果点击确定
+                //向服务器请求
+            }
+        }
+        
+    </script>
+
+</head>
+<body>
+
+    <table>
+        <tr>
+            <td class="postname">帖子</td>
+            <td class="postowner">作者</td>
+            <td class="poststatus">状态</td>
+            <td class="postirregularity">违规类型</td>
+            <td class="irregularitydetail">违规描述</td>
+            <td class="operation">操作</td>
+        </tr>
+
+        <script type="text/javascript">
+
+            var postsNumber = 5;/*单页显示条数*/
+            for(var i=0;i<postsNumber;i++){
+                var postID = i;
+                var postName = "我校在第三届“互联网+”大赛广东省决赛中喜获2金1银";
+                var postLink = "#";/*帖子地址*/
+                var postOwner = "华南农业大学"
+                var postStatus = "已通过";
+                var irregularityDetail = "符合版块要求";
+
+                document.write(
+                    "<tr>\n" +
+                    "      <td><a href=\"" + postLink + "\">" + postName + "</a></td>\n" +
+                    "      <td>" + postOwner + "</td>\n" +
+                    "      <td>" + postStatus + "</td>\n" +
+                    "      <td>\n" +
+                    "          <select>\n" +
+                    "                <option value=\"1\">无违规</option>\n" +
+                    "                <option value=\"2\">不符合版块要求</option>\n" +
+                    "                <option value=\"3\">广告类</option>\n" +
+                    "                <option value=\"4\">暴力色情人身攻击</option>\n" +
+                    "                <option value=\"5\">侵权</option>\n" +
+                    "            </select>\n" +
+                    "        </td>\n" +
+                    "        <td>" + irregularityDetail + "</td>\n" +
+                    "        <td><button onclick=\"confirm(" + postID + ")\">应用</button></td>\n" +
+                    "</tr>"
+                );
+            }
+
+        </script>
+    </table>
+
+    <script type="text/javascript">
+        /*帖子页数填充*/
+        var totalPostNumber = 1001;/*要审核的总帖子数*/
+        var postsPerPage = 20;/*每页包含的帖子数*/
+        var currentPage = 1;/*当前页*/
+
+        document.write("<span class=\"pageButton\"><a href=\"#\">下一页</a></span>\n" +
+            "    <span class=\"pageButton\"><a href=\"#\">..." + Math.ceil(totalPostNumber/postsPerPage) + "</a></span>\n" +
+            "    <span class=\"pageButton\"><input id='pageinput' class=\"inputPage\" value=\" " + currentPage + " \" type=\"text\">/页</span>\n" +
+            "    <span class=\"pageButton\"><a href=\"#\">1</a></span>\n" +
+            "    <span class=\"pageButton\"><a href=\"#\">上一页</a></span>");
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.g10.ssm.mapper.LearningTaskQueryMapper">
+	<resultMap id="BaseResultMap" type="com.g10.ssm.po.LearningTask">
+		<id column="learning_task_id" property="learningTaskId" jdbcType="INTEGER" />
+		<result column="task_name" property="taskName" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+		<result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+		<result column="total_learning_time" property="totalLearningTime"
+			jdbcType="REAL" />
+		<result column="learning_progress" property="learningProgress"
+			jdbcType="INTEGER" />
+		<result column="is_complete" property="isComplete" jdbcType="BIT" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		learning_task_id, task_name, content, start_time, end_time,
+		total_learning_time,
+		learning_progress, is_complete
+	</sql>
+	<select id="selectAllLearnTask" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from Learning_Task
+	</select>
+</mapper>

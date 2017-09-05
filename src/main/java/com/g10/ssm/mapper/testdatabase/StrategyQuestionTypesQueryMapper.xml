@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.g10.ssm.mapper.testdatabase.StrategyQuestionTypesQueryMapper">
+	<resultMap id="BaseResultMap"
+		type="com.g10.ssm.po.testdatabase.StrategyQuestionTypesKey">
+		<id column="strategy_id" property="strategyId" jdbcType="INTEGER" />
+		<id column="test_items_design_id" property="testItemsDesignId"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		strategy_id, test_items_design_id
+	</sql>
+	<select id="selectAllQuestionTypes" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from Strategy_Question_Types
+		where strategy_id
+		=#{strategyId,jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectIdByStrategyId" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		select test_items_design_id from Strategy_Question_Types
+		where strategy_id = #{value}
+	</select>
+	
+</mapper>

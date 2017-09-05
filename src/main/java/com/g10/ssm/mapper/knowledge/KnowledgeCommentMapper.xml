@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.g10.ssm.mapper.knowledge.KnowledgeCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.g10.ssm.po.knowledge.KnowledgeComment" >
+    <id column="comment_id" property="commentId" jdbcType="INTEGER" />
+    <result column="knowledge_id" property="knowledgeId" jdbcType="INTEGER" />
+    <result column="publisher" property="publisher" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="review_type" property="reviewType" jdbcType="INTEGER" />
+    <result column="review_message" property="reviewMessage" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    comment_id, knowledge_id, publisher, content, create_date, review_type, review_message
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.g10.ssm.po.knowledge.KnowledgeCommentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Knowledge_Comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Knowledge_Comment
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Knowledge_Comment
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.g10.ssm.po.knowledge.KnowledgeCommentExample" >
+    delete from Knowledge_Comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.g10.ssm.po.knowledge.KnowledgeComment" >
+    insert into Knowledge_Comment (comment_id, knowledge_id, publisher, 
+      content, create_date, review_type, 
+      review_message)
+    values (#{commentId,jdbcType=INTEGER}, #{knowledgeId,jdbcType=INTEGER}, #{publisher,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{reviewType,jdbcType=INTEGER}, 
+      #{reviewMessage,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.g10.ssm.po.knowledge.KnowledgeComment" >
+    insert into Knowledge_Comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="knowledgeId != null" >
+        knowledge_id,
+      </if>
+      <if test="publisher != null" >
+        publisher,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="reviewType != null" >
+        review_type,
+      </if>
+      <if test="reviewMessage != null" >
+        review_message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="knowledgeId != null" >
+        #{knowledgeId,jdbcType=INTEGER},
+      </if>
+      <if test="publisher != null" >
+        #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewType != null" >
+        #{reviewType,jdbcType=INTEGER},
+      </if>
+      <if test="reviewMessage != null" >
+        #{reviewMessage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.g10.ssm.po.knowledge.KnowledgeCommentExample" resultType="java.lang.Integer" >
+    select count(*) from Knowledge_Comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Knowledge_Comment
+    <set >
+      <if test="record.commentId != null" >
+        comment_id = #{record.commentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.knowledgeId != null" >
+        knowledge_id = #{record.knowledgeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.publisher != null" >
+        publisher = #{record.publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reviewType != null" >
+        review_type = #{record.reviewType,jdbcType=INTEGER},
+      </if>
+      <if test="record.reviewMessage != null" >
+        review_message = #{record.reviewMessage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Knowledge_Comment
+    set comment_id = #{record.commentId,jdbcType=INTEGER},
+      knowledge_id = #{record.knowledgeId,jdbcType=INTEGER},
+      publisher = #{record.publisher,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      review_type = #{record.reviewType,jdbcType=INTEGER},
+      review_message = #{record.reviewMessage,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.g10.ssm.po.knowledge.KnowledgeComment" >
+    update Knowledge_Comment
+    <set >
+      <if test="knowledgeId != null" >
+        knowledge_id = #{knowledgeId,jdbcType=INTEGER},
+      </if>
+      <if test="publisher != null" >
+        publisher = #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewType != null" >
+        review_type = #{reviewType,jdbcType=INTEGER},
+      </if>
+      <if test="reviewMessage != null" >
+        review_message = #{reviewMessage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.g10.ssm.po.knowledge.KnowledgeComment" >
+    update Knowledge_Comment
+    set knowledge_id = #{knowledgeId,jdbcType=INTEGER},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      review_type = #{reviewType,jdbcType=INTEGER},
+      review_message = #{reviewMessage,jdbcType=VARCHAR}
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+</mapper>

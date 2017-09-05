@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>审核试题信息</title>
+    <link rel="stylesheet" type="text/css" href="../css/css.css"/>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            margin-left: 60px;
+            width: 135px;
+            height: 40px;
+            border: none;
+            font-size: 16px;
+            color: #fff;
+            background-color: #47a4e1;
+        }
+
+        #editor {
+            position: relative;
+            left: 103px;
+            bottom: 23px;
+
+        }
+
+        .banDel {
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+<div id="pageAll">
+    <!--导航栏-->
+    <div class="pageTop">
+        <div class="page">
+            <img src="../img/coin02.png"/><span><a href="../main.html">首页</a>&nbsp;-&nbsp;<a
+                href="QuestionBankManagement.html">题库管理</a>&nbsp;-</span>&nbsp;审核试题信息
+        </div>
+    </div>
+    <div class="page ">
+        <!-- 内容页面样式 -->
+        <div class="banneradd bor">
+            <div class="baTopNo">
+                <span>试题信息</span>
+            </div>
+            <div class="baBody">
+                <div class="bbD">
+                    所属题库：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="QuestionBank"
+                                                                          value="regular"/>&nbsp;正规题库&nbsp;
+                    <input type="radio" name="QuestionBank" value="practise"/>&nbsp;练习题库&nbsp;
+                    <input type="radio" name="QuestionBank" value="simulation"/>&nbsp;练习题库&nbsp;
+                    <input type="radio" name="QuestionBank" value="competition"/>&nbsp;竞赛题库&nbsp;
+                </div>
+                <div class="bbD">
+                    所属科目：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select class="input3" name="subject">
+                    <option value="0">刑法</option>
+                    <option value="1">水力</option>
+                    <option value="2">电力</option>
+                    <option value="3">消防</option>
+                </select>
+                </div>
+                <div class="bbD">
+                    &nbsp;&nbsp; 知识点：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select class="input3" name="knowledge">
+                    <option value="0">妨害社会管理秩序罪</option>
+                    <option value="1">故意伤人罪</option>
+                    <option value="2">故意杀人罪</option>
+                    <option value="3">抢劫罪</option>
+                </select>
+                </div>
+                <div class="bbD">
+                    题目类型：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select class="input3" name="subjectType">
+                    <option value="0">单选题</option>
+                    <option value="1">多选题</option>
+                    <option value="2">判断题</option>
+                    <option value="3">填空题</option>
+                    <option value="4">计算题</option>
+                    <option value="5">简答题</option>
+                </select>
+                </div>
+                <div class="bbD">
+                    难易程度：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select class="input3" name="difficulty">
+                    <script>
+                        var difficulty = document.getElementsByName("difficulty")[0];
+                        for (var i = 0; i < 10; i++) {
+                            difficulty.innerHTML +=
+                            "<option value='" + (i + 1) + "'>" + (i + 1) + "</option>";
+                        }
+                    </script>
+                </select>
+                </div>
+                <div class="bbD">
+                    题目内容：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div id="editor">
+                        <!--百度编辑器配置-->
+                        <script id="container" name="content" type="text/plain"></script>
+                        <script type="text/javascript" src="../js/utf8-jsp/ueditor.config.js"></script>
+                        <script type="text/javascript" src="../js/utf8-jsp/ueditor.all.js"></script>
+                        <script type="text/javascript">
+                            var ue = UE.getEditor('container', {
+                                initialFrameWidth: [800],
+                                initialFrameHeight: [300],
+                                autoHeightEnabled: false,
+                            });
+
+                        </script>
+                    </div>
+                    </select>
+                </div>
+                <div class="bbD">
+                    <p class="bbDP">
+                        <button class="btn_ok btn_yes operation" onclick="pass()">审核通过</button>
+                        <button class="btn_ok operation" onclick="noPass()">审核不通过</button>
+                        <a class="btn_ok btn_no" href="KnowledgeClassificationCheck.html">取消</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 审核弹出框 -->
+    <div class="banDel pass">
+        <div class="delete">
+            <div class="close">
+                <a><img src="../img/shanchu.png"/></a>
+            </div>
+            <p class="delP1">你确定此知识分类信息通过审核通过吗？</p>
+            <p class="delP2">
+                <a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
+            </p>
+        </div>
+    </div>
+    <div class="banDel noPass">
+        <div class="delete">
+            <div class="close">
+                <a><img src="../img/shanchu.png"/></a>
+            </div>
+            <p class="delP1">你确定此知识分类信息审核不通过吗？</p>
+            <p class="delP2">
+                <a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
+            </p>
+        </div>
+    </div>
+</div>
+<!-- 审核弹出框  end-->
+</body>
+
+<script type="text/javascript">
+    // 广告弹出框
+    function pass() {
+        $(".pass").show();
+        $(".close").click(function () {
+            $(".pass").hide();
+        });
+        $(".no").click(function () {
+            $(".pass").hide();
+        });
+    }
+
+    // 广告弹出框 end
+</script>
+
+<script>
+    function noPass() {
+        $(".noPass").show();
+        $(".close").click(function () {
+            $(".noPass").hide();
+        });
+        $(".no").click(function () {
+            $(".noPass").hide();
+        })
+    }
+</script>
+</html>
