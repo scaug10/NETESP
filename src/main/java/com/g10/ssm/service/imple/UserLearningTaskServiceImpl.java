@@ -49,4 +49,40 @@ public class UserLearningTaskServiceImpl implements UserLearningTaskService {
 		return list;
 	}
 
+	@Override
+	public String[] getAllLearningTaskDepartment(int learningTaskId) throws Exception {
+		String[] departmentName = userLearningTaskQueryDao.selectAllDepartmentName(learningTaskId);
+		return departmentName;
+	}
+
+	@Override
+	public String[] getAllUserName(int departmentId) throws Exception {
+		String[] userName = userLearningTaskQueryDao.selectAllUserName(departmentId);
+		return userName;
+	}
+
+	@Override
+	public Integer[] getAllDepartmentId(int learningTaskId) throws Exception {
+		Integer[] departmentId = userLearningTaskQueryDao.selectAllDepartmentId(learningTaskId);
+		return departmentId;
+	}
+
+	@Override
+	public int deleteUserLearningTask(Integer learningTaskId) throws Exception {
+		int result = userLearningTaskQueryDao.deleteUserLearningTask(learningTaskId);
+		return result;
+	}
+
+	@Override
+	public Integer[] getAllLearningTaskByDepartmentId(int departmentId) throws Exception {
+		Integer[] learningTaskId = userLearningTaskQueryDao.selectLearningTaskByName(departmentId);
+		return learningTaskId;
+	}
+
+	@Override
+	public String[] getLearningTaskById(int learningTaskId) throws Exception {
+		String[] userName = userLearningTaskQueryDao.selectLearningTaskById(learningTaskId);
+		return userName;
+	}
+
 }

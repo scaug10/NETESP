@@ -20,4 +20,69 @@
 		from User_Learning_Task
 		where user_name = #{userName,jdbcType=VARCHAR}
 	</select>
+	<select id="selectLearningTaskById" resultType="java.lang.String"
+		parameterType="java.lang.Integer">
+		select
+		user_name
+		from User_Learning_Task
+		where
+		learning_task_id =
+		#{learningTaskId,jdbcType=INTEGER}
+	</select>
+	<select id="selectAllDepartmentId" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select
+		u.department_id
+		from User_Learning_Task as ult
+		natural join
+		User as u
+		where
+		ult.learning_task_id =
+		#{learningTaskId,jdbcType=INTEGER}
+		and
+		ult.user_name=u.user_name
+	</select>
+	<select id="selectAllUserName" resultType="java.lang.String"
+		parameterType="java.lang.Integer">
+		select user_name from User where department_id =
+		#{departmentId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteUserLearningTask" parameterType="java.lang.Integer">
+		delete from
+		User_Learning_Task where learning_task_id =
+		#{learningTaskId,jdbcType=INTEGER}
+	</delete>
+
+	<select id="selectLearningTaskByName" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select distinct
+		learning_task_id
+		from
+		User_Learning_Task
+		where
+		user_name in
+		(
+		select user_name from User
+		where
+		department_id =
+		#{departmentId,jdbcType=INTEGER}
+		)
+	</select>
+
+	<select id="selectAllDepartmentName" resultType="java.lang.String"
+		parameterType="java.lang.Integer">
+		select distinct d.name
+		from
+		User_Learning_Task as ult
+		natural join
+		User as u natural join
+		Department as d
+		where
+		ult.learning_task_id =
+		#{learningTaskId,jdbcType=INTEGER}
+		and
+		ult.user_name= u.user_name
+		and
+		u.department_id = d.department_id
+	</select>
 </mapper>

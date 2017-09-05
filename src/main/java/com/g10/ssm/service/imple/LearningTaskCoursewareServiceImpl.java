@@ -38,10 +38,21 @@ public class LearningTaskCoursewareServiceImpl implements LearningTaskCourseware
 	}
 
 	@Override
-	public List<LearningTaskCoursewareKey> queryLearningTaskCoursewareById(int learningTaskId) throws Exception {
-		List<LearningTaskCoursewareKey> list = learningTaskCoursewareQueryDao
-				.selectCoursewareByLearningTaskId(learningTaskId);
-		return list;
+	public String[] queryAllCoursewareUrl(Integer learningTaskId) throws Exception {
+		String[] coursewareUrl = learningTaskCoursewareQueryDao.selectAllCoursewareUrl(learningTaskId);
+		return coursewareUrl;
+	}
+
+	@Override
+	public Integer[] getAllCoursewareId(Integer learningTaskId) throws Exception {
+		Integer[] coursewareId = learningTaskCoursewareQueryDao.selectCoursewareByLearningTaskId(learningTaskId);
+		return coursewareId;
+	}
+
+	@Override
+	public int deleteLearningTaskCourseware(Integer learningTaskId) throws Exception {
+		int result = learningTaskCoursewareQueryDao.deleteLearningTaskCourseware(learningTaskId);
+		return result;
 	}
 
 }
