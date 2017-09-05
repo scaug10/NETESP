@@ -247,7 +247,7 @@ public class ForumController {
 		int result = 0;
 		if (themeCustom != null && boardName != null && username != null) {
 			themeCustom.setCreateTime(new Date(System.currentTimeMillis()));
-			themeCustom.setIsTop(true);
+			themeCustom.setIsTop(false);
 			themeCustom.setCreator(username);
 			Integer boardId = boardService.selectBoardIdByBoardName(boardName);
 			themeCustom.setBoardId(boardId);

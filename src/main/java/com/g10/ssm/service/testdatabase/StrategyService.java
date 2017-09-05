@@ -23,4 +23,6 @@ public interface StrategyService {
 	public List<Strategy> queryStrategyByName(String strategyName) throws Exception;
 
 	public List<Strategy> queryStrategyByNameAndStatus(String strategyName, int status) throws Exception;
+	
+	public String selectStrategyNameById(Integer strategyId) throws Exception;
 }

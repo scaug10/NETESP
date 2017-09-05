@@ -82,7 +82,7 @@
 <body>
 	<!-- 登录页面头部 -->
 	<div class="logHead">
-		<img src="${pageContext.request.contextPath}/img/login/logLOGO.png" />
+		<img src="${pageContext.request.contextPath}/img/index/logo.jpg" />
 	</div>
 	<!-- 登录页面头部结束 -->
 

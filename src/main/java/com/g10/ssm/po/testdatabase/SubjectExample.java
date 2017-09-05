@@ -724,62 +724,52 @@ public class SubjectExample {
             return (Criteria) this;
         }
 
-        public Criteria andNameEqualTo(String value) {
+        public Criteria andNameEqualTo(Integer value) {
             addCriterion("name =", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotEqualTo(String value) {
+        public Criteria andNameNotEqualTo(Integer value) {
             addCriterion("name <>", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThan(String value) {
+        public Criteria andNameGreaterThan(Integer value) {
             addCriterion("name >", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThanOrEqualTo(String value) {
+        public Criteria andNameGreaterThanOrEqualTo(Integer value) {
             addCriterion("name >=", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThan(String value) {
+        public Criteria andNameLessThan(Integer value) {
             addCriterion("name <", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThanOrEqualTo(String value) {
+        public Criteria andNameLessThanOrEqualTo(Integer value) {
             addCriterion("name <=", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andNameLike(String value) {
-            addCriterion("name like", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameNotLike(String value) {
-            addCriterion("name not like", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameIn(List<String> values) {
+        public Criteria andNameIn(List<Integer> values) {
             addCriterion("name in", values, "name");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotIn(List<String> values) {
+        public Criteria andNameNotIn(List<Integer> values) {
             addCriterion("name not in", values, "name");
             return (Criteria) this;
         }
 
-        public Criteria andNameBetween(String value1, String value2) {
+        public Criteria andNameBetween(Integer value1, Integer value2) {
             addCriterion("name between", value1, value2, "name");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotBetween(String value1, String value2) {
+        public Criteria andNameNotBetween(Integer value1, Integer value2) {
             addCriterion("name not between", value1, value2, "name");
             return (Criteria) this;
         }

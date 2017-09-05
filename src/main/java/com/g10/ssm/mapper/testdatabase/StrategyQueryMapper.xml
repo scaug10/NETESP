@@ -53,4 +53,11 @@
 			#{strategyId,jdbcType=INTEGER}
 		</foreach>
 	</delete>
+	
+	<select id="selectStrategyNameById" parameterType="java.lang.Integer"
+		resultType="java.lang.String">
+		select strategy_name
+		from Strategy
+		where strategy_id=#{value}
+	</select>
 </mapper>

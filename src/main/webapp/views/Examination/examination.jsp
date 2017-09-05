@@ -126,7 +126,7 @@ a:visited {
 		}
 		if (confirm("是否删除这" + sendArray.length + "个试卷？")) {
 			var xhr = createXmlHttpRequest();
-			var url = "deleteExam";
+			var url = "${pageContext.request.contextPath}/exam/delete";
 			xhr.open("post", url, true);
 			xhr.setRequestHeader('Content-Type',
 					'application/x-www-form-urlencoded');

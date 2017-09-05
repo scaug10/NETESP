@@ -236,7 +236,7 @@ input {
 <body>
 	<div>
 		<img name=""
-			src="${pageContext.request.contextPath}/img/login/logLOGO.png"
+			src="${pageContext.request.contextPath}/img/index/logo.jpg"
 			width="150" height="70" alt="" />用户注册
 	</div>
 	<div class="link"></div>

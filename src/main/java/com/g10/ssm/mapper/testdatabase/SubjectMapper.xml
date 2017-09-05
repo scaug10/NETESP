@@ -11,7 +11,7 @@
     <result column="subject_matter" property="subjectMatter" jdbcType="VARCHAR" />
     <result column="test_database_matter" property="testDatabaseMatter" jdbcType="VARCHAR" />
     <result column="test_database_id" property="testDatabaseId" jdbcType="BIGINT" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="INTEGER" />
     <result column="review_type" property="reviewType" jdbcType="INTEGER" />
     <result column="review_message" property="reviewMessage" jdbcType="VARCHAR" />
   </resultMap>
@@ -116,7 +116,7 @@
     values (#{subjectId,jdbcType=INTEGER}, #{subjectType,jdbcType=VARCHAR}, #{subjectPattern,jdbcType=VARCHAR}, 
       #{content,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, #{knowlegePoint,jdbcType=VARCHAR}, 
       #{subjectMatter,jdbcType=VARCHAR}, #{testDatabaseMatter,jdbcType=VARCHAR}, #{testDatabaseId,jdbcType=BIGINT}, 
-      #{name,jdbcType=VARCHAR}, #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR}
+      #{name,jdbcType=INTEGER}, #{reviewType,jdbcType=INTEGER}, #{reviewMessage,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.g10.ssm.po.testdatabase.Subject" >
@@ -188,7 +188,7 @@
         #{testDatabaseId,jdbcType=BIGINT},
       </if>
       <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+        #{name,jdbcType=INTEGER},
       </if>
       <if test="reviewType != null" >
         #{reviewType,jdbcType=INTEGER},
@@ -235,7 +235,7 @@
         test_database_id = #{record.testDatabaseId,jdbcType=BIGINT},
       </if>
       <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
+        name = #{record.name,jdbcType=INTEGER},
       </if>
       <if test="record.reviewType != null" >
         review_type = #{record.reviewType,jdbcType=INTEGER},
@@ -259,7 +259,7 @@
       subject_matter = #{record.subjectMatter,jdbcType=VARCHAR},
       test_database_matter = #{record.testDatabaseMatter,jdbcType=VARCHAR},
       test_database_id = #{record.testDatabaseId,jdbcType=BIGINT},
-      name = #{record.name,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=INTEGER},
       review_type = #{record.reviewType,jdbcType=INTEGER},
       review_message = #{record.reviewMessage,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -294,7 +294,7 @@
         test_database_id = #{testDatabaseId,jdbcType=BIGINT},
       </if>
       <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+        name = #{name,jdbcType=INTEGER},
       </if>
       <if test="reviewType != null" >
         review_type = #{reviewType,jdbcType=INTEGER},
@@ -315,7 +315,7 @@
       subject_matter = #{subjectMatter,jdbcType=VARCHAR},
       test_database_matter = #{testDatabaseMatter,jdbcType=VARCHAR},
       test_database_id = #{testDatabaseId,jdbcType=BIGINT},
-      name = #{name,jdbcType=VARCHAR},
+      name = #{name,jdbcType=INTEGER},
       review_type = #{reviewType,jdbcType=INTEGER},
       review_message = #{reviewMessage,jdbcType=VARCHAR}
     where subject_id = #{subjectId,jdbcType=INTEGER}

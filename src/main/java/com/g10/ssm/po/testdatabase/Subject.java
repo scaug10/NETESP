@@ -19,7 +19,7 @@ public class Subject {
 
     private Long testDatabaseId;
 
-    private String name;
+    private Integer name;
 
     private Integer reviewType;
 
@@ -97,12 +97,12 @@ public class Subject {
         this.testDatabaseId = testDatabaseId;
     }
 
-    public String getName() {
+    public Integer getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setName(Integer name) {
+        this.name = name;
     }
 
     public Integer getReviewType() {

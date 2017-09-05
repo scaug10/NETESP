@@ -14,4 +14,6 @@ public interface StrategyQueryMapper {
 	int deleteStrategy(Integer[] strategyId);
 
 	int selectId();
+	
+	public String selectStrategyNameById(Integer strategyId) throws Exception;
 }

@@ -10,8 +10,8 @@
 		exam_id, name
 	</sql>
 	<select id="selectAllExam" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
+		select *
+<!-- 		<include refid="Base_Column_List" /> -->
 		from Exam
 	</select>
 	<select id="selectExamByName" resultMap="BaseResultMap"
@@ -43,4 +43,5 @@
 		select * from Exam
 		where name=#{name} and strategy_id = #{strategyId}
 	</select>
+	
 </mapper>

@@ -45,8 +45,8 @@ public class ForumManageController {
 	private PostCommentService postCommentService;
 
 	/**删除板块，同时删除板块下的所有主题*/
-	@RequestMapping("deleteBoard")
-	public String deleteBoard(Model model, Integer boardId) throws Exception {
+	@RequestMapping("/board/delete")
+	public String deleteBoard(Integer boardId) throws Exception {
 		if (boardId != null && boardId != 0) {
 			int result = boardService.deleteBoardByPrimaryKey(boardId);
 			if (result == 1) {
@@ -58,19 +58,18 @@ public class ForumManageController {
 	}
 
 	/**删除主题，同时删除主题下的所有帖子*/
-	@RequestMapping("deleteTheme")
-	public String deleteTheme(Model model,
+	@RequestMapping("/theme/delete")
+	@ResponseBody
+	public Integer deleteTheme(Model model,
 			@RequestParam("topicId") Integer themeId) throws Exception {
 		if (themeId != null && themeId != 0) {
 			Theme theme = themeService.selectThemeByPrimaryKey(themeId);
 			if (theme != null) {
 				int result = themeService.deleteThemeByPrimaryKey(themeId);
-				if (result != 0) {
-					return "success";
-				}
+				return result;
 			}
 		}
-		return "error";
+		return 0;
 	}
 
 	/**删除帖子，同时删除帖子下的所有评论*/

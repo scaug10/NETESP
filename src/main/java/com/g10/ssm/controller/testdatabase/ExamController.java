@@ -1,5 +1,6 @@
 package com.g10.ssm.controller.testdatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -10,12 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.g10.ssm.po.testdatabase.Exam;
+import com.g10.ssm.po.testdatabase.ExamCustom;
 import com.g10.ssm.service.testdatabase.ExamService;
+import com.g10.ssm.service.testdatabase.StrategyService;
 
 @Controller
 public class ExamController {
 	@Autowired
 	private ExamService examService;
+	
+	@Autowired
+	private StrategyService strategyService;
 
 	@RequestMapping("/queryExam")
 	public String queryExam(@Param("name") String name, Model model) throws Exception {
@@ -43,17 +49,32 @@ public class ExamController {
 		return result;
 	}
 
-	@RequestMapping("/deleteExam")
+	@RequestMapping("/exam/delete")
 	@ResponseBody
 	public int deleteExam(Integer[] examId) throws Exception {
 		int result = examService.deleteExamByPrimaryKey(examId);
 		return result;
 	}
 
-	@RequestMapping("/getAllExam")
-	public String getAllExam(Model model) throws Exception {
+	@RequestMapping("/exam/query")
+	@ResponseBody
+	public List<ExamCustom> getAllExam() throws Exception {
 		List<Exam> list = examService.queryExam();
-		model.addAttribute("list", list);
-		return "Examination/examination";
+		List<ExamCustom> exams = new ArrayList<ExamCustom>();
+		for(Exam exam: list){
+			ExamCustom examCustom = new ExamCustom();
+			examCustom.setExamId(exam.getExamId());
+			examCustom.setName(exam.getName());
+			examCustom.setStrategyId(exam.getStrategyId());
+			String name = strategyService.selectStrategyNameById(exam.getStrategyId());
+			examCustom.setStrategyName(name);
+			exams.add(examCustom);
+		}
+		return exams;
+	}
+	
+	@RequestMapping("/exam/all")
+	public String intoExamManage(){
+		return "Strategy/ExaminationManagement";
 	}
 }

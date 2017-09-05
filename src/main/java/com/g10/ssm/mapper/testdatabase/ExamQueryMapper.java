@@ -14,4 +14,5 @@ public interface ExamQueryMapper {
 	Exam checkExamName(String name);
 	
 	public Exam selectExamByExam(Exam exam) throws Exception;
+	
 }

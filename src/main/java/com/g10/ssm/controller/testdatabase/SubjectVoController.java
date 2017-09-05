@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.g10.ssm.po.testdatabase.ChoiceQuestion;
 import com.g10.ssm.po.testdatabase.Exam;
+import com.g10.ssm.po.testdatabase.ExamQuestionKey;
 import com.g10.ssm.po.testdatabase.Strategy;
 import com.g10.ssm.po.testdatabase.Subject;
 import com.g10.ssm.po.testdatabase.SubjectCustom;
@@ -116,8 +118,34 @@ public class SubjectVoController {
 		return null;
 	}
 	
-	private boolean createExam(Integer strategyId, Integer examId){
-		
+	private boolean createExam(Integer strategyId, Integer examId) throws Exception{
+		if(strategyId != null && strategyId != 0){
+			if(examId != null && examId != 0){
+				List<Integer> ids = null;
+				ids = sqts.selectTidByStrategyId(strategyId);
+				if(ids != null){
+					for(Integer id: ids){
+						TestItemsDesign testDesign = getTestItemsDesign(id);
+						SubjectCustom subject = new SubjectCustom();
+						subject.setLowerlimitDifficultyId(testDesign.getLowerlimitDifficultyId());
+						subject.setToplimitDifficultyId(testDesign.getToplimitDifficultyId());
+						subject.setSubjectNum(testDesign.getNumber());
+						subject.setSubjectType(testDesign.getExamType());
+						List<Integer> sids = subjectService.selectIdsByExample(subject);
+						if(sids.size() < subject.getSubjectNum())
+							return false;
+						for(Integer sid: sids){
+							ExamQuestionKey examQuestion = new ExamQuestionKey();
+							examQuestion.setExamId(examId);
+							examQuestion.setSubjectId(sid);
+							int result = eqService.saveExamQuestion(examQuestion);
+							if(result == 0) return false;
+						}
+					}
+				}
+			}
+			return true;
+		}
 		return false;
 	}
 	
@@ -129,14 +157,16 @@ public class SubjectVoController {
 			exam.setStrategyId(strategyId);
 			int result = examService.saveExam(exam);
 			Exam exam0 = examService.queryExamByExam(exam);
-			createExam(exam0.getStrategyId(), exam0.getExamId());
-			return result;
+			boolean ok = createExam(exam0.getStrategyId(), exam0.getExamId());
+			return ok ? result : 0;
 		}
 		return 0;
 	}
 	
 	@RequestMapping("/testpaper")
-	public String getTest() throws Exception{
+	public String getTest(Model model, Integer examId, Integer strategyId) throws Exception{
+		model.addAttribute("examId", examId);
+		model.addAttribute("strategyId", strategyId);
 		return "questionBank/test";
 	}
 	

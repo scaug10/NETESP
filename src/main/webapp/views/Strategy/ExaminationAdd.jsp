@@ -37,16 +37,17 @@
 	    }
     
     	function submitForm(){
-    		var url = "${pageContext.request.contextPath}/test/singleChoice";
-        	var data = "name=" + document.getElementById("name").value;
-        	data += "&examName=" + document.getElementById("examName").value;
+    		var url = "${pageContext.request.contextPath}/test/submit/exam";
+        	var data = "strategyId=" + document.getElementById("name").value;
+        	data += "&examName=" + document.getElementById("exam_name").value;
         	var xhr = createXmlHttpRequest();
         	xhr.open('post', url, true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send(data);
             xhr.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    var json = JSON.parse(this.responseText);
+                	var json = JSON
+					.parse(this.responseText);
                     if(json != undefined && json != null){
                     	if(json == 1) alert("提交成功");
                     	else alert("提交失败");
@@ -62,8 +63,8 @@
     <!--导航栏-->
     <div class="pageTop">
         <div class="page">
-            <img src="${pageContext.request.contextPath }/img/coin02.png" /><span><a href="../main.html">首页</a>&nbsp;-&nbsp;<a
-                href="ExaminationManagement.html">试题管理</a>&nbsp;-</span>&nbsp;添加试题信息
+            <img src="${pageContext.request.contextPath }/img/coin02.png" /><span><a href="${pageContext.request.contextPath}/index">首页</a>&nbsp;-&nbsp;<a
+                href="${pageContext.request.contextPath}/exam/all">试题管理</a>&nbsp;-</span>&nbsp;添加试题信息
         </div>
     </div>
     <div class="page ">
@@ -83,7 +84,7 @@
                		<script>
 	               		var url = "${pageContext.request.contextPath}/test/strategy/all";
 	                	var xhr =new XMLHttpRequest();
-	                	alert("step..");
+// 	                	alert("step..");
 	                	xhr.open('post', url, true);
 	                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	                    xhr.send();
@@ -106,7 +107,7 @@
                 <div class="bbD">
                     <p class="bbDP">
                         <button class="btn_ok btn_yes" onclick="submitForm()">提交</button>
-                        <a class="btn_ok btn_no" href="ExaminationManagement.html">取消</a>
+                        <a class="btn_ok btn_no" href="${pageContext.request.contextPath}/exam/all">取消</a>
                     </p>
                 </div>
             </div>

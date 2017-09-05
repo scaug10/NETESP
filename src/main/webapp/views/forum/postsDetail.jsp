@@ -208,14 +208,20 @@
         /*删除主题*/
         function deleteTheme(){
             if(confirm("删除是不可恢复的，你确认要删除吗？")) {
-                var url = "";
+                var url = "${pageContext.request.contextPath}/forumManage/theme/delete";
                 var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
                 xhr.open("POST", url, true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.send("topicId=" + document.getElementById("topicId").value);
                 xhr.onreadystatechange(function () {
                     if (this.status == 200 && this.readyState == 4) {
-                        alert("删除成功！");
+                        var json = JSON.parse(this.responseText);
+                    	if(json == 1){
+                    		alert("删除成功！");
+//                     		window.history.go(-1);
+                    		window.location.go(-1);
+                    	}
+                    	else alert("你没有权限进行此操作！");
                     }
                 });
             }
@@ -228,7 +234,7 @@
                 var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
                 xhr.open("POST", url, true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.send("postNum=" + postNum);
+                xhr.send("topicId=" + document.getElementById("topicId").value);
                 xhr.onreadystatechange = function () {
                     if (this.status == 200 && this.readyState == 4) {
                     	alert("success");

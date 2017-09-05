@@ -72,4 +72,12 @@ public class StrategyServiceImpl implements StrategyService {
 		return result;
 	}
 
+	@Override
+	public String selectStrategyNameById(Integer strategyId) throws Exception {
+		if(strategyId != null && strategyId != 0){
+			return strategyQueryDao.selectStrategyNameById(strategyId);
+		}
+		return null;
+	}
+
 }

@@ -261,7 +261,7 @@
 			<div class="header1">
 				<div class="leftblock">
 					<h1>修改密码</h1>
-					<img src="" width="176.72" height="60"/>
+					<img src="${pageContext.request.contextPath}/img/index/logo.jpg" width="176.72" height="60"/>
 				</div>
 			</div>
 		</div>

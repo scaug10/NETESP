@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.g10.ssm.mapper.testdatabase.SubjectMapper;
 import com.g10.ssm.mapper.testdatabase.SubjectQueryMapper;
 import com.g10.ssm.po.testdatabase.Subject;
+import com.g10.ssm.po.testdatabase.SubjectCustom;
 import com.g10.ssm.service.testdatabase.SubjectService;
 
 @Service("subjectService")
@@ -55,6 +56,13 @@ public class SubjectServiceImpl implements SubjectService {
 			return id;
 		}
 		return null;
+	}
+
+	@Override
+	public List<Integer> selectIdsByExample(SubjectCustom subjectCustom)
+			throws Exception {
+		List<Integer> ids = subjectQueryDao.selectIdsByExample(subjectCustom);
+		return ids;
 	}
 
 //	@Override

@@ -77,6 +77,7 @@
 							<li><a href="${pageContext.request.contextPath}/getAllKnowledge">知识管理</a></li>
 							<li><a href="${pageContext.request.contextPath}/getAllRepositoryCategory">知识库分类</a></li>
 							<li><a href="${pageContext.request.contextPath}/questionbank">知识库</a></li>
+							<li><a href="${pageContext.request.contextPath}/exam/all">试卷管理</a></li>
 						</ul>
 					</li>
 					<li class="nLi">
