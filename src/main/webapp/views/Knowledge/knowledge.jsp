@@ -27,13 +27,13 @@
 .linkStyle:active {
 	color: black;
 }
-.searchInput{
+
+.searchInput {
 	width: 180px;
 	height: 40px;
 	border: 1px solid #ccc;
 	text-indent: 15px;
 }
-
 </style>
 </head>
 
@@ -56,8 +56,7 @@
 						<button class="userbtn right" onclick="check()">查询</button>
 						<input type="text" id="name" name="name" placeholder="请输入要查询的知识名称"
 							class="right searchInput">
-						<button class="userbtn"
-							onclick="javascrtpt:window.location.href='KnowledgeAdd.html'">添加</button>
+						<button class="userbtn" onclick="add()">添加</button>
 						<button class="userbtn" onclick="del()">删除</button>
 					</div>
 				</div>
@@ -77,7 +76,7 @@
 						<c:forEach var="list" items="${list }">
 							<tr height="40px">
 								<td><input type="checkbox" class='checkbox' name="id"
-									value="${list.categoryId}"></td>
+									value="${list.knowledgeId}"></td>
 								<td>${list.knowledgeId }</td>
 								<td>${list.creator}</td>
 								<td>${list.name }</td>
@@ -85,7 +84,7 @@
 								<td class="reviewType">${list.reviewType }</td>
 								<td><a href="javascript:void(0)"
 									onclick="overlook(${list.knowledgeId })"> <img title="预览"
-										src="${pageContext.request.contextPath}/img/yulan.png">
+										src="${pageContext.request.contextPath}/img/preview.png">
 								</a><a href="javascript:void(0)"
 									onclick="modify(${list.knowledgeId })"> <img title="修改"
 										src="${pageContext.request.contextPath}/img/update.png">
@@ -134,6 +133,11 @@
 			}
 		}
 	}
+	
+	function add(){
+		var url = "addKnowledge";
+		window.location.href = url;
+	}
 
 	function overlook(knowledgeId){
 		 var url = "queryKnowledge?knowledgeId="+knowledgeId;
@@ -163,6 +167,7 @@
 				   sendArray.push(checkboxArray[i].value);
 			   }
 		   }
+		   console.log(sendArray);
 		   var message = "确认删除这"+sendArray.length+"个知识吗？";
 		   if(confirm(message)){
 		   var xhr = createXmlHttpRequest();

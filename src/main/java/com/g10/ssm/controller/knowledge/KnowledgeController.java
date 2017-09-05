@@ -67,9 +67,21 @@ public class KnowledgeController {
 		return "Knowledge/knowledgeModify";
 	}
 
+	@RequestMapping("/addKnowledge")
+	public String add(Model model) throws Exception {
+		List<RepositoryCategoryExt> list = repositoryCategoryService.getAllRepositoryCategory();
+		model.addAttribute("list", list);
+		return "Knowledge/knowledgeAdd";
+	}
+
 	@RequestMapping("/saveKnowledge")
 	@ResponseBody
 	public int saveKnowledge(Knowledge knowledge) throws Exception {
+		knowledge.setCreator("test");
+		Knowledge record = knowledgeService.selectByName(knowledge.getName());
+		if (record != null) {
+			return 2;
+		}
 		int result = knowledgeService.saveKnowledge(knowledge);
 		return result;
 	}
