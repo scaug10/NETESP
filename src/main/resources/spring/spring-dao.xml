@@ -33,8 +33,7 @@
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-		<property name="basePackage" value="com.g10.ssm.mapper.**" />
-		
+		<property name="basePackage" value="com.g10.ssm.mapper" />
 	</bean>
 
 </beans>

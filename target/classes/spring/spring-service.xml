@@ -13,7 +13,6 @@
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
 		
-<!-- 		<bean id="testTableService" class="com.g10.ssm.service.imple.TestTableServiceImple" /> -->
-		<context:component-scan base-package="com.g10.ssm.service" />
-		<context:component-scan base-package="com.g10.ssm.service.*" />
+		<bean id="testTableService" class="com.g10.ssm.service.imple.TestTableServiceImple" />
+
 </beans>

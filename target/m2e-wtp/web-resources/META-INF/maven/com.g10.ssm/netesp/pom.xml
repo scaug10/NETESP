@@ -95,20 +95,6 @@
           <version>1.4</version>  
       </dependency>
        
-      	<!-- 实现通过邮箱找回密码的jar包 -->
-		<dependency>
-			<groupId>javax.activation</groupId>
-			<artifactId>activation</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-
-		<!-- 实现通过邮箱找回密码的jar包 -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.5</version>
-		</dependency>
-		
       <dependency>  
           <groupId>org.springframework</groupId>  
           <artifactId>spring-jdbc</artifactId>  
@@ -133,35 +119,13 @@
            <artifactId>commons-io</artifactId>  
            <version>2.2</version>  
        </dependency>
-       
-<!--        <dependency> -->
-<!-- 	    	<groupId>org.codehaus.jackson</groupId> -->
-<!-- 	    	<artifactId>jackson-mapper-asl</artifactId> -->
-<!-- 	    	<version>1.9.13</version> -->
-<!-- 		</dependency> -->
+
 
        <dependency>
        	<groupId>aopalliance</groupId>
        	<artifactId>aopalliance</artifactId>
        	<version>1.0</version>
        </dependency>
-       
-       		<!-- 实现通过邮箱找回密码的jar包 -->
-		<dependency>
-			<groupId>javax.activation</groupId>
-			<artifactId>activation</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-
-
-		<!-- 实现通过邮箱找回密码的jar包 -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.5</version>
-		</dependency>
-       
-       
   </dependencies>
   
   <build>
