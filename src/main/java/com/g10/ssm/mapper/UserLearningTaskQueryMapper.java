@@ -8,4 +8,16 @@ public interface UserLearningTaskQueryMapper {
 	List<UserLearningTaskKey> selectAllUserLearningTask();
 
 	List<UserLearningTaskKey> selectAllLearningTask(String userName);
+
+	Integer[] selectAllDepartmentId(int learningTaskId);
+
+	Integer[] selectLearningTaskByName(int departmentId);
+
+	String[] selectAllDepartmentName(int learningTaskId);
+
+	String[] selectAllUserName(int departmentId);
+
+	String[] selectLearningTaskById(int learningTaskId);
+
+	int deleteUserLearningTask(int departmentId);
 }

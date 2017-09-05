@@ -13,12 +13,35 @@
 		<include refid="Base_Column_List" />
 		from Learning_Task_Courseware
 	</select>
-	<select id="selectCoursewareByLearningTaskId" resultMap="BaseResultMap"
+	<select id="selectCoursewareByLearningTaskId" resultType="java.lang.Integer"
 		parameterType="java.lang.Integer">
 		select
-		<include refid="Base_Column_List" />
+		courseware_id
 		from Learning_Task_Courseware
-		where learning_task_id =
+		where
+		learning_task_id =
 		#{learningTaskId,jdbcType=INTEGER}
 	</select>
+	<select id="selectAllCoursewareUrl" resultType="java.lang.String"
+		parameterType="java.lang.Integer">
+		select c.content_url
+		from
+		Learning_Task_Courseware as
+		ltc
+		natural join
+		Courseware as c
+		where
+		ltc.learning_task_id =
+		#{learningTaskId,jdbcType=INTEGER}
+		and
+		ltc.courseware_id=
+		c.courseware_id
+	</select>
+
+	<delete id="deleteLearningTaskCourseware" parameterType="java.lang.Integer">
+		delete
+		from
+		Learning_Task_Courseware where learning_task_id =
+		#{learningTaskId,jdbcType=INTEGER}
+	</delete>
 </mapper>
