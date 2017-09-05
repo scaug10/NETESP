@@ -2,6 +2,8 @@ package com.g10.ssm.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -172,7 +174,8 @@ public class LearningTaskController {
 
 	@RequestMapping("/getStudyTask")
 	@ResponseBody
-	public List<LearningTaskExt> getStudyTask(String userName) throws Exception {
+	public List<LearningTaskExt> getStudyTask(HttpServletRequest request) throws Exception {
+		String userName = (String) request.getSession().getAttribute("userName");
 		List<LearningTaskExt> list = learningTaskService.getAllLearningTaskByUserName(userName);
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).setCoursewareUrl(

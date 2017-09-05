@@ -1,0 +1,25 @@
+.navtablist a{
+    display: inline-block;
+    width: 100%;
+    padding: 10px 0px;
+    color: #fff;
+    font-family: "黑体";
+    text-decoration: none;
+}
+
+.navtablist a:hover{
+    background-color: yellowgreen;
+}
+
+.navtablist {
+    width: 100%;
+}
+
+.navtablist li {
+    color: #fff;
+    width: 20%;
+    text-align: center;
+    list-style-type: none;
+    float: left;
+    background-color: green;
+}

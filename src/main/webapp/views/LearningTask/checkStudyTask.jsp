@@ -39,14 +39,13 @@ a {
 		document.getElementById("1").className = "selected";
 		document.getElementById("2").className = "";
 		document.getElementById("3").className = "";
-		var userName = "test";
 		var xhr = window.XMLHttpRequest ? new XMLHttpRequest()
 				: new ActiveXObject("Microsoft.XMLHTTP");
 		var url = "getStudyTask";
 		xhr.open("post", url, true);
 		xhr.setRequestHeader('Content-Type',
 				'application/x-www-form-urlencoded');
-		xhr.send("userName=" + userName);
+		xhr.send();
 		xhr.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				document.getElementById("studyTaskTable").innerHTML = "<tr>"
