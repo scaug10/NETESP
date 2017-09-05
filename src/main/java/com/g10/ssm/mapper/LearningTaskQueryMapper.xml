@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.g10.ssm.mapper.LearningTaskQueryMapper">
+	<resultMap id="BaseResultMap" type="com.g10.ssm.po.LearningTaskExt">
+		<id column="learning_task_id" property="learningTaskId" jdbcType="INTEGER" />
+		<result column="task_name" property="taskName" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+		<result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+		<result column="total_learning_time" property="totalLearningTime"
+			jdbcType="REAL" />
+		<result column="learning_progress" property="learningProgress"
+			jdbcType="INTEGER" />
+		<result column="is_complete" property="isComplete" jdbcType="BIT" />
+	</resultMap>
+	<!-- <resultMap type="com.g10.ssm.po.LearningTaskExt" id="LearningTask" 
+		extends="com.g10.ssm.po.LearningTask"> <result column="name" property="departmentName" 
+		jdbcType="VARCHAR" /> <result column="content_url " property="coursewareUrl" 
+		jdbcType="VARCHAR" /> </resultMap> -->
+	<sql id="Base_Column_List">
+		learning_task_id, task_name, content, start_time, end_time,
+		total_learning_time,
+		learning_progress, is_complete
+	</sql>
+	<select id="selectAllLearnTask" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from Learning_Task
+	</select>
+	<select id="selectLearningTask" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from Learning_Task
+		where
+		learning_task_id =
+		#{learningTaskId,jdbcType=INTEGER}
+	</select>
+	<select id="selectLearningTaskByName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from Learning_Task
+		where
+		task_name like CONCAT('%',#{0},'%')
+	</select>
+	<select id="selectAllLearningTaskByUserName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from User_Learning_Task as ult
+		natural join Learning_Task as lt
+		where
+		user_name = #{userName,jdbcType=VARCHAR}
+		and ult.learning_task_id =
+		lt.learning_task_id
+	</select>
+	<select id="selectId" resultType="java.lang.Integer">
+		select
+		max(learning_task_id)
+		from
+		Learning_Task
+	</select>
+	<select id="checkLearningTask" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from Learning_Task
+		where task_name = #{taskName,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectLearningTaskByDepartmentId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from Learning_Task as lt
+		natural join
+		User_Learning_Task as ult
+		natural
+		join
+		User as u
+		where
+		u.department_id =
+		#{departmentId,jdbcType=INTEGER}
+		and
+		u.user_name = ult.user_name
+		and
+		ult.learning_task_id =
+		lt.learning_task_id
+	</select>
+
+	<delete id="deleteLearningTask" parameterType="java.util.ArrayList">
+		delete from Learning_Task where learning_task_id in
+		<foreach item="learningTaskId" collection="array" open="("
+			separator="," close=")">
+			#{learningTaskId,jdbcType=INTEGER}
+		</foreach>
+	</delete>
+</mapper>

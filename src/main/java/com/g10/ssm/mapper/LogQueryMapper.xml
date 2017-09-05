@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.g10.ssm.mapper.LogQueryMapper">
+	<resultMap id="BaseResultMap" type="com.g10.ssm.po.Log">
+		<id column="log_id" property="logId" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="log_time" property="logTime" jdbcType="TIMESTAMP" />
+		<result column="user_ip" property="userIp" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		log_id, user_id, log_time, user_ip
+	</sql>
+	<select id="selectAllLog" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from Log
+	</select>
+</mapper>

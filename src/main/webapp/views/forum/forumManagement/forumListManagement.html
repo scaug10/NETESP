@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>版块管理</title>
+
+    <style type="text/css">
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        td{
+            border: 1px skyblue solid;
+        }
+
+        img{
+            padding: 4px;
+        }
+
+        .operation{
+            width: 135px;
+        }
+
+        button{
+            height: 50px;
+            width: 100px;
+            font-size: 20px;
+        }
+
+        .pageButton{
+            display: inline-block;
+            border: 1px dimgray solid;
+            float: right;
+            padding: 5px;
+            margin: 5px;
+            height: 23px;
+        }
+
+        .pageButton>a{
+            display: inline-block;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .pageButton>input{
+            width: 20px;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+
+        document.getElementById("pageinput").bind('keydown',function(event){
+            if(event.keyCode == "13")
+            {
+                alert("the number is " + document.getElementById("pageinput").nodeValue);
+            }
+        });
+
+        function addForum() {
+            /*添加版块*/
+            var name = prompt("请输入版块名字");
+            if(name.length != 0){
+                var detail = prompt("请输入版块介绍");
+                if(detail.length != 0){
+                    var owner = prompt("请输入版主ID");
+                    if(owner.length != 0){
+                        alert(name + detail + owner);
+                        //与服务器通讯
+
+                    }
+                }
+            }
+
+        }
+
+        function modify() {
+
+        }
+
+        function deleteForum(){
+
+        }
+
+        function orderUp() {
+
+        }
+
+        function orderDown() {
+
+        }
+
+    </script>
+
+
+</head>
+<body>
+<!--版块处理列表-->
+    <table>
+        <tr>
+            <td>版块名</td>
+            <td>版块信息</td>
+            <td>版主</td>
+            <td>状态</td>
+            <td class="operation">操作</td>
+        </tr>
+
+        <script type="text/javascript">
+
+            var forumNumber =  5;
+
+            for(var i=0; i<forumNumber; i++){
+                var forumName = "应急练习版块";
+                var forumDetail = "这里是讨论应急学习的地方";
+                var forumOwner = "Apple";
+                var forumStatus = "审查中";
+
+                document.write(
+                    "<tr>\n" +
+                    "   <td> " + forumName + " </td>\n" +
+                    "   <td> " + forumDetail + " </td>\n" +
+                    "   <td> " + forumOwner + " </td>\n" +
+                    "   <td> " + forumStatus + " </td>\n" +
+                    "   <td class='operation'>" +
+                    "       <a href=\"javascript:void(0)\" onclick=\"modify()\"><img src=\"../IMG/modify.png\" alt=\"修改\"></a>\n" +
+                    "       <a href=\"javascript:void(0)\" onclick=\"deleteForum()\"><img src=\"../IMG/delete.png\" alt=\"删除\"></a>\n" +
+                    "       <a href=\"javascript:void(0)\" onclick=\"orderUp()\"><img src=\"../IMG/up.png\" alt=\"向上\"></a>\n" +
+                    "       <a href=\"javascript:void(0)\" onclick=\"orderDown()\"><img src=\"../IMG/down.png\" alt=\"向下\"></a>"+
+                    "   </td>\n" +
+                    "</tr>"
+                );
+            }
+
+        </script>
+    </table>
+
+<script type="text/javascript">
+    /*帖子页数填充*/
+    var totalPostNumber = 1001;/*总版块数*/
+    var postsPerPage = 20;/*每页包含的版块数*/
+    var currentPage = 1;/*当前页*/
+
+    document.write("<span class=\"pageButton\"><a href=\"#\">下一页</a></span>\n" +
+        "    <span class=\"pageButton\"><a href=\"#\">..." + Math.ceil(totalPostNumber/postsPerPage) + "</a></span>\n" +
+        "    <span class=\"pageButton\"><input id='pageinput' class=\"inputPage\" value=\" " + currentPage + " \" type=\"text\">/页</span>\n" +
+        "    <span class=\"pageButton\"><a href=\"#\">1</a></span>\n" +
+        "    <span class=\"pageButton\"><a href=\"#\">上一页</a></span>");
+
+</script>
+
+<br />
+
+<button onclick="addForum()">添加版块</button>
+</body>
+</html>
