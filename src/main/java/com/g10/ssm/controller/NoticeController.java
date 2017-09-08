@@ -236,7 +236,7 @@ public class NoticeController {
 	 */
 	@RequestMapping("/jumpPersonalNoticePage")
 	public String jumpPersonalNoticePage(){
-		return "";
+		return "notice/personalNotice";
 	}
 	
 	/**

@@ -14,13 +14,12 @@ function getHotTheme(){
 				var str = "";
 				for(var i = 0; i < json.length; ++i){
 					str += "<li>"+
-						"		<div class=\"h_img\">"+
-						"			<img src=\"images/favicon.jpg\" />"+
+						"		<div class='h_img'>"+
+						"			<img src='img/forum/forum.jpg' />"+
 						"		</div>"+
 						"		<div class=\"h_text\">"+
-						"			<b><a href=\"${pageContext.request.contextPath }/forum/themeDetail?topicName="+
+						"			<b><a href=\"forum/themeDetail?topicName="+
 						"				"+ json[i].topicName + "&topicId="+json[i].topicId+"\">"+json[i].topicName+"</a></b>"+
-						// "			<p><a href=\"tDetail.html\" class=\"detail\">详细</a></p>"+
 						"		</div>"+
 						"	</li>";
 				}
@@ -42,7 +41,7 @@ function getPublicNotice(){
 			if(json != undefined && json != null){
 				var str = "<li class=\"special\">"+
 						  "		<div class=\"n_img\">"+
-						  "			<img src=\"img/index/notice.jpg\" />"+
+						  "			<img src=\"img/index/personalnotice.jpg\" />"+
 						  "		</div>";
 				if(json.length > 0){
 					str += "<div class=\"n_text\">" +

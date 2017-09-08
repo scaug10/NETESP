@@ -156,18 +156,14 @@ th {
 		xmlhttp.onreadystatechange = function() {
 			if (this.status == 200 && this.readyState == 4) {
 				var jsonObject = this.responseText;
-				var result = eval("(" + jsonObject + ")"); //json转为js数组
+				var result = JSON.parse(jsonObject); //json转为js数组
 				var str = ""
 				for (var i = 0; i < result.length; ++i) {
 					var noticeId=result[i].noticeId;
 					var title = result[i].title;
 					var noticeType=result[i].noticeType;
 					var isPublic=result[i].isPublic;
-					var s1=""
-					if(isPublic)
-						s1="公开";
-					else
-						s1="非公开";
+					var s1= isPublic ? "公开" : "非公开";
 					var createTime=result[i].createTime;
 					str += "<tr>\n" +
 						"	<td>" + "<input type='checkbox' name='noticeIdList' value='" + noticeId + "'/>" + "</td>\n" +

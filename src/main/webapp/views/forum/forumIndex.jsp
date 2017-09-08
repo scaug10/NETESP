@@ -15,7 +15,7 @@
 
 <div class="header">
 
-    <span class="title">论坛版块</span>
+    <span class="title">论坛版块</span><a style="color: white;float: right;margin-top:15px;margin-right:15px;" href="${pageContext.request.contextPath }/index">返回主页</a>
 
 </div>
 

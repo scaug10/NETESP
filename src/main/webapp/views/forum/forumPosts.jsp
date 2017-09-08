@@ -172,7 +172,7 @@
 
 <input id="getboardname" type="hidden" name="pwd" value="${boardName}"><!--放置隐藏的input标签以便js获取该属性-->
 
-<div class="header"><span>${boardName}</span></div>
+<div class="header"><span>${boardName}</span><a style="color: white;float: right;margin-top:15px;margin-right:15px;" href="${pageContext.request.contextPath }/index">返回主页</a></div>
 
 <div class="header">
     <a href="${pageContext.request.contextPath }/forum/index" class="backButton">返回论坛列表</a>

@@ -156,8 +156,8 @@ select.seek {
 	<div id="pageAll">
 		<div class="pageTop">
 			<div class="page">
-				<img src="${pageContext.request.contextPath}/img/coin02.png" /><span><a
-					href="../main.html">首页</a>&nbsp;-&nbsp;</span><a href="getAllStrategy">策略管理</a>
+				<img src="${pageContext.request.contextPath}/views/img/coin02.png" /><span><a
+					href="${pageContext.request.contextPath}/index">首页</a>&nbsp;-&nbsp;</span><a href="getAllStrategy">策略管理</a>
 			</div>
 		</div>
 
@@ -214,7 +214,7 @@ select.seek {
 								<td class="status">${list.status }</td>
 								<td><a title="修改" href=javaScript:void(0)
 									onclick="modify('${list.strategyId }')"><img
-										src='${pageContext.request.contextPath}/img/update.png'></a></td>
+										src='${pageContext.request.contextPath}/views/img/update.png'></a></td>
 							</tr>
 						</c:forEach>
 					</table>

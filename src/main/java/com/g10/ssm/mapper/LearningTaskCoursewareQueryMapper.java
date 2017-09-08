@@ -7,5 +7,9 @@ import com.g10.ssm.po.LearningTaskCoursewareKey;
 public interface LearningTaskCoursewareQueryMapper {
 	List<LearningTaskCoursewareKey> selectAllLearningTaskCourseware();
 
-	List<LearningTaskCoursewareKey> selectCoursewareByLearningTaskId(int learningTaskId);
+	Integer[] selectCoursewareByLearningTaskId(int learningTaskId);
+
+	String[] selectAllCoursewareUrl(int learningTaskId);
+
+	int deleteLearningTaskCourseware(int learningTaskId);
 }

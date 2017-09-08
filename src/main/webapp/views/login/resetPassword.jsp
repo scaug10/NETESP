@@ -202,7 +202,6 @@
 								return false;
 							}
 							else{
-								alert("success");
 								checkpassword();
 							}
 						}
@@ -238,7 +237,6 @@
 					xmlhttp.onreadystatechange = function(){
 						if (this.readyState==4 && this.status==200)
 		 				{
-							alert("success");
 							var json = JSON.parse(this.responseText);
 							if(json != undefined && json != null){
 								if(json != 1) {
@@ -261,7 +259,9 @@
 			<div class="header1">
 				<div class="leftblock">
 					<h1>修改密码</h1>
-					<img src="${pageContext.request.contextPath}/img/index/logo.jpg" width="176.72" height="60"/>
+					<a href="${pageContext.request.contextPath}/index">
+						<img src="${pageContext.request.contextPath}/img/index/logo.jpg" width="176.72" height="60"/>
+					</a>
 				</div>
 			</div>
 		</div>

@@ -22,11 +22,21 @@
 		test_database_matter, test_database_id,
 		name, review_type, review_message
 	</sql>
-	<select id="selectAllSubject" resultMap="BaseResultMap">
+	<select id="selectAllSubject" parameterType="java.lang.String" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from Subject
+		where test_database_matter=#{value}
 	</select>
+	
+	<delete id="deleteSubjectsByIds" parameterType="java.util.ArrayList">
+		delete from Subject
+		where subject_id in
+		<foreach item="id" collection="array" open="("
+			separator="," close=")">
+			#{id,jdbcType=INTEGER}
+		</foreach>
+	</delete>
 	
 	<select id="selectLastInsertId" parameterType="java.lang.String"
 		resultType="java.lang.Integer">
@@ -41,6 +51,25 @@
 			and subject_type=#{subjectType}
 		order by rand()
 		limit 0, #{subjectNum}
+	</select>
+	
+	<select id="selectSubjectsBySubject" parameterType="com.g10.ssm.po.testdatabase.Subject"
+		resultMap="BaseResultMap">
+		select * from Subject
+		<where>
+			<if test="subjectType!=null">
+				and subject_type = #{subjectType}
+			</if>
+			<if test="content!=null">
+				and content like '%${content}%'
+			</if>
+			<if test="name!=null">
+				and name=#{name}
+			</if>
+			<if test="reviewType!=null">
+				and review_type=#{reviewType}
+			</if>
+		</where>
 	</select>
 	
 </mapper>

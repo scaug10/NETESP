@@ -68,7 +68,7 @@ a {
 			div.innerHTML = "权限名称不能为空！";
 			return false;
 		}
-		if (name1.length < 4 || name1.length > 16) {
+		if (name1.length < 1 || name1.length > 50) {
 			div.innerHTML = "权限名称的输入的长度1-50个字符！";
 			return false;
 		}
@@ -146,7 +146,7 @@ a {
 		<div class="pageTop">
 			<div class="page" style="width: 1200px;">
 				<img src="${pageContext.request.contextPath}/img/login/coin02.png" /><span><a
-					href="../main.html">首页（还未实现）</a>&nbsp;-&nbsp <a
+					href="${pageContext.request.contextPath}/index">首页</a>&nbsp;-&nbsp <a
 					href="${pageContext.request.contextPath}/permission/jumpPermissionPage">系统权限管理</a>&nbsp;-&nbsp;查询权限</span>
 			</div>
 		</div>

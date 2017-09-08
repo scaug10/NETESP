@@ -82,8 +82,8 @@ hr {
 		<!--导航栏-->
 		<div class="pageTop">
 			<div class="page">
-				<img src="${pageContext.request.contextPath}/img/coin02.png" /><span><a
-					href="../main.html">首页</a>&nbsp;-&nbsp;<a href="getAllKnowledge">知识管理</a>&nbsp;-</span>&nbsp;知识预览
+				<img src="${pageContext.request.contextPath}/views/img/coin02.png" /><span><a
+					href="${pageContext.request.contextPath}/index">首页</a>&nbsp;-&nbsp;<a href="getAllKnowledge">知识管理</a>&nbsp;-</span>&nbsp;知识预览
 			</div>
 		</div>
 		<!--内容-->
@@ -105,15 +105,19 @@ hr {
 					知识分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="">${Knowledge.categoryName }</label>
 				</div>
 				<div class="bbD">
-					<!--PDF文档预览-->
+					知识地址：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank"
+						href="${Knowledge.dataUrl }">${Knowledge.dataUrl }</a>
+				</div>
+				<!-- <div class="bbD">
+					PDF文档预览
 					相关资料：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
 						href="KnowledgePDF.html" target="_blank" class="linkStyle">PDF文档</a>
 				</div>
 				<div class="bbD">
-					<!--视频预览-->
+					视频预览
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
 						href="KnowledgeVideo.html" target="_self" class="linkStyle">视频</a>
-				</div>
+				</div> -->
 				<a class="btn_no" href="getAllKnowledge">返回</a>
 
 				<!-- 				<ul id="pn" width="100%">

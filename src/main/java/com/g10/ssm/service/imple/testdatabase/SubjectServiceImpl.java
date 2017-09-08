@@ -20,8 +20,8 @@ public class SubjectServiceImpl implements SubjectService {
 	private SubjectQueryMapper subjectQueryDao;
 
 	@Override
-	public List<Subject> querySubject() throws Exception {
-		List<Subject> list = subjectQueryDao.selectAllSubject();
+	public List<Subject> querySubject(String test) throws Exception {
+		List<Subject> list = subjectQueryDao.selectAllSubject(test);
 		return list;
 	}
 
@@ -65,13 +65,23 @@ public class SubjectServiceImpl implements SubjectService {
 		return ids;
 	}
 
-//	@Override
-//	public List<Subject> selectSubjectBySelective(Subject subject)
-//			throws Exception {
-//		if(subject != null){
-//			
-//		}
-//		return null;
-//	}
+	@Override
+	public Integer deleteSubjectByIds(Integer[] ids) throws Exception {
+		if(ids != null){
+			Integer result = subjectQueryDao.deleteSubjectsByIds(ids);
+			return result;
+		}
+		return null;
+	}
+
+	@Override
+	public List<Subject> selectSubjectBySelective(Subject subject)
+			throws Exception {
+		if(subject != null){
+			List<Subject> list = subjectQueryDao.selectSubjectsBySubject(subject);
+			return list;
+		}
+		return null;
+	}
 
 }

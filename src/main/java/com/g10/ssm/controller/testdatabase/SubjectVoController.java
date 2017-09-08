@@ -150,6 +150,7 @@ public class SubjectVoController {
 	}
 	
 	@RequestMapping("/submit/exam")
+	@ResponseBody
 	public Integer generateExam(Integer strategyId, String examName) throws Exception{
 		if(examName != null && strategyId != null && strategyId != 0){
 			Exam exam = new Exam();
@@ -182,5 +183,6 @@ public class SubjectVoController {
 	public String intoExamAdd(){
 		return "Strategy/ExaminationAdd";
 	}
+
 	
 }

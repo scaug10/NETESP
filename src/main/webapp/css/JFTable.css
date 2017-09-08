@@ -1,0 +1,13 @@
+table{
+    margin: 5px 1%;
+    width: 98%;
+    border-collapse: collapse;
+}
+
+th{
+    border: 1px darkgreen solid;
+}
+
+td{
+    border: 1px darkgreen solid;
+}

@@ -16,13 +16,15 @@
 	color: #fff;
 }
 
-[type=text] {
-	width: 20em;
-	margin-top: 8px;
-}
+
 
 label {
 	padding-top: 5px;
+}
+.clear:after{
+	content:"";
+	display:table;
+	clear:both;
 }
 </style>
 <script type="text/javascript">
@@ -61,8 +63,6 @@ label {
 							+ "</p>";
 
 					singleChoiceQuestion(json);
-//						singleChoiceAnswer(json);
-//						singleChoiceSheet(json);
 				}
 			}
 		};
@@ -164,8 +164,6 @@ label {
 						+ "</p>";
 					document.getElementById("head2").innerHTML = str;
 					checkBoxQuestion(json);
-//						checkBoxAnswer(json);
-//						checkBoxSheet(json);
 				}
 			}
 		};
@@ -273,8 +271,6 @@ label {
 							+ "</p>";
 
 					fillQuestion(json);
-//						fillAnswer(json);
-//						fillSheet(json);
 				}
 			}
 		};
@@ -293,13 +289,13 @@ label {
 					+ "<span>("+ fillQuestionScore+ "分)</span>"
 					+ questionTitle
 					+ "</div><div class='test_content_nr_main'>"
-					+ "<li class='option'>"
-					+ "<input type='text' class='radioOrCheck' name='answer"
+					+ "<li class='clear'>"
+					+ "<input type='text' class='radioOrCheck' name='answer style='width= '20em' margin-top= '8px''"
 					+ (frontQuestionNumber+i+1)
 					+ "' id='answer_"
 					+ (frontQuestionNumber+i+1)
 					+ "'/>"
-					+ "</li>"
+					+ "</li>" 
 					+ "</div>";
 		}
 		frontQuestionNumber += fillQuestionNumber;
@@ -329,8 +325,6 @@ label {
 							+ "<span>分</span>"
 							+ "</p>";
 					judgmentQuestion(json);
-//						judgmentAnswer(json);
-//						judgmentSheet(json);
 				}
 			}
 		};
@@ -406,8 +400,6 @@ label {
 							+ "<span>分</span>"
 							+ "</p>";
 					countQuestion(json);
-//						countAnswer(json);
-//						countSheet(json);
 				}
 			}
 		};
@@ -427,10 +419,10 @@ label {
 					+ questionTitle
 					+ "</div>"
 					+ "<div class='test_content_nr_main'>"
-					+ "<li class='option'>"
-					+ "<input type='text' class='radioOrCheck' name='answer"
+					+ "<li class='clear'>"
+					+ "<input type='text' class='radioOrCheck text' name='answer"
 					+ (frontQuestionNumber+i+1)
-					+ "' "
+					+ "' style='width= '20em' margin-top= '8px''"
 					+ "id='answer_"+(frontQuestionNumber+i+1)+"'/>"
 					+ "</li>"
 					+ "</div>";
@@ -453,7 +445,7 @@ label {
 				var json = JSON.parse(this.responseText);
 				if (json != undefined && json != null && json.list.length != 0) {
 					var countQuestionNumber = json.list.length;
-					var countQuestionScore = json.singleScore * json.list.length;
+					var countQuestionScore = json.singleScore * countQuestionNumber;
 					document.getElementById("head6").innerHTML = "<h2>简答题</h2>"
 							+ "<p>"
 							+ "<span>共</span>"
@@ -464,8 +456,7 @@ label {
 							+ "</p>";
 
 					shortAnswerQuestion(json);
-//						shortAnswerAnswer(json);
-//						shortAnswerSheet(json);
+
 				}
 			}
 		}
@@ -473,7 +464,7 @@ label {
 	
 	function shortAnswerQuestion(json) {
 		var shortAnswerQuestionNumber = json.list.length;
-		var shortAnswerQuestionScore = json, singleScore;
+		var shortAnswerQuestionScore = json.singleScore;
 		for (var i = 0; i < shortAnswerQuestionNumber; i++) {
 			var questionTitle = json.list[i].content;
 			var shortAnswer = document.getElementById("shortAnswer");
@@ -555,309 +546,13 @@ label {
 					</form>
 				</div>
 			</div>
-			<div class="nr_right">
-				<div class="nr_rt_main">
-					<div class="rt_nr1">
-						<div class="rt_nr1_title">
-							<h1>
-								<i class="icon iconfont">&#xe692;</i>答题卡
-							</h1>
-						</div>
-
-						<div class="rt_content">
-							<div class="rt_content_tt">
-								<script>
-									function singleChoiceAnswer(json) {
-										var radioQuestionNumber = json.list.length;
-										document.getElementsByClassName("rt_content_tt")[0].innerHTML = "<h2>单选题</h2>"
-												+ "<p>"
-												+ "<span>共</span>"
-												+ "<i class='content_lit'>"+radioQuestionNumber+ "</i>"
-												+ "<span>题</span>" + "</p>";
-									}
-								</script>
-							</div>
-							<div class="rt_content_nr answerSheet">
-								<ul id="answerSheet1">
-									<script>
-										var frontQuestionNumber = 0
-										function singleChoiceSheet(json) {
-											var radioQuestionNumber = json.list.length;
-											for (var i = frontQuestionNumber; i < radioQuestionNumber
-													+ frontQuestionNumber; i++) {
-												var answerSheet1 = document
-														.getElementById("answerSheet1");
-												answerSheet1.innerHTML += "<li><a href='#qu_"
-														+ (i+1)
-														+ "' id='an_"
-														+ (i+1)
-														+ "'>"
-														+ (i+1) + "</a></li>";
-											}
-											frontQuestionNumber += radioQuestionNumber;
-										}
-									</script>
-								</ul>
-							</div>
-						</div>
-
-						<div class="rt_content">
-							<div class="rt_content_tt">
-								<script>
-									function checkBoxAnswer(json) {
-										var checkBoxNumber = json.list.length;
-										document
-												.getElementsByClassName("rt_content_tt")[0].innerHTML = "<h2>多选题</h2>"
-												+ "<p>"
-												+ "<span>共</span>"
-												+ "<i class='content_lit'>"
-												+ checkBoxNumber
-												+ "</i>"
-												+ "<span>题</span>" + "</p>";
-
-									}
-								</script>
-							</div>
-							<div class="rt_content_nr answerSheet">
-								<ul id="answerSheet2">
-									<script>
-										function checkBoxSheet(json) {
-											var checkboxQuestionNumber = json.list.length;
-											for (var i = frontQuestionNumber; i < checkboxQuestionNumber
-													+ frontQuestionNumber; i++) {
-												var answerSheet2 = document
-														.getElementById("answerSheet2");
-												answerSheet2.innerHTML += "<li><a href='#qu_"
-														+ (i+1)
-														+ "' >"
-														+ (i + 1) + "</a></li>";
-											}
-											frontQuestionNumber += checkboxQuestionNumber;
-										}
-									</script>
-								</ul>
-							</div>
-						</div>
-
-						<div class="rt_content">
-							<div class="rt_content_tt">
-
-								<script>
-									function fillAnswer(json) {
-										document
-												.getElementsByClassName("rt_content_tt")[2].innerHTML = "<h2>填空题</h2>"
-												+ "<p>"
-												+ "<span>共</span>"
-												+ "<i class='content_lit'>"
-												+ fillQuestionNumber
-												+ "</i>"
-												+ "<span>题</span>" + "</p>";
-									}
-								</script>
-							</div>
-							<div class="rt_content_nr answerSheet">
-								<ul id="answerSheet3">
-									<script>
-										function fillSheet(json) {
-											var fillQuestionNumber = json.list.length;
-											for (var i = frontQuestionNumber; i < fillQuestionNumber
-													+ frontQuestionNumber; i++) {
-												var answerSheet3 = document
-														.getElementById("answerSheet3");
-												answerSheet3.innerHTML += "<li><a href='#qu_"
-														+ (i + 1)
-														+ "' >"
-														+ (i + 1) + "</a></li>";
-											}
-											frontQuestionNumber += fillQuestionNumber;
-										}
-									</script>
-								</ul>
-							</div>
-						</div>
-						<div class="rt_content">
-							<div class="rt_content_tt">
-								<script>
-									function judgmentAnswer(json) {
-										var judgmentQuestionNumber = json.list.length;
-										document
-												.getElementsByClassName("rt_content_tt")[3].innerHTML = "<h2>判断题</h2>"
-												+ "<p>"
-												+ "<span>共</span>"
-												+ "<i class='content_lit'>"
-												+ judgmentQuestionNumber
-												+ "</i>"
-												+ "<span>题</span>"
-												+ "</p>";
-									}
-								</script>
-							</div>
-							<div class="rt_content_nr answerSheet">
-								<ul id="answerSheet4">
-									<script>
-										function judgmentSheet(json) {
-											var judgmentQuestionNumber = json.list.length;
-											for (var i = frontQuestionNumber; i < judgmentQuestionNumber
-													+ frontQuestionNumber; i++) {
-												var answerSheet4 = document
-														.getElementById("answerSheet4");
-												answerSheet4.innerHTML += "<li><a href='#qu_"
-														+ (i + 1)
-														+ "' >"
-														+ (i + 1) + "</a></li>";
-											}
-											frontQuestionNumber += judgmentQuestionNumber;
-										}
-									</script>
-								</ul>
-							</div>
-						</div>
-						<div class="rt_content">
-							<div class="rt_content_tt">
-								<script>
-									function countAnswer(json) {
-										var countQuestionNumber = json.list.length;
-										document
-												.getElementsByClassName("rt_content_tt")[4].innerHTML = "<h2>计算题</h2>"
-												+ "<p>"
-												+ "<span>共</span>"
-												+ "<i class='content_lit'>"
-												+ countQuestionNumber
-												+ "</i>"
-												+ "<span>题</span>" + "</p>";
-									}
-								</script>
-							</div>
-							<div class="rt_content_nr answerSheet">
-								<ul id="answerSheet5">
-									<script>
-										function countSheet(json) {
-											var countQuestionNumber = json.list.length;
-											for (var i = frontQuestionNumber; i < countQuestionNumber
-													+ frontQuestionNumber; i++) {
-												var answerSheet5 = document
-														.getElementById("answerSheet5");
-												answerSheet5.innerHTML += "<li><a href='#qu_"
-														+ (i + 1)
-														+ "' >"
-														+ (i + 1) + "</a></li>";
-											}
-											frontQuestionNumber += countQuestionNumber;
-										}
-									</script>
-								</ul>
-							</div>
-						</div>
-						<div class="rt_content">
-							<div class="rt_content_tt">
-								<script>
-									function shortAnswerAnswer(json) {
-										var shortAnswerQuestionNumber = json.list.length;
-										document
-												.getElementsByClassName("rt_content_tt")[5].innerHTML = "<h2>简答题</h2>"
-												+ "<p>"
-												+ "<span>共</span>"
-												+ "<i class='content_lit'>"
-												+ shortAnswerQuestionNumber
-												+ "</i>"
-												+ "<span>题</span>"
-												+ "</p>";
-									}
-								</script>
-							</div>
-							<div class="rt_content_nr answerSheet">
-								<ul id="answerSheet6">
-									<script>
-										function shortAnswerSheet(json) {
-											var shortAnswerQuestionNumber = json.list.length;
-											for (var i = frontQuestionNumber; i < shortAnswerQuestionNumber
-													+ frontQuestionNumber; i++) {
-												var answerSheet6 = document
-														.getElementById("answerSheet6");
-												answerSheet6.innerHTML += "<li><a href='#qu_"
-														+ (i + 1)
-														+ "' >"
-														+ (i + 1) + "</a></li>";
-											}
-											frontQuestionNumber += shortAnswerQuestionNumber;
-										}
-									</script>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+			
 		<div class="foot"></div>
+	</div>
 	</div>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
-	<script>
-		$(function() {//设置单选题已答题
-			$(":radio").click(
-					function() {
-						debugger;
-						var examId = $(this).closest('.test_content_nr_main')
-								.closest('li').attr('id'); // 得到题目ID
-						var cardLi = $("a[href='#" + examId + "']"); // 根据题目ID找到对应答题卡
-						// 设置已答题
-						if (!cardLi.hasClass('hasBeenAnswer')) {
-							cardLi.addClass('hasBeenAnswer');
-						}
-
-					});
-			$(":checkbox")
-					.click(
-							function() {//设置多选已答题
-								debugger;
-								var examId = $(this).closest(
-										'.test_content_nr_main').closest('li')
-										.attr('id'); // 得到题目ID
-								var targetName = $(this).attr('name');
-								var cardLi = $("a[href='#" + examId + "']"); // 根据题目ID找到对应答题卡
-								// 设置已答题
-								if ($(":checkbox[name='" + targetName
-										+ "']:checked").length != 0) {
-									cardLi.addClass('hasBeenAnswer');
-								} else {
-									cardLi.removeClass('hasBeenAnswer');
-								}
-
-							});
-			$(":text").change(
-					function() {//设置填空计算已答题
-
-						var examId = $(this).closest('.test_content_nr_main')
-								.closest('li').attr('id'); // 得到题目ID
-						var targetId = $(this).attr('id');//得到目标ID
-						var cardLi = $("a[href='#" + examId + "']"); // 根据题目ID找到对应答题卡
-
-						// 设置已答题
-						if ($('#' + targetId).val() == "") {
-							cardLi.removeClass('hasBeenAnswer');
-						} else {
-							cardLi.addClass('hasBeenAnswer');
-						}
-					});
-			$("textarea").change(
-					function() {//设置简单已答题
-						debugger;
-						var examId = $(this).closest('.test_content_nr_main')
-								.closest('li').attr('id'); // 得到题目ID
-						var targetId = $(this).attr('id');//得到目标ID
-						var cardLi = $("a[href='#" + examId + "']"); // 根据题目ID找到对应答题卡
-
-						// 设置已答题
-
-						if ($('#' + targetId).val() == "") {
-							cardLi.removeClass('hasBeenAnswer');
-						} else {
-							cardLi.addClass('hasBeenAnswer');
-						}
-					});
-		})
-	</script>
+	
 <input type="text" hidden="hidden" id="examId" name="examId" value="${examId }">
 <input type="text" hidden="hidden" id="strategyId" name="strategyId" value="${strategyId }">
 </body>

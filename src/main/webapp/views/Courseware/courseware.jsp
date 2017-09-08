@@ -33,7 +33,7 @@ html, body {
 
 .left {
 	display: inline-block;
-	background-color: #bfa;
+	background-color: white;
 	height: 100%;
 	width: 20%;
 	float: left;
@@ -276,7 +276,7 @@ button {
 							+ "<td>"
 							+ resultArray[i].cpursewareType
 							+ "</td>\n"
-							+ "<td><a href='" + resultArray[i].contentUrl + "'>"
+							+ "<td><a target='_blank' href='" + resultArray[i].contentUrl + "'>"
 							+ resultArray[i].contentUrl
 							+ "</a></td>\n"
 							+ "<td><button onclick=\"modifyCourseware("
@@ -607,7 +607,6 @@ button {
 <body>
 	<input id="getClassificationId" type="hidden">
 	<input id="getClassificationName" type="hidden">
-
 	<div class="left">
 
 		<table id="directory" class="directory">

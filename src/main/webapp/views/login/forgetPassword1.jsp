@@ -302,8 +302,11 @@ span {
 		<div class="header1">
 			<a href="${pageContext.request.contextPath}/login/jumpLoginPage"><h2>登录</h2></a>
 			<div class="leftblock">
+			<a href="${pageContext.request.contextPath}/index">
+						<img src="${pageContext.request.contextPath}/img/index/logo.jpg" />
+					</a>
 				<h1>忘记密码</h1>
-<!-- 				<img src="" width="176.72" height="60" /> -->
+					
 			</div>
 		</div>
 	</div>

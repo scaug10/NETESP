@@ -114,25 +114,25 @@ img{
 	width: 100%!important; height: 350px; overflow: hidden; text-align: center;
 }
 .banner .bd ul li.first{
-	background: url(../images/banner1.jpg) center center no-repeat;
+	background: url() center center no-repeat;
 }
 .banner .bd ul li.second{
-	background: url(../images/banner2.jpg) center center no-repeat;
+	background: url() center center no-repeat;
 }
 .banner .bd ul li.third{
-	background: url(../images/banner3.jpg) center center no-repeat;
+	background: url() center center no-repeat;
 }
 .banner .bd ul li.fourth{
-	background: url(../images/banner4.jpg) center center no-repeat;
+	background: url() center center no-repeat;
 }
 .banner .hd{ 
-	width: 100%; position: absolute; z-index: 1; bottom: 0; left: 0; height: 30px; line-height: 30px; background:url(../images/touming.png) repeat-x; text-align: center;  _background: #000; _filter: alpha(opacity=60); 
+	width: 100%; position: absolute; z-index: 1; bottom: 0; left: 0; height: 30px; line-height: 30px; background:url(${pageContext.request.contextPath}/img/index/touming.png) repeat-x; text-align: center;  _background: #000; _filter: alpha(opacity=60); 
 }
 .banner .hd ul{ 
 	text-align:center;  padding-top:5px;
 }
 .banner .hd ul li{ 
-	cursor: pointer; display: inline-block; *display: inline; zoom: 1; width: 8px; height: 8px; margin: 5px; background: url(../images/tg_flash_p.png) -18px 0; overflow: hidden; line-height: 9999px; 
+	cursor: pointer; display: inline-block; *display: inline; zoom: 1; width: 8px; height: 8px; margin: 5px; background: url(${pageContext.request.contextPath}/img/index/tg_flash_p.png) -18px 0; overflow: hidden; line-height: 9999px; 
 }
 .banner .hd ul .on{ 
 	background-position: 0 0;

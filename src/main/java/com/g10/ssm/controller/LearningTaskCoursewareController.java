@@ -2,7 +2,6 @@ package com.g10.ssm.controller;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,15 +15,6 @@ import com.g10.ssm.service.LearningTaskCoursewareService;
 public class LearningTaskCoursewareController {
 	@Autowired
 	private LearningTaskCoursewareService learningTaskCoursewareService;
-
-	@RequestMapping("/queryLearningTaskCourseware")
-	public ModelAndView queryLearningTaskCourseware(@Param("learningTaskId") int learningTaskId,
-			ModelAndView modelAndView) throws Exception {
-		List<LearningTaskCoursewareKey> list = learningTaskCoursewareService
-				.queryLearningTaskCoursewareById(learningTaskId);
-		modelAndView.addObject("Coslist", list);
-		return modelAndView;
-	}
 
 	@RequestMapping("/saveLearningTaskCourseware")
 	@ResponseBody

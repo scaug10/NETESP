@@ -58,8 +58,8 @@
 		<!--导航栏-->
 		<div class="pageTop">
 			<div class="page">
-				<img src="${pageContext.request.contextPath}/img/coin02.png" /><span><a
-					href="../main.html">首页</a>&nbsp;-&nbsp;<a href="getAllKnowledge">知识管理</a>&nbsp;-</span>&nbsp;审核分类信息
+				<img src="${pageContext.request.contextPath}/views/img/coin02.png" /><span><a
+					href="${pageContext.request.contextPath}/index">首页</a>&nbsp;-&nbsp;<a href="getAllKnowledge">知识管理</a>&nbsp;-</span>&nbsp;审核分类信息
 			</div>
 		</div>
 		<div class="page ">

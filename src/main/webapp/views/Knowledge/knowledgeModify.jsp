@@ -63,13 +63,14 @@
 	}
 	function editKnowledge(name, knowledgeId) {
 		var categoryId = document.getElementById("categoryId").value;
+		var dataUrl = document.getElementById("dataUrl").value;
 		var xhr = createXmlHttpRequest();
 		var url = "editKnowledge";
 		xhr.open('post', url, true);
 		xhr.setRequestHeader('Content-Type',
 				'application/x-www-form-urlencoded');
 		xhr.send("knowledgeId=" + knowledgeId + "&name=" + name
-				+ "&categoryId=" + categoryId);/*发送http body*/
+				+ "&categoryId=" + categoryId + "&dataUrl=" + dataUrl);/*发送http body*/
 		xhr.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				if (this.responseText == 0) {
@@ -96,9 +97,8 @@
 		<!--导航栏-->
 		<div class="pageTop">
 			<div class="page">
-				<img src="${pageContext.request.contextPath}/img/coin02.png" /><span><a
-					href="../main.html">首页</a>&nbsp;-&nbsp;<a
-					href="getAllKnowledge">知识管理</a>&nbsp;-</span>&nbsp;修改知识信息
+				<img src="${pageContext.request.contextPath}/views/img/coin02.png" /><span><a
+					href="${pageContext.request.contextPath}/index">首页</a>&nbsp;-&nbsp;<a href="getAllKnowledge">知识管理</a>&nbsp;-</span>&nbsp;修改知识信息
 			</div>
 		</div>
 		<div class="page ">
@@ -142,22 +142,11 @@
 						</select>
 					</div>
 					<div class="bbD">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;内容：</div>
-					<div id="editor">
-						<!--百度编辑器配置-->
-						<script id="container" name="content" type="text/plain"></script>
-						<script type="text/javascript"
-							src="${pageContext.request.contextPath}/js/utf8-jsp/ueditor.config.js"></script>
-						<script type="text/javascript"
-							src="${pageContext.request.contextPath}/js/utf8-jsp/ueditor.all.js"></script>
-						<script type="text/javascript">
-							var ue = UE.getEditor('container', {
-								initialFrameWidth : [ 800 ],
-								initialFrameHeight : [ 300 ],
-								autoHeightEnabled : false,
-							});
-						</script>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地址：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+							type="text" id="dataUrl" class="input3"
+							value="${Knowledge.dataUrl }" />
 					</div>
+
 					<!--保存和取消按钮-->
 					<div class="bbD">
 						<p class="bbDP">

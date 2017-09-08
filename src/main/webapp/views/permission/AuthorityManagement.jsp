@@ -144,7 +144,7 @@ a {
 		<div class="pageTop">
 			<div class="page" style="width: 1200px;">
 				<img src="${pageContext.request.contextPath}/img/login/coin02.png" /><span><a
-					href="../main.html">首页(还未实现)</a>&nbsp;-&nbsp; 系统权限管理</span>
+					href="${pageContext.request.contextPath}/index">首页</a>&nbsp;-&nbsp; 系统权限管理</span>
 			</div>
 		</div>
 	</div>

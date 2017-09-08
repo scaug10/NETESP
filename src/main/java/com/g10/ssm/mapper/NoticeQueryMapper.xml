@@ -10,7 +10,7 @@
 		<result column="title" property="title" jdbcType="VARCHAR" />
 	</resultMap>
 	<resultMap id="SecondResultMap" type="com.g10.ssm.po.Notice">
-		<id column="Notice.notice_id" property="noticeId" jdbcType="INTEGER" />
+		<id column="notice_id" property="noticeId" jdbcType="INTEGER" />
 		<result column="content" property="content" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 		<result column="notice_type" property="noticeType" jdbcType="VARCHAR" />
@@ -57,8 +57,7 @@
 	<select id="getNoticeByUserName" parameterType="java.lang.String"
 		resultMap="SecondResultMap">
 		select
-		Notice.notice_id, content, create_time, notice_type,
-		is_public, title
+		*
 		from Notice,User_Notice
 		where
 		Notice.notice_id=User_Notice.notice_id AND user_name=#{value}

@@ -82,6 +82,40 @@
                 return new XMLHttpRequest();
             }
         }
+        function deleteExam(){
+        	var id = document.getElementsByName('id');
+    		var list = new Int8Array(id.length);
+    		list.fill(-1);
+    		var flag = 0;
+    		for (var i = 0; i < id.length; i++) {
+    			if (id[i].checked) {
+    				list[i] = (parseInt(id[i].value));
+    				flag = 1;
+    			}
+    		}
+    		if (flag == 0) {
+    			alert("你没有选中要删除的数据，删除失败！");
+    			return false;
+    		}
+    		var r = confirm("确定删除这几行数据？");
+    		if(r==true){
+    			var url = "${pageContext.request.contextPath}/exam/delete";
+                var xhr = createXmlHttpRequest();
+                xhr.open('post',url,true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send("examId="+list);
+                xhr.onreadystatechange=function () {
+                    if(this.readyState ==4 && this.status == 200){
+                        var json = JSON.parse(this.responseText);
+                      	if(json == 1){
+                      		alert("删除成功");
+                      	}
+                    }
+                }
+    		}else
+    			return false;
+        	
+        }
         
     </script>
 </head>
@@ -101,7 +135,7 @@
             <div class="conform">
                 <div class="cfD clearfix">
                     <button class="userbtn" onclick=""><a href="${pageContext.request.contextPath }/test/add/exam">增加</a></button>
-                    <button class="userbtn btn_ok btn_yes operation delban" >删除</button>
+                    <button class="userbtn" onclick="deleteExam()">删除</button>
                     <button class="button1 seek">查询</button>
                     <input type="text" class="seek" name="name" value="">
                     <span class="seek">试卷名称：</span>
@@ -136,12 +170,13 @@
                                         var examinationId = json[i].examId;
                                         var strategyName = json[i].strategyName;
                                         $("#table").append("<tr height='40px' id='tr_" + i + "'></tr>");
-                                        document.getElementById("tr_" + i + "").innerHTML = "<td><input type=\"checkbox\" name=\"id\" value=\" + id + \"></td>\n" +
+                                        document.getElementById("tr_" + i + "").innerHTML = "<td><input type=\"checkbox\" name=\"id\" value='"+examinationId+"'></td>\n" +
                                             "<td>" + examinationId + "</td>\n" +
                                             "<td><a href='${pageContext.request.contextPath}/test/testpaper?examId="+examinationId+
                                             "&strategyId="+json[i].strategyId+"'>" + examinationName + "</a></td>" +
                                             "<td>" + strategyName + "</td>\n" +
-                                            "<td><a href=\"ExaminationPreview.html\"><img src='${pageContext.request.contextPath}/views/img/preview.png'></a></td>";
+                                            "<td><a href='${pageContext.request.contextPath}/test/testpaper?examId="+examinationId+
+                                            "&strategyId="+json[i].strategyId+"'><img src='${pageContext.request.contextPath}/views/img/preview.png'></a></td>";
                                     }
                                 }
                             }
@@ -168,7 +203,7 @@
         </div>
         <p class="delP1">你确定要删除此条记录吗？</p>
         <p class="delP2">
-            <a href="${pageContext.request.contextPath }/exam/delete" class="ok yes">确定</a><a class="ok no">取消</a>
+            <a class="ok yes">确定</a><a class="ok no">取消</a>
         </p>
     </div>
 </div>

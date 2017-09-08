@@ -28,8 +28,8 @@
 		<!--导航栏-->
 		<div class="pageTop">
 			<div class="page">
-				<img src="${pageContext.request.contextPath}/img/coin02.png" /><span><a
-					href="../main.html">首页</a>&nbsp;-&nbsp;</span>&nbsp;<a
+				<img src="${pageContext.request.contextPath}/views/img/coin02.png" /><span><a
+					href="${pageContext.request.contextPath}/index">首页</a>&nbsp;-&nbsp;</span>&nbsp;<a
 					href="getAllRepositoryCategory">知识分类管理</a>
 			</div>
 		</div>
@@ -72,10 +72,10 @@
 								<td class="reviewType">${list.reviewType}</td>
 								<td><a href="javascript:void(0)"
 									onclick="modify(${list.categoryId})"> <img title="修改"
-										src="${pageContext.request.contextPath}/img/update.png">
+										src="${pageContext.request.contextPath}/views/img/update.png">
 								</a>&nbsp;<a href="javascript:void(0)"
 									onclick="verify('${list.categoryId}')"> <img title="审核"
-										src="${pageContext.request.contextPath}/img/check.png">
+										src="${pageContext.request.contextPath}/views/img/check.png">
 								</a></td>
 							</tr>
 						</c:forEach>

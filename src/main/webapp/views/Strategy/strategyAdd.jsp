@@ -282,7 +282,7 @@ input:disabled {
 			<div class="page">
 				<img src="${pageContext.request.contextPath}
 				/img/coin02.png" /><span><a
-					href="../main.html">首页</a>&nbsp;-&nbsp;<a href="getAllStrategy">策略管理</a>&nbsp;-</span>&nbsp;添加策略
+					href="${pageContext.request.contextPath}/index">首页</a>&nbsp;-&nbsp;<a href="getAllStrategy">策略管理</a>&nbsp;-</span>&nbsp;添加策略
 			</div>
 		</div>
 		<div class="page ">

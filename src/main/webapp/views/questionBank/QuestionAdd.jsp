@@ -27,6 +27,19 @@
             bottom: 23px;
 
         }
+        
+        .position{
+            position:relative;
+            bottom: 188px;
+        }
+        
+         textarea{
+            width: 800px;
+            height: 200px;
+            border: 1px solid #ccc;
+            text-indent: 15px;
+            margin-left: 10px;
+        }
     </style>
     <script>
 	    function createXmlHttpRequest() {
@@ -73,7 +86,7 @@
             data += "&knowlegePoint=" + document.getElementById("knowlegePoint").value;
             data += "&subjectType=" + document.getElementById("subjectType").value;
             data += "&name=" + document.getElementById("name").value;
-			data += "&content=" + ue.getContent();
+			data += "&content=" + ue.getContentTxt();
 			data += "&answer=" + document.getElementById("answer").value;
 			var subjectType=document.getElementById("subjectType").value;
 			
@@ -96,6 +109,7 @@
             xhr.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     alert("提交成功")
+                    
                 }
             }
     	}
@@ -106,7 +120,7 @@
     <div class="pageTop">
         <div class="page">
             <img src="${pageContext.request.contextPath}/img/coin02.png"/><span><a href="${pageContext.request.contextPath}/index">首页</a>&nbsp;-&nbsp;<a
-                href="QuestionBankManagement.html">题库管理</a>&nbsp;-</span>&nbsp;添加试题信息
+                href="${pageContext.request.contextPath}/questionbank">题库管理</a>&nbsp;-</span>&nbsp;添加试题信息
         </div>
     </div> 
     <div class="page ">
@@ -125,19 +139,19 @@
                 </div>
                 <div class="bbD">
                     所属科目：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select class="input3" id="subjectMatter"name="subjectMatter">
-                    <option value="刑法">刑法</option>
-                    <option value="水力">水力</option>
-                    <option value="电力">电力</option>
-                    <option value="消防">消防</option>
+                    <option value="法律">法律</option>
+                    <option value="机制">机制</option>
+                    <option value="处理">处理</option>
+                    <option value="常识">常识</option>
                 </select>
                 </div>
                 <div class="bbD">
                     &nbsp;&nbsp;  知识点：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <select class="input3" name="knowlegePoint" id="knowlegePoint">
-                    <option value="妨害社会管理秩序罪">妨害社会管理秩序罪</option>
-                    <option value="故意伤人罪">故意伤人罪</option>
-                    <option value="故意杀人罪">故意杀人罪</option>
-                    <option value="抢劫罪">抢劫罪</option>
+                    <option value="中华人民共和国突发应对法">中华人民共和国突发应对法</option>
+                    <option value="突发事件预警机制">突发事件预警机制</option>
+                    <option value="应急处理">应急处理</option>
+                    <option value="应急常识">应急常识</option>
                 </select>
                 </div>
                 <div class="bbD">
@@ -162,6 +176,8 @@
 	                    </script>
                 	</select>
                 </div>
+                <div class="bbD"><span class="position">正确答案：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><textarea id="answer" cols="10" rows="10"></textarea>
+</div>
                 <div class="bbD">
                     题目内容：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <div id="editor">
@@ -181,7 +197,7 @@
                 </select>
                 </div>
                 <div id="option1"></div>
-                <div>答案:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="answer"></input></div>
+                
                 <div class="bbD">
                     <p class="bbDP">
                         <button class="btn_ok btn_yes" onclick="check()">提交</button>
@@ -198,7 +214,6 @@
     $(function () {
         $("#subjectType").change(function () {
             var option = document.getElementById("subjectType");
-            alert(option.value);
             switch (option.value){
                 case "单选题" :{
                     document.getElementById("option1").innerHTML="" +
@@ -224,6 +239,10 @@
                         "<div class='bbD'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' id='optionA' name='optionA' class='input3'></div>" +
                         "<div class='bbD'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' id='optionB' name='optionB' class='input3'></div>" +
                         "";
+                    break;
+                }
+                default :{
+                    document.getElementById("option1").innerHTML="";
                     break;
                 }
             }

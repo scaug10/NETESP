@@ -60,7 +60,7 @@ public class ForumManageController {
 	/**删除主题，同时删除主题下的所有帖子*/
 	@RequestMapping("/theme/delete")
 	@ResponseBody
-	public Integer deleteTheme(Model model,
+	public Integer deleteTheme(
 			@RequestParam("topicId") Integer themeId) throws Exception {
 		if (themeId != null && themeId != 0) {
 			Theme theme = themeService.selectThemeByPrimaryKey(themeId);

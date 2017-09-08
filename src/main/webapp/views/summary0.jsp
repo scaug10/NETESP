@@ -48,8 +48,8 @@
 		
 		<!--nav start-->
 		<div class="nav_menu">
-			<a href="index.html" class="logo fl">
-				<img src="${pageContext.request.contextPath }/images/logo.png" /></a>
+			<a href="${pageContext.request.contextPath }/index" class="logo fl">
+				<img src="${pageContext.request.contextPath }/img/index/logo.jpg" /></a>
 			<div class="nav_list fr">
 				<ul id="nav" class="nav clearfix">
 					<li class="nLi"></li>

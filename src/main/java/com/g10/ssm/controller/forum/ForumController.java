@@ -3,6 +3,8 @@ package com.g10.ssm.controller.forum;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -118,9 +120,10 @@ public class ForumController {
 							if(postCustom != null){
 								theme.setLastPoster(postCustom.getPublisher());
 								theme.setLastPostTime(postCustom.getCreateTime());
-								theme.setPostCount(postService
-										.countPostsByThemeId(theme.getTopicId()));
+								Integer num = postService.countPostsByThemeId(theme.getTopicId());
+								theme.setPostCount(num == null ? 0 : num);
 							}
+							else theme.setPostCount(0);
 						}
 						themeQueryVo.setList(themeList);
 						return themeQueryVo;
@@ -242,8 +245,12 @@ public class ForumController {
 	/** 创建主题 */
 	@RequestMapping("/createTheme")
 	@ResponseBody
-	public int createTheme(Theme themeCustom, String boardName, String username)
+	public int createTheme(Theme themeCustom, String boardName, String username,
+			HttpSession session)
 			throws Exception {
+		String user = (String) session.getAttribute("userName");
+		if(user == null) return 0;
+		username = user;
 		int result = 0;
 		if (themeCustom != null && boardName != null && username != null) {
 			themeCustom.setCreateTime(new Date(System.currentTimeMillis()));
@@ -260,9 +267,11 @@ public class ForumController {
 	/** 创建帖子 */
 	@RequestMapping("/createPost")
 	@ResponseBody
-	public Integer createPost(Post postCustom, String username)
+	public Integer createPost(Post postCustom, String username, HttpSession session)
 			throws Exception {
-		
+		String user = (String) session.getAttribute("userName");
+		if(user == null) return 0;
+		username = user;
 		int result = 0;
 		if (postCustom != null) {
 			postCustom.setPublisher(username);
@@ -280,7 +289,11 @@ public class ForumController {
 	public Integer createPostComment(
 			PostComment postCommentCustom,
 			Integer postId,
-			String username) throws Exception {
+			String username,
+			HttpSession session) throws Exception {
+		String user = (String) session.getAttribute("userName");
+		if(user == null) return 0;
+		username = user;
 		int result = 0;
 		if (postCommentCustom != null && postId != null && postId != 0) {
 			postCommentCustom.setPostId(postId);

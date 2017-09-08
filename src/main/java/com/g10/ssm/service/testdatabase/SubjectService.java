@@ -6,7 +6,7 @@ import com.g10.ssm.po.testdatabase.Subject;
 import com.g10.ssm.po.testdatabase.SubjectCustom;
 
 public interface SubjectService {
-	public List<Subject> querySubject() throws Exception;
+	public List<Subject> querySubject(String test) throws Exception;
 
 	public int updateSubject(Subject subject) throws Exception;
 
@@ -18,8 +18,11 @@ public interface SubjectService {
 	
 	public Integer selectLastSubjectId(String content) throws Exception;
 	
-//	public List<Subject> selectSubjectBySelective(Subject subject) throws Exception;
+	public List<Subject> selectSubjectBySelective(Subject subject) throws Exception;
 	
 	public List<Integer> selectIdsByExample(SubjectCustom subjectCustom) throws Exception;
+	
+	public Integer deleteSubjectByIds(Integer[] ids) throws Exception;
+	
 	
 }

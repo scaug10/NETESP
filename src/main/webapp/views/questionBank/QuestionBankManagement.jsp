@@ -20,14 +20,10 @@
             height: 100%;
         }
 
-        a {
+        a{
             text-decoration: none;
             color: black;
             font-size: 14px;
-        }
-
-        a:hover {
-            text-decoration: underline;
         }
 
         a > img {
@@ -48,9 +44,20 @@
         .directory{
             margin-left: 20px;
         }
+        .directory tr{
+            display: inline-block;
+            margin: 10px 50px;
+        }
         .directory td{
             border: 0;
+            padding: 10px;
+            background-color:#47a4e1;
         }
+
+        td a{
+            color: white;
+        }
+
         .right {
             display: inline-block;
             height: 100%;
@@ -93,6 +100,7 @@
 
         /*增加的按钮样式*/
         .button1 {
+            margin-top: 10px;
             margin-left: 10px;
             width: 135px;
             height: 40px;
@@ -136,39 +144,11 @@
             margin: auto 5px;
         }
 
-        .navtablink {
-            display: inline-block;
-            width: 100%;
-            padding: 10px 0px;
-            color: #fff;
-            font-family: "黑体";
-            text-decoration: none;
-        }
-
-        .navtablink:hover {
-            background-color: yellowgreen;
-            text-decoration: none;
-        }
-
-        .content > ul {
-            width: 100%;
-        }
-
-        li {
-            color: #fff;
-            width: 20%;
-            text-align: center;
-            list-style-type: none;
-            float: left;
-            background-color: green;
-        }
-
     </style>
 
     <!--全选-->
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
-
         function createXmlHttpRequest() {
             if (window.ActiveXObject) { //如果是IE浏览器
                 return new ActiveXObject("Microsoft.XMLHTTP");
@@ -177,85 +157,21 @@
             }
         }
 
-        //返回上一级时获取
-        function getParentDirectory(id) {
-            var xhr = createXmlHttpRequest();
-            var url = "http://localhost:8080/getParentId";
-            xhr.open('post', url, true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("id=" + id);
-            /*发送http body*/
-            xhr.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    getSubDirectory(this.responseText);
-                }
-            }
-        }
-        function getSubDirectory(id) {
-            //获取并显示当前目录的子目录
-            var xhr = createXmlHttpRequest();
-            var url = "http://localhost:8080/getNode";
-            xhr.open('post', url, true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("cwcfId=" + id);
-            /*发送http body*/
-            xhr.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    var result = this.responseText;
-                    var resultArray = eval('(' + result + ')');
-                    var number = resultArray.length;//子目录数
-                    if (id == 0) {
-                        var htmlCode = "";
-                    } else {
-                        var htmlCode = "<tr><td></td><td><a href=\"javascript:void(0);\" onclick='getParentDirectory(" + id + ")'>返回上一级目录</a></td></tr>";
-                    }
-
-                    for (var i = 0; i < number; i++) {
-                        var subName = resultArray[i].classificationName;
-                        var subId = resultArray[i].cwcfId;
-                        var isParent = resultArray[i].parentId;
-
-                        if (isParent) {
-                            htmlCode +=
-                                "<tr id=\"" + subId + "\">\n" +
-                                "<td><a class=\"showHideButton\" href='javascript:void(0)' onclick=\"getSubDirectory(" + subId + "," + id + ")\"><img class=\"plus\" src='./IMG/plus.gif' alt='plus'></a></td>\n" +
-                                "<td><a href=\"javascript:void(0)\" onclick=\"getCourseware(" + subId + "," + subName + ")\">" + subName + "</a></td>\n" +
-                                "</tr>";
-                        } else {
-                            htmlCode +=
-                                "<tr id=\"" + subId + "\">\n" +
-                                "<td></td>" +
-                                "<td><a href=\"javascript:void(0)\" onclick=\"getCourseware(" + subId + ")\">" + subName + "</a></td>\n" +
-                                "</tr>";
-                        }
-
-
-                    }
-                    document.getElementById("directory").innerHTML = htmlCode;
-                }
-            }
-        }
-
+      
         /*获取分类下的课件*/
-        function getQuestionBank(id, name) {
-            document.getElementById("classificationCRUD").innerHTML =
-                "<ul>\n" +
-                "<li><a class=\"navtablink\" href=\"javascript:void(0)\" onclick=\"createClassification()\">新增分类</a></li>\n" +
-                "<li><a class=\"navtablink\" href=\"javascript:void(0)\" onclick=\"modifyClassification('" + name + "')\">修改分类</a></li>\n" +
-                "<li><a class=\"navtablink\" href=\"javascript:void(0)\" onclick=\"deleteClassification(" + id + ")\">删除分类</a></li>\n" +
-                "<li><a class=\"navtablink\" href=\"${pageContext.request.contextPath}/subject/add\" >新增试题</a></li>\n" +
-                "<li><a class=\"navtablink\" href=\"javascript:void(0)\" onclick=\"confirm()\">删除试题</a></li>\n" +
-                "</ul>" +
-                ""
-            ;
-            document.getElementById("searchBar").innerHTML="<button class=\"button1 seek\">查询</button>\n" +
-                "        <select name=\"condition\" class=\"seek \">\n" +
+        function getQuestionBank(id) {
+            document.getElementById("classificationCRUD").innerHTML ="" +
+                "<button class='button1' onclick=\"javascript:window.location.href='${pageContext.request.contextPath}/subject/add'\">新增试题</button>"+
+                "<button class='button1' onclick='deleteSubject("+id+")'>删除试题</button>";
+            document.getElementById("searchBar").innerHTML="<button class=\"button1 seek\" onclick='searchSubject()'>查询</button>\n" +
+                "        <select name=\"condition\" class=\"seek \" id='reviewType'>\n" +
                 "            <option value=\"\">不限</option>\n" +
-                "            <option value=\"\">未审核</option>\n" +
-                "            <option value=\"\">审核通过</option>\n" +
+                "            <option value=\"0\">未审核</option>\n" +
+                "            <option value=\"1\">审核通过</option>\n" +
+                "            <option value=\"2\">审核未通过</option>\n" +
                 "        </select>\n" +
                 "        <span class=\"seek\">状态：</span>\n" +
-                "        <select name=\"difficulty\" class=\"seek \">\n" +
+                "        <select name=\"difficulty\" class=\"seek \" id='name'>\n" +
                 "            <option value=\"0\">不限</option>\n" +
                 "            <option value=\"1\">1</option>\n" +
                 "            <option value=\"2\">2</option>\n" +
@@ -269,17 +185,17 @@
                 "            <option value=\"10\">10</option>\n" +
                 "        </select>\n"+
                 " <span class=\"seek\">试题难度：</span>\n"+
-                " <select name=\"subjectType\" class=\"seek \">\n"+
-                " <option value=\"0\">不限</option>\n"+
-                " <option value=\"1\">单选题</option>\n"+
-                " <option value=\"2\">多选题</option>\n"+
-                " <option value=\"3\">判断题</option>\n"+
-                " <option value=\"4\">填空题</option>\n"+
-                " <option value=\"5\">计算题</option>\n"+
-                " <option value=\"6\">简答题</option>\n"+
+                " <select name=\"subjectType\" class=\"seek \" id='subjectType'>\n"+
+                " <option value=\"\">不限</option>\n"+
+                " <option value=\"单选题\">单选题</option>\n"+
+                " <option value=\"多选题\">多选题</option>\n"+
+                " <option value=\"判断题\">判断题</option>\n"+
+                " <option value=\"填空题\">填空题</option>\n"+
+                " <option value=\"计算题\">计算题</option>\n"+
+                " <option value=\"简答题\">简答题</option>\n"+
                 "        </select>\n"+
                 " <span class=\"seek\">试题类型：</span>\n"+
-                " <input type=\"text\" class=\"seek\" name=\"describe\">\n"+
+                " <input type=\"text\" class='seek' name=\"describe\" id='content'>\n"+
                 " <span class=\"seek\">试题描述：</span>";
             document.getElementById("questiontable").innerHTML = "" +
                 "        <tr class=\"title\" width=\"100%\">\n" +
@@ -292,102 +208,78 @@
                 "            <td class=\"tdColor\">操作</td>\n" +
                 "        </tr>\n" +
                 "";
-            for(var i=0;i<20 ;i++){
-                var id = i +1;
-                var describe = "怎样正确验电？";
-                var subjectType = "简答题";
-                var difficulty = "5";
-                var condition = "未审核";
-                var questionTr = document.getElementById("questiontable");
-                questionTr.innerHTML=questionTr.innerHTML+"<tr id='tr_"+(i+1)+"' height=\"40px\"></tr>";
-                document.getElementById("tr_"+(i+1)+"").innerHTML="" +
-                    "<td><input type=\"checkbox\" name=\"id\" value=\" + id + \"></td>\n" +
-                    "<td>"+ id +"</td>\n" +
-                    "<td>"+ describe +"</td>\n" +
-                    "<td>"+ subjectType +"</td>\n" +
-                    "<td>"+ difficulty +"</td>\n" +
-                    "<td>"+ condition +"</td>\n"+
-                    "<td>"+"<a class='a1' href='StrategyChange.html'><img src='../img/update.png'></a>"+
-                    "<a class='a1' href='QuestionCheckMore.html'><img src='../img/check.png'></a>"+"</td>"
-                    ;
+            var xhr = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
+            var url = "${pageContext.request.contextPath}/subject/all";
+            xhr.open("post", url, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("id="+id);
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var jsonobject= this.responseText;
+                    var resultArray = JSON.parse(jsonobject);
+                    for(var i=0;i< resultArray.length ;i++){
+                        var id = resultArray[i].subjectId;//题目ID
+                        var describe = resultArray[i].content;//题目描述
+                        var subjectType = resultArray[i].subjectType;//题目类型
+                        var difficulty = resultArray[i].name;//题目难度
+                        var condition = resultArray[i].reviewType == 0 ? "未审核" : "已审核";//题目审核状态
+                        var questionTr = document.getElementById("questiontable");
+                        questionTr.innerHTML=questionTr.innerHTML+"<tr id='tr_"+(i+1)+"' height=\"40px\"></tr>";
+                        document.getElementById("tr_"+(i+1)+"").innerHTML="" +
+                            "<td><input type=\"checkbox\" name=\"id\" value=\""+id+"\"></td>\n" +
+                            "<td>"+ id +"</td>\n" +
+                            "<td>"+ describe +"</td>\n" +
+                            "<td>"+ subjectType +"</td>\n" +
+                            "<td>"+ difficulty +"</td>\n" +
+                            "<td>"+ condition +"</td>\n"+
+                            "<td>"+"<a class='a1' href='${pageContext.request.contextPath}/subject/edit?subjectId="+id+"'><img src='${pageContext.request.contextPath}/views/img/update.png'></a>"+
+                            "<a class='a1' href='${pageContext.request.contextPath}/subject/check?subjectId="+id+"'><img src='${pageContext.request.contextPath}/views/img/check.png'></a>"+"</td>"
+                        ;
+                    }
+                }
             }
 
+
         }
-        function createClassification() {
-            //在本分类创建子课件分类
-            var newClassName = prompt("在当前分类新建子分类：", "请输入分类名");
-            if (newClassName.length != 0) {
-                var xhr = createXmlHttpRequest();
-                var url = "saveCoursewareClassification";
-                xhr.open("post", url, true);
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.send("classificationName=" + newClassName + "&parentId=" + document.getElementById("getClassificationId").value);
-                this.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var result = this.responseText;
-                        if (result == 1){
-                            alert("新建子课件成功");
-                            location.reload();
-                        }else if(result == 2){
-                            alert("当前分类名已存在！");
-                        }else{
-                            alert("未知原因导致新建分类失败！")
-                        }
-                    }
-                }
-            }
-        }
-        function modifyClassification(oldName) {
-            var classificationId = document.getElementById("getClassificationId").value;
-            if (classificationId == 1) {
-                alert("不允许修改根目录!");
-            } else {
-                var newClassificationName = prompt("新分类名：", oldName);
-                if (newClassificationName == oldName){
-                    alert("未修改分类名!");
-                }else{
-                    if(newClassificationName.length == 0){
-                        alert("目录名不允许为空！");
-                    }else{
-                        var xhr = createXmlHttpRequest();
-                        var url = "editCoursewareClassification";
-                        xhr.open("post", url, true);
-                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                        xhr.send("classificationName=" + newClassificationName + "&cwcfId=" + classificationId);
-                        this.onreadystatechange = function () {
-                            if (this.readyState == 4 && this.status == 200) {
-                                if(this.responseText == 1){
-                                    alert("修改成功");
-                                    getParentDirectory(classificationId);
-                                }else{
-                                    alert(this.responseText==2?"该分类名存在":"未知错误")
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        function deleteClassification(id) {
-            //删除本课件分类
-            if (id == 1) {
-                alert("不允许删除根目录！");
-            } else {
-                if (confirm("确定删除本分类吗？")) {
-                    var xhr = createXmlHttpRequest();
-                    var url = "deleteCoursewareClassification";
-                    xhr.open("post", url, true);
-                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                    xhr.send("cwcfId=" + id);
-                    this.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
-                            if (this.responseText == 1) {
-                                alert("删除分类成功！");
-                            } else {
-                                alert("删除分类失败！");
-                            }
-                            location.reload();
-                        }
+        
+        function searchSubject(){
+        	var name = document.getElementById("name").value;
+        	var reviewType = document.getElementById("reviewType").value;
+        	var content = document.getElementById("content").value;
+        	var subjectType = document.getElementById("subjectType").value;
+        	var data = "name="+name+"&reviewType="+reviewType+"&content="+content+
+        		"&subjectType="+subjectType;
+//         	alert(data);
+        	var xhr = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
+            var url = "${pageContext.request.contextPath}/subject/search";
+            xhr.open("post", url, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(data);
+            xhr.onreadystatechange = function () {
+//             	alert(this.readyState);
+                if (this.readyState == 4 && this.status == 200) {
+                    var jsonobject= this.responseText;
+                    var resultArray = JSON.parse(jsonobject);
+                    var questionTr = document.getElementById("questiontable");
+                    questionTr.innerHTML="";
+                    for(var i=0;i< resultArray.length ;i++){
+                        var id = resultArray[i].subjectId;//题目ID
+                        var describe = resultArray[i].content;//题目描述
+                        var subjectType = resultArray[i].subjectType;//题目类型
+                        var difficulty = resultArray[i].name;//题目难度
+                        var condition = resultArray[i].reviewType == 0 ? "未审核" : "已审核";//题目审核状态
+//                         var questionTr = document.getElementById("questiontable");
+                        questionTr.innerHTML+="<tr id='tr_"+(i+1)+"' height=\"40px\"></tr>";
+                        document.getElementById("tr_"+(i+1)+"").innerHTML="" +
+                            "<td><input type=\"checkbox\" name=\"id\" value=\""+id+"\"></td>\n" +
+                            "<td>"+ id +"</td>\n" +
+                            "<td>"+ describe +"</td>\n" +
+                            "<td>"+ subjectType +"</td>\n" +
+                            "<td>"+ difficulty +"</td>\n" +
+                            "<td>"+ condition +"</td>\n"+
+                            "<td>"+"<a class='a1' href='${pageContext.request.contextPath}/subject/edit?subjectId="+id+"'><img src='${pageContext.request.contextPath}/views/img/update.png'></a>"+
+                            "<a class='a1' href='${pageContext.request.contextPath}/subject/check?subjectId="+id+"'><img src='${pageContext.request.contextPath}/views/img/check.png'></a>"+"</td>"
+                        ;
                     }
                 }
             }
@@ -408,23 +300,28 @@
 
 
 <body>
-<!--<div id="pageAll content">-->
-    <!--<div class="pageTop">-->
-        <!--<div class="page">-->
-            <!--<img src="../img/coin02.png" /><span><a href="../main.html">首页</a>&nbsp;-&nbsp;</span>题库管理-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
+<div class="pageTop">
+			<div class="page">
+				<img src="${pageContext.request.contextPath}/views/img/coin02.png" /><span><a
+					href="${pageContext.request.contextPath }/index">首页</a>&nbsp;-&nbsp;-</span>&nbsp;<a
+					href="${pageContext.request.contextPath }/questionbank">知识库</a>
+			</div>
+		</div>
 
 <div class="left">
-
+	
     <table id="directory" class="directory" >
         <tr id="0">
-            <td>
-                <a class="showHideButton" href="javascript:void(0)" onclick="getSubDirectory(1)"><img
-                        src="../img/plus.gif" alt="plus"></a>
-            </td>
-            <td><a href="javascript:void(0)" onclick="getQuestionBank(1, '根目录')">根目录</a></td>
+            <td><a href="javascript:void(0)" onclick="getQuestionBank(0)">正规题库</a></td>
+        </tr>
+        <tr id="1">
+            <td><a href="javascript:void(0)" onclick="getQuestionBank(1)">练习题库</a></td>
+        </tr>
+        <tr id="2">
+            <td><a href="javascript:void(0)" onclick="getQuestionBank(2)">模拟题库</a></td>
+        </tr>
+        <tr id="3">
+            <td><a href="javascript:void(0)" onclick="getQuestionBank(3)">竞赛题库</a></td>
         </tr>
     </table>
 
@@ -442,11 +339,11 @@
 <div class="banDel">
     <div class="delete">
         <div class="close">
-            <a><img src="../img/shanchu.png" /></a>
+            <a><img src="${pageContext.request.contextPath}/views/img/shanchu.png" /></a>
         </div>
         <p class="delP1">你确定要删除此条记录吗？</p>
         <p class="delP2">
-            <a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
+            <a href="javascript:void(0)"  onclick="deleteSubject()">确定</a><a class="ok no">取消</a>
         </p>
     </div>
 </div>
@@ -454,14 +351,31 @@
 
 </body>
 <script type="text/javascript">
-    function  confirm(){
-        $(".banDel").show();
-        $(".close").click(function () {
-            $(".banDel").hide();
-        });
-        $(".no").click(function () {
-            $(".banDel").hide();
-        });
+    
+    function deleteSubject(id)
+    {
+    	 if(!confirm("是否删除")) return false;
+    	 var idList = document.getElementsByName("id");
+    	 var list = new Array();
+    	 for(var i = 0; i < idList.length; ++i){
+    		 if(idList[i].checked) list.push(idList[i].value);
+    	 }
+    	 var xhr = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
+         var url = "${pageContext.request.contextPath}/subject/delete";
+         xhr.open("post", url, true);
+         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+         xhr.send("idList="+list);
+         xhr.onreadystatechange = function () {
+             if (this.readyState == 4 && this.status == 200) {
+                 var json = JSON.parse(this.responseText);
+                 if(json != 0){
+                	 alert("删除成功");
+                	 getQuestionBank(id);
+                 }
+                 else alert("删除失败");
+             }
+         }
     }
+    
 </script>
 </html>

@@ -3,6 +3,8 @@ package com.g10.ssm.controller.testdatabase;
 import java.sql.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -94,11 +96,15 @@ public class StrategyController {
 	@ResponseBody
 	public int saveStrategy(Strategy strategy, Integer[] testDatabaseId, String[] examType,
 			Integer[] lowerlimitDifficultyId, Integer[] toplimitDifficultyId, Integer[] number, Integer[] score,
-			Integer[] itemsOrder) throws Exception {
+			Integer[] itemsOrder,
+			HttpSession session) throws Exception {
 		// 获取当前时间
 		Date time = new Date(System.currentTimeMillis());
 		strategy.setCreateTime(time);
 		// 插入新的策略
+		String username = (String) session.getAttribute("userName");
+		if(username == null || username == "") return 0;
+		strategy.setCreaterId(username);
 		int result = strategyService.saveStrategy(strategy);
 		if (result == 1) {
 			// 获取新插入策略ID

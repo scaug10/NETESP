@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>发布帖子</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/postTheme.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/forum/postTheme.css"/>
     
 
     <script type="text/javascript">
@@ -37,7 +37,7 @@
 <input id="getBoardName" type="hidden" value="${boardName}">
 
 <div class="header">
-    <span>当前版块：<a class="backButton" href=\"javascript:history.go(-1);\">${boardName}</a></span>
+    <span>当前版块：<a class="backButton" href="javascript:history.back(-1)">${boardName}</a></span>
 </div>
 
 <div id="editor">

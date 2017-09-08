@@ -235,9 +235,10 @@ input {
 
 <body>
 	<div>
-		<img name=""
-			src="${pageContext.request.contextPath}/img/index/logo.jpg"
-			width="150" height="70" alt="" />用户注册
+		<a href="${pageContext.request.contextPath}/index">
+			<img src="${pageContext.request.contextPath}/img/index/logo.jpg">
+			</img>
+		</a>用户注册
 	</div>
 	<div class="link"></div>
 	<div class="sign2">

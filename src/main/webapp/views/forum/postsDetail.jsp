@@ -186,6 +186,7 @@
             xhr.send("username=fyw&topicId=" + document.getElementById("topicId").value + "&content=" + ue.getContent());
             xhr.onreadystatechange = function () {
                 if(this.status == 200 && this.readyState == 4){
+                	alert("回复成功！");
                     getThemeContent();
                 }
             };
@@ -200,6 +201,7 @@
             xhr.send("username=fyw&postId=" + postNum + "&content=" + document.getElementById("replyinput"+postNum).value);
             xhr.onreadystatechange = function () {
                 if(this.status == 200 && this.readyState == 4){
+                	alert("回复成功！");
                 	showReply(postNum);
                 }
             };
@@ -213,17 +215,16 @@
                 xhr.open("POST", url, true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.send("topicId=" + document.getElementById("topicId").value);
-                xhr.onreadystatechange(function () {
+                xhr.onreadystatechange=function () {
                     if (this.status == 200 && this.readyState == 4) {
                         var json = JSON.parse(this.responseText);
                     	if(json == 1){
                     		alert("删除成功！");
-//                     		window.history.go(-1);
-                    		window.location.go(-1);
+                    		window.history.go(-1);
                     	}
                     	else alert("你没有权限进行此操作！");
                     }
-                });
+                };
             }
         }
 
@@ -429,11 +430,11 @@
                     var totalPostNumber = jsonObject;/*该主题包含的总帖子数*/
                     var postsPerPage = 20;/*每页包含的帖子数*/
                     var lastPage = Math.ceil(totalPostNumber * 1.0 / postsPerPage);
-                    document.getElementById("bottom").innerHTML = "<span class=\"pageButton\"><a href=\"javascript:void(0)\" onclick='getPosts(" + page + "+1)'>下一页</a></span>\n" +
-                        "    <span class=\"pageButton\"><a href=\"javascript:void(0)\" onclick='getPosts(" + lastPage + ")'>..." + lastPage + "</a></span>\n" +
+                    document.getElementById("bottom").innerHTML = "<span class=\"pageButton\"><a href=\"#\" onclick='getPosts(" + page + "+1)'>下一页</a></span>\n" +
+                        "    <span class=\"pageButton\"><a href=\"#\" onclick='getPosts(" + lastPage + ")'>..." + lastPage + "</a></span>\n" +
                         "    <span class=\"pageButton\"><input onchange='jumpToPage()' id='page' class=\"inputPage\" value=\" " + page + " \" type=\"text\">/页</span>\n" +
-                        "    <span class=\"pageButton\"><a href=\"javascript:void(0)\" onclick='getPosts(1)'>1</a></span>\n" +
-                        "    <span class=\"pageButton\"><a href=\"javascript:void(0)\" onclick='getPosts(" + page + "-1==0?1:" + page + "-1)'>上一页</a></span>";
+                        "    <span class=\"pageButton\"><a href=\"#\" onclick='getPosts(1)'>1</a></span>\n" +
+                        "    <span class=\"pageButton\"><a href=\"#\" onclick='getPosts(" + page + "-1==0?1:" + page + "-1)'>上一页</a></span>";
 
                     document.getElementById("page").value = page;
                 }
@@ -452,11 +453,7 @@
 <img class="preload" src="${pageContext.request.contextPath}/views/forum/IMG/wait.gif" alt=""><!--预加载等待图片-->
 
 <div class="header">
-    <script>
-        var forumName = "应急学习版块";
-        document.write("<span>当前版块：<a class=\"backButton\" href=\"javascript:history.go(-1);\">" + forumName +"</a></span>");
-    </script>
-
+    <a style="color: white;float:left; margin-top:15px;margin-left:15px;text-decoration:none" href="${pageContext.request.contextPath}/index">网络应急化培训教育服务平台</a>
 </div>
 
 <ul class="nav">
